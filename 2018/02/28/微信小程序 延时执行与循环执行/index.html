@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>angular2 日期格式化 | Yxz的博客</title>
+  <title>微信小程序 延时执行  与 循环执行 | Yxz的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="angular2 日期格式化1.ng2 在模板中格式化显示日期使用 DatePipe 管道&amp;lt;span&amp;gt;时间:&amp;#123;&amp;#123;timestamp|date:&apos;yyyy-MM-dd HH:mm:ss&apos;&amp;#125;&amp;#125;&amp;lt;/span&amp;gt; 以上使用了自定义格式日期表达式，和几乎大部分语言的格式化日期表达式一样y代表年，M大写代表月，d代码日，h代表12小时制的小时，H大">
-<meta name="keywords" content="angular">
+  <meta name="description" content="延时执行setTimeout(function () &amp;#123;       //要延时执行的代码      &amp;#125;, 1000) //延迟时间 这里是1秒 循环执行setInterval(function () &amp;#123;     //循环执行代码     &amp;#125;, 1000) //循环时间 这里是1秒">
+<meta name="keywords" content="小程序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="angular2 日期格式化">
-<meta property="og:url" content="http://yoursite.com/2018/02/08/angular2 日期格式化/index.html">
+<meta property="og:title" content="微信小程序 延时执行  与 循环执行">
+<meta property="og:url" content="http://yoursite.com/2018/02/28/微信小程序 延时执行与循环执行/index.html">
 <meta property="og:site_name" content="Yxz的博客">
-<meta property="og:description" content="angular2 日期格式化1.ng2 在模板中格式化显示日期使用 DatePipe 管道&amp;lt;span&amp;gt;时间:&amp;#123;&amp;#123;timestamp|date:&apos;yyyy-MM-dd HH:mm:ss&apos;&amp;#125;&amp;#125;&amp;lt;/span&amp;gt; 以上使用了自定义格式日期表达式，和几乎大部分语言的格式化日期表达式一样y代表年，M大写代表月，d代码日，h代表12小时制的小时，H大">
-<meta property="og:updated_time" content="2018-02-08T07:04:07.552Z">
+<meta property="og:description" content="延时执行setTimeout(function () &amp;#123;       //要延时执行的代码      &amp;#125;, 1000) //延迟时间 这里是1秒 循环执行setInterval(function () &amp;#123;     //循环执行代码     &amp;#125;, 1000) //循环时间 这里是1秒">
+<meta property="og:updated_time" content="2018-02-28T03:05:23.140Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="angular2 日期格式化">
-<meta name="twitter:description" content="angular2 日期格式化1.ng2 在模板中格式化显示日期使用 DatePipe 管道&amp;lt;span&amp;gt;时间:&amp;#123;&amp;#123;timestamp|date:&apos;yyyy-MM-dd HH:mm:ss&apos;&amp;#125;&amp;#125;&amp;lt;/span&amp;gt; 以上使用了自定义格式日期表达式，和几乎大部分语言的格式化日期表达式一样y代表年，M大写代表月，d代码日，h代表12小时制的小时，H大">
+<meta name="twitter:title" content="微信小程序 延时执行  与 循环执行">
+<meta name="twitter:description" content="延时执行setTimeout(function () &amp;#123;       //要延时执行的代码      &amp;#125;, 1000) //延迟时间 这里是1秒 循环执行setInterval(function () &amp;#123;     //循环执行代码     &amp;#125;, 1000) //循环时间 这里是1秒">
   
     <link rel="alternative" href="/atom.xml" title="Yxz的博客" type="application/atom+xml">
   
@@ -144,37 +144,29 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-angular2 日期格式化" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-微信小程序 延时执行与循环执行" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      angular2 日期格式化
+      微信小程序 延时执行  与 循环执行
     </h1>
   
 
         
-        <a href="/2018/02/08/angular2 日期格式化/" class="archive-article-date">
-  	<time datetime="2018-02-08T07:04:30.727Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-08</time>
+        <a href="/2018/02/28/微信小程序 延时执行与循环执行/" class="archive-article-date">
+  	<time datetime="2018-02-28T08:06:45.632Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="angular2-日期格式化"><a href="#angular2-日期格式化" class="headerlink" title="angular2 日期格式化"></a>angular2 日期格式化</h2><h4 id="1-ng2-在模板中格式化显示日期使用-DatePipe-管道"><a href="#1-ng2-在模板中格式化显示日期使用-DatePipe-管道" class="headerlink" title="1.ng2 在模板中格式化显示日期使用 DatePipe 管道"></a>1.ng2 在模板中格式化显示日期使用 DatePipe 管道</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>时间:&#123;&#123;timestamp|date:'yyyy-MM-dd HH:mm:ss'&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>以上使用了自定义格式日期表达式，和几乎大部分语言的格式化日期表达式一样y代表年，M大写代表月，d代码日，h代表12小时制的小时，H大写代表24小时制，m小写代表分.</p>
-<h4 id="2-同时还可以使用该管道提供的预定义格式："><a href="#2-同时还可以使用该管道提供的预定义格式：" class="headerlink" title="2.同时还可以使用该管道提供的预定义格式："></a>2.同时还可以使用该管道提供的预定义格式：</h4><p>‘medium’: 相当于 ‘yMMMdjms’ (e.g. Sep 3, 2010, 12:05:08 PM for en-US)</p>
-<p>‘short’: 相当于 ‘yMdjm’ (e.g. 9/3/2010, 12:05 PM for en-US)</p>
-<p>‘fullDate’:相当于 ‘yMMMMEEEEd’ (e.g. Friday, September 3, 2010 for en-US)</p>
-<p>‘longDate’: 相当于 ‘yMMMMd’ (e.g. September 3, 2010 for en-US)</p>
-<p>‘mediumDate’: 相当于 ‘yMMMd’ (e.g. Sep 3, 2010 for en-US)</p>
-<p>‘shortDate’: 相当于 ‘yMd’ (e.g. 9/3/2010 for en-US)</p>
-<p>‘mediumTime’: 相当于’jms’ (e.g. 12:05:08 PM for en-US)</p>
-<p>‘shortTime’: 相当于 ‘jm’ (e.g. 12:05 PM for en-US)</p>
-<h4 id="查看更多信息"><a href="#查看更多信息" class="headerlink" title="查看更多信息"></a><a href="https://yxz112660.github.io/" target="_blank" rel="noopener">查看更多信息</a></h4>
+        <h2 id="延时执行"><a href="#延时执行" class="headerlink" title="延时执行"></a>延时执行</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">     <span class="comment">//要延时执行的代码  </span></span><br><span class="line">    &#125;, <span class="number">1000</span>) <span class="comment">//延迟时间 这里是1秒</span></span><br></pre></td></tr></table></figure>
+<h2 id="循环执行"><a href="#循环执行" class="headerlink" title="循环执行"></a>循环执行</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">   <span class="comment">//循环执行代码  </span></span><br><span class="line">   &#125;, <span class="number">1000</span>) <span class="comment">//循环时间 这里是1秒</span></span><br></pre></td></tr></table></figure>
+
       
 
       
@@ -218,7 +210,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">angular</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
         		</li>
       		
 		</ul>
@@ -274,7 +266,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/08/angular2 日期格式化/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/28/微信小程序 延时执行与循环执行/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -288,18 +280,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/02/10/hexo增加评论功能/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/02/28/微信小程序-下拉刷新与加载更多/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          给Hexo增加评论功能（使用搜狐的畅言评论系统）
+          微信小程序-下拉刷新与加载更多
         
       </div>
     </a>
   
   
-    <a href="/2018/02/08/angular使用webscket 实现数据定时刷新/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">angular使用websocket 实现数据定时刷新(ng2-stomp)</div>
+    <a href="/2018/02/10/hexo增加评论功能/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">给Hexo增加评论功能（使用搜狐的畅言评论系统）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -329,7 +321,7 @@
   
 
   
-  <div id="SOHUCS" sid="angular2 日期格式化" ></div> 
+  <div id="SOHUCS" sid="微信小程序 延时执行与循环执行" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
