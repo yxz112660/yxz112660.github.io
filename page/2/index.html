@@ -142,6 +142,102 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-mybatis中resultMap使用之返回分组数据" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/26/mybatis中resultMap使用之返回分组数据/">mybatis中resultMap使用之返回分组数据</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/26/mybatis中resultMap使用之返回分组数据/" class="archive-article-date">
+  	<time datetime="2018-01-26T09:39:06.671Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
+</a>
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1.引言"></a>1.引言</h3><p>resultMap是mybatis最重要的强大元素。通过描述数据的关系结构，</p>
+<p>将结果集进行映射到java类或javabean中，</p>
+<p>达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回</p>
+<h3 id="2-问题"><a href="#2-问题" class="headerlink" title="2.问题"></a>2.问题</h3><p>假设有如下sql查询语句<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, otherId <span class="keyword">from</span> mytalbe</span><br></pre></td></tr></table></figure></p>
+<p>该sql查询语句查询结果如下</p>
+<p>id   otherId</p>
+<p>01   00001</p>
+<p>01   00002</p>
+<p>01   00003</p>
+<p>02   00004</p>
+<p>有java实体类如下:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Id</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String id;</span><br><span class="line">  <span class="keyword">private</span> List&lt;String&gt; otherId;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>怎样通过一次查询将结果以分组的形式放到List<id>中呢?</id></p>
+<p>通过执行一次查询，返回如下形式的数据</p>
+<p>List<id> aa = new ArrayList<id>();</id></id></p>
+<p>aa = …//通过mybatis执行slq</p>
+<p>aa:<br>[{01,[00001,00002,00003,00004]},</p>
+<p>{02,[00004]}]</p>
+<p>解决上述问题呢，就需要用到resultMap</p>
+<h3 id="3-带有collection-属性的resultMap"><a href="#3-带有collection-属性的resultMap" class="headerlink" title="3.带有collection 属性的resultMap"></a>3.带有collection 属性的resultMap</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"myid"</span> <span class="attr">type</span>=<span class="string">"Id"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">id</span> <span class="attr">Property</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"id"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">collecton</span> <span class="attr">property</span>=<span class="string">"otherId"</span> <span class="attr">ofType</span>=<span class="string">"String"</span> <span class="attr">javaType</span>=<span class="string">"ArrayList"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">result</span> <span class="attr">colume</span>=<span class="string">"otherId"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>问题解决，上述的关系映射足以满足要求。需要注意的是&lt; id &gt;</p>
+<p>标签，这是分组的标识。一定要注意。</p>
+<p>关于resultMap各标签的意义，请自行查资料吧。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Mybatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/26/mybatis中resultMap使用之返回分组数据/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Angular的DOM选择器对class的查删增" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -649,10 +745,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
@@ -665,11 +757,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -677,11 +765,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">sql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">愚人节</a>
               </li>
             
             <div class="clearfix"></div>
