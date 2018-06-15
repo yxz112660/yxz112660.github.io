@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Yxz的博客</title>
+  <title>Mybatis条件判定 | Yxz的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="### title:   Mybatis条件判定 tags: [“Mybatis”]### 1. !=null&amp;lt;if test=&amp;quot;orderUserName!=null&amp;quot;&amp;gt; &amp;lt;/if&amp;gt; 2. !=””&amp;lt;if test=&amp;quot;orderUserName!=&amp;apos;&amp;apos;&amp;quot;&amp;gt; &amp;lt;/if&amp;gt; 3. !=”,”重点">
-<meta name="keywords" content="Angular">
+  <meta name="description" content="1. !=null&amp;lt;if test=&amp;quot;orderUserName!=null&amp;quot;&amp;gt; &amp;lt;/if&amp;gt; 2. !=””&amp;lt;if test=&amp;quot;orderUserName!=&amp;apos;&amp;apos;&amp;quot;&amp;gt; &amp;lt;/if&amp;gt; 3. !=”,”重点就是这一个：在判定除null、””、数字外，需加上.toString()，否则查询时会报错">
+<meta name="keywords" content="Mybatis">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Yxz的博客">
+<meta property="og:title" content="Mybatis条件判定">
 <meta property="og:url" content="http://yoursite.com/2018/06/15/Mybatis条件判定/index.html">
 <meta property="og:site_name" content="Yxz的博客">
-<meta property="og:description" content="### title:   Mybatis条件判定 tags: [“Mybatis”]### 1. !=null&amp;lt;if test=&amp;quot;orderUserName!=null&amp;quot;&amp;gt; &amp;lt;/if&amp;gt; 2. !=””&amp;lt;if test=&amp;quot;orderUserName!=&amp;apos;&amp;apos;&amp;quot;&amp;gt; &amp;lt;/if&amp;gt; 3. !=”,”重点">
-<meta property="og:updated_time" content="2018-06-12T07:49:45.404Z">
+<meta property="og:description" content="1. !=null&amp;lt;if test=&amp;quot;orderUserName!=null&amp;quot;&amp;gt; &amp;lt;/if&amp;gt; 2. !=””&amp;lt;if test=&amp;quot;orderUserName!=&amp;apos;&amp;apos;&amp;quot;&amp;gt; &amp;lt;/if&amp;gt; 3. !=”,”重点就是这一个：在判定除null、””、数字外，需加上.toString()，否则查询时会报错">
+<meta property="og:updated_time" content="2018-06-15T05:11:34.949Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yxz的博客">
-<meta name="twitter:description" content="### title:   Mybatis条件判定 tags: [“Mybatis”]### 1. !=null&amp;lt;if test=&amp;quot;orderUserName!=null&amp;quot;&amp;gt; &amp;lt;/if&amp;gt; 2. !=””&amp;lt;if test=&amp;quot;orderUserName!=&amp;apos;&amp;apos;&amp;quot;&amp;gt; &amp;lt;/if&amp;gt; 3. !=”,”重点">
+<meta name="twitter:title" content="Mybatis条件判定">
+<meta name="twitter:description" content="1. !=null&amp;lt;if test=&amp;quot;orderUserName!=null&amp;quot;&amp;gt; &amp;lt;/if&amp;gt; 2. !=””&amp;lt;if test=&amp;quot;orderUserName!=&amp;apos;&amp;apos;&amp;quot;&amp;gt; &amp;lt;/if&amp;gt; 3. !=”,”重点就是这一个：在判定除null、””、数字外，需加上.toString()，否则查询时会报错">
   
     <link rel="alternative" href="/atom.xml" title="Yxz的博客" type="application/atom+xml">
   
@@ -147,11 +147,29 @@
             <article id="post-Mybatis条件判定" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Mybatis条件判定
+    </h1>
+  
+
+        
+        <a href="/2018/06/15/Mybatis条件判定/" class="archive-article-date">
+  	<time datetime="2018-06-15T05:12:48.733Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
+</a>
+        
+
+		<span class="archive-article-date">
+			阅读量 <span id="busuanzi_value_page_pv"></span>
+		</span>
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id=""><a href="#" class="headerlink" title="### "></a>### </h2><p>title:   Mybatis条件判定</p>
-<h2 id="tags-“Mybatis”"><a href="#tags-“Mybatis”" class="headerlink" title="tags: [“Mybatis”]"></a>tags: [“Mybatis”]</h2><p>###</p>
-<h4 id="1-null"><a href="#1-null" class="headerlink" title="1. !=null"></a>1. !=null</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;if test=&quot;orderUserName!=null&quot;&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure>
+        <h4 id="1-null"><a href="#1-null" class="headerlink" title="1. !=null"></a>1. !=null</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;if test=&quot;orderUserName!=null&quot;&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure>
 <h4 id="2-””"><a href="#2-””" class="headerlink" title="2. !=””"></a>2. !=””</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;if test=&quot;orderUserName!=&apos;&apos;&quot;&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure>
 <h4 id="3-”-”"><a href="#3-”-”" class="headerlink" title="3. !=”,”"></a>3. !=”,”</h4><p>重点就是这一个：在判定除null、””、数字外，需加上.toString()，否则查询时会报错</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;if test=&quot;orderUserName!=&apos;,&apos;.toString()&quot;&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure>
@@ -194,6 +212,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Mybatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -260,7 +289,7 @@
   
   
     <a href="/2018/06/15/一条sql查询多张不同的表/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title"></div>
+      <div class="article-nav-title">一条sql查询多张不同的表</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -404,10 +433,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
@@ -420,7 +445,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -441,6 +466,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>mybatis中resultMap使用之返回分组数据 | Yxz的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.引言resultMap是mybatis最重要的强大元素。通过描述数据的关系结构， 将结果集进行映射到java类或javabean中， 达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回 2.问题假设有如下sql查询语句select id, otherId from mytalbe 该sql查询语句查询结果如下 id   otherId 01   00001 01   00002 01">
+  <meta name="description" content="1.引言resultMap是mybatis最重要的强大元素。通过描述数据的关系结构， 将结果集进行映射到java类或javabean中， 达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回 2.问题假设有如下sql查询语句select id, otherId from mytalbe">
 <meta name="keywords" content="Mybatis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mybatis中resultMap使用之返回分组数据">
 <meta property="og:url" content="http://yoursite.com/2018/06/15/mybatis中resultMap使用之返回分组数据/index.html">
 <meta property="og:site_name" content="Yxz的博客">
-<meta property="og:description" content="1.引言resultMap是mybatis最重要的强大元素。通过描述数据的关系结构， 将结果集进行映射到java类或javabean中， 达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回 2.问题假设有如下sql查询语句select id, otherId from mytalbe 该sql查询语句查询结果如下 id   otherId 01   00001 01   00002 01">
-<meta property="og:updated_time" content="2018-06-15T04:00:29.653Z">
+<meta property="og:description" content="1.引言resultMap是mybatis最重要的强大元素。通过描述数据的关系结构， 将结果集进行映射到java类或javabean中， 达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回 2.问题假设有如下sql查询语句select id, otherId from mytalbe">
+<meta property="og:updated_time" content="2018-06-15T05:11:14.743Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mybatis中resultMap使用之返回分组数据">
-<meta name="twitter:description" content="1.引言resultMap是mybatis最重要的强大元素。通过描述数据的关系结构， 将结果集进行映射到java类或javabean中， 达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回 2.问题假设有如下sql查询语句select id, otherId from mytalbe 该sql查询语句查询结果如下 id   otherId 01   00001 01   00002 01">
+<meta name="twitter:description" content="1.引言resultMap是mybatis最重要的强大元素。通过描述数据的关系结构， 将结果集进行映射到java类或javabean中， 达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回 2.问题假设有如下sql查询语句select id, otherId from mytalbe">
   
     <link rel="alternative" href="/atom.xml" title="Yxz的博客" type="application/atom+xml">
   
@@ -157,7 +157,7 @@
 
         
         <a href="/2018/06/15/mybatis中resultMap使用之返回分组数据/" class="archive-article-date">
-  	<time datetime="2018-06-15T04:01:47.482Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
+  	<time datetime="2018-06-15T05:12:25.651Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
 </a>
         
 
@@ -173,6 +173,7 @@
 <p>将结果集进行映射到java类或javabean中，</p>
 <p>达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回</p>
 <h3 id="2-问题"><a href="#2-问题" class="headerlink" title="2.问题"></a>2.问题</h3><p>假设有如下sql查询语句<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, otherId <span class="keyword">from</span> mytalbe</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>该sql查询语句查询结果如下</p>
 <p>id   otherId</p>
 <p>01   00001</p>
@@ -309,14 +310,14 @@
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          (no title)
+          一条sql查询多张不同的表
         
       </div>
     </a>
   
   
-    <a href="/2018/05/16/自制google插件/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">自制google插件</div>
+    <a href="/2018/06/15/Mybatis插入数据后返回主键/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mybatis插入数据后返回主键</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -460,10 +461,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
@@ -476,7 +473,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -497,6 +494,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
