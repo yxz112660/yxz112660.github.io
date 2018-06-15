@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/5 | Yxz的博客</title>
+  <title>mybatis中resultMap使用之返回分组数据 | Yxz的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Angular">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yxz的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2018/05/index.html">
+  <meta name="description" content="1.引言resultMap是mybatis最重要的强大元素。通过描述数据的关系结构， 将结果集进行映射到java类或javabean中， 达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回 2.问题假设有如下sql查询语句select id, otherId from mytalbe 该sql查询语句查询结果如下 id   otherId 01   00001 01   00002 01">
+<meta name="keywords" content="Mybatis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mybatis中resultMap使用之返回分组数据">
+<meta property="og:url" content="http://yoursite.com/2018/06/15/mybatis中resultMap使用之返回分组数据/index.html">
 <meta property="og:site_name" content="Yxz的博客">
+<meta property="og:description" content="1.引言resultMap是mybatis最重要的强大元素。通过描述数据的关系结构， 将结果集进行映射到java类或javabean中， 达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回 2.问题假设有如下sql查询语句select id, otherId from mytalbe 该sql查询语句查询结果如下 id   otherId 01   00001 01   00002 01">
+<meta property="og:updated_time" content="2018-06-15T04:00:29.653Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yxz的博客">
+<meta name="twitter:title" content="mybatis中resultMap使用之返回分组数据">
+<meta name="twitter:description" content="1.引言resultMap是mybatis最重要的强大元素。通过描述数据的关系结构， 将结果集进行映射到java类或javabean中， 达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回 2.问题假设有如下sql查询语句select id, otherId from mytalbe 该sql查询语句查询结果如下 id   otherId 01   00001 01   00002 01">
   
     <link rel="alternative" href="/atom.xml" title="Yxz的博客" type="application/atom+xml">
   
@@ -140,220 +144,222 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-mybatis中resultMap使用之返回分组数据" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mybatis中resultMap使用之返回分组数据
+    </h1>
+  
+
+        
+        <a href="/2018/06/15/mybatis中resultMap使用之返回分组数据/" class="archive-article-date">
+  	<time datetime="2018-06-15T04:01:47.482Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
+</a>
+        
+
+		<span class="archive-article-date">
+			阅读量 <span id="busuanzi_value_page_pv"></span>
+		</span>
+
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1.引言"></a>1.引言</h3><p>resultMap是mybatis最重要的强大元素。通过描述数据的关系结构，</p>
+<p>将结果集进行映射到java类或javabean中，</p>
+<p>达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回</p>
+<h3 id="2-问题"><a href="#2-问题" class="headerlink" title="2.问题"></a>2.问题</h3><p>假设有如下sql查询语句<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, otherId <span class="keyword">from</span> mytalbe</span><br></pre></td></tr></table></figure></p>
+<p>该sql查询语句查询结果如下</p>
+<p>id   otherId</p>
+<p>01   00001</p>
+<p>01   00002</p>
+<p>01   00003</p>
+<p>02   00004</p>
+<p>有java实体类如下:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Id</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String id;</span><br><span class="line">  <span class="keyword">private</span> List&lt;String&gt; otherId;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>怎样通过一次查询将结果以分组的形式放到List<id>中呢?</id></p>
+<p>通过执行一次查询，返回如下形式的数据</p>
+<p>List<id> aa = new ArrayList<id>();</id></id></p>
+<p>aa = …//通过mybatis执行slq</p>
+<p>aa:<br>[{01,[00001,00002,00003,00004]},</p>
+<p>{02,[00004]}]</p>
+<p>解决上述问题呢，就需要用到resultMap</p>
+<h3 id="3-带有collection-属性的resultMap"><a href="#3-带有collection-属性的resultMap" class="headerlink" title="3.带有collection 属性的resultMap"></a>3.带有collection 属性的resultMap</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"Data"</span> <span class="attr">type</span>=<span class="string">"yxz.niit.com.A"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"a"</span> <span class="attr">property</span>=<span class="string">"a"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"b"</span> <span class="attr">property</span>=<span class="string">"b"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"c"</span> <span class="attr">property</span>=<span class="string">"c"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"d"</span> <span class="attr">property</span>=<span class="string">"d"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">"tags"</span> <span class="attr">ofType</span>=<span class="string">"yxz.niit.com.B"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"aa"</span> <span class="attr">property</span>=<span class="string">"aa"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"tagId"</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>问题解决，上述的关系映射足以满足要求。需要注意的是&lt; id &gt;</p>
+<p>标签，这是分组的标识。一定要注意。</p>
+<p>关于resultMap各标签的意义，请自行查资料吧。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>赠人玫瑰，手有余香<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/uploads/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/uploads/wx.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/16/自制google插件/" class="archive-article-date">
-  	<time datetime="2018-05-16T07:55:54.414Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/16/自制google插件/">自制google插件</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">插件</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Mybatis</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/06/15/mybatis中resultMap使用之返回分组数据/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/16/微信小程序-生成二维码/" class="archive-article-date">
-  	<time datetime="2018-05-16T05:07:57.059Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2018/06/15/一条sql查询多张不同的表/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/05/16/自制google插件/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">自制google插件</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/16/微信小程序-生成二维码/">微信小程序-生成二维码</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/16/ js数组合并、抽取操作/" class="archive-article-date">
-  	<time datetime="2018-05-16T05:07:44.242Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/16/ js数组合并、抽取操作/">js数组合并、抽取操作</a>
-    </h1>
+  <div id="SOHUCS" sid="mybatis中resultMap使用之返回分组数据" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytsoO5Ys",
+        conf: "bcc0f626a2cf8bf2270bb7031ae480a7"
+    });
+</script>
+</script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/16/停止setTimeout、setInterval函数/" class="archive-article-date">
-  	<time datetime="2018-05-16T05:07:31.469Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/16/停止setTimeout、setInterval函数/">停止setTimeout、setInterval函数</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/16/Centos7.3安装和配置Mysql5.7/" class="archive-article-date">
-  	<time datetime="2018-05-16T05:07:15.560Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/16/Centos7.3安装和配置Mysql5.7/">Centos7.3安装和配置Mysql5.7</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Centos</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -380,8 +386,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

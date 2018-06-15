@@ -142,6 +142,286 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Mybatis条件判定" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id=""><a href="#" class="headerlink" title="### "></a>### </h2><p>title:   Mybatis条件判定</p>
+<h2 id="tags-“Mybatis”"><a href="#tags-“Mybatis”" class="headerlink" title="tags: [“Mybatis”]"></a>tags: [“Mybatis”]</h2><p>###</p>
+<h4 id="1-null"><a href="#1-null" class="headerlink" title="1. !=null"></a>1. !=null</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;if test=&quot;orderUserName!=null&quot;&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="2-””"><a href="#2-””" class="headerlink" title="2. !=””"></a>2. !=””</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;if test=&quot;orderUserName!=&apos;&apos;&quot;&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="3-”-”"><a href="#3-”-”" class="headerlink" title="3. !=”,”"></a>3. !=”,”</h4><p>重点就是这一个：在判定除null、””、数字外，需加上.toString()，否则查询时会报错</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;if test=&quot;orderUserName!=&apos;,&apos;.toString()&quot;&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/15/Mybatis条件判定/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-一条sql查询多张不同的表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id=""><a href="#" class="headerlink" title="### "></a>### </h2><p>title: 一条sql查询多张不同的表</p>
+<h2 id="tags-“Mybatis”-”sql”"><a href="#tags-“Mybatis”-”sql”" class="headerlink" title="tags: [“Mybatis”,”sql”]"></a>tags: [“Mybatis”,”sql”]</h2><p>###</p>
+<p>场景说明：</p>
+<p>有A、B、C、D、E共5张表，其中A表为主表，BCDE同为子表，A表有一个字段关联着BCDE表的主键id，BCDE表的字段除了主键id都不相同，此时我们需要查询A表数据同时关联子表查询出其子表的所有字段信息，因为不清楚关联子表具体是谁，所以您可能需要如下骚操作</p>
+        
+          <a class="article-more-a" href="/2018/06/15/一条sql查询多张不同的表/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/15/一条sql查询多张不同的表/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-mybatis中resultMap使用之返回分组数据" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/15/mybatis中resultMap使用之返回分组数据/">mybatis中resultMap使用之返回分组数据</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/15/mybatis中resultMap使用之返回分组数据/" class="archive-article-date">
+  	<time datetime="2018-06-15T04:01:47.482Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-15</time>
+</a>
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1.引言"></a>1.引言</h3><p>resultMap是mybatis最重要的强大元素。通过描述数据的关系结构，</p>
+<p>将结果集进行映射到java类或javabean中，</p>
+<p>达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回</p>
+<h3 id="2-问题"><a href="#2-问题" class="headerlink" title="2.问题"></a>2.问题</h3><p>假设有如下sql查询语句<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, otherId <span class="keyword">from</span> mytalbe</span><br></pre></td></tr></table></figure></p>
+<p>该sql查询语句查询结果如下</p>
+<p>id   otherId</p>
+<p>01   00001</p>
+<p>01   00002</p>
+<p>01   00003</p>
+<p>02   00004</p>
+<p>有java实体类如下:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Id</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String id;</span><br><span class="line">  <span class="keyword">private</span> List&lt;String&gt; otherId;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>怎样通过一次查询将结果以分组的形式放到List<id>中呢?</id></p>
+<p>通过执行一次查询，返回如下形式的数据</p>
+<p>List<id> aa = new ArrayList<id>();</id></id></p>
+<p>aa = …//通过mybatis执行slq</p>
+<p>aa:<br>[{01,[00001,00002,00003,00004]},</p>
+<p>{02,[00004]}]</p>
+<p>解决上述问题呢，就需要用到resultMap</p>
+<h3 id="3-带有collection-属性的resultMap"><a href="#3-带有collection-属性的resultMap" class="headerlink" title="3.带有collection 属性的resultMap"></a>3.带有collection 属性的resultMap</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"Data"</span> <span class="attr">type</span>=<span class="string">"yxz.niit.com.A"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">id</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"id"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"a"</span> <span class="attr">property</span>=<span class="string">"a"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"b"</span> <span class="attr">property</span>=<span class="string">"b"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"c"</span> <span class="attr">property</span>=<span class="string">"c"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"d"</span> <span class="attr">property</span>=<span class="string">"d"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">"tags"</span> <span class="attr">ofType</span>=<span class="string">"yxz.niit.com.B"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"aa"</span> <span class="attr">property</span>=<span class="string">"aa"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">"tagId"</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>问题解决，上述的关系映射足以满足要求。需要注意的是&lt; id &gt;</p>
+<p>标签，这是分组的标识。一定要注意。</p>
+<p>关于resultMap各标签的意义，请自行查资料吧。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Mybatis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/15/mybatis中resultMap使用之返回分组数据/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-自制google插件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/16/自制google插件/">自制google插件</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/16/自制google插件/" class="archive-article-date">
+  	<time datetime="2018-05-16T07:55:54.414Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
+</a>
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>一个 Chrome 扩展其实就是一个配置文件manifest.json 和一系列 html、css、js、图片文件的集合</p>
+<h4 id="manifest-json文件配置"><a href="#manifest-json文件配置" class="headerlink" title="manifest.json文件配置"></a>manifest.json文件配置</h4><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  "manifest_version": 2, //manifest的版本，必须是2</span><br><span class="line">  "name": "demo", // 插件名</span><br><span class="line">  "description": "demo例子",//插件说明</span><br><span class="line">  "version": "1.1.3",// 版本号</span><br><span class="line">  "icons": &#123;</span><br><span class="line">    "128": "128.png" // logo位置</span><br><span class="line">  &#125;,</span><br><span class="line">  "permissions": [ //它定义了扩展需要向 Chrome 申请的权限</span><br><span class="line">    <span class="string">"http://*/*"</span></span><br><span class="line">  ],</span><br><span class="line">  "browser_action": &#123;</span><br><span class="line">    "default_icon": &#123;</span><br><span class="line">      "128": "128.png" // 插件logo</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  "content_scripts": [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">"matches"</span>: [</span><br><span class="line">        <span class="string">"http://*/*"</span></span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">"js"</span>: [<span class="string">"jquery-1.9.1.min.js"</span>,<span class="string">"main.js"</span>]// 使用js集合(名字随意取，和真实文件名一样就好)</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2018/05/16/自制google插件/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">插件</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/16/自制google插件/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-微信小程序-生成二维码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -504,15 +784,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">websocket</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
         		</li>
       		
 		</ul>
@@ -641,334 +921,9 @@
 
 
   
-    <article id="post-微信小程序-下拉刷新与加载更多" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/28/微信小程序-下拉刷新与加载更多/">微信小程序-下拉刷新与加载更多</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/28/微信小程序-下拉刷新与加载更多/" class="archive-article-date">
-  	<time datetime="2018-02-28T08:06:54.655Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-28</time>
-</a>
-        
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="下拉刷新"><a href="#下拉刷新" class="headerlink" title="下拉刷新"></a>下拉刷新</h2><h3 id="调用系统的API，系统有提供下拉刷新的API接口"><a href="#调用系统的API，系统有提供下拉刷新的API接口" class="headerlink" title="调用系统的API，系统有提供下拉刷新的API接口"></a>调用系统的API，系统有提供下拉刷新的API接口</h3><h4 id="1-home-json-参数配置"><a href="#1-home-json-参数配置" class="headerlink" title="1. home.json 参数配置"></a>1. home.json 参数配置</h4><figure class="highlight"><table><tr><td class="code"><pre><span class="line">"enablePullDownRefresh": true</span><br></pre></td></tr></table></figure>
-<p>我们哪个页面需要下拉刷新，就在哪个页面对应的xxx.json文件配置上面属性,这个属性从字面意思也可以知道，是否允许下拉刷新，当然，如何你不想一个个配置允许下拉刷新，你可以直接在全局变量app.json的window里面配置上面这个属性，这样整个项目都允许下拉刷新了,这个一定要加的，因为系统默认是不具备下拉刷新功能的 </p>
-<h4 id="2-home-js"><a href="#2-home-js" class="headerlink" title="2. home.js"></a>2. home.js</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//下拉刷新</span></span><br><span class="line"> onPullDownRefresh:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">   wx.showNavigationBarLoading() <span class="comment">//在标题栏中显示加载</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">//模拟加载</span></span><br><span class="line">   setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">   </span>&#123;</span><br><span class="line">     <span class="comment">// complete</span></span><br><span class="line">     wx.hideNavigationBarLoading() <span class="comment">//完成停止加载</span></span><br><span class="line">     wx.stopPullDownRefresh() <span class="comment">//停止下拉刷新</span></span><br><span class="line">   &#125;,<span class="number">1500</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>onPullDownRefresh 下拉刷新事件监听，具体看一下里面的代码，wx.showNavigationBarLoading() 与wx.hideNavigationBarLoading() 这两句话是用来控制小菊花的显示和隐藏，由于我们现在还没有讲解网络请求，所以我就模拟了一下网络加载，通过setTimeout方法，写一个时间延迟的方法，这个方法可以模拟网络加载所消耗的时间，还有就是当网络加载完成我们要停止下拉刷新wx.stopPullDownRefresh() </p>
-<h2 id="加载更多"><a href="#加载更多" class="headerlink" title="加载更多"></a>加载更多</h2><h3 id="调用系统的API，系统有提供加载更多的API接口"><a href="#调用系统的API，系统有提供加载更多的API接口" class="headerlink" title="调用系统的API，系统有提供加载更多的API接口"></a>调用系统的API，系统有提供加载更多的API接口</h3><h4 id="1-home-js"><a href="#1-home-js" class="headerlink" title="1. home.js"></a>1. home.js</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加载更多</span></span><br><span class="line"> onReachBottom: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'加载更多'</span>)</span><br><span class="line">   wx.request(&#123;</span><br><span class="line">     url: app.globalData.url.base.health + app.globalData.url.wxapp.user.userList,</span><br><span class="line">     method: <span class="string">'POST'</span>,</span><br><span class="line">     data: &#123;</span><br><span class="line">       id: <span class="string">"参数"</span>,</span><br><span class="line">       offset: <span class="string">"参数"</span>,</span><br><span class="line">       limit: <span class="string">"参数"</span></span><br><span class="line">     &#125;,</span><br><span class="line">     success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'请求成功'</span>)</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>onReachBottom系统提供的触底事件的监听，和下拉刷新一样，isHideLoadMore，一个自定义的值，用来控制显示和隐藏加载控件 </p>
-<h4 id="2-home-wxml"><a href="#2-home-wxml" class="headerlink" title="2. home.wxml"></a>2. home.wxml</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;view class=&quot;weui-loadmore&quot; hidden=&quot;&#123;&#123;isHideLoadMore&#125;&#125;&quot;&gt;</span><br><span class="line">   &lt;view class=&quot;weui-loading&quot;&gt;&lt;/view&gt;</span><br><span class="line">   &lt;view class=&quot;weui-loadmore__tips&quot;&gt;正在加载&lt;/view&gt;</span><br><span class="line"> &lt;/view&gt;</span><br></pre></td></tr></table></figure>
-<p>在home.wxml底部加入上面的代码，这是加载更多的控件，加载更多待遇就没下拉刷新待遇好，系统并没有提供加载更多的控件动画，所以我们需要自己制作 </p>
-<h4 id="3-home-wxss"><a href="#3-home-wxss" class="headerlink" title="3.home.wxss"></a>3.home.wxss</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> /*  加载更多   */</span><br><span class="line">.weui-loading &#123;</span><br><span class="line">  margin: 0 5px;</span><br><span class="line">  width: 20px;</span><br><span class="line">  height: 20px;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">  -webkit-animation: weuiLoading 1s steps(12, end) infinite;</span><br><span class="line">  animation: weuiLoading 1s steps(12, end) infinite;</span><br><span class="line">  background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgxMDB2MTAwSDB6Ii8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTlFOUU5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTMwKSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iIzk4OTY5NyIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMDUuOTggNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjOUI5OTlBIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDYwIDc1Ljk4IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0EzQTFBMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSg5MCA2NSA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNBQkE5QUEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoMTIwIDU4LjY2IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0IyQjJCMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgxNTAgNTQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjQkFCOEI5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA1MCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDMkMwQzEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTE1MCA0NS45OCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDQkNCQ0IiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTEyMCA0MS4zNCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNEMkQyRDIiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDM1IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0RBREFEQSIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgtNjAgMjQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTJFMkUyIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKC0zMCAtNS45OCA2NSkiLz48L3N2Zz4=) no-repeat;</span><br><span class="line">  background-size: 100%;</span><br><span class="line">&#125;</span><br><span class="line">.weui-loadmore &#123;</span><br><span class="line">  width: 65%;</span><br><span class="line">  margin: 1.5em auto;</span><br><span class="line">  line-height: 1.6em;</span><br><span class="line">  font-size: 14px;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">.weui-loadmore__tips &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这个是我们自定义的样式，样式很简单，就是一个简单的加载小菊花，这里我要讲解的是 weui-loading 样式里设置 background，data:image/svg+xml;base64这个是什么意思呐，我们之前一般设置背景直接加入颜色，这个是background的另一种用法，加入图片，这个图片还有点特别是base64格式，并用svg绘制的，当然你还可以直接把url里面写入图片路径也是可以的</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/28/微信小程序-下拉刷新与加载更多/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-微信小程序 延时执行与循环执行" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/28/微信小程序 延时执行与循环执行/">微信小程序 延时执行  与 循环执行</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/28/微信小程序 延时执行与循环执行/" class="archive-article-date">
-  	<time datetime="2018-02-28T08:06:45.632Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-28</time>
-</a>
-        
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="延时执行"><a href="#延时执行" class="headerlink" title="延时执行"></a>延时执行</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">     <span class="comment">//要延时执行的代码  </span></span><br><span class="line">    &#125;, <span class="number">1000</span>) <span class="comment">//延迟时间 这里是1秒</span></span><br></pre></td></tr></table></figure>
-<h2 id="循环执行"><a href="#循环执行" class="headerlink" title="循环执行"></a>循环执行</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">   <span class="comment">//循环执行代码  </span></span><br><span class="line">   &#125;, <span class="number">1000</span>) <span class="comment">//循环时间 这里是1秒</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/28/微信小程序 延时执行与循环执行/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hexo增加评论功能" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/10/hexo增加评论功能/">给Hexo增加评论功能（使用搜狐的畅言评论系统）</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/10/hexo增加评论功能/" class="archive-article-date">
-  	<time datetime="2018-02-10T06:51:00.801Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-10</time>
-</a>
-        
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-注册畅言账号"><a href="#1-注册畅言账号" class="headerlink" title="1.注册畅言账号"></a>1.注册畅言账号</h2><p>使用畅言需要对你博客进行ICP备案号认证，所以需要对你博客进行域名备案，你可以去买一个域名然后进行认证</p>
-<p>或者在网上找个别人的网站去完成认证，在认证成功后在把地址换成你的地址就好了</p>
-<p>完成这一步操作后你回获得畅言的APP ID和APP KEY（在畅言后台总览的畅言秘钥里面查看）</p>
-<h2 id="2-修改主题目录下的-config-yml"><a href="#2-修改主题目录下的-config-yml" class="headerlink" title="2.修改主题目录下的_config.yml"></a>2.修改主题目录下的_config.yml</h2><p>changyan_appid: ‘APP ID’</p>
-<p>changyan_conf: ‘APP KEY’</p>
-<h2 id="3-更新发布设置"><a href="#3-更新发布设置" class="headerlink" title="3.更新发布设置"></a>3.更新发布设置</h2><p>hexo g</p>
-<p>hexo d</p>
-<h4 id="注意将你的博客地址加到你畅言白名单"><a href="#注意将你的博客地址加到你畅言白名单" class="headerlink" title="注意将你的博客地址加到你畅言白名单"></a>注意将你的博客地址加到你畅言白名单</h4>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/10/hexo增加评论功能/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-angular2 日期格式化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/08/angular2 日期格式化/">angular2 日期格式化</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/08/angular2 日期格式化/" class="archive-article-date">
-  	<time datetime="2018-02-08T07:04:30.727Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-08</time>
-</a>
-        
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="angular2-日期格式化"><a href="#angular2-日期格式化" class="headerlink" title="angular2 日期格式化"></a>angular2 日期格式化</h2><h4 id="1-ng2-在模板中格式化显示日期使用-DatePipe-管道"><a href="#1-ng2-在模板中格式化显示日期使用-DatePipe-管道" class="headerlink" title="1.ng2 在模板中格式化显示日期使用 DatePipe 管道"></a>1.ng2 在模板中格式化显示日期使用 DatePipe 管道</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>时间:&#123;&#123;timestamp|date:'yyyy-MM-dd HH:mm:ss'&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>以上使用了自定义格式日期表达式，和几乎大部分语言的格式化日期表达式一样y代表年，M大写代表月，d代码日，h代表12小时制的小时，H大写代表24小时制，m小写代表分.</p>
-<h4 id="2-同时还可以使用该管道提供的预定义格式："><a href="#2-同时还可以使用该管道提供的预定义格式：" class="headerlink" title="2.同时还可以使用该管道提供的预定义格式："></a>2.同时还可以使用该管道提供的预定义格式：</h4><p>‘medium’: 相当于 ‘yMMMdjms’ (e.g. Sep 3, 2010, 12:05:08 PM for en-US)</p>
-<p>‘short’: 相当于 ‘yMdjm’ (e.g. 9/3/2010, 12:05 PM for en-US)</p>
-<p>‘fullDate’:相当于 ‘yMMMMEEEEd’ (e.g. Friday, September 3, 2010 for en-US)</p>
-<p>‘longDate’: 相当于 ‘yMMMMd’ (e.g. September 3, 2010 for en-US)</p>
-<p>‘mediumDate’: 相当于 ‘yMMMd’ (e.g. Sep 3, 2010 for en-US)</p>
-<p>‘shortDate’: 相当于 ‘yMd’ (e.g. 9/3/2010 for en-US)</p>
-<p>‘mediumTime’: 相当于’jms’ (e.g. 12:05:08 PM for en-US)</p>
-<p>‘shortTime’: 相当于 ‘jm’ (e.g. 12:05 PM for en-US)</p>
-<h4 id="查看更多信息"><a href="#查看更多信息" class="headerlink" title="查看更多信息"></a><a href="https://yxz112660.github.io/" target="_blank" rel="noopener">查看更多信息</a></h4>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">angular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/08/angular2 日期格式化/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1067,6 +1022,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
@@ -1079,11 +1042,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1099,11 +1058,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular</a>
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">angular</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1111,11 +1070,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+                <a href="javascript:void(0)" class="js-tag color4">sql</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sql</a>
+                <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
             
             <div class="clearfix"></div>

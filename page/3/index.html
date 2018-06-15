@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2018/5 | Yxz的博客</title>
+  <title>Yxz的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="keywords" content="Angular">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Yxz的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2018/05/index.html">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="Yxz的博客">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Yxz的博客">
@@ -142,218 +142,187 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-install_yilia" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/26/install_yilia/">安装yilia主题</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/26/install_yilia/" class="archive-article-date">
+  	<time datetime="2018-01-26T09:02:15.518Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
+</a>
+        
+
+      </header>
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-在hexo项目根目录下执行（下载yilia主题项目）"><a href="#1-在hexo项目根目录下执行（下载yilia主题项目）" class="headerlink" title="1.在hexo项目根目录下执行（下载yilia主题项目）"></a>1.在hexo项目根目录下执行（下载yilia主题项目）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure>
+<h3 id="2-修改根目录下的-config-yml文件（修改配置使用yilia主题）"><a href="#2-修改根目录下的-config-yml文件（修改配置使用yilia主题）" class="headerlink" title="2.修改根目录下的_config.yml文件（修改配置使用yilia主题）"></a>2.修改根目录下的_config.yml文件（修改配置使用yilia主题）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">theme: yilia    //默认为landscape</span><br></pre></td></tr></table></figure>
+<h3 id="3-修改themes-yilia-config-yml文件（可跳过）"><a href="#3-修改themes-yilia-config-yml文件（可跳过）" class="headerlink" title="3.修改themes/yilia/_config.yml文件（可跳过）"></a>3.修改themes/yilia/_config.yml文件（可跳过）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Header</span></span><br><span class="line"></span><br><span class="line">menu:</span><br><span class="line">  主页: /</span><br><span class="line">  所有文章: /allPages</span><br><span class="line">  随笔: /tags</span><br><span class="line">  相册: /photos</span><br><span class="line"></span><br><span class="line"><span class="comment"># SubNav</span></span><br><span class="line">subnav:</span><br><span class="line">  github: <span class="string">"https://github.com/yxz112660"</span></span><br><span class="line">  <span class="comment">#weibo: "#"</span></span><br><span class="line">  <span class="comment">#rss: /atom.xml</span></span><br><span class="line">  <span class="comment">#zhihu: "#"</span></span><br><span class="line">  <span class="comment">#qq: "#"</span></span><br><span class="line">  <span class="comment">#weixin: "#"</span></span><br><span class="line">  <span class="comment">#jianshu: "#"</span></span><br><span class="line">  <span class="comment">#douban: "#"</span></span><br><span class="line">  <span class="comment">#segmentfault: "#"</span></span><br><span class="line">  <span class="comment">#bilibili: "#"</span></span><br><span class="line">  <span class="comment">#acfun: "#"</span></span><br><span class="line">  <span class="comment">#mail: "#"</span></span><br><span class="line">  <span class="comment">#facebook: "#"</span></span><br><span class="line">  <span class="comment">#google: "#"</span></span><br><span class="line">  <span class="comment">#twitter: "#"</span></span><br><span class="line">  <span class="comment">#linkedin: "#"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否需要修改 root 路径</span></span><br><span class="line"><span class="comment"># 如果您的网站存放在子目录中，例如 http://yoursite.com/blog，</span></span><br><span class="line"><span class="comment"># 请将您的 url 设为 http://yoursite.com/blog 并把 root 设为 /blog/。</span></span><br><span class="line">root:</span><br><span class="line"></span><br><span class="line"><span class="comment"># Content</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文章太长，截断按钮文字</span></span><br><span class="line">excerpt_link: 阅读全文</span><br><span class="line"><span class="comment"># 文章卡片右下角常驻链接，不需要请设置为false</span></span><br><span class="line">show_all_link: <span class="string">'展开全文'</span></span><br><span class="line"><span class="comment"># 数学公式</span></span><br><span class="line">mathjax: <span class="literal">false</span></span><br><span class="line"><span class="comment"># 是否在新窗口打开链接</span></span><br><span class="line">open_in_new: <span class="literal">false</span></span><br><span class="line">fancybox: <span class="literal">true</span></span><br><span class="line"><span class="comment">#是否开启动画效果</span></span><br><span class="line">animate: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打赏</span></span><br><span class="line"><span class="comment"># 打赏type设定：0-关闭打赏； 1-文章对应的md文件里有reward:true属性，才有打赏； 2-所有文章均有打赏</span></span><br><span class="line">reward_type: 2</span><br><span class="line"><span class="comment"># 打赏wording</span></span><br><span class="line">reward_wording: <span class="string">'谢谢你请我吃糖果'</span></span><br><span class="line"><span class="comment"># 支付宝二维码图片地址，跟你设置头像的方式一样。比如：/assets/img/alipay.jpg</span></span><br><span class="line">alipay: /assets/img/alipay.jpg</span><br><span class="line"><span class="comment"># 微信二维码图片地址</span></span><br><span class="line">weixin: /assets/img/wechat.png</span><br><span class="line"></span><br><span class="line"><span class="comment"># 目录</span></span><br><span class="line"><span class="comment"># 目录设定：0-不显示目录； 1-文章对应的md文件里有toc:true属性，才有目录； 2-所有文章均显示目录</span></span><br><span class="line">toc: 1</span><br><span class="line"><span class="comment"># 根据自己的习惯来设置，如果你的目录标题习惯有标号，置为true即可隐藏hexo重复的序号；否则置为false</span></span><br><span class="line">toc_hide_index: <span class="literal">true</span></span><br><span class="line"><span class="comment"># 目录为空时的提示</span></span><br><span class="line">toc_empty_wording: <span class="string">'目录，不存在的…'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否有快速回到顶部的按钮</span></span><br><span class="line">top: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Miscellaneous</span></span><br><span class="line">baidu_analytics: <span class="string">''</span></span><br><span class="line">google_analytics: <span class="string">''</span></span><br><span class="line">favicon: /favicon.png</span><br><span class="line"></span><br><span class="line"><span class="comment">#你的头像url</span></span><br><span class="line">avatar:</span><br><span class="line"></span><br><span class="line"><span class="comment">#是否开启分享</span></span><br><span class="line">share_jia: <span class="literal">true</span></span><br><span class="line">share_addthis: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#评论：1、多说；2、网易云跟帖；3、畅言；4、Disqus 不需要使用某项，直接设置值为false，或注释掉</span></span><br><span class="line"><span class="comment">#具体请参考wiki：https://github.com/litten/hexo-theme-yilia/wiki/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#1、多说</span></span><br><span class="line">duoshuo: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2、网易云跟帖</span></span><br><span class="line">wangyiyun: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#3、畅言</span></span><br><span class="line">changyan_appid: <span class="literal">false</span></span><br><span class="line">changyan_conf: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#4、Disqus 在hexo根目录的config里也有disqus_shortname字段，优先使用yilia的</span></span><br><span class="line">disqus: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 样式定制 - 一般不需要修改，除非有很强的定制欲望…</span></span><br><span class="line">style:</span><br><span class="line">  <span class="comment"># 头像上面的背景颜色</span></span><br><span class="line">  header: <span class="string">'#4d4d4d'</span></span><br><span class="line">  <span class="comment"># 右滑板块背景</span></span><br><span class="line">  slider: <span class="string">'linear-gradient(200deg,#a0cfe4,#e8c37e)'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># slider的设置</span></span><br><span class="line">slider:</span><br><span class="line">  <span class="comment"># 是否默认展开tags板块</span></span><br><span class="line">  showTags: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 智能菜单</span></span><br><span class="line"><span class="comment"># 如不需要，将该对应项置为false</span></span><br><span class="line"><span class="comment"># 比如</span></span><br><span class="line"><span class="comment">#smart_menu:</span></span><br><span class="line"><span class="comment">#  friends: false</span></span><br><span class="line">smart_menu:</span><br><span class="line">  innerArchive: <span class="string">'所有文章'</span></span><br><span class="line">  friends: <span class="string">'友情链接'</span></span><br><span class="line">  aboutme: <span class="string">'关于我'</span></span><br><span class="line"></span><br><span class="line">friends:</span><br><span class="line">  百度一下: http://www.baidu.com</span><br><span class="line">  google: http://www.google.com</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">aboutme: 人生如戏，全凭演技</span><br></pre></td></tr></table></figure>
+<h3 id="4-运行（在hexo项目根目录执行语句）"><a href="#4-运行（在hexo项目根目录执行语句）" class="headerlink" title="4.运行（在hexo项目根目录执行语句）"></a>4.运行（在hexo项目根目录执行语句）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean   //清空之前主题（清除）</span><br><span class="line"></span><br><span class="line">hexo g     //生成静态文件（生成）</span><br><span class="line"></span><br><span class="line">hexo s     //在本地运行（测试）</span><br><span class="line"></span><br><span class="line">hexo d    //发布到github的page上（上传）</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/16/自制google插件/" class="archive-article-date">
-  	<time datetime="2018-05-16T07:55:54.414Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/16/自制google插件/">自制google插件</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">插件</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">yilia主题</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/26/install_yilia/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/16/微信小程序-生成二维码/" class="archive-article-date">
-  	<time datetime="2018-05-16T05:07:57.059Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-install_hexo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/16/微信小程序-生成二维码/">微信小程序-生成二维码</a>
+      <a class="article-title" href="/2018/01/26/install_hexo/">Hexo+Github 搭建属于自己的博客</a>
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/01/26/install_hexo/" class="archive-article-date">
+  	<time datetime="2018-01-26T09:01:56.995Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
+</a>
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="配置Node-js环境"><a href="#配置Node-js环境" class="headerlink" title="配置Node.js环境"></a>配置Node.js环境</h2><h4 id="1-下载Node-js安装文件"><a href="#1-下载Node-js安装文件" class="headerlink" title="1.下载Node.js安装文件"></a>1.下载Node.js安装文件</h4><p><a href="https://link.jianshu.com?t=https://nodejs.org/dist/v4.2.3/node-v4.2.3-x86.msi" target="_blank" rel="noopener">Windows Installer 32-bit</a></p>
+<p><a href="https://link.jianshu.com?t=https://nodejs.org/dist/v4.2.3/node-v4.2.3-x64.msi" target="_blank" rel="noopener">Windows Installer 64-bit</a></p>
+<h4 id="2-验证Node-js环境（查看版本号）"><a href="#2-验证Node-js环境（查看版本号）" class="headerlink" title="2.验证Node.js环境（查看版本号）"></a>2.验证Node.js环境（查看版本号）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">node -v</span><br><span class="line"></span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+<h2 id="配置Git环境（安装git与版本查看）"><a href="#配置Git环境（安装git与版本查看）" class="headerlink" title="配置Git环境（安装git与版本查看）"></a>配置Git环境（安装git与版本查看）</h2><h4 id="1-安装git"><a href="#1-安装git" class="headerlink" title="1.安装git"></a>1.安装git</h4><p><a href="https://link.jianshu.com?t=https://git-scm.com/downloads" target="_blank" rel="noopener">GIT官网下载</a></p>
+<h4 id="2-验证版本"><a href="#2-验证版本" class="headerlink" title="2.验证版本"></a>2.验证版本</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+<h2 id="github账户的注册和配置"><a href="#github账户的注册和配置" class="headerlink" title="github账户的注册和配置"></a>github账户的注册和配置</h2><h4 id="1-账号注册"><a href="#1-账号注册" class="headerlink" title="1.账号注册"></a>1.账号注册</h4><p>打开官网<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a>按照提示注册即可</p>
+<h4 id="2-创建代码库"><a href="#2-创建代码库" class="headerlink" title="2.创建代码库"></a>2.创建代码库</h4><p>登陆之后，点击页面右上角的加号，选择New repository</p>
+<p>repository name下填写 yxz112660.github.io,Description (optional)下填写一些简单的描述（不写也没有关系）</p>
+<p>注意：比如我的github名称是yxz112660 ,这里就填 yxz112660.github.io,如果你的名字是yxz112，那你就填 yxz112.github.io，然后点击创建</p>
+<p>到此搭建hexo博客的相关环境配置已经完成，下面开始讲解Hexo的相关配置</p>
+<h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><p>在自己认为合适的地方创建一个文件夹，这里我以E:/hexo 为例子讲解，首先在E盘目录下创建Hexo文件夹，并在命令行的窗口进入到该目录</p>
+<h4 id="1-在命令行中输入"><a href="#1-在命令行中输入" class="headerlink" title="1.在命令行中输入"></a>1.在命令行中输入</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line"></span><br><span class="line">npm install hexo --save</span><br></pre></td></tr></table></figure>
+<h4 id="2-验证"><a href="#2-验证" class="headerlink" title="2.验证"></a>2.验证</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+<h2 id="hexo的相关配置"><a href="#hexo的相关配置" class="headerlink" title="hexo的相关配置"></a>hexo的相关配置</h2><h4 id="1-初始化Hexo"><a href="#1-初始化Hexo" class="headerlink" title="1.初始化Hexo"></a>1.初始化Hexo</h4><p>接着上面的操作，输入<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo init</span><br><span class="line"></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-首次体验Hexo（生成静态文件）"><a href="#3-首次体验Hexo（生成静态文件）" class="headerlink" title="3.首次体验Hexo（生成静态文件）"></a>3.首次体验Hexo（生成静态文件）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<h4 id="4-首次体验Hexo（气动hexo服务）"><a href="#4-首次体验Hexo（气动hexo服务）" class="headerlink" title="4.首次体验Hexo（气动hexo服务）"></a>4.首次体验Hexo（气动hexo服务）</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>在浏览器中打开<a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a>，你将会看到你的专属博客站了</p>
+<h2 id="将Hexo与github关联"><a href="#将Hexo与github关联" class="headerlink" title="将Hexo与github关联"></a>将Hexo与github关联</h2><h4 id="1-配置Deployment"><a href="#1-配置Deployment" class="headerlink" title="1.配置Deployment"></a>1.配置Deployment</h4><p>同样在_config.yml文件中，找到Deployment，然后按照如下修改：<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: git@github.com:yourname/yourname.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></p>
+<p>  比如我的仓库的地址是git@github.com:yxz112660/yxz112660.github.io.git,所以配置如下</p>
+  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: git@github.com:gdutxiaoxu/gdutxiaoxu.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<h2 id="写博客、发布文章"><a href="#写博客、发布文章" class="headerlink" title="写博客、发布文章"></a>写博客、发布文章</h2><h4 id="1-新建一篇博客，执行下面的命令："><a href="#1-新建一篇博客，执行下面的命令：" class="headerlink" title="1.新建一篇博客，执行下面的命令："></a>1.新建一篇博客，执行下面的命令：</h4>  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new post <span class="string">"hello hexo"</span></span><br></pre></td></tr></table></figure>
+<p>这时候在我的 电脑的目录下 F:\hexo\source_posts 将会看到 hello hexo .md 文件</p>
+<p>用MarDown编辑器打开就可以编辑文章了。文章编辑好之后，运行生成、部署命令：<br>  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo generate   // 生成</span><br><span class="line">hexo deploy   // 部署</span><br></pre></td></tr></table></figure></p>
+<p>貌似上面命令是用来发布新博客，下面的是用来更新配置（上传博客不行）：<br>  <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g   // 生成</span><br><span class="line">hexo d   // 部署</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/26/install_hexo/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/16/ js数组合并、抽取操作/" class="archive-article-date">
-  	<time datetime="2018-05-16T05:07:44.242Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/16/ js数组合并、抽取操作/">js数组合并、抽取操作</a>
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
 
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/16/停止setTimeout、setInterval函数/" class="archive-article-date">
-  	<time datetime="2018-05-16T05:07:31.469Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/16/停止setTimeout、setInterval函数/">停止setTimeout、setInterval函数</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/16/Centos7.3安装和配置Mysql5.7/" class="archive-article-date">
-  	<time datetime="2018-05-16T05:07:15.560Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/16/Centos7.3安装和配置Mysql5.7/">Centos7.3安装和配置Mysql5.7</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Centos</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
   
-
-    
 
 
           </div>
@@ -379,9 +348,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
-		isArchive: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
