@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>一条sql查询多张不同的表 | Yxz的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="### 场景说明： 有A、B、C、D、E共5张表，其中A表为主表，BCDE同为子表，A表有一个字段关联着BCDE表的主键id，BCDE表的字段除了主键id都不相同，此时我们需要查询A表数据同时关联子表查询出其子表的所有字段信息，因为不清楚关联子表具体是谁，所以您可能需要如下骚操作">
+  <meta name="description" content="场景说明： 有A、B、C、D、E共5张表，其中A表为主表，BCDE同为子表，A表有一个字段关联着BCDE表的主键id，BCDE表的字段除了主键id都不相同，此时我们需要查询A表数据同时关联子表查询出其子表的所有字段信息，因为不清楚关联子表具体是谁，所以您可能需要如下骚操作">
 <meta name="keywords" content="Mybatis,sql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一条sql查询多张不同的表">
 <meta property="og:url" content="http://yoursite.com/2018/06/15/一条sql查询多张不同的表/index.html">
 <meta property="og:site_name" content="Yxz的博客">
-<meta property="og:description" content="### 场景说明： 有A、B、C、D、E共5张表，其中A表为主表，BCDE同为子表，A表有一个字段关联着BCDE表的主键id，BCDE表的字段除了主键id都不相同，此时我们需要查询A表数据同时关联子表查询出其子表的所有字段信息，因为不清楚关联子表具体是谁，所以您可能需要如下骚操作">
-<meta property="og:updated_time" content="2018-06-15T05:11:23.955Z">
+<meta property="og:description" content="场景说明： 有A、B、C、D、E共5张表，其中A表为主表，BCDE同为子表，A表有一个字段关联着BCDE表的主键id，BCDE表的字段除了主键id都不相同，此时我们需要查询A表数据同时关联子表查询出其子表的所有字段信息，因为不清楚关联子表具体是谁，所以您可能需要如下骚操作">
+<meta property="og:updated_time" content="2018-06-15T05:16:18.153Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一条sql查询多张不同的表">
-<meta name="twitter:description" content="### 场景说明： 有A、B、C、D、E共5张表，其中A表为主表，BCDE同为子表，A表有一个字段关联着BCDE表的主键id，BCDE表的字段除了主键id都不相同，此时我们需要查询A表数据同时关联子表查询出其子表的所有字段信息，因为不清楚关联子表具体是谁，所以您可能需要如下骚操作">
+<meta name="twitter:description" content="场景说明： 有A、B、C、D、E共5张表，其中A表为主表，BCDE同为子表，A表有一个字段关联着BCDE表的主键id，BCDE表的字段除了主键id都不相同，此时我们需要查询A表数据同时关联子表查询出其子表的所有字段信息，因为不清楚关联子表具体是谁，所以您可能需要如下骚操作">
   
     <link rel="alternative" href="/atom.xml" title="Yxz的博客" type="application/atom+xml">
   
@@ -169,8 +169,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###</p>
-<p>场景说明：</p>
+        <p>场景说明：</p>
 <p>有A、B、C、D、E共5张表，其中A表为主表，BCDE同为子表，A表有一个字段关联着BCDE表的主键id，BCDE表的字段除了主键id都不相同，此时我们需要查询A表数据同时关联子表查询出其子表的所有字段信息，因为不清楚关联子表具体是谁，所以您可能需要如下骚操作</p>
 <a id="more"></a>
 <h3 id="1-Mybatis查询语句"><a href="#1-Mybatis查询语句" class="headerlink" title="1.Mybatis查询语句"></a>1.Mybatis查询语句</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;select id=&quot;selectInfo&quot; parameterType=&quot;yxz.niit.com.Yxz&quot; statementType=&quot;STATEMENT&quot;  resultType=&quot;java.util.HashMap&quot;&gt;</span><br><span class="line"> SELECT  A.id,A.name,O.* FROM A A</span><br><span class="line"> LEFT JOIN $&#123;tableName&#125; O ON A.o_id=O.id</span><br><span class="line"> WHERE A.used_flag=1 AND A.id=$&#123;id&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure>
@@ -467,10 +466,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Centos</a>
               </li>
              
@@ -480,6 +475,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
               </li>
              
               <li class="article-tag-list-item">
