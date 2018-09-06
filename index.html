@@ -142,6 +142,180 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Spring @Autowired注解在utils静态工具类非controller普通类中使" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/06/Spring @Autowired注解在utils静态工具类非controller普通类中使/">Spring @Autowired注解在utils静态工具类非controller普通类中使</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/06/Spring @Autowired注解在utils静态工具类非controller普通类中使/" class="archive-article-date">
+  	<time datetime="2018-09-06T06:51:59.451Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-06</time>
+</a>
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们经常要使用@Autowired注解注入Service或者Mapper接口，在service层中注入其它的service接口或者mapper接口都是可以的，但是如果我们要在我们自己封装的Utils工具类中或者非controller普通类中使用@Autowired注解注入Service或者Mapper接口，直接注入是不可能的，因为Utils使用了静态的方法，我们是无法直接使用非静态接口的，当我们遇到这样的问题，我们就要想办法解决了。</p>
+<p>我们有两种方法解决这个问题，第一种是注解方式，第二种是xml配置方式，下面是我们在utils中使用@Autowired注解的方法：</p>
+        
+          <a class="article-more-a" href="/2018/09/06/Spring @Autowired注解在utils静态工具类非controller普通类中使/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">自动注入</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/06/Spring @Autowired注解在utils静态工具类非controller普通类中使/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Jackson注意事项" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/06/Jackson注意事项/">Jackson注意事项</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/06/Jackson注意事项/" class="archive-article-date">
+  	<time datetime="2018-09-06T06:51:41.676Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-06</time>
+</a>
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="一、重命名属性"><a href="#一、重命名属性" class="headerlink" title="一、重命名属性"></a>一、重命名属性</h4><p>json数据:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123; &quot;firstName&quot; : &quot;Bob&quot; &#125;</span><br></pre></td></tr></table></figure></p>
+<p>实体使用想使用_first_name<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Name &#123;  </span><br><span class="line">  @JsonProperty(&quot;firstName&quot;)  </span><br><span class="line">  public String _first_name;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="二、忽略属性"><a href="#二、忽略属性" class="headerlink" title="二、忽略属性"></a>二、忽略属性</h4><p>json数据:<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123; &quot;value1&quot; : 42 &#125;</span><br></pre></td></tr></table></figure></p>
+<p>忽略value2<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">public class Value &#123;  </span><br><span class="line">  public int value1;  </span><br><span class="line">  @JsonIgnore   </span><br><span class="line">  public int value2;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        
+          <a class="article-more-a" href="/2018/09/06/Jackson注意事项/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JSON</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">JakeSon</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JAVA</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">JakeSon注解</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/06/Jackson注意事项/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Mybatis条件判定" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -767,184 +941,6 @@
 
 
   
-    <article id="post-Centos7.3安装和配置Mysql5.7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/16/Centos7.3安装和配置Mysql5.7/">Centos7.3安装和配置Mysql5.7</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/16/Centos7.3安装和配置Mysql5.7/" class="archive-article-date">
-  	<time datetime="2018-05-16T05:07:15.560Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
-        
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="第一步：下载和安装mysql源"><a href="#第一步：下载和安装mysql源" class="headerlink" title="第一步：下载和安装mysql源"></a>第一步：下载和安装mysql源</h3><p>使用命令下载</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm</span><br></pre></td></tr></table></figure>
-<p>如果提示wget: 未找到命令，就先下载wget</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
-<p>然后再执行上面个的命令</p>
-<p>安装mysql源</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum -y localinstall mysql57-community-release-el7-11.noarch.rpm</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/05/16/Centos7.3安装和配置Mysql5.7/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Centos</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/16/Centos7.3安装和配置Mysql5.7/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-再战websocket（下）Angular+Java后台" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/03/12/再战websocket（下）Angular+Java后台/">再战websocket（下）Angular+Java后台</a>
-    </h1>
-  
-
-        
-        <a href="/2018/03/12/再战websocket（下）Angular+Java后台/" class="archive-article-date">
-  	<time datetime="2018-03-12T09:28:50.654Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-12</time>
-</a>
-        
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="与websocket比较有缘，经历过小程序-java和Angular-java之后整理出次最终教程"><a href="#与websocket比较有缘，经历过小程序-java和Angular-java之后整理出次最终教程" class="headerlink" title="与websocket比较有缘，经历过小程序+java和Angular+java之后整理出次最终教程"></a>与websocket比较有缘，经历过小程序+java和Angular+java之后整理出次最终教程</h5><h2 id="1-Angular"><a href="#1-Angular" class="headerlink" title="1.Angular"></a>1.Angular</h2><p>使用angular2-websocket插件，首先请下载插件<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install angular2-websocket --save</span><br></pre></td></tr></table></figure></p>
-<p>在你需要连接websocket的ts里面，在对应的地方加入下面代码</p>
-<p>导入插件<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;$WebSocket&#125; <span class="keyword">from</span> <span class="string">'angular2-websocket/angular2-websocket'</span></span><br></pre></td></tr></table></figure></p>
-        
-          <a class="article-more-a" href="/2018/03/12/再战websocket（下）Angular+Java后台/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">websocket</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/03/12/再战websocket（下）Angular+Java后台/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1050,6 +1046,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
@@ -1074,11 +1078,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+                <a href="javascript:void(0)" class="js-tag color5">自动注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JakeSon</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JakeSon注解</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -142,6 +142,161 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Angular的DOM选择器对class的查删增" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/26/Angular的DOM选择器对class的查删增/">Angular的DOM选择器对class的查删增</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/26/Angular的DOM选择器对class的查删增/" class="archive-article-date">
+  	<time datetime="2018-01-26T09:29:04.418Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
+</a>
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-注入ElementRef"><a href="#1-注入ElementRef" class="headerlink" title="1.注入ElementRef"></a>1.注入ElementRef</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">constructor(private el:ElementRef)&#123;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2-获取这个页面的class元素-得到list结果集（例如：-className）"><a href="#2-获取这个页面的class元素-得到list结果集（例如：-className）" class="headerlink" title="2.获取这个页面的class元素,得到list结果集（例如：.className）"></a>2.获取这个页面的class元素,得到list结果集（例如：.className）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">this.el.nativeElement.querySelectorAll(<span class="string">".className"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="3-查找到-ant-col-3删除第1个selected"><a href="#3-查找到-ant-col-3删除第1个selected" class="headerlink" title="3.查找到.ant-col-3删除第1个selected"></a>3.查找到.ant-col-3删除第1个selected</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">this.el.nativeElement.querySelectorAll(<span class="string">".ant-col-3"</span>)[0].classList.remove(<span class="string">"selected"</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="4-如果增加class"><a href="#4-如果增加class" class="headerlink" title="4.如果增加class"></a>4.如果增加class</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">this.el.nativeElement.querySelectorAll(<span class="string">".pillow"</span>)[0].classList.add(<span class="string">"ant-btn-primary"</span>);</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/26/Angular的DOM选择器对class的查删增/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-子组建某值改变后传入值到父组建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/26/子组建某值改变后传入值到父组建/">子组建某值改变后传入值到父组建</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/26/子组建某值改变后传入值到父组建/" class="archive-article-date">
+  	<time datetime="2018-01-26T09:15:37.417Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
+</a>
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-父组建页面准备接受-change事件监听"><a href="#1-父组建页面准备接受-change事件监听" class="headerlink" title="1.父组建页面准备接受(change事件监听)"></a>1.父组建页面准备接受(change事件监听)</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">app-measurementstatic</span> (<span class="attr">change</span>)=<span class="string">"searchChange($event)"</span>&gt;</span><span class="tag">&lt;/<span class="name">app-measurementstatic</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-父组件接受变量"><a href="#2-父组件接受变量" class="headerlink" title="2.父组件接受变量"></a>2.父组件接受变量</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">sonChange($event)&#123;</span><br><span class="line"><span class="keyword">this</span>.data=$event;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-子组件准备（先实例化一个change）"><a href="#3-子组件准备（先实例化一个change）" class="headerlink" title="3.子组件准备（先实例化一个change）"></a>3.子组件准备（先实例化一个change）</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">@Output()</span><br><span class="line">change=<span class="keyword">new</span> EventEmitter();</span><br></pre></td></tr></table></figure>
+<h3 id="4-子组件值变化时使用emit传递信息"><a href="#4-子组件值变化时使用emit传递信息" class="headerlink" title="4.子组件值变化时使用emit传递信息"></a>4.子组件值变化时使用emit传递信息</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">this</span>.change.emit(<span class="keyword">this</span>.sonData);</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/26/子组建某值改变后传入值到父组建/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-父组件调用子组建属性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -498,6 +653,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
@@ -522,11 +685,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+                <a href="javascript:void(0)" class="js-tag color5">自动注入</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JSON</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JakeSon</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JAVA</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">JakeSon注解</a>
               </li>
              
               <li class="article-tag-list-item">
