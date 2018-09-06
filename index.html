@@ -163,7 +163,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我们经常要使用@Autowired注解注入Service或者Mapper接口，在service层中注入其它的service接口或者mapper接口都是可以的，但是如果我们要在我们自己封装的Utils工具类中或者非controller普通类中使用@Autowired注解注入Service或者Mapper接口，直接注入是不可能的，因为Utils使用了静态的方法，我们是无法直接使用非静态接口的，当我们遇到这样的问题，我们就要想办法解决了。</p>
+        <h6 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h6><p>我们经常要使用@Autowired注解注入Service或者Mapper接口，在service层中注入其它的service接口或者mapper接口都是可以的，但是如果我们要在我们自己封装的Utils工具类中或者非controller普通类中使用@Autowired注解注入Service或者Mapper接口，直接注入是不可能的，因为Utils使用了静态的方法，我们是无法直接使用非静态接口的，当我们遇到这样的问题，我们就要想办法解决了。</p>
 <p>我们有两种方法解决这个问题，第一种是注解方式，第二种是xml配置方式，下面是我们在utils中使用@Autowired注解的方法：</p>
         
           <a class="article-more-a" href="/2018/09/06/Spring @Autowired注解在utils静态工具类非controller普通类中使/#more">more >></a>
@@ -1050,10 +1050,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
@@ -1078,14 +1074,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">自动注入</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JSON</a>
               </li>
              
@@ -1099,6 +1087,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JakeSon注解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">自动注入</a>
               </li>
              
               <li class="article-tag-list-item">
