@@ -142,6 +142,238 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-微信小程序-生成二维码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/16/微信小程序-生成二维码/">微信小程序-生成二维码</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/16/微信小程序-生成二维码/" class="archive-article-date">
+  	<time datetime="2018-05-16T05:07:57.059Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
+</a>
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="页面-wxml"><a href="#页面-wxml" class="headerlink" title="页面.wxml"></a>页面.wxml</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">"container"</span>&gt;</span><br><span class="line">  &lt;!-- 生成二维码 --&gt;</span><br><span class="line">  &lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">"input-row"</span>&gt;</span><br><span class="line">      &lt;label&gt;内容&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">      &lt;input value='&#123;&#123;qrcStr&#125;&#125;' class="qrcInput" bindblur="onQrcStrBlur" type="text" maxlength="255" </span></span><br><span class="line"><span class="regexp">                placeholder="&#123;&#123;qrcPhld&#125;&#125;"/</span>&gt;</span><br><span class="line">  &lt;<span class="regexp">/view&gt;</span></span><br><span class="line"><span class="regexp">  &lt;button class="genQrcBtn" type="primary" bindtap="onGenQrc"&gt;生成二维码&lt;/</span>button&gt;</span><br><span class="line"></span><br><span class="line">  &lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">"img-box"</span>&gt;</span><br><span class="line">      &lt;canvas bindtap=<span class="string">"onPreviewQrc"</span> hidden=<span class="string">"&#123;&#123;canvasHidden&#125;&#125;"</span> </span><br><span class="line">                style=<span class="string">"width: 686rpx;height: 686rpx;background:#f1f1f1;"</span> canvas-id=<span class="string">"qrcCanvas"</span>/&gt;</span><br><span class="line">  &lt;<span class="regexp">/view&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>view&gt; </span><br><span class="line">&lt;view hidden=<span class="string">"&#123;&#123;maskHidden&#125;&#125;"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"mask"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line">&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">"canvas-box"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2018/05/16/微信小程序-生成二维码/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/16/微信小程序-生成二维码/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post- js数组合并、抽取操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/16/ js数组合并、抽取操作/">js数组合并、抽取操作</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/16/ js数组合并、抽取操作/" class="archive-article-date">
+  	<time datetime="2018-05-16T05:07:44.242Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
+</a>
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="合并两个数组"><a href="#合并两个数组" class="headerlink" title="合并两个数组"></a>合并两个数组</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Array.prototype.push.apply(a, b); // 将b数组追加到a数组</span><br><span class="line"></span><br><span class="line">a = a.concat(b);  // 效果同上</span><br></pre></td></tr></table></figure>
+<h4 id="取数组某段数据"><a href="#取数组某段数据" class="headerlink" title="取数组某段数据"></a>取数组某段数据</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">b=(a.slice(0,10); // [0,9) 左闭右开 取出数组a的[0,9)个数据</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/16/ js数组合并、抽取操作/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-停止setTimeout、setInterval函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/16/停止setTimeout、setInterval函数/">停止setTimeout、setInterval函数</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/16/停止setTimeout、setInterval函数/" class="archive-article-date">
+  	<time datetime="2018-05-16T05:07:31.469Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
+</a>
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在定义setInterval()时设置一个参数接受setInterval()的返回值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var rollingTimer=setInterval(() =&gt; &#123;</span><br><span class="line">      this.rolling();</span><br><span class="line">    &#125;,10000);</span><br></pre></td></tr></table></figure>
+<p>然后调用clearInterval()函数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">clearInterval(rollingTimer)</span><br></pre></td></tr></table></figure></p>
+<p>在定义setInterval()时设置一个参数接受setInterval()的返回值</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var rollingTimer=setTimeout(() =&gt; &#123;</span><br><span class="line">      this.rolling();</span><br><span class="line">    &#125;,10000);</span><br></pre></td></tr></table></figure>
+<p>然后调用clearTimeout()函数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">clearTimeout(rollingTimer)</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/16/停止setTimeout、setInterval函数/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Centos7.3安装和配置Mysql5.7" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -272,15 +504,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">websocket</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
         		</li>
       		
 		</ul>
@@ -734,238 +966,6 @@
 
 
   
-    <article id="post-angular使用webscket 实现数据定时刷新" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/08/angular使用webscket 实现数据定时刷新/">angular使用websocket 实现数据定时刷新(ng2-stomp)</a>
-    </h1>
-  
-
-        
-        <a href="/2018/02/08/angular使用webscket 实现数据定时刷新/" class="archive-article-date">
-  	<time datetime="2018-02-08T07:00:02.562Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-08</time>
-</a>
-        
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>STOMP通过WebSocket为angular2服务可与：angular4和ionic3兼容</p>
-<h2 id="1-下载插件"><a href="#1-下载插件" class="headerlink" title="1.下载插件"></a>1.下载插件</h2><p>分别执行以下指令<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install stompjs --save</span><br><span class="line">npm install sockjs-client --save</span><br><span class="line">npm install ng2-stomp-service --save</span><br></pre></td></tr></table></figure></p>
-<h2 id="2-添加stompjs和sockjs-client模块声明"><a href="#2-添加stompjs和sockjs-client模块声明" class="headerlink" title="2.添加stompjs和sockjs-client模块声明"></a>2.添加stompjs和sockjs-client模块声明</h2><p>在 - &gt; typings.d.ts中添加<br><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="keyword">module</span> 'stompjs';</span><br><span class="line">declare <span class="keyword">module</span> 'sockjs-client';</span><br></pre></td></tr></table></figure></p>
-<h2 id="3-配置-angular-cli-json"><a href="#3-配置-angular-cli-json" class="headerlink" title="3.配置 angular-cli.json"></a>3.配置 angular-cli.json</h2><p>使用angular-cli 创建的项目，那么在 - &gt; angular-cli.json中添加以下代码,目的引入js（如果不是，我也不知道）<br><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">"../node_modules/sockjs-client/dist/sockjs.min.js",</span><br><span class="line"><span class="string">"../node_modules/stompjs/lib/stomp.js"</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="4-配置-tsconfig-json"><a href="#4-配置-tsconfig-json" class="headerlink" title="4.配置 tsconfig.json"></a>4.配置 tsconfig.json</h2><p>在compilerOptions的同级下添加<br><figure class="highlight"><table><tr><td class="code"><pre><span class="line">"include": [</span><br><span class="line">    "src/**/*",</span><br><span class="line">    <span class="string">"node_modules/ng2-stomp-service/dist/stomp.service.ts"</span></span><br><span class="line">  ]</span><br></pre></td></tr></table></figure></p>
-<h2 id="5-在app-module-ts中声明stompService"><a href="#5-在app-module-ts中声明stompService" class="headerlink" title="5.在app.module.ts中声明stompService"></a>5.在app.module.ts中声明stompService</h2><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line">&#123;provide:<span class="string">'stompService'</span>,useClass:StompService&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="6-使用（以上准备好后开始使用吧）"><a href="#6-使用（以上准备好后开始使用吧）" class="headerlink" title="6.使用（以上准备好后开始使用吧）"></a>6.使用（以上准备好后开始使用吧）</h2><p>SleepmonitorComponent.ts</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Component, Inject, OnDestroy, OnInit&#125; <span class="keyword">from</span> <span class="string">'@angular/core'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;StompService&#125; <span class="keyword">from</span> <span class="string">'ng2-stomp-service'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;Subscription&#125; <span class="keyword">from</span> <span class="string">'rxjs/Subscription'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123;environment&#125; <span class="keyword">from</span> <span class="string">'../../../environments/environment'</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">  selector: <span class="string">'app-sleepmonitor'</span>,</span><br><span class="line">  templateUrl: <span class="string">'./sleepmonitor.component.html'</span>,</span><br><span class="line">  styleUrls: [<span class="string">'./sleepmonitor.component.css'</span>]</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> SleepmonitorComponent <span class="keyword">implements</span> OnInit, OnDestroy &#123;</span><br><span class="line">  subscription: Subscription = <span class="literal">null</span>;</span><br><span class="line">  userId = <span class="string">''</span>;</span><br><span class="line">  constructor(@Inject('stompService') private stomp: StompService) &#123; // 注入stompService</span><br><span class="line">    stomp.configure(&#123; <span class="comment">// 配置要连接的服务器地址</span></span><br><span class="line">      host: <span class="string">"http:127.0.0.1:8080/ws"</span> + <span class="string">'/test'</span>,<span class="comment">// 监听的地址</span></span><br><span class="line">      queue: &#123;<span class="string">'init'</span>: <span class="literal">false</span>&#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  ngOnDestroy(): <span class="built_in">void</span> &#123; <span class="comment">// 组建销毁</span></span><br><span class="line">    <span class="keyword">this</span>.disconnect(); <span class="comment">// 组建销毁时断开连接</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ngOnInit() &#123; <span class="comment">// 组建初始化</span></span><br><span class="line">        <span class="keyword">this</span>.connect(); <span class="comment">// 监听过程</span></span><br><span class="line">  &#125;</span><br><span class="line">  connect(): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">this</span>.stomp.startConnect().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.stomp.done(<span class="string">'init'</span>);</span><br><span class="line">      <span class="keyword">this</span>.subscription = <span class="keyword">this</span>.stomp.subscribe(<span class="string">'/user/'</span> + <span class="keyword">this</span>.userId + <span class="string">'/message'</span>, <span class="comment">// 服务器端返回的数据接收</span></span><br><span class="line">        (data) =&gt; &#123;</span><br><span class="line">          <span class="built_in">console</span>.log(data);</span><br><span class="line">        &#125;);</span><br><span class="line">      <span class="keyword">this</span>.stomp.send(<span class="string">'/app/test'</span>, &#123;<span class="comment">// 向服务器端发送请求数据</span></span><br><span class="line">        userId: <span class="keyword">this</span>.userId,</span><br><span class="line">        isUse: <span class="number">1</span></span><br><span class="line">      &#125;);</span><br><span class="line">      <span class="keyword">this</span>.getCurrentData(); <span class="comment">// 为了设置每隔两分钟向服务器请求数据</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getCurrentData() &#123;</span><br><span class="line">    setInterval(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">this</span>.stomp.send(<span class="string">'/app/tast'</span>, &#123;</span><br><span class="line">        userId: <span class="keyword">this</span>.userId,</span><br><span class="line">        isUse: <span class="number">1</span></span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;, <span class="number">120000</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  disconnect(): <span class="built_in">void</span> &#123; <span class="comment">// 关闭链接</span></span><br><span class="line">    <span class="keyword">this</span>.stomp.send(<span class="string">'/app/test'</span>, &#123;</span><br><span class="line">      userId: <span class="keyword">this</span>.userId,</span><br><span class="line">      isUse: <span class="number">0</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span>.subscription != <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="keyword">this</span>.subscription.unsubscribe();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">this</span>.stomp.disconnect().then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="7-后台代码"><a href="#7-后台代码" class="headerlink" title="7.后台代码"></a>7.后台代码</h2><p>接收处理Action中<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/test"</span>, method = RequestMethod.POST)<span class="comment">// 此行应该可以省略</span></span><br><span class="line">    <span class="meta">@MessageMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">(@RequestBody UserDevice userDevice)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">                LOGGER.info(<span class="string">"你的业务逻辑"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            LOGGER.error(<span class="string">"websocket处理异常:【&#123;&#125;】"</span>, e.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="8-服务器端配置"><a href="#8-服务器端配置" class="headerlink" title="8.服务器端配置"></a>8.服务器端配置</h2><p>SpringMVC配置类WebSocketConfig.class<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> iguard.websocket.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.messaging.simp.config.MessageBrokerRegistry;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.socket.config.annotation.AbstractWebSocketMessageBrokerConfigurer;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.socket.config.annotation.StompEndpointRegistry;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSocketMessageBroker</span> <span class="comment">// 激活Websocket消息代理</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSocketConfig</span> <span class="keyword">extends</span> <span class="title">AbstractWebSocketMessageBrokerConfigurer</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configureMessageBroker</span><span class="params">(MessageBrokerRegistry config)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 代理目的地以/chat、/doctor为前缀，客户端订阅消息的前缀</span></span><br><span class="line">        config.enableSimpleBroker(<span class="string">"/sleep"</span>, <span class="string">"/user"</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 应用程序以/app为前缀，客户端发送消息的前缀</span></span><br><span class="line">        config.setApplicationDestinationPrefixes(<span class="string">"/app"</span>);</span><br><span class="line">        config.setUserDestinationPrefix(<span class="string">"/user"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerStompEndpoints</span><span class="params">(StompEndpointRegistry registry)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 指向websocket连接的地址</span></span><br><span class="line">        registry.addEndpoint(<span class="string">"/test"</span>).setAllowedOrigins(<span class="string">"*"</span>).withSockJS();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h4 id="查看更多信息"><a href="#查看更多信息" class="headerlink" title="查看更多信息"></a><a href="https://yxz112660.github.io/" target="_blank" rel="noopener">查看更多信息</a></h4>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">websocket</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/02/08/angular使用webscket 实现数据定时刷新/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java设置程序休眠10秒" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/26/java设置程序休眠10秒/">java设置程序休眠10秒</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/26/java设置程序休眠10秒/" class="archive-article-date">
-  	<time datetime="2018-01-26T09:49:20.944Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
-</a>
-        
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="只需要在程序中加入"><a href="#只需要在程序中加入" class="headerlink" title="只需要在程序中加入"></a>只需要在程序中加入</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Thread.sleep(<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/26/java设置程序休眠10秒/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据库新增字段脚本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/26/数据库新增字段脚本/">数据库新增字段脚本</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/26/数据库新增字段脚本/" class="archive-article-date">
-  	<time datetime="2018-01-26T09:46:50.646Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
-</a>
-        
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="新增字段a、b"><a href="#新增字段a、b" class="headerlink" title="新增字段a、b"></a>新增字段a、b</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name </span><br><span class="line"><span class="keyword">ADD</span> a <span class="built_in">VARCHAR</span>(<span class="number">200</span>) <span class="keyword">DEFAULT</span> <span class="string">''</span>;</span><br><span class="line">ADD b VARCHAR(200) DEFAULT '';</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">sql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/26/数据库新增字段脚本/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1071,10 +1071,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
@@ -1099,6 +1095,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">懒加载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JSON</a>
               </li>
              
@@ -1115,7 +1123,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+                <a href="javascript:void(0)" class="js-tag color3">angular</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1127,11 +1135,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">@Async</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">项目发布</a>
               </li>
              
               <li class="article-tag-list-item">

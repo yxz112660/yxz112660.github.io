@@ -142,6 +142,267 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Hibernate +Spring Data JPA + Spring Boot+ Thymeleaf + Junit 懒加载问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/10/Hibernate +Spring Data JPA + Spring Boot+ Thymeleaf + Junit 懒加载问题/">Hibernate +Spring Data JPA + Spring Boot+ Thymeleaf + Junit 懒加载问题</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/10/Hibernate +Spring Data JPA + Spring Boot+ Thymeleaf + Junit 懒加载问题/" class="archive-article-date">
+  	<time datetime="2018-12-10T00:57:20.562Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-10</time>
+</a>
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在做junit这种非web容器使用的时候，出现如下错误<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: ......., no session or session was closed</span><br></pre></td></tr></table></figure></p>
+<p>解决办法：</p>
+<p>添加事务配置注解。junit代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@RunWith(SpringRunner.class)</span><br><span class="line">@SpringBootTest</span><br><span class="line">@WebAppConfiguration </span><br><span class="line">@Transactional</span><br><span class="line">public class ArticleServiceImplTest&#123;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void test() &#123;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2018/12/10/Hibernate +Spring Data JPA + Spring Boot+ Thymeleaf + Junit 懒加载问题/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">懒加载</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/10/Hibernate +Spring Data JPA + Spring Boot+ Thymeleaf + Junit 懒加载问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring boot+maven+linux项目发布" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/07/spring boot+maven+linux项目发布/">spring boot+maven+linux项目发布</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/07/spring boot+maven+linux项目发布/" class="archive-article-date">
+  	<time datetime="2018-12-07T10:01:38.709Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-07</time>
+</a>
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="项目打包"><a href="#项目打包" class="headerlink" title="项目打包"></a>项目打包</h3><p>不运行test文件打包</p>
+<p>mvn install -Dmaven.test.skip=true</p>
+<p>此命令需要配置mvn环境变量</p>
+<p>变量名：MAVEN_HOME</p>
+<p>变量值：E:\apache-maven-3.2.3</p>
+<p>变量名：Path</p>
+<p>变量值：;%MVN_HOME%\bin</p>
+        
+          <a class="article-more-a" href="/2018/12/07/spring boot+maven+linux项目发布/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring boot</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">maven</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">项目发布</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/07/spring boot+maven+linux项目发布/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Spring Boot异步调用@Async" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/09/06/Spring Boot异步调用@Async/">Spring Boot异步调用@Async</a>
+    </h1>
+  
+
+        
+        <a href="/2018/09/06/Spring Boot异步调用@Async/" class="archive-article-date">
+  	<time datetime="2018-09-06T07:46:03.120Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-09-06</time>
+</a>
+        
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-使用背景"><a href="#1-使用背景" class="headerlink" title="1.使用背景"></a>1.使用背景</h4><p>在日常开发的项目中，当访问其他人的接口较慢或者做耗时任务时，</p>
+<p>不想程序一直卡在耗时任务上，想程序能够并行执行，</p>
+<p>我们可以使用多线程来并行的处理任务，也可以使用spring提供的异步处理方式@Async。</p>
+<h4 id="2-异步处理方式"><a href="#2-异步处理方式" class="headerlink" title="2.异步处理方式"></a>2.异步处理方式</h4><p>调用之后，不返回任何数据。(这个文档)</p>
+<p>调用之后，返回数据，通过Future来获取返回数据</p>
+<h4 id="3-Async配置"><a href="#3-Async配置" class="headerlink" title="3.@Async配置"></a>3.@Async配置</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Configuration</span><br><span class="line">@Async</span><br><span class="line">public class AsyncTaskConfig implements AsyncConfigurer &#123;</span><br><span class="line"></span><br><span class="line">    // ThredPoolTaskExcutor的处理流程</span><br><span class="line">    // 当池子大小小于corePoolSize，就新建线程，并处理请求</span><br><span class="line">    // 当池子大小等于corePoolSize，把请求放入workQueue中，池子里的空闲线程就去workQueue中取任务并处理</span><br><span class="line">    // 当workQueue放不下任务时，就新建线程入池，并处理请求，如果池子大小撑到了maximumPoolSize，就用RejectedExecutionHandler来做拒绝处理</span><br><span class="line">    // 当池子的线程数大于corePoolSize时，多余的线程会等待keepAliveTime长时间，如果无请求可处理就自行销毁</span><br><span class="line">    @Override</span><br><span class="line">    public Executor getAsyncExecutor() &#123;</span><br><span class="line">        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();</span><br><span class="line">        taskExecutor.setCorePoolSize(10);// 最小线程数</span><br><span class="line">        taskExecutor.setMaxPoolSize(100);// 最大线程数</span><br><span class="line">        taskExecutor.setQueueCapacity(25);// 等待队列</span><br><span class="line">        taskExecutor.setKeepAliveSeconds(3000);</span><br><span class="line">        taskExecutor.initialize();</span><br><span class="line">        return taskExecutor;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() &#123;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4-启用-Async配置"><a href="#4-启用-Async配置" class="headerlink" title="4.启用@Async配置"></a>4.启用@Async配置</h4><p>为了让@Async注解能够生效，还需要在Spring Boot的主程序中配置@EnableAsync<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@SpringBootApplication</span><br><span class="line">@EnableFeignClients//启用FeignClients</span><br><span class="line">@MapperScan(basePackages = &quot;com.iguard.scheduler.dataobject.mapper&quot;)//加载mapper</span><br><span class="line">@EnableAsync//启用Async</span><br><span class="line">@EnableScheduling</span><br><span class="line">public class SchedulerApplication &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		SpringApplication.run(SchedulerApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="5-在需要异步处理的方法上添加注解-Async"><a href="#5-在需要异步处理的方法上添加注解-Async" class="headerlink" title="5.在需要异步处理的方法上添加注解@Async"></a>5.在需要异步处理的方法上添加注解@Async</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@Async</span><br><span class="line">    public void asyncHandleData()&#123;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">@Async</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/09/06/Spring Boot异步调用@Async/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Spring @Autowired注解在utils静态工具类非controller普通类中使" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -709,238 +970,6 @@
 
 
   
-    <article id="post-微信小程序-生成二维码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/16/微信小程序-生成二维码/">微信小程序-生成二维码</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/16/微信小程序-生成二维码/" class="archive-article-date">
-  	<time datetime="2018-05-16T05:07:57.059Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
-        
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="页面-wxml"><a href="#页面-wxml" class="headerlink" title="页面.wxml"></a>页面.wxml</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">"container"</span>&gt;</span><br><span class="line">  &lt;!-- 生成二维码 --&gt;</span><br><span class="line">  &lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">"input-row"</span>&gt;</span><br><span class="line">      &lt;label&gt;内容&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">      &lt;input value='&#123;&#123;qrcStr&#125;&#125;' class="qrcInput" bindblur="onQrcStrBlur" type="text" maxlength="255" </span></span><br><span class="line"><span class="regexp">                placeholder="&#123;&#123;qrcPhld&#125;&#125;"/</span>&gt;</span><br><span class="line">  &lt;<span class="regexp">/view&gt;</span></span><br><span class="line"><span class="regexp">  &lt;button class="genQrcBtn" type="primary" bindtap="onGenQrc"&gt;生成二维码&lt;/</span>button&gt;</span><br><span class="line"></span><br><span class="line">  &lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">"img-box"</span>&gt;</span><br><span class="line">      &lt;canvas bindtap=<span class="string">"onPreviewQrc"</span> hidden=<span class="string">"&#123;&#123;canvasHidden&#125;&#125;"</span> </span><br><span class="line">                style=<span class="string">"width: 686rpx;height: 686rpx;background:#f1f1f1;"</span> canvas-id=<span class="string">"qrcCanvas"</span>/&gt;</span><br><span class="line">  &lt;<span class="regexp">/view&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>view&gt; </span><br><span class="line">&lt;view hidden=<span class="string">"&#123;&#123;maskHidden&#125;&#125;"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"mask"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line">&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">"canvas-box"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2018/05/16/微信小程序-生成二维码/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/16/微信小程序-生成二维码/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post- js数组合并、抽取操作" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/16/ js数组合并、抽取操作/">js数组合并、抽取操作</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/16/ js数组合并、抽取操作/" class="archive-article-date">
-  	<time datetime="2018-05-16T05:07:44.242Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
-        
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="合并两个数组"><a href="#合并两个数组" class="headerlink" title="合并两个数组"></a>合并两个数组</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Array.prototype.push.apply(a, b); // 将b数组追加到a数组</span><br><span class="line"></span><br><span class="line">a = a.concat(b);  // 效果同上</span><br></pre></td></tr></table></figure>
-<h4 id="取数组某段数据"><a href="#取数组某段数据" class="headerlink" title="取数组某段数据"></a>取数组某段数据</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">b=(a.slice(0,10); // [0,9) 左闭右开 取出数组a的[0,9)个数据</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/16/ js数组合并、抽取操作/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-停止setTimeout、setInterval函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/16/停止setTimeout、setInterval函数/">停止setTimeout、setInterval函数</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/16/停止setTimeout、setInterval函数/" class="archive-article-date">
-  	<time datetime="2018-05-16T05:07:31.469Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
-        
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在定义setInterval()时设置一个参数接受setInterval()的返回值</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var rollingTimer=setInterval(() =&gt; &#123;</span><br><span class="line">      this.rolling();</span><br><span class="line">    &#125;,10000);</span><br></pre></td></tr></table></figure>
-<p>然后调用clearInterval()函数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">clearInterval(rollingTimer)</span><br></pre></td></tr></table></figure></p>
-<p>在定义setInterval()时设置一个参数接受setInterval()的返回值</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var rollingTimer=setTimeout(() =&gt; &#123;</span><br><span class="line">      this.rolling();</span><br><span class="line">    &#125;,10000);</span><br></pre></td></tr></table></figure>
-<p>然后调用clearTimeout()函数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">clearTimeout(rollingTimer)</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">JavaScript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/16/停止setTimeout、setInterval函数/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1046,10 +1075,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">websocket</a>
               </li>
              
@@ -1074,6 +1099,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Angular</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">懒加载</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">JSON</a>
               </li>
              
@@ -1090,7 +1127,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+                <a href="javascript:void(0)" class="js-tag color3">angular</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1102,11 +1139,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">angular</a>
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">@Async</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">项目发布</a>
               </li>
              
               <li class="article-tag-list-item">
