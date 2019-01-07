@@ -1041,7 +1041,7 @@ body {
 }
 
 .article-entry .highlight .line {
-    color: #000000;
+    color: #657b83;
     min-height: 19px
 }
 
@@ -2257,7 +2257,7 @@ pre .css ~ * .id, pre .id {
     overflow-x: auto;
     color: #657b83;
     border: 1px solid #ccc;
-    text-shadow: 0 1px #444;
+    /*text-shadow: 0 1px #444;*/
     font-family: Menlo, Monaco, Andale Mono, lucida console, Courier New, monospace
 }
 
