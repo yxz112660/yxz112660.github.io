@@ -4070,7 +4070,7 @@ img:hover {
 /*ȥ�������������*/
 #feedAv{ margin-top: -200px!important;transform: scale(0);}
 /*ȥ�� ��������ʹ�ó��� */
-#SOHUCS #SOHU_MAIN .module-cmt-footer .section-service-w, #SOHUCS #SOHU_MAIN .module-cmt-footer .section-service-w .service-wrap-w, #SOHUCS #SOHU_MAIN .module-cmt-footer .section-service-w .service-wrap-w a {
+.section-service-w{
     display: none!important;
     text-align: right!important;
 }
