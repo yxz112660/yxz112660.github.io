@@ -4067,6 +4067,5 @@ img:hover {
 #pop_ad {
     z-index: -99999 !important;
 }
-/*ȥ�������������
-#feedAv{ margin-top: -250px!important;transform: scale(0);}
-*/
+/*ȥ�������������*/
+#feedAv{ margin-top: -200px!important;transform: scale(0);}
