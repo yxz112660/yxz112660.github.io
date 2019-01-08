@@ -879,7 +879,7 @@ body {
 .left-col #header .profilepic img {
     border-radius: 300px;
     opacity: 1;
-    -webkit-transition: all .2s ease-in
+    -webkit-transition: all 1.0s ease-in
 }
 
 .left-col #header .profilepic img.show {
@@ -2010,7 +2010,7 @@ pre .css ~ * .id, pre .id {
 }
 
 .article-header {
-    border-left: 5px solid #4d4d4d;
+    border-left: 5px solid #b5bdc5;
     padding: 30px 0 15px 25px;
     padding-left: 7.6923%
 }
@@ -2042,7 +2042,7 @@ pre .css ~ * .id, pre .id {
 }
 
 .article-more-link a {
-    background: #4d4d4d;
+    background: #8c8a8a;
     color: #fff;
     font-size: 12px;
     padding: 5px 8px;
@@ -4007,4 +4007,59 @@ a.pswp__share--download:hover {
 .pswp__error-msg a {
     color: #ccc;
     text-decoration: underline
+}
+
+.site-author-image {
+    display: block;
+    margin: 0 auto;
+    padding: $site-author-image-padding;
+    max-width: $site-author-image-width;
+    height: $site-author-image-height;
+    border: $site-author-image-border-width solid $site-author-image-border-color;
+    /* ͷ��Բ�� */
+    border-radius: 80px;
+    -webkit-border-radius: 80px;
+    -moz-border-radius: 80px;
+    box-shadow: inset 0 -1px 0 #333sf;
+    /* ����ѭ������ [animation: (play)�������� (2s)��������ʱ����λ���΢�� (ase-out)�������ŵ��ٶ�����Ϊ�Ե��ٽ���
+      (1s)�ȴ�1��Ȼ��ʼ���� (1)�������Ŵ���(infiniteΪѭ������) ]*/
+
+    /* ��꾭��ͷ����ת360�� */
+    -webkit-transition:  1.0s ease-out;
+    -moz-transition:  1.0s ease-out;
+    transition: 1.0s ease-out;
+}
+img:hover {
+    /* ��꾭��ֹͣͷ����ת
+    -webkit-animation-play-state:paused;
+    animation-play-state:paused;*/
+    /* ��꾭��ͷ����ת360�� */
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+}
+/* Z ����ת���� */
+@-webkit-keyframes play {
+    0% {
+        -webkit-transform: rotateZ(0deg);
+    }
+    100% {
+        -webkit-transform: rotateZ(-360deg);
+    }
+}
+@-moz-keyframes play {
+    0% {
+        -moz-transform: rotateZ(0deg);
+    }
+    100% {
+        -moz-transform: rotateZ(-360deg);
+    }
+}
+@keyframes play {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(-360deg);
+    }
 }
