@@ -4065,6 +4065,7 @@ img:hover {
 }
 /*ȥ���Ե������*/
 #pop_ad {
+    display: none !important;
     z-index: -99999 !important;
 }
 /*ȥ�������������*/
