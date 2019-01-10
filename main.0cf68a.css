@@ -2899,7 +2899,7 @@ pre .css ~ * .id, pre .id {
     #container, body, html {
         height: auto;
         overflow-x: hidden;
-        overflow-y: auto
+        /*overflow-y: auto*/
     }
 
     #mobile-nav {
