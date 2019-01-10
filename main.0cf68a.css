@@ -827,7 +827,7 @@ body {
     line-height: 31px;
     text-transform: uppercase;
     float: none;
-    min-height: 150px;
+    min-height: 50px;
     margin-left: -12px;
     text-align: center;
     display: -webkit-box;
