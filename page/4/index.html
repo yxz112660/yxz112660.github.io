@@ -165,6 +165,143 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-父组件调用子组建属性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/父组件调用子组建属性.html">Angular5 父组件调用子组建</a>
+    </h1>
+  
+
+        
+        <a href="/父组件调用子组建属性.html" class="archive-article-date">
+  	<time datetime="2018-01-26T09:02:28.862Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
+</a>
+        
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-父组件注入子组建"><a href="#1-父组件注入子组建" class="headerlink" title="1.父组件注入子组建"></a>1.父组件注入子组建</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ViewChild</span>(SonComponent)son:SonComponent;</span><br></pre></td></tr></table></figure>
+<h3 id="2-在父组调用子组建get方法"><a href="#2-在父组调用子组建get方法" class="headerlink" title="2.在父组调用子组建get方法"></a>2.在父组调用子组建get方法</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">this</span>.son.get(); <span class="comment">//调用get方法</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/父组件调用子组建属性.html">展开阅读全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-install_yilia" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/install_yilia.html">安装yilia主题</a>
+    </h1>
+  
+
+        
+        <a href="/install_yilia.html" class="archive-article-date">
+  	<time datetime="2018-01-26T09:02:15.518Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
+</a>
+        
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-在hexo项目根目录下执行（下载yilia主题项目）"><a href="#1-在hexo项目根目录下执行（下载yilia主题项目）" class="headerlink" title="1.在hexo项目根目录下执行（下载yilia主题项目）"></a>1.在hexo项目根目录下执行（下载yilia主题项目）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure>
+<h3 id="2-修改根目录下的-config-yml文件（修改配置使用yilia主题）"><a href="#2-修改根目录下的-config-yml文件（修改配置使用yilia主题）" class="headerlink" title="2.修改根目录下的_config.yml文件（修改配置使用yilia主题）"></a>2.修改根目录下的_config.yml文件（修改配置使用yilia主题）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">theme: yilia    //默认为landscape</span><br></pre></td></tr></table></figure>
+<h3 id="3-修改themes-yilia-config-yml文件（可跳过）"><a href="#3-修改themes-yilia-config-yml文件（可跳过）" class="headerlink" title="3.修改themes/yilia/_config.yml文件（可跳过）"></a>3.修改themes/yilia/_config.yml文件（可跳过）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Header</span></span><br><span class="line"></span><br><span class="line">menu:</span><br><span class="line">  主页: /</span><br><span class="line">  所有文章: /allPages</span><br><span class="line">  随笔: /tags</span><br><span class="line">  相册: /photos</span><br><span class="line"></span><br><span class="line"><span class="comment"># SubNav</span></span><br><span class="line">subnav:</span><br><span class="line">  github: <span class="string">"https://github.com/yxz112660"</span></span><br><span class="line">  <span class="comment">#weibo: "#"</span></span><br><span class="line">  <span class="comment">#rss: /atom.xml</span></span><br><span class="line">  <span class="comment">#zhihu: "#"</span></span><br><span class="line">  <span class="comment">#qq: "#"</span></span><br><span class="line">  <span class="comment">#weixin: "#"</span></span><br><span class="line">  <span class="comment">#jianshu: "#"</span></span><br><span class="line">  <span class="comment">#douban: "#"</span></span><br><span class="line">  <span class="comment">#segmentfault: "#"</span></span><br><span class="line">  <span class="comment">#bilibili: "#"</span></span><br><span class="line">  <span class="comment">#acfun: "#"</span></span><br><span class="line">  <span class="comment">#mail: "#"</span></span><br><span class="line">  <span class="comment">#facebook: "#"</span></span><br><span class="line">  <span class="comment">#google: "#"</span></span><br><span class="line">  <span class="comment">#twitter: "#"</span></span><br><span class="line">  <span class="comment">#linkedin: "#"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否需要修改 root 路径</span></span><br><span class="line"><span class="comment"># 如果您的网站存放在子目录中，例如 http://yoursite.com/blog，</span></span><br><span class="line"><span class="comment"># 请将您的 url 设为 http://yoursite.com/blog 并把 root 设为 /blog/。</span></span><br><span class="line">root:</span><br><span class="line"></span><br><span class="line"><span class="comment"># Content</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文章太长，截断按钮文字</span></span><br><span class="line">excerpt_link: 阅读全文</span><br><span class="line"><span class="comment"># 文章卡片右下角常驻链接，不需要请设置为false</span></span><br><span class="line">show_all_link: <span class="string">'展开全文'</span></span><br><span class="line"><span class="comment"># 数学公式</span></span><br><span class="line">mathjax: <span class="literal">false</span></span><br><span class="line"><span class="comment"># 是否在新窗口打开链接</span></span><br><span class="line">open_in_new: <span class="literal">false</span></span><br><span class="line">fancybox: <span class="literal">true</span></span><br><span class="line"><span class="comment">#是否开启动画效果</span></span><br><span class="line">animate: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打赏</span></span><br><span class="line"><span class="comment"># 打赏type设定：0-关闭打赏； 1-文章对应的md文件里有reward:true属性，才有打赏； 2-所有文章均有打赏</span></span><br><span class="line">reward_type: 2</span><br><span class="line"><span class="comment"># 打赏wording</span></span><br><span class="line">reward_wording: <span class="string">'谢谢你请我吃糖果'</span></span><br><span class="line"><span class="comment"># 支付宝二维码图片地址，跟你设置头像的方式一样。比如：/assets/img/alipay.jpg</span></span><br><span class="line">alipay: /assets/img/alipay.jpg</span><br><span class="line"><span class="comment"># 微信二维码图片地址</span></span><br><span class="line">weixin: /assets/img/wechat.png</span><br><span class="line"></span><br><span class="line"><span class="comment"># 目录</span></span><br><span class="line"><span class="comment"># 目录设定：0-不显示目录； 1-文章对应的md文件里有toc:true属性，才有目录； 2-所有文章均显示目录</span></span><br><span class="line">toc: 1</span><br><span class="line"><span class="comment"># 根据自己的习惯来设置，如果你的目录标题习惯有标号，置为true即可隐藏hexo重复的序号；否则置为false</span></span><br><span class="line">toc_hide_index: <span class="literal">true</span></span><br><span class="line"><span class="comment"># 目录为空时的提示</span></span><br><span class="line">toc_empty_wording: <span class="string">'目录，不存在的…'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否有快速回到顶部的按钮</span></span><br><span class="line">top: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Miscellaneous</span></span><br><span class="line">baidu_analytics: <span class="string">''</span></span><br><span class="line">google_analytics: <span class="string">''</span></span><br><span class="line">favicon: /favicon.png</span><br><span class="line"></span><br><span class="line"><span class="comment">#你的头像url</span></span><br><span class="line">avatar:</span><br><span class="line"></span><br><span class="line"><span class="comment">#是否开启分享</span></span><br><span class="line">share_jia: <span class="literal">true</span></span><br><span class="line">share_addthis: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#评论：1、多说；2、网易云跟帖；3、畅言；4、Disqus 不需要使用某项，直接设置值为false，或注释掉</span></span><br><span class="line"><span class="comment">#具体请参考wiki：https://github.com/litten/hexo-theme-yilia/wiki/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#1、多说</span></span><br><span class="line">duoshuo: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2、网易云跟帖</span></span><br><span class="line">wangyiyun: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#3、畅言</span></span><br><span class="line">changyan_appid: <span class="literal">false</span></span><br><span class="line">changyan_conf: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#4、Disqus 在hexo根目录的config里也有disqus_shortname字段，优先使用yilia的</span></span><br><span class="line">disqus: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 样式定制 - 一般不需要修改，除非有很强的定制欲望…</span></span><br><span class="line">style:</span><br><span class="line">  <span class="comment"># 头像上面的背景颜色</span></span><br><span class="line">  header: <span class="string">'#4d4d4d'</span></span><br><span class="line">  <span class="comment"># 右滑板块背景</span></span><br><span class="line">  slider: <span class="string">'linear-gradient(200deg,#a0cfe4,#e8c37e)'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># slider的设置</span></span><br><span class="line">slider:</span><br><span class="line">  <span class="comment"># 是否默认展开tags板块</span></span><br><span class="line">  showTags: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 智能菜单</span></span><br><span class="line"><span class="comment"># 如不需要，将该对应项置为false</span></span><br><span class="line"><span class="comment"># 比如</span></span><br><span class="line"><span class="comment">#smart_menu:</span></span><br><span class="line"><span class="comment">#  friends: false</span></span><br><span class="line">smart_menu:</span><br><span class="line">  innerArchive: <span class="string">'所有文章'</span></span><br><span class="line">  friends: <span class="string">'友情链接'</span></span><br><span class="line">  aboutme: <span class="string">'关于我'</span></span><br><span class="line"></span><br><span class="line">friends:</span><br><span class="line">  百度一下: http://www.baidu.com</span><br><span class="line">  google: http://www.google.com</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">aboutme: 人生如戏，全凭演技</span><br></pre></td></tr></table></figure>
+<h3 id="4-运行（在hexo项目根目录执行语句）"><a href="#4-运行（在hexo项目根目录执行语句）" class="headerlink" title="4.运行（在hexo项目根目录执行语句）"></a>4.运行（在hexo项目根目录执行语句）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean   //清空之前主题（清除）</span><br><span class="line"></span><br><span class="line">hexo g     //生成静态文件（生成）</span><br><span class="line"></span><br><span class="line">hexo s     //在本地运行（测试）</span><br><span class="line"></span><br><span class="line">hexo d    //发布到github的page上（上传）</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">yilia主题</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/install_yilia.html">展开阅读全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-install_hexo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -377,18 +514,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Centos</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">懒加载</a>
               </li>
              
@@ -410,6 +535,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Centos</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -441,7 +578,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">yilia主题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -461,7 +610,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sql</a>
+                <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -470,10 +619,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">replaceAll</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
             
             <div class="clearfix"></div>
@@ -614,7 +759,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-
+<!--
 <script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <!-- ѩ����Ч -->
 
@@ -624,6 +769,8 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     document.write('<script type="text/javascript" src="/snow.js"><\/script>');
   }
 </script>
+-->
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":40,"height":80},"mobile":{"show":true},"log":false});</script></body>
+
+</body>
 </html>

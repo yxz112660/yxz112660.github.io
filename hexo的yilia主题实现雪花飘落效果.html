@@ -15,15 +15,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.yangxiaozong.com">
-  <title>Tag: angular | Yxz的博客</title>
+  <title>hexo的yilia主题实现雪花飘落效果 | Yxz的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="Angular">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Yxz的博客">
-<meta property="og:url" content="http://www.yangxiaozong.com/tags/angular/index.html">
+  <meta name="description" content="新建js在\themes\yilia\source下新建snow.js；内容是">
+<meta name="keywords" content="hexo,yilia">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo的yilia主题实现雪花飘落效果">
+<meta property="og:url" content="http://www.yangxiaozong.com/hexo的yilia主题实现雪花飘落效果.html">
 <meta property="og:site_name" content="Yxz的博客">
+<meta property="og:description" content="新建js在\themes\yilia\source下新建snow.js；内容是">
+<meta property="og:updated_time" content="2019-01-10T02:39:13.323Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Yxz的博客">
+<meta name="twitter:title" content="hexo的yilia主题实现雪花飘落效果">
+<meta name="twitter:description" content="新建js在\themes\yilia\source下新建snow.js；内容是">
   
     <link rel="alternative" href="/atom.xml" title="Yxz的博客" type="application/atom+xml">
   
@@ -163,60 +167,186 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-hexo的yilia主题实现雪花飘落效果" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/angular2 日期格式化.html" class="archive-article-date">
-  	<time datetime="2018-02-08T07:04:30.727Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-08</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/angular2 日期格式化.html">angular2 日期格式化</a>
+    <h1 class="article-title" itemprop="name">
+      hexo的yilia主题实现雪花飘落效果
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/hexo的yilia主题实现雪花飘落效果.html" class="archive-article-date">
+  	<time datetime="2019-01-10T02:39:42.700Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-10</time>
+</a>
+        
+
+
+
+<!-- 需要添加的位置 -->
+       
+ <!-- 开始添加字数统计-->
+        
+
+<!-- 添加完成 -->
+
+		<span class="archive-article-date">
+                                              
+                                              <span class="post-time">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-keyboard-o"></i>
+        <span class="post-meta-item-text">  字数统计: </span>
+        <span class="post-count">300字</span>
+      </span>
+    </span>
+
+    &nbsp; | &nbsp;
+ 
+ 
+                                              
+ 
+			阅读量 <span id="busuanzi_value_page_pv"></span>
+		</span>
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="新建js"><a href="#新建js" class="headerlink" title="新建js"></a>新建js</h3><p>在\themes\yilia\source下新建snow.js；内容是</p>
+<a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*样式一*/</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line">	$.fn.snow = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> $flake = $(<span class="string">'&lt;div id="snowbox" /&gt;'</span>).css(&#123;<span class="string">'position'</span>: <span class="string">'absolute'</span>,<span class="string">'z-index'</span>:<span class="string">'9999'</span>, <span class="string">'top'</span>: <span class="string">'-50px'</span>&#125;).html(<span class="string">'&amp;#10052;'</span>),</span><br><span class="line">	documentHeight 	= $(<span class="built_in">document</span>).height(),</span><br><span class="line">	documentWidth	= $(<span class="built_in">document</span>).width(),</span><br><span class="line">	defaults = &#123;</span><br><span class="line">		minSize		: <span class="number">10</span>,</span><br><span class="line">		maxSize		: <span class="number">20</span>,</span><br><span class="line">		newOn		: <span class="number">1000</span>,</span><br><span class="line">		flakeColor	: <span class="string">"#AFDAEF"</span> <span class="comment">/* 此处可以定义雪花颜色，若要白色可以改为#FFFFFF */</span></span><br><span class="line">	&#125;,</span><br><span class="line">	options	= $.extend(&#123;&#125;, defaults, options);</span><br><span class="line">	<span class="keyword">var</span> interval= setInterval( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> startPositionLeft = <span class="built_in">Math</span>.random() * documentWidth - <span class="number">100</span>,</span><br><span class="line">	startOpacity = <span class="number">0.5</span> + <span class="built_in">Math</span>.random(),</span><br><span class="line">	sizeFlake = options.minSize + <span class="built_in">Math</span>.random() * options.maxSize,</span><br><span class="line">	endPositionTop = documentHeight - <span class="number">200</span>,</span><br><span class="line">	endPositionLeft = startPositionLeft - <span class="number">500</span> + <span class="built_in">Math</span>.random() * <span class="number">500</span>,</span><br><span class="line">	durationFall = documentHeight * <span class="number">10</span> + <span class="built_in">Math</span>.random() * <span class="number">5000</span>;</span><br><span class="line">	$flake.clone().appendTo(<span class="string">'body'</span>).css(&#123;</span><br><span class="line">		left: startPositionLeft,</span><br><span class="line">		opacity: startOpacity,</span><br><span class="line">		<span class="string">'font-size'</span>: sizeFlake,</span><br><span class="line">		color: options.flakeColor</span><br><span class="line">	&#125;).animate(&#123;</span><br><span class="line">		top: endPositionTop,</span><br><span class="line">		left: endPositionLeft,</span><br><span class="line">		opacity: <span class="number">0.2</span></span><br><span class="line">	&#125;,durationFall,<span class="string">'linear'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="keyword">this</span>).remove()</span><br><span class="line">	&#125;);</span><br><span class="line">	&#125;, options.newOn);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)(jQuery);</span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.fn.snow(&#123; </span><br><span class="line">	    minSize: <span class="number">5</span>, <span class="comment">/* 定义雪花最小尺寸 */</span></span><br><span class="line">	    maxSize: <span class="number">50</span>,<span class="comment">/* 定义雪花最大尺寸 */</span></span><br><span class="line">	    newOn: <span class="number">300</span>  <span class="comment">/* 定义密集程度，数字越小越密集 */</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="引入js"><a href="#引入js" class="headerlink" title="引入js"></a>引入js</h3><p>在\themes\yilia\layout\layout.ejs中引入js</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入jquery 已经引入过了可去掉 --&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"//libs.baidu.com/jquery/1.8.3/jquery.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 雪花特效 --&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  <span class="keyword">var</span> windowWidth = $(<span class="built_in">window</span>).width();</span><br><span class="line">  <span class="keyword">if</span> (windowWidth &gt; <span class="number">480</span>) &#123;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">'&lt;script type="text/javascript" src="/snow.js"&gt;&lt;\/script&gt;'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<p>最后重新部署你的hexo</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>赠人玫瑰，手有余香<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/uploads/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/uploads/wx.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">angular</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">yilia</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/hexo的yilia主题实现鼠标点击出现爱心效果.html" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          hexo的yilia主题实现鼠标点击出现爱心效果
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/centOS7安装mysql 8.0.html" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">centOS7安装mysql 8.0</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#新建js"><span class="toc-number">1.</span> <span class="toc-text">新建js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引入js"><span class="toc-number">2.</span> <span class="toc-text">引入js</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="hexo的yilia主题实现雪花飘落效果" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytsoO5Ys",
+        conf: "bcc0f626a2cf8bf2270bb7031ae480a7"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -244,9 +374,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
@@ -486,114 +616,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
     
     	<section class="tools-section tools-section-friends" q-show="friends">
-  		
-        <ul class="search-ul">
-          
-            <li class="search-li">
-              <a href="http://www.baidu.com" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>百度一下</a>
-            </li>
-          
-            <li class="search-li">
-              <a href="http://www.google.com" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>google</a>
-            </li>
-          
-        </ul>
-  		
-    	</section>
-    
-
-    
-    	<section class="tools-section tools-section-me" q-show="aboutme">
-  	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">人生如戏，全凭演技</div>
-  	  	
-    	</section>
-    
-  </div>
-  
-</div>
-    <!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                <!--  Controls are self-explanatory. Order can be changed. -->
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-  </div>
-<!--
-<script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
-<!-- ѩ����Ч -->
-
-<script type="text/javascript">
-  var windowWidth = $(window).width();
-  if (windowWidth > 480) {
-    document.write('<script type="text/javascript" src="/snow.js"><\/script>');
-  }
-</script>
--->
-
-
-</body>
-</html>nds">
   		
         <ul class="search-ul">
           

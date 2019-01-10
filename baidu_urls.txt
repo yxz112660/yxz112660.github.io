@@ -1,3 +1,5 @@
+http://www.yangxiaozong.com/hexo的yilia主题实现鼠标点击出现爱心效果.html
+http://www.yangxiaozong.com/hexo的yilia主题实现雪花飘落效果.html
 http://www.yangxiaozong.com/centOS7安装mysql 8.0.html
 http://www.yangxiaozong.com/centOS7数据库命令.html
 http://www.yangxiaozong.com/正则表达式排除某两字符之间的替换.html

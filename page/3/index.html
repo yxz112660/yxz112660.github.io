@@ -165,6 +165,163 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post- 再战websocket（上）微信小程序+Java后台" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/ 再战websocket（上）微信小程序+Java后台.html">再战websocket（上）微信小程序+Java后台</a>
+    </h1>
+  
+
+        
+        <a href="/ 再战websocket（上）微信小程序+Java后台.html" class="archive-article-date">
+  	<time datetime="2018-03-09T05:13:01.780Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-09</time>
+</a>
+        
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="与websocket比较有缘，经历过小程序-java和Angular-java之后整理出次最终教程"><a href="#与websocket比较有缘，经历过小程序-java和Angular-java之后整理出次最终教程" class="headerlink" title="与websocket比较有缘，经历过小程序+java和Angular+java之后整理出次最终教程"></a>与websocket比较有缘，经历过小程序+java和Angular+java之后整理出次最终教程</h5><h2 id="1-微信小程序"><a href="#1-微信小程序" class="headerlink" title="1.微信小程序"></a>1.微信小程序</h2><p>使用wx自带的websocket即可，<br>在你需要连接websocket的js里面加入下面代码<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 建立连接</span></span><br><span class="line">wx.connectSocket(&#123;</span><br><span class="line">  url: <span class="string">"ws://127.0.0.1:8080/ws/test"</span> <span class="comment">//连接服务器地址</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//连接成功</span></span><br><span class="line">wx.onSocketOpen(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'websocket连接成功！'</span>);</span><br><span class="line">  <span class="comment">// 发送消息给服务器</span></span><br><span class="line">    wx.sendSocketMessage(&#123;</span><br><span class="line">      data: <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">        id：<span class="string">"id"</span></span><br><span class="line">      &#125;),</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"> <span class="comment">//接收数据</span></span><br><span class="line">wx.onSocketMessage(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data)；</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//连接失败</span></span><br><span class="line">wx.onSocketError(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'websocket连接失败！'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-Java后台"><a href="#2-Java后台" class="headerlink" title="2.Java后台"></a>2.Java后台</h2><p>WebSocketInterceptor.java</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> iguard.websocket.config;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.server.ServerHttpRequest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.server.ServerHttpResponse;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.server.ServletServerHttpRequest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.socket.WebSocketHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.socket.server.HandshakeInterceptor;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSocketInterceptor</span> <span class="keyword">implements</span> <span class="title">HandshakeInterceptor</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(WebSocketInterceptor.class);</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">beforeHandshake</span><span class="params">(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Map&lt;String, Object&gt; attributes)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        LOGGER.info(<span class="string">"建立链接。"</span>);</span><br><span class="line">        <span class="keyword">if</span> (request <span class="keyword">instanceof</span> ServletServerHttpRequest)&#123;</span><br><span class="line">            ServletServerHttpRequest servletServerHttpRequest = (ServletServerHttpRequest)request;</span><br><span class="line">            HttpServletRequest httpServletRequest = servletServerHttpRequest.getServletRequest();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterHandshake</span><span class="params">(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Exception exception)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>WebSocketPushHandler.java<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> iguard.websocket.config;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> iguard.core.util.JSONHelper;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.socket.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSocketPushHandler</span>&lt;<span class="title">R</span>,<span class="title">P</span>&gt; <span class="keyword">implements</span> <span class="title">WebSocketHandler</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(WebSocketPushHandler.class);</span><br><span class="line">    <span class="keyword">private</span> WebSocketDataHandler&lt;R,P&gt; dataHandler;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WebSocketPushHandler</span><span class="params">(WebSocketDataHandler&lt;R,P&gt; pdataHandler,Class&lt;P&gt; pp)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.dataHandler = pdataHandler;</span><br><span class="line">        <span class="keyword">this</span>.setP(pp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Class&lt;P&gt; <span class="title">getP</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setP</span><span class="params">(Class&lt;P&gt; p)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.p = p;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Class&lt;P&gt; p;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterConnectionEstablished</span><span class="params">(WebSocketSession session)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(WebSocketSession session, WebSocketMessage&lt;?&gt; message)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (message.getPayloadLength()==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(session.isOpen())&#123;</span><br><span class="line">                P p = JSONHelper.jsonToBean(message.getPayload().toString(), <span class="keyword">this</span>.getP());</span><br><span class="line">                LOGGER.info(p.toString());</span><br><span class="line">                <span class="keyword">if</span>(session.getUri().equals(<span class="string">"/ws/test"</span>))&#123;<span class="comment">// 返回list数据</span></span><br><span class="line">                    List&lt;R&gt; r = dataHandler.getSendListMsg(p);</span><br><span class="line">                    LOGGER.info(r.toString());</span><br><span class="line">                    session.sendMessage(<span class="keyword">new</span> TextMessage(JSONHelper.beanToJson(r)));</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123; <span class="comment">// 返回单个对象数据</span></span><br><span class="line">                    R r = dataHandler.getSendMsg(p);</span><br><span class="line">                    LOGGER.info(r.toString());</span><br><span class="line">                    session.sendMessage(<span class="keyword">new</span> TextMessage(JSONHelper.beanToJson(r)));</span><br><span class="line">                    LOGGER.info(JSONHelper.beanToJson(r));</span><br><span class="line">                &#125;</span><br><span class="line">                LOGGER.info(<span class="string">"发送成功。"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            LOGGER.error(<span class="string">"&#123;&#125;,&#123;&#125;"</span>,e.getMessage(),e.getStackTrace());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleTransportError</span><span class="params">(WebSocketSession session, Throwable exception)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterConnectionClosed</span><span class="params">(WebSocketSession session, CloseStatus closeStatus)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (session.isOpen())&#123;</span><br><span class="line">            session.close();</span><br><span class="line">        &#125;</span><br><span class="line">        LOGGER.info(<span class="string">"退出系统"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supportsPartialMessages</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>WebSocketDataHandler.java<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> iguard.websocket.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">WebSocketDataHandler</span>&lt;<span class="title">R</span>,<span class="title">P</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">R <span class="title">getSendMsg</span><span class="params">(P p)</span></span>;</span><br><span class="line">    <span class="function">List&lt;R&gt; <span class="title">getSendListMsg</span><span class="params">(P p)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>WebSocketConfig.java<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> iguard.websocket.config;</span><br><span class="line"><span class="keyword">import</span> iguard.websocket.monitor.MonitorDataHandler;</span><br><span class="line"><span class="keyword">import</span> iguard.websocket.monitor.MonitorList;</span><br><span class="line"><span class="keyword">import</span> iguard.websocket.sleep.SleepDataHandler;</span><br><span class="line"><span class="keyword">import</span> iguard.websocket.sleep.UserDevice;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.socket.WebSocketHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.socket.config.annotation.*;</span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSocket</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSocketConfig</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurerAdapter</span> <span class="keyword">implements</span> <span class="title">WebSocketConfigurer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerWebSocketHandlers</span><span class="params">(WebSocketHandlerRegistry registry)</span> </span>&#123;</span><br><span class="line">        registry.addHandler(WebSocketPushHandler(<span class="string">"/sleep"</span>),<span class="string">"/sleep"</span>).addInterceptors(<span class="keyword">new</span> WebSocketInterceptor()).setAllowedOrigins(<span class="string">"*"</span>);</span><br><span class="line">        registry.addHandler(WebSocketPushHandler(<span class="string">"/test"</span>),<span class="string">"/test"</span>).addInterceptors(<span class="keyword">new</span> WebSocketInterceptor()).setAllowedOrigins(<span class="string">"*"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> WebSocketHandler <span class="title">WebSocketPushHandler</span><span class="params">(String url)</span></span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (url)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"/test"</span> : <span class="keyword">return</span>  <span class="keyword">new</span> WebSocketPushHandler&lt;&gt;(<span class="keyword">new</span> MonitorDataHandler(),MonitorList.class);</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"/sleep"</span> : <span class="keyword">return</span>  <span class="keyword">new</span> WebSocketPushHandler&lt;&gt;(<span class="keyword">new</span> SleepDataHandler(),UserDevice.class);</span><br><span class="line">            <span class="keyword">default</span>: <span class="keyword">return</span> <span class="keyword">new</span> WebSocketPushHandler&lt;&gt;(<span class="keyword">new</span> SleepDataHandler(),UserDevice.class);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>MonitorDataHandler.java<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> iguard.websocket.monitor;</span><br><span class="line"><span class="keyword">import</span> iguard.websocket.config.WebSocketDataHandler;</span><br><span class="line"><span class="keyword">import</span> iguard.core.entity.ReturnMsg;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MonitorDataHandler</span> <span class="keyword">implements</span> <span class="title">WebSocketDataHandler</span>&lt;<span class="title">ReturnMsg</span>,<span class="title">MonitorList</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(MonitorDataHandler.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ReturnMsg <span class="title">getSendMsg</span><span class="params">(MonitorList monitorList)</span> </span>&#123; <span class="comment">//返回单个对象方法</span></span><br><span class="line">        <span class="keyword">return</span>  <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;ReturnMsg&gt; <span class="title">getSendListMsg</span><span class="params">(MonitorList monitorList)</span> </span>&#123;<span class="comment">// 返回list对象方法</span></span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">websocket</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/ 再战websocket（上）微信小程序+Java后台.html">展开阅读全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-微信小程序-下拉刷新与加载更多" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/微信小程序-下拉刷新与加载更多.html">微信小程序-下拉刷新与加载更多</a>
+    </h1>
+  
+
+        
+        <a href="/微信小程序-下拉刷新与加载更多.html" class="archive-article-date">
+  	<time datetime="2018-02-28T08:06:54.655Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-28</time>
+</a>
+        
+
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="下拉刷新"><a href="#下拉刷新" class="headerlink" title="下拉刷新"></a>下拉刷新</h2><h3 id="调用系统的API，系统有提供下拉刷新的API接口"><a href="#调用系统的API，系统有提供下拉刷新的API接口" class="headerlink" title="调用系统的API，系统有提供下拉刷新的API接口"></a>调用系统的API，系统有提供下拉刷新的API接口</h3><h4 id="1-home-json-参数配置"><a href="#1-home-json-参数配置" class="headerlink" title="1. home.json 参数配置"></a>1. home.json 参数配置</h4><figure class="highlight"><table><tr><td class="code"><pre><span class="line">"enablePullDownRefresh": true</span><br></pre></td></tr></table></figure>
+<p>我们哪个页面需要下拉刷新，就在哪个页面对应的xxx.json文件配置上面属性,这个属性从字面意思也可以知道，是否允许下拉刷新，当然，如何你不想一个个配置允许下拉刷新，你可以直接在全局变量app.json的window里面配置上面这个属性，这样整个项目都允许下拉刷新了,这个一定要加的，因为系统默认是不具备下拉刷新功能的 </p>
+<h4 id="2-home-js"><a href="#2-home-js" class="headerlink" title="2. home.js"></a>2. home.js</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//下拉刷新</span></span><br><span class="line"> onPullDownRefresh:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">   wx.showNavigationBarLoading() <span class="comment">//在标题栏中显示加载</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">//模拟加载</span></span><br><span class="line">   setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">   </span>&#123;</span><br><span class="line">     <span class="comment">// complete</span></span><br><span class="line">     wx.hideNavigationBarLoading() <span class="comment">//完成停止加载</span></span><br><span class="line">     wx.stopPullDownRefresh() <span class="comment">//停止下拉刷新</span></span><br><span class="line">   &#125;,<span class="number">1500</span>);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>onPullDownRefresh 下拉刷新事件监听，具体看一下里面的代码，wx.showNavigationBarLoading() 与wx.hideNavigationBarLoading() 这两句话是用来控制小菊花的显示和隐藏，由于我们现在还没有讲解网络请求，所以我就模拟了一下网络加载，通过setTimeout方法，写一个时间延迟的方法，这个方法可以模拟网络加载所消耗的时间，还有就是当网络加载完成我们要停止下拉刷新wx.stopPullDownRefresh() </p>
+<h2 id="加载更多"><a href="#加载更多" class="headerlink" title="加载更多"></a>加载更多</h2><h3 id="调用系统的API，系统有提供加载更多的API接口"><a href="#调用系统的API，系统有提供加载更多的API接口" class="headerlink" title="调用系统的API，系统有提供加载更多的API接口"></a>调用系统的API，系统有提供加载更多的API接口</h3><h4 id="1-home-js"><a href="#1-home-js" class="headerlink" title="1. home.js"></a>1. home.js</h4><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">//加载更多</span></span><br><span class="line"> onReachBottom: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">'加载更多'</span>)</span><br><span class="line">   wx.request(&#123;</span><br><span class="line">     url: app.globalData.url.base.health + app.globalData.url.wxapp.user.userList,</span><br><span class="line">     method: <span class="string">'POST'</span>,</span><br><span class="line">     data: &#123;</span><br><span class="line">       id: <span class="string">"参数"</span>,</span><br><span class="line">       offset: <span class="string">"参数"</span>,</span><br><span class="line">       limit: <span class="string">"参数"</span></span><br><span class="line">     &#125;,</span><br><span class="line">     success: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">       <span class="built_in">console</span>.log(<span class="string">'请求成功'</span>)</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>onReachBottom系统提供的触底事件的监听，和下拉刷新一样，isHideLoadMore，一个自定义的值，用来控制显示和隐藏加载控件 </p>
+<h4 id="2-home-wxml"><a href="#2-home-wxml" class="headerlink" title="2. home.wxml"></a>2. home.wxml</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;view class=&quot;weui-loadmore&quot; hidden=&quot;&#123;&#123;isHideLoadMore&#125;&#125;&quot;&gt;</span><br><span class="line">   &lt;view class=&quot;weui-loading&quot;&gt;&lt;/view&gt;</span><br><span class="line">   &lt;view class=&quot;weui-loadmore__tips&quot;&gt;正在加载&lt;/view&gt;</span><br><span class="line"> &lt;/view&gt;</span><br></pre></td></tr></table></figure>
+<p>在home.wxml底部加入上面的代码，这是加载更多的控件，加载更多待遇就没下拉刷新待遇好，系统并没有提供加载更多的控件动画，所以我们需要自己制作 </p>
+<h4 id="3-home-wxss"><a href="#3-home-wxss" class="headerlink" title="3.home.wxss"></a>3.home.wxss</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"> /*  加载更多   */</span><br><span class="line">.weui-loading &#123;</span><br><span class="line">  margin: 0 5px;</span><br><span class="line">  width: 20px;</span><br><span class="line">  height: 20px;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">  -webkit-animation: weuiLoading 1s steps(12, end) infinite;</span><br><span class="line">  animation: weuiLoading 1s steps(12, end) infinite;</span><br><span class="line">  background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgxMDB2MTAwSDB6Ii8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTlFOUU5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTMwKSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iIzk4OTY5NyIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAxMDUuOTggNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjOUI5OTlBIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDYwIDc1Ljk4IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0EzQTFBMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSg5MCA2NSA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNBQkE5QUEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoMTIwIDU4LjY2IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0IyQjJCMiIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgxNTAgNTQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjQkFCOEI5IiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKDE4MCA1MCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDMkMwQzEiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTE1MCA0NS45OCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNDQkNCQ0IiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTEyMCA0MS4zNCA2NSkiLz48cmVjdCB3aWR0aD0iNyIgaGVpZ2h0PSIyMCIgeD0iNDYuNSIgeT0iNDAiIGZpbGw9IiNEMkQyRDIiIHJ4PSI1IiByeT0iNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDM1IDY1KSIvPjxyZWN0IHdpZHRoPSI3IiBoZWlnaHQ9IjIwIiB4PSI0Ni41IiB5PSI0MCIgZmlsbD0iI0RBREFEQSIgcng9IjUiIHJ5PSI1IiB0cmFuc2Zvcm09InJvdGF0ZSgtNjAgMjQuMDIgNjUpIi8+PHJlY3Qgd2lkdGg9IjciIGhlaWdodD0iMjAiIHg9IjQ2LjUiIHk9IjQwIiBmaWxsPSIjRTJFMkUyIiByeD0iNSIgcnk9IjUiIHRyYW5zZm9ybT0icm90YXRlKC0zMCAtNS45OCA2NSkiLz48L3N2Zz4=) no-repeat;</span><br><span class="line">  background-size: 100%;</span><br><span class="line">&#125;</span><br><span class="line">.weui-loadmore &#123;</span><br><span class="line">  width: 65%;</span><br><span class="line">  margin: 1.5em auto;</span><br><span class="line">  line-height: 1.6em;</span><br><span class="line">  font-size: 14px;</span><br><span class="line">  text-align: center;</span><br><span class="line">&#125;</span><br><span class="line">.weui-loadmore__tips &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  vertical-align: middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个是我们自定义的样式，样式很简单，就是一个简单的加载小菊花，这里我要讲解的是 weui-loading 样式里设置 background，data:image/svg+xml;base64这个是什么意思呐，我们之前一般设置背景直接加入颜色，这个是background的另一种用法，加入图片，这个图片还有点特别是base64格式，并用svg绘制的，当然你还可以直接把url里面写入图片路径也是可以的</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">小程序</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/微信小程序-下拉刷新与加载更多.html">展开阅读全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-微信小程序 延时执行与循环执行" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -729,143 +886,6 @@
 
 
   
-    <article id="post-父组件调用子组建属性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/父组件调用子组建属性.html">Angular5 父组件调用子组建</a>
-    </h1>
-  
-
-        
-        <a href="/父组件调用子组建属性.html" class="archive-article-date">
-  	<time datetime="2018-01-26T09:02:28.862Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
-</a>
-        
-
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-父组件注入子组建"><a href="#1-父组件注入子组建" class="headerlink" title="1.父组件注入子组建"></a>1.父组件注入子组建</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ViewChild</span>(SonComponent)son:SonComponent;</span><br></pre></td></tr></table></figure>
-<h3 id="2-在父组调用子组建get方法"><a href="#2-在父组调用子组建get方法" class="headerlink" title="2.在父组调用子组建get方法"></a>2.在父组调用子组建get方法</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">this</span>.son.get(); <span class="comment">//调用get方法</span></span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Angular</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/父组件调用子组建属性.html">展开阅读全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-install_yilia" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/install_yilia.html">安装yilia主题</a>
-    </h1>
-  
-
-        
-        <a href="/install_yilia.html" class="archive-article-date">
-  	<time datetime="2018-01-26T09:02:15.518Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-26</time>
-</a>
-        
-
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-在hexo项目根目录下执行（下载yilia主题项目）"><a href="#1-在hexo项目根目录下执行（下载yilia主题项目）" class="headerlink" title="1.在hexo项目根目录下执行（下载yilia主题项目）"></a>1.在hexo项目根目录下执行（下载yilia主题项目）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure>
-<h3 id="2-修改根目录下的-config-yml文件（修改配置使用yilia主题）"><a href="#2-修改根目录下的-config-yml文件（修改配置使用yilia主题）" class="headerlink" title="2.修改根目录下的_config.yml文件（修改配置使用yilia主题）"></a>2.修改根目录下的_config.yml文件（修改配置使用yilia主题）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">theme: yilia    //默认为landscape</span><br></pre></td></tr></table></figure>
-<h3 id="3-修改themes-yilia-config-yml文件（可跳过）"><a href="#3-修改themes-yilia-config-yml文件（可跳过）" class="headerlink" title="3.修改themes/yilia/_config.yml文件（可跳过）"></a>3.修改themes/yilia/_config.yml文件（可跳过）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Header</span></span><br><span class="line"></span><br><span class="line">menu:</span><br><span class="line">  主页: /</span><br><span class="line">  所有文章: /allPages</span><br><span class="line">  随笔: /tags</span><br><span class="line">  相册: /photos</span><br><span class="line"></span><br><span class="line"><span class="comment"># SubNav</span></span><br><span class="line">subnav:</span><br><span class="line">  github: <span class="string">"https://github.com/yxz112660"</span></span><br><span class="line">  <span class="comment">#weibo: "#"</span></span><br><span class="line">  <span class="comment">#rss: /atom.xml</span></span><br><span class="line">  <span class="comment">#zhihu: "#"</span></span><br><span class="line">  <span class="comment">#qq: "#"</span></span><br><span class="line">  <span class="comment">#weixin: "#"</span></span><br><span class="line">  <span class="comment">#jianshu: "#"</span></span><br><span class="line">  <span class="comment">#douban: "#"</span></span><br><span class="line">  <span class="comment">#segmentfault: "#"</span></span><br><span class="line">  <span class="comment">#bilibili: "#"</span></span><br><span class="line">  <span class="comment">#acfun: "#"</span></span><br><span class="line">  <span class="comment">#mail: "#"</span></span><br><span class="line">  <span class="comment">#facebook: "#"</span></span><br><span class="line">  <span class="comment">#google: "#"</span></span><br><span class="line">  <span class="comment">#twitter: "#"</span></span><br><span class="line">  <span class="comment">#linkedin: "#"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否需要修改 root 路径</span></span><br><span class="line"><span class="comment"># 如果您的网站存放在子目录中，例如 http://yoursite.com/blog，</span></span><br><span class="line"><span class="comment"># 请将您的 url 设为 http://yoursite.com/blog 并把 root 设为 /blog/。</span></span><br><span class="line">root:</span><br><span class="line"></span><br><span class="line"><span class="comment"># Content</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文章太长，截断按钮文字</span></span><br><span class="line">excerpt_link: 阅读全文</span><br><span class="line"><span class="comment"># 文章卡片右下角常驻链接，不需要请设置为false</span></span><br><span class="line">show_all_link: <span class="string">'展开全文'</span></span><br><span class="line"><span class="comment"># 数学公式</span></span><br><span class="line">mathjax: <span class="literal">false</span></span><br><span class="line"><span class="comment"># 是否在新窗口打开链接</span></span><br><span class="line">open_in_new: <span class="literal">false</span></span><br><span class="line">fancybox: <span class="literal">true</span></span><br><span class="line"><span class="comment">#是否开启动画效果</span></span><br><span class="line">animate: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打赏</span></span><br><span class="line"><span class="comment"># 打赏type设定：0-关闭打赏； 1-文章对应的md文件里有reward:true属性，才有打赏； 2-所有文章均有打赏</span></span><br><span class="line">reward_type: 2</span><br><span class="line"><span class="comment"># 打赏wording</span></span><br><span class="line">reward_wording: <span class="string">'谢谢你请我吃糖果'</span></span><br><span class="line"><span class="comment"># 支付宝二维码图片地址，跟你设置头像的方式一样。比如：/assets/img/alipay.jpg</span></span><br><span class="line">alipay: /assets/img/alipay.jpg</span><br><span class="line"><span class="comment"># 微信二维码图片地址</span></span><br><span class="line">weixin: /assets/img/wechat.png</span><br><span class="line"></span><br><span class="line"><span class="comment"># 目录</span></span><br><span class="line"><span class="comment"># 目录设定：0-不显示目录； 1-文章对应的md文件里有toc:true属性，才有目录； 2-所有文章均显示目录</span></span><br><span class="line">toc: 1</span><br><span class="line"><span class="comment"># 根据自己的习惯来设置，如果你的目录标题习惯有标号，置为true即可隐藏hexo重复的序号；否则置为false</span></span><br><span class="line">toc_hide_index: <span class="literal">true</span></span><br><span class="line"><span class="comment"># 目录为空时的提示</span></span><br><span class="line">toc_empty_wording: <span class="string">'目录，不存在的…'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 是否有快速回到顶部的按钮</span></span><br><span class="line">top: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Miscellaneous</span></span><br><span class="line">baidu_analytics: <span class="string">''</span></span><br><span class="line">google_analytics: <span class="string">''</span></span><br><span class="line">favicon: /favicon.png</span><br><span class="line"></span><br><span class="line"><span class="comment">#你的头像url</span></span><br><span class="line">avatar:</span><br><span class="line"></span><br><span class="line"><span class="comment">#是否开启分享</span></span><br><span class="line">share_jia: <span class="literal">true</span></span><br><span class="line">share_addthis: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#评论：1、多说；2、网易云跟帖；3、畅言；4、Disqus 不需要使用某项，直接设置值为false，或注释掉</span></span><br><span class="line"><span class="comment">#具体请参考wiki：https://github.com/litten/hexo-theme-yilia/wiki/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#1、多说</span></span><br><span class="line">duoshuo: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2、网易云跟帖</span></span><br><span class="line">wangyiyun: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#3、畅言</span></span><br><span class="line">changyan_appid: <span class="literal">false</span></span><br><span class="line">changyan_conf: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#4、Disqus 在hexo根目录的config里也有disqus_shortname字段，优先使用yilia的</span></span><br><span class="line">disqus: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 样式定制 - 一般不需要修改，除非有很强的定制欲望…</span></span><br><span class="line">style:</span><br><span class="line">  <span class="comment"># 头像上面的背景颜色</span></span><br><span class="line">  header: <span class="string">'#4d4d4d'</span></span><br><span class="line">  <span class="comment"># 右滑板块背景</span></span><br><span class="line">  slider: <span class="string">'linear-gradient(200deg,#a0cfe4,#e8c37e)'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># slider的设置</span></span><br><span class="line">slider:</span><br><span class="line">  <span class="comment"># 是否默认展开tags板块</span></span><br><span class="line">  showTags: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 智能菜单</span></span><br><span class="line"><span class="comment"># 如不需要，将该对应项置为false</span></span><br><span class="line"><span class="comment"># 比如</span></span><br><span class="line"><span class="comment">#smart_menu:</span></span><br><span class="line"><span class="comment">#  friends: false</span></span><br><span class="line">smart_menu:</span><br><span class="line">  innerArchive: <span class="string">'所有文章'</span></span><br><span class="line">  friends: <span class="string">'友情链接'</span></span><br><span class="line">  aboutme: <span class="string">'关于我'</span></span><br><span class="line"></span><br><span class="line">friends:</span><br><span class="line">  百度一下: http://www.baidu.com</span><br><span class="line">  google: http://www.google.com</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">aboutme: 人生如戏，全凭演技</span><br></pre></td></tr></table></figure>
-<h3 id="4-运行（在hexo项目根目录执行语句）"><a href="#4-运行（在hexo项目根目录执行语句）" class="headerlink" title="4.运行（在hexo项目根目录执行语句）"></a>4.运行（在hexo项目根目录执行语句）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean   //清空之前主题（清除）</span><br><span class="line"></span><br><span class="line">hexo g     //生成静态文件（生成）</span><br><span class="line"></span><br><span class="line">hexo s     //在本地运行（测试）</span><br><span class="line"></span><br><span class="line">hexo d    //发布到github的page上（上传）</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">yilia主题</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/install_yilia.html">展开阅读全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -988,18 +1008,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Centos</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">懒加载</a>
               </li>
              
@@ -1021,6 +1029,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Mybatis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Centos</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1052,7 +1072,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">yilia</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">yilia主题</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">sql</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1072,7 +1104,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">sql</a>
+                <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1081,10 +1113,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">replaceAll</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">插件</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1225,7 +1253,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
 
 </div>
   </div>
-
+<!--
 <script type="text/javascript" src="//libs.baidu.com/jquery/1.8.3/jquery.min.js"></script>
 <!-- ѩ����Ч -->
 
@@ -1235,6 +1263,8 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     document.write('<script type="text/javascript" src="/snow.js"><\/script>');
   }
 </script>
+-->
 
-<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":40,"height":80},"mobile":{"show":true},"log":false});</script></body>
+
+</body>
 </html>
