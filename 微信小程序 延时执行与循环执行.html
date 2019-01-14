@@ -532,8 +532,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/父组件调用子组建属性.html" rel="next" title="Angular5 父组件调用子组建">
-                <i class="fa fa-chevron-left"></i> Angular5 父组件调用子组建
+              <a href="/angular使用webscket 实现数据定时刷新.html" rel="next" title="angular使用websocket 实现数据定时刷新(ng2-stomp)">
+                <i class="fa fa-chevron-left"></i> angular使用websocket 实现数据定时刷新(ng2-stomp)
               </a>
             
           </div>
@@ -785,6 +785,32 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
 
 
 
@@ -958,12 +984,10 @@
           if (results.length > 0) {
             var counter = results[0];
             
-            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text(counter.time + 1);
             
-              .done(function() {
-                var $element = $(document.getElementById(url));
-                $element.find('.leancloud-visitors-count').text(counter.time + 1);
-              })
+            Counter('put', '/classes/Counter/' + counter.objectId, JSON.stringify({ time: { '__op': 'Increment', 'amount': 1 } }))
             
               .fail(function ({ responseJSON }) {
                 console.log(`Failed to save Visitor num, with error message: ${responseJSON.error}`);
