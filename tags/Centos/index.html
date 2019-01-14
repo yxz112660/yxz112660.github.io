@@ -818,6 +818,35 @@
 
 
 
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function (item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: true,
+    appId: 'zloLR75GQyn0qVSD378eaIlB-gzGzoHsz',
+    appKey: 'F9z3KfIY3WJqvASSubgpQWiD',
+    placeholder: '填写昵称更好的称呼您\n填写邮箱更快的联系您\n填写您的网址更快的认识您',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+</script>
+
+
 
   
 

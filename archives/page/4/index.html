@@ -432,6 +432,43 @@
 
       <h2 class="post-title">
         
+          <a class="post-title-link" href="/hexo增加评论功能.html" itemprop="url">
+            
+              <span itemprop="name">给Hexo增加评论功能（使用搜狐的畅言评论系统）</span>
+            
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-01-26T14:40:28+08:00"
+              content="2018-01-26">
+          01-26
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+      
+
+        
+        
+        
+
+        
+        
+
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
           <a class="post-title-link" href="/安装yilia主题.html" itemprop="url">
             
               <span itemprop="name">安装yilia主题</span>
@@ -472,43 +509,6 @@
           <a class="post-title-link" href="/Hexo+Github 搭建属于自己的博客.html" itemprop="url">
             
               <span itemprop="name">Hexo+Github 搭建属于自己的博客</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-01-26T14:40:28+08:00"
-              content="2018-01-26">
-          01-26
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/hexo增加评论功能.html" itemprop="url">
-            
-              <span itemprop="name">给Hexo增加评论功能（使用搜狐的畅言评论系统）</span>
             
           </a>
         
@@ -859,6 +859,35 @@
 
   
 
+
+
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function (item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: true,
+    appId: 'zloLR75GQyn0qVSD378eaIlB-gzGzoHsz',
+    appKey: 'F9z3KfIY3WJqvASSubgpQWiD',
+    placeholder: '填写昵称更好的称呼您\n填写邮箱更快的联系您\n填写您的网址更快的认识您',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+</script>
 
 
 
