@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+<meta name="baidu_union_verify" content="90f073406ec1c09a0613604541005cae">
+<meta name="google-site-verification" content="D-vggrpBwX17Wy_nCc6gbNzPKk8fXDWxjZycAwvAIWQ" />
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9037517277428547",
+    enable_page_level_ads: true
+  });
+</script>
+<!-- ҳ����С���� -->
+<script type="text/javascript" src="/js/src/love.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: 'TIZNETFNU4',
+      apiKey: '7d85391b8c05c57d4007663e15a8fc15',
+      indexName: 'blog',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"搜索文章","hits_empty":"我们没有找到任何搜索结果: ${query}","hits_stats":"在${time} ms中找到“ ${hits}结果”"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="与websocket比较有缘，经历过小程序+java和Angular+java之后整理出次最终教程 微信小程序使用wx自带的websocket即可，在你需要连接websocket的js里面加入下面代码">
+<meta name="keywords" content="小程序,Java,Websocket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="再战websocket（上）微信小程序+Java后台">
+<meta property="og:url" content="http://www.yangxiaozong.com/再战websocket（上）微信小程序+Java后台.html">
+<meta property="og:site_name" content="YXZ的博客">
+<meta property="og:description" content="与websocket比较有缘，经历过小程序+java和Angular+java之后整理出次最终教程 微信小程序使用wx自带的websocket即可，在你需要连接websocket的js里面加入下面代码">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-01-13T08:59:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="再战websocket（上）微信小程序+Java后台">
+<meta name="twitter:description" content="与websocket比较有缘，经历过小程序+java和Angular+java之后整理出次最终教程 微信小程序使用wx自带的websocket即可，在你需要连接websocket的js里面加入下面代码">
+
+
+
+
+
+
+  <link rel="canonical" href="http://www.yangxiaozong.com/再战websocket（上）微信小程序+Java后台.html"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>再战websocket（上）微信小程序+Java后台 | YXZ的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">YXZ的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">人生入戏，全凭演技</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-主页">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>主页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-标签">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-归档">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-关于我">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="http://blog.yangxiaozong.com/" rel="noopener" target="_blank"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于我</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/再战websocket（上）微信小程序+Java后台.html"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YXZ"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/head.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YXZ的博客"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">再战websocket（上）微信小程序+Java后台
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-03-04 14:40:28" itemprop="dateCreated datePublished" datetime="2018-03-04T14:40:28+08:00">2018-03-04</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-comment-o"></i>
+              </span>
+              
+                <a href="/再战websocket（上）微信小程序+Java后台.html#SOHUCS" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="再战websocket（上）微信小程序+Java后台.html" itemprop="commentsCount"></span>
+                </a>
+              
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>与websocket比较有缘，经历过小程序+java和Angular+java之后整理出次最终教程</p>
+<h3 id="微信小程序"><a href="#微信小程序" class="headerlink" title="微信小程序"></a>微信小程序</h3><p>使用wx自带的websocket即可，<br>在你需要连接websocket的js里面加入下面代码<br><a id="more"></a><br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 建立连接</span></span><br><span class="line">wx.connectSocket(&#123;</span><br><span class="line">  url: <span class="string">"ws://127.0.0.1:8080/ws/test"</span> <span class="comment">//连接服务器地址</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//连接成功</span></span><br><span class="line">wx.onSocketOpen(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'websocket连接成功！'</span>);</span><br><span class="line">  <span class="comment">// 发送消息给服务器</span></span><br><span class="line">    wx.sendSocketMessage(&#123;</span><br><span class="line">      data: <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">        id：<span class="string">"id"</span></span><br><span class="line">      &#125;),</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"> <span class="comment">//接收数据</span></span><br><span class="line">wx.onSocketMessage(<span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(data)；</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//连接失败</span></span><br><span class="line">wx.onSocketError(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'websocket连接失败！'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Java后台"><a href="#Java后台" class="headerlink" title="Java后台"></a>Java后台</h3><p>WebSocketInterceptor.java</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> iguard.websocket.config;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.server.ServerHttpRequest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.server.ServerHttpResponse;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.server.ServletServerHttpRequest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.socket.WebSocketHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.socket.server.HandshakeInterceptor;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSocketInterceptor</span> <span class="keyword">implements</span> <span class="title">HandshakeInterceptor</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(WebSocketInterceptor.class);</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">beforeHandshake</span><span class="params">(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Map&lt;String, Object&gt; attributes)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        LOGGER.info(<span class="string">"建立链接。"</span>);</span><br><span class="line">        <span class="keyword">if</span> (request <span class="keyword">instanceof</span> ServletServerHttpRequest)&#123;</span><br><span class="line">            ServletServerHttpRequest servletServerHttpRequest = (ServletServerHttpRequest)request;</span><br><span class="line">            HttpServletRequest httpServletRequest = servletServerHttpRequest.getServletRequest();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterHandshake</span><span class="params">(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Exception exception)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>WebSocketPushHandler.java<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> iguard.websocket.config;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> iguard.core.util.JSONHelper;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.socket.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSocketPushHandler</span>&lt;<span class="title">R</span>,<span class="title">P</span>&gt; <span class="keyword">implements</span> <span class="title">WebSocketHandler</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(WebSocketPushHandler.class);</span><br><span class="line">    <span class="keyword">private</span> WebSocketDataHandler&lt;R,P&gt; dataHandler;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">WebSocketPushHandler</span><span class="params">(WebSocketDataHandler&lt;R,P&gt; pdataHandler,Class&lt;P&gt; pp)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.dataHandler = pdataHandler;</span><br><span class="line">        <span class="keyword">this</span>.setP(pp);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Class&lt;P&gt; <span class="title">getP</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">setP</span><span class="params">(Class&lt;P&gt; p)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.p = p;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Class&lt;P&gt; p;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterConnectionEstablished</span><span class="params">(WebSocketSession session)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleMessage</span><span class="params">(WebSocketSession session, WebSocketMessage&lt;?&gt; message)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (message.getPayloadLength()==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(session.isOpen())&#123;</span><br><span class="line">                P p = JSONHelper.jsonToBean(message.getPayload().toString(), <span class="keyword">this</span>.getP());</span><br><span class="line">                LOGGER.info(p.toString());</span><br><span class="line">                <span class="keyword">if</span>(session.getUri().equals(<span class="string">"/ws/test"</span>))&#123;<span class="comment">// 返回list数据</span></span><br><span class="line">                    List&lt;R&gt; r = dataHandler.getSendListMsg(p);</span><br><span class="line">                    LOGGER.info(r.toString());</span><br><span class="line">                    session.sendMessage(<span class="keyword">new</span> TextMessage(JSONHelper.beanToJson(r)));</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123; <span class="comment">// 返回单个对象数据</span></span><br><span class="line">                    R r = dataHandler.getSendMsg(p);</span><br><span class="line">                    LOGGER.info(r.toString());</span><br><span class="line">                    session.sendMessage(<span class="keyword">new</span> TextMessage(JSONHelper.beanToJson(r)));</span><br><span class="line">                    LOGGER.info(JSONHelper.beanToJson(r));</span><br><span class="line">                &#125;</span><br><span class="line">                LOGGER.info(<span class="string">"发送成功。"</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            LOGGER.error(<span class="string">"&#123;&#125;,&#123;&#125;"</span>,e.getMessage(),e.getStackTrace());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleTransportError</span><span class="params">(WebSocketSession session, Throwable exception)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterConnectionClosed</span><span class="params">(WebSocketSession session, CloseStatus closeStatus)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (session.isOpen())&#123;</span><br><span class="line">            session.close();</span><br><span class="line">        &#125;</span><br><span class="line">        LOGGER.info(<span class="string">"退出系统"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">supportsPartialMessages</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>WebSocketDataHandler.java<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> iguard.websocket.config;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">WebSocketDataHandler</span>&lt;<span class="title">R</span>,<span class="title">P</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function">R <span class="title">getSendMsg</span><span class="params">(P p)</span></span>;</span><br><span class="line">    <span class="function">List&lt;R&gt; <span class="title">getSendListMsg</span><span class="params">(P p)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>WebSocketConfig.java<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> iguard.websocket.config;</span><br><span class="line"><span class="keyword">import</span> iguard.websocket.monitor.MonitorDataHandler;</span><br><span class="line"><span class="keyword">import</span> iguard.websocket.monitor.MonitorList;</span><br><span class="line"><span class="keyword">import</span> iguard.websocket.sleep.SleepDataHandler;</span><br><span class="line"><span class="keyword">import</span> iguard.websocket.sleep.UserDevice;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.socket.WebSocketHandler;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.socket.config.annotation.*;</span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebSocket</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebSocketConfig</span> <span class="keyword">extends</span> <span class="title">WebMvcConfigurerAdapter</span> <span class="keyword">implements</span> <span class="title">WebSocketConfigurer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">registerWebSocketHandlers</span><span class="params">(WebSocketHandlerRegistry registry)</span> </span>&#123;</span><br><span class="line">        registry.addHandler(WebSocketPushHandler(<span class="string">"/sleep"</span>),<span class="string">"/sleep"</span>).addInterceptors(<span class="keyword">new</span> WebSocketInterceptor()).setAllowedOrigins(<span class="string">"*"</span>);</span><br><span class="line">        registry.addHandler(WebSocketPushHandler(<span class="string">"/test"</span>),<span class="string">"/test"</span>).addInterceptors(<span class="keyword">new</span> WebSocketInterceptor()).setAllowedOrigins(<span class="string">"*"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> WebSocketHandler <span class="title">WebSocketPushHandler</span><span class="params">(String url)</span></span>&#123;</span><br><span class="line">        <span class="keyword">switch</span> (url)&#123;</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"/test"</span> : <span class="keyword">return</span>  <span class="keyword">new</span> WebSocketPushHandler&lt;&gt;(<span class="keyword">new</span> MonitorDataHandler(),MonitorList.class);</span><br><span class="line">            <span class="keyword">case</span> <span class="string">"/sleep"</span> : <span class="keyword">return</span>  <span class="keyword">new</span> WebSocketPushHandler&lt;&gt;(<span class="keyword">new</span> SleepDataHandler(),UserDevice.class);</span><br><span class="line">            <span class="keyword">default</span>: <span class="keyword">return</span> <span class="keyword">new</span> WebSocketPushHandler&lt;&gt;(<span class="keyword">new</span> SleepDataHandler(),UserDevice.class);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>MonitorDataHandler.java<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> iguard.websocket.monitor;</span><br><span class="line"><span class="keyword">import</span> iguard.websocket.config.WebSocketDataHandler;</span><br><span class="line"><span class="keyword">import</span> iguard.core.entity.ReturnMsg;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MonitorDataHandler</span> <span class="keyword">implements</span> <span class="title">WebSocketDataHandler</span>&lt;<span class="title">ReturnMsg</span>,<span class="title">MonitorList</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger LOGGER = LoggerFactory.getLogger(MonitorDataHandler.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ReturnMsg <span class="title">getSendMsg</span><span class="params">(MonitorList monitorList)</span> </span>&#123; <span class="comment">//返回单个对象方法</span></span><br><span class="line">        <span class="keyword">return</span>  <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;ReturnMsg&gt; <span class="title">getSendListMsg</span><span class="params">(MonitorList monitorList)</span> </span>&#123;<span class="comment">// 返回list对象方法</span></span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/小程序/" rel="tag"># 小程序</a>
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Websocket/" rel="tag"># Websocket</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/微信小程序 延时执行与循环执行.html" rel="next" title="微信小程序延时执行与循环执行">
+                <i class="fa fa-chevron-left"></i> 微信小程序延时执行与循环执行
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/再战websocket（下）Angular+Java后台.html" rel="prev" title="再战websocket（下）Angular+Java后台">
+                再战websocket（下）Angular+Java后台 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="SOHUCS"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.jpg"
+                alt="YXZ"/>
+            
+              <p class="site-author-name" itemprop="name">YXZ</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/yxz112660" title="GitHub &rarr; https://github.com/yxz112660" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/5349350067/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="微博 &rarr; https://weibo.com/5349350067/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#微信小程序"><span class="nav-number">1.</span> <span class="nav-text">微信小程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java后台"><span class="nav-number">2.</span> <span class="nav-text">Java后台</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">苏ICP备18068125号-1 </a>&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YXZ的个人博客</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+    
+  <script>
+  (function() {
+    var appid = 'cytsoO5Ys';
+    var conf = 'bcc0f626a2cf8bf2270bb7031ae480a7';
+    var width = window.innerWidth || document.documentElement.clientWidth;
+    if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+    }
+    else {
+      var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){
+      window.changyan.api.config({appid:appid,conf:conf})});
+    }
+  })();
+  </script>
+  <script src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css"/>
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=6.7.0"></script>
+
+
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+</body>
+</html>
