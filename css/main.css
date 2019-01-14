@@ -1144,6 +1144,21 @@ pre .javascript .function {
 .header-inner {
   position: relative;
 }
+#pop_ad {
+  display: none !important;
+  z-index: -99999 !important;
+}
+#feedAv {
+  margin-top: -200px !important;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+}
+#SOHUCS #SOHU_MAIN .module-cmt-footer {
+  display: none !important;
+}
 .headband {
   height: 3px;
   background: #222;
@@ -1915,7 +1930,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff08d0;
+  background: #fee7f0;
 }
 .links-of-blogroll {
   font-size: 13px;
