@@ -432,9 +432,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/子组建某值改变后传入值到父组建.html" itemprop="url">
+          <a class="post-title-link" href="/Angular的DOM选择器对class的查删增.html" itemprop="url">
             
-              <span itemprop="name">子组建某值改变后传入值到父组建</span>
+              <span itemprop="name">Angular的DOM选择器对class的查删增</span>
             
           </a>
         
@@ -469,9 +469,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/Angular的DOM选择器对class的查删增.html" itemprop="url">
+          <a class="post-title-link" href="/子组建某值改变后传入值到父组建.html" itemprop="url">
             
-              <span itemprop="name">Angular的DOM选择器对class的查删增</span>
+              <span itemprop="name">子组建某值改变后传入值到父组建</span>
             
           </a>
         
@@ -617,9 +617,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/父组件调用子组建属性.html" itemprop="url">
+          <a class="post-title-link" href="/angular使用webscket 实现数据定时刷新.html" itemprop="url">
             
-              <span itemprop="name">Angular5 父组件调用子组建</span>
+              <span itemprop="name">angular使用websocket 实现数据定时刷新(ng2-stomp)</span>
             
           </a>
         
@@ -654,9 +654,9 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/angular使用webscket 实现数据定时刷新.html" itemprop="url">
+          <a class="post-title-link" href="/父组件调用子组建属性.html" itemprop="url">
             
-              <span itemprop="name">angular使用websocket 实现数据定时刷新(ng2-stomp)</span>
+              <span itemprop="name">Angular5 父组件调用子组建</span>
             
           </a>
         
@@ -990,32 +990,6 @@
 
 
         
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="总访客量">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-
-  
-    <span class="post-meta-divider">|</span>
-  
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="总访问量">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
 
 
 
@@ -1170,6 +1144,74 @@
 
 
   
+  
+  <script>
+    
+    function showTime(Counter) {
+      var entries = [];
+      var $visitors = $('.leancloud_visitors');
+
+      $visitors.each(function() {
+        entries.push( $(this).attr('id').trim() );
+      });
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { '$in': entries } }) })
+        .done(function({ results }) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.url;
+            var time = item.time;
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for (var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if (countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function ({ responseJSON }) {
+          console.log(`LeanCloud Counter Error: ${responseJSON.code} ${responseJSON.error}`);
+        });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + 'zloLR75GQyn0qVSD378eaIlB-gzGzoHsz')
+        .done(function({ api_server }) {
+          var Counter = function(method, url, data) {
+            return $.ajax({
+              method: method,
+              url: 'https://' + api_server + '/1.1' + url,
+              headers: {
+                'X-LC-Id': 'zloLR75GQyn0qVSD378eaIlB-gzGzoHsz',
+                'X-LC-Key': 'F9z3KfIY3WJqvASSubgpQWiD',
+                'Content-Type': 'application/json',
+              },
+              data: data
+            });
+          };
+          
+            if ($('.post-title-link').length >= 1) {
+              showTime(Counter);
+            }
+          
+        });
+    });
+  </script>
+
+
 
   
 
