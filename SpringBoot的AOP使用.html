@@ -129,7 +129,7 @@
 <meta property="og:site_name" content="YXZ的博客">
 <meta property="og:description" content="说明：最近需要做一个异常通知的功能，在service层抛出Exception异常时，发一个通知的操作，于是便整理了下，以备后用 注解说明@Before: 前置通知, 发生在方法执行之前 @After: 后置通知, 发生在方法执行之后 @AfterRunning: 返回通知, 发生在方法返回结果之后 @AfterThrowing: 异常通知, 发生在方法抛出异常之后 @Around: 环绕通知, 发">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-01-17T10:02:47.892Z">
+<meta property="og:updated_time" content="2019-01-18T07:46:36.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringBoot的AOP使用">
 <meta name="twitter:description" content="说明：最近需要做一个异常通知的功能，在service层抛出Exception异常时，发一个通知的操作，于是便整理了下，以备后用 注解说明@Before: 前置通知, 发生在方法执行之前 @After: 后置通知, 发生在方法执行之后 @AfterRunning: 返回通知, 发生在方法返回结果之后 @AfterThrowing: 异常通知, 发生在方法抛出异常之后 @Around: 环绕通知, 发">
@@ -275,6 +275,23 @@
     
 
     <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-分类">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>分类</a>
 
   </li>
         
@@ -445,6 +462,24 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -499,6 +534,7 @@
 <p>@AfterRunning: 返回通知, 发生在方法返回结果之后</p>
 <p>@AfterThrowing: 异常通知, 发生在方法抛出异常之后</p>
 <p>@Around: 环绕通知, 发生在方法执行前和后</p>
+<a id="more"></a>
 <h3 id="切面定义"><a href="#切面定义" class="headerlink" title="切面定义"></a>切面定义</h3><p>新建类ServiceAspect,直接贴代码</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServiceAspect</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> ExceptionNoticeAPClient exceptionNoticeAPClient;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> String ExpGetResultDataPonit = <span class="string">"execution(* com.healthmanagement.*.service..*.*(..))"</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Pointcut</span>(ExpGetResultDataPonit)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">excuteService</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//配置抛出异常后通知,使用在方法aspect()上注册的切入点</span></span><br><span class="line">    <span class="meta">@AfterThrowing</span>(throwing=<span class="string">"ex"</span>,pointcut=<span class="string">"excuteService()"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ReturnMsg&lt;Object&gt; <span class="title">handle</span><span class="params">(JoinPoint joinPoint, Exception ex)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.</span><br><span class="line">                getRequestAttributes()).getRequest();</span><br><span class="line">        <span class="comment">//获取请求的URL</span></span><br><span class="line">        StringBuffer requestURL = request.getRequestURL();</span><br><span class="line">        String exceptionMsg = <span class="string">"【"</span>+ DateUtil.formatDate(<span class="keyword">new</span> Date(),<span class="string">"yyyy-MM-dd HH:mm:ss"</span>)+<span class="string">"】访问："</span>+requestURL+<span class="string">"时发生异常\n方法名："</span>+joinPoint+<span class="string">"\n具体异常信息：\n类型：【"</span>+ex.getClass().getName()+<span class="string">"】\n摘要：【"</span>+ex.getMessage()+<span class="string">"】\n详细：【"</span>+ex.toString()+<span class="string">"】\n堆栈：【"</span>+getErrorInfoFromException(ex)+<span class="string">"】"</span>;;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">"com.healthmanagement.core.exception.globalexception"</span>.equals(ex.getClass().getName().trim().toLowerCase()))&#123;</span><br><span class="line">            GlobalException exx = (GlobalException) ex;</span><br><span class="line">            <span class="keyword">if</span>(<span class="keyword">null</span>!=exx.getE())&#123;</span><br><span class="line">                exceptionMsg = <span class="string">"【"</span>+DateUtil.formatDate(<span class="keyword">new</span> Date(),<span class="string">"yyyy-MM-dd HH:mm:ss"</span>)+<span class="string">"】访问："</span>+requestURL+<span class="string">"时发生异常\n方法名："</span>+joinPoint+<span class="string">"\n具体异常信息：\n类型：【"</span>+exx.getE().getClass().getName()+<span class="string">"】\n摘要：【"</span>+exx.getE().getMessage()+<span class="string">"】\n详细：【"</span>+exx.getE().toString()+<span class="string">"】\n堆栈：【"</span>+getErrorInfoFromException(exx.getE())+<span class="string">"】"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        WarningParam warningParam = <span class="keyword">new</span> WarningParam();</span><br><span class="line">        warningParam.setContent(exceptionMsg);</span><br><span class="line">        warningParam.setTouser(<span class="string">"user"</span>);</span><br><span class="line">        exceptionNoticeAPClient.sendWarning(warningParam);</span><br><span class="line">        log.error(<span class="string">"&#123;&#125;请求异常：【&#123;&#125;】"</span>, request.getRequestURL().toString(), ex.toString());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ReturnMsg&lt;&gt;(<span class="number">1</span>, ex.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getErrorInfoFromException</span><span class="params">(Exception e)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            StringWriter sw = <span class="keyword">new</span> StringWriter();</span><br><span class="line">            PrintWriter pw = <span class="keyword">new</span> PrintWriter(sw);</span><br><span class="line">            e.printStackTrace(pw);</span><br><span class="line">            <span class="keyword">return</span> sw.toString();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e2) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">"bad getErrorInfoFromException"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="补充部分"><a href="#补充部分" class="headerlink" title="补充部分"></a>补充部分</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//执行方法前的拦截方法</span></span><br><span class="line">    <span class="meta">@Before</span>(<span class="string">"excuteService()"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doBeforeMethod</span><span class="params">(JoinPoint joinPoint)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"我是前置通知，将要执行一个方法"</span>);</span><br><span class="line">       </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 后置返回通知</span></span><br><span class="line"><span class="comment">     * 这里需要注意的是:</span></span><br><span class="line"><span class="comment">     * 如果参数中的第一个参数为JoinPoint，则第二个参数为返回值的信息</span></span><br><span class="line"><span class="comment">     * 如果参数中的第一个参数不为JoinPoint，则第一个参数为returning中对应的参数</span></span><br><span class="line"><span class="comment">     * returning 限定了只有目标方法返回值与通知方法相应参数类型时才能执行后置返回通知，否则不执行，对于returning对应的通知方法参数为Object类型将匹配任何目标返回值</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@AfterReturning</span>(value = ExpGetResultDataPonit, returning = <span class="string">"keys"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfterReturningAdvice1</span><span class="params">(JoinPoint joinPoint, Object keys)</span> </span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 后置最终通知（目标方法只要执行完了就会执行后置通知方法）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@After</span>(<span class="string">"excuteService()"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doAfterAdvice</span><span class="params">(JoinPoint joinPoint)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"后置通知执行了!!!!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 环绕通知：</span></span><br><span class="line"><span class="comment">     * 环绕通知非常强大，可以决定目标方法是否执行，什么时候执行，执行时是否需要替换方法参数，执行完毕是否需要替换返回值。</span></span><br><span class="line"><span class="comment">     * 环绕通知第一个参数必须是org.aspectj.lang.ProceedingJoinPoint类型</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Around</span>(ExpGetResultDataPonit)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">doAroundAdvice</span><span class="params">(ProceedingJoinPoint proceedingJoinPoint)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;<span class="comment">//obj之前可以写目标方法执行前的逻辑</span></span><br><span class="line">            </span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable throwable) &#123;</span><br><span class="line">            throwable.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
@@ -633,6 +669,37 @@
               
 
               
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
 
               
                 
@@ -691,7 +758,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">25</span>
+                      
+                    
+                    <span class="site-state-item-count">26</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
