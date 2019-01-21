@@ -45,7 +45,9 @@
 
 
 <!-- ҳ����С���� -->
+<!--
 <script type="text/javascript" src="/js/src/love.js"></script>
+-->
 
 
 
@@ -323,6 +325,23 @@
     
 
     <a href="http://blog.yangxiaozong.com/" rel="noopener" target="_blank"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于我</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-站点地图">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/sitemap.xml" rel="section"><i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br/>站点地图</a>
 
   </li>
 
@@ -2073,7 +2092,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Spring Boot异步调用@Async.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Spring @Autowired注解在utils静态工具类非controller普通类中使.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -2093,7 +2112,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/Spring Boot异步调用@Async.html" class="post-title-link" itemprop="url">Spring Boot异步调用@Async</a>
+                <a href="/Spring @Autowired注解在utils静态工具类非controller普通类中使.html" class="post-title-link" itemprop="url">Spring @Autowired注解在utils静态工具类非controller普通类中使</a>
               
             
           </h1>
@@ -2136,7 +2155,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Springboot/" itemprop="url" rel="index"><span itemprop="name">Springboot</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
 
                 
                 
@@ -2151,8 +2170,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Spring Boot异步调用@Async.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Spring Boot异步调用@Async.html" itemprop="commentCount"></span>
+                <a href="/Spring @Autowired注解在utils静态工具类非controller普通类中使.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Spring @Autowired注解在utils静态工具类非controller普通类中使.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2160,7 +2179,7 @@
 
           
           
-            <span id="/Spring Boot异步调用@Async.html" class="leancloud_visitors" data-flag-title="Spring Boot异步调用@Async">
+            <span id="/Spring @Autowired注解在utils静态工具类非controller普通类中使.html" class="leancloud_visitors" data-flag-title="Spring @Autowired注解在utils静态工具类非controller普通类中使">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -2192,13 +2211,12 @@
 
       
         
-          <h3 id="使用背景"><a href="#使用背景" class="headerlink" title="使用背景"></a>使用背景</h3><p>在日常开发的项目中，当访问其他人的接口较慢或者做耗时任务时，</p>
-<p>不想程序一直卡在耗时任务上，想程序能够并行执行，</p>
-<p>我们可以使用多线程来并行的处理任务，也可以使用spring提供的异步处理方式@Async。</p>
+          <p>说明:我们经常要使用@Autowired注解注入Service或者Mapper接口，在service层中注入其它的service接口或者mapper接口都是可以的，但是如果我们要在我们自己封装的Utils工具类中或者非controller普通类中使用@Autowired注解注入Service或者Mapper接口，直接注入是不可能的，因为Utils使用了静态的方法，我们是无法直接使用非静态接口的，当我们遇到这样的问题，我们就要想办法解决了。</p>
+<p>我们有两种方法解决这个问题，第一种是注解方式，第二种是xml配置方式，下面是我们在utils中使用@Autowired注解的方法：</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Spring Boot异步调用@Async.html#more" rel="contents">
+              <a class="btn" href="/Spring @Autowired注解在utils静态工具类非controller普通类中使.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
