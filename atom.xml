@@ -425,28 +425,6 @@
   </entry>
   
   <entry>
-    <title>Mybatis条件判定</title>
-    <link href="http://www.yangxiaozong.com/Mybatis%E6%9D%A1%E4%BB%B6%E5%88%A4%E5%AE%9A.html"/>
-    <id>http://www.yangxiaozong.com/Mybatis条件判定.html</id>
-    <published>2018-06-15T06:40:28.000Z</published>
-    <updated>2019-01-18T07:50:07.432Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="null"><a href="#null" class="headerlink" title="!=null"></a>!=null</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;if test="orderUserName!=null"&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure><a id="more"></a><h3 id="””"><a href="#””" class="headerlink" title="!=””"></a>!=””</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;if test="orderUserName!=''"&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure><h3 id="”-”"><a href="#”-”" class="headerlink" title="!=”,”"></a>!=”,”</h3><p>重点就是这一个：在判定除null、””、数字外，需加上.toString()，否则查询时会报错</p><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;if test="orderUserName!=','.toString()"&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;null&quot;&gt;&lt;a href=&quot;#null&quot; class=&quot;headerlink&quot; title=&quot;!=null&quot;&gt;&lt;/a&gt;!=null&lt;/h3&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;if test=&quot;orderUserName!=null&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/if&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-    
-    </summary>
-    
-      <category term="Mybatis" scheme="http://www.yangxiaozong.com/categories/Mybatis/"/>
-    
-    
-      <category term="Mybatis" scheme="http://www.yangxiaozong.com/tags/Mybatis/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Mybatis插入数据后返回主键</title>
     <link href="http://www.yangxiaozong.com/Mybatis%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE%E5%90%8E%E8%BF%94%E5%9B%9E%E4%B8%BB%E9%94%AE.html"/>
     <id>http://www.yangxiaozong.com/Mybatis插入数据后返回主键.html</id>
@@ -458,6 +436,28 @@
     <summary type="html">
     
       &lt;h3 id=&quot;1-插入一条记录后返回主键id&quot;&gt;&lt;a href=&quot;#1-插入一条记录后返回主键id&quot; class=&quot;headerlink&quot; title=&quot;1.插入一条记录后返回主键id&quot;&gt;&lt;/a&gt;1.插入一条记录后返回主键id&lt;/h3&gt;&lt;p&gt;添加 useGeneratedKeys=”true” keyProperty=”id”，如下&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;insert id=&amp;quot;insert&amp;quot; parameterType=&amp;quot;yxz.niit.com.Yxz&amp;quot; useGeneratedKeys=&amp;quot;true&amp;quot; keyProperty=&amp;quot;id&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;插入语句略&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/insert&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Mybatis" scheme="http://www.yangxiaozong.com/categories/Mybatis/"/>
+    
+    
+      <category term="Mybatis" scheme="http://www.yangxiaozong.com/tags/Mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mybatis条件判定</title>
+    <link href="http://www.yangxiaozong.com/Mybatis%E6%9D%A1%E4%BB%B6%E5%88%A4%E5%AE%9A.html"/>
+    <id>http://www.yangxiaozong.com/Mybatis条件判定.html</id>
+    <published>2018-06-15T06:40:28.000Z</published>
+    <updated>2019-01-18T07:50:07.432Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="null"><a href="#null" class="headerlink" title="!=null"></a>!=null</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;if test="orderUserName!=null"&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure><a id="more"></a><h3 id="””"><a href="#””" class="headerlink" title="!=””"></a>!=””</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;if test="orderUserName!=''"&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure><h3 id="”-”"><a href="#”-”" class="headerlink" title="!=”,”"></a>!=”,”</h3><p>重点就是这一个：在判定除null、””、数字外，需加上.toString()，否则查询时会报错</p><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;if test="orderUserName!=','.toString()"&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;null&quot;&gt;&lt;a href=&quot;#null&quot; class=&quot;headerlink&quot; title=&quot;!=null&quot;&gt;&lt;/a&gt;!=null&lt;/h3&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;if test=&quot;orderUserName!=null&quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/if&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
     
     </summary>
     
