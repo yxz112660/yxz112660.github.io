@@ -119,30 +119,6 @@
   </entry>
   
   <entry>
-    <title>hexo的yilia主题实现雪花飘落效果</title>
-    <link href="http://www.yangxiaozong.com/hexo%E7%9A%84yilia%E4%B8%BB%E9%A2%98%E5%AE%9E%E7%8E%B0%E9%9B%AA%E8%8A%B1%E9%A3%98%E8%90%BD%E6%95%88%E6%9E%9C.html"/>
-    <id>http://www.yangxiaozong.com/hexo的yilia主题实现雪花飘落效果.html</id>
-    <published>2019-01-10T06:40:28.000Z</published>
-    <updated>2019-01-18T07:53:55.463Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="新建js"><a href="#新建js" class="headerlink" title="新建js"></a>新建js</h3><p>在\themes\yilia\source下新建snow.js；内容是</p><a id="more"></a><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*样式一*/</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line">$.fn.snow = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> $flake = $(<span class="string">'&lt;div id="snowbox" /&gt;'</span>).css(&#123;<span class="string">'position'</span>: <span class="string">'absolute'</span>,<span class="string">'z-index'</span>:<span class="string">'9999'</span>, <span class="string">'top'</span>: <span class="string">'-50px'</span>&#125;).html(<span class="string">'&amp;#10052;'</span>),</span><br><span class="line">documentHeight = $(<span class="built_in">document</span>).height(),</span><br><span class="line">documentWidth= $(<span class="built_in">document</span>).width(),</span><br><span class="line">defaults = &#123;</span><br><span class="line">minSize: <span class="number">10</span>,</span><br><span class="line">maxSize: <span class="number">20</span>,</span><br><span class="line">newOn: <span class="number">1000</span>,</span><br><span class="line">flakeColor: <span class="string">"#AFDAEF"</span> <span class="comment">/* 此处可以定义雪花颜色，若要白色可以改为#FFFFFF */</span></span><br><span class="line">&#125;,</span><br><span class="line">options= $.extend(&#123;&#125;, defaults, options);</span><br><span class="line"><span class="keyword">var</span> interval= setInterval( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> startPositionLeft = <span class="built_in">Math</span>.random() * documentWidth - <span class="number">100</span>,</span><br><span class="line">startOpacity = <span class="number">0.5</span> + <span class="built_in">Math</span>.random(),</span><br><span class="line">sizeFlake = options.minSize + <span class="built_in">Math</span>.random() * options.maxSize,</span><br><span class="line">endPositionTop = documentHeight - <span class="number">200</span>,</span><br><span class="line">endPositionLeft = startPositionLeft - <span class="number">500</span> + <span class="built_in">Math</span>.random() * <span class="number">500</span>,</span><br><span class="line">durationFall = documentHeight * <span class="number">10</span> + <span class="built_in">Math</span>.random() * <span class="number">5000</span>;</span><br><span class="line">$flake.clone().appendTo(<span class="string">'body'</span>).css(&#123;</span><br><span class="line">left: startPositionLeft,</span><br><span class="line">opacity: startOpacity,</span><br><span class="line"><span class="string">'font-size'</span>: sizeFlake,</span><br><span class="line">color: options.flakeColor</span><br><span class="line">&#125;).animate(&#123;</span><br><span class="line">top: endPositionTop,</span><br><span class="line">left: endPositionLeft,</span><br><span class="line">opacity: <span class="number">0.2</span></span><br><span class="line">&#125;,durationFall,<span class="string">'linear'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">$(<span class="keyword">this</span>).remove()</span><br><span class="line">&#125;);</span><br><span class="line">&#125;, options.newOn);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)(jQuery);</span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.fn.snow(&#123; </span><br><span class="line">    minSize: <span class="number">5</span>, <span class="comment">/* 定义雪花最小尺寸 */</span></span><br><span class="line">    maxSize: <span class="number">50</span>,<span class="comment">/* 定义雪花最大尺寸 */</span></span><br><span class="line">    newOn: <span class="number">300</span>  <span class="comment">/* 定义密集程度，数字越小越密集 */</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h3 id="引入js"><a href="#引入js" class="headerlink" title="引入js"></a>引入js</h3><p>在\themes\yilia\layout\layout.ejs中引入js</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入jquery 已经引入过了可去掉 --&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"//libs.baidu.com/jquery/1.8.3/jquery.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">&lt;!-- 雪花特效 --&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  <span class="keyword">var</span> windowWidth = $(<span class="built_in">window</span>).width();</span><br><span class="line">  <span class="keyword">if</span> (windowWidth &gt; <span class="number">480</span>) &#123;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">'&lt;script type="text/javascript" src="/snow.js"&gt;&lt;\/script&gt;'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure><p>最后重新部署你的hexo</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;新建js&quot;&gt;&lt;a href=&quot;#新建js&quot; class=&quot;headerlink&quot; title=&quot;新建js&quot;&gt;&lt;/a&gt;新建js&lt;/h3&gt;&lt;p&gt;在\themes\yilia\source下新建snow.js；内容是&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Hexo" scheme="http://www.yangxiaozong.com/categories/Hexo/"/>
-    
-    
-      <category term="Hexo" scheme="http://www.yangxiaozong.com/tags/Hexo/"/>
-    
-      <category term="Yilia" scheme="http://www.yangxiaozong.com/tags/Yilia/"/>
-    
-  </entry>
-  
-  <entry>
     <title>centOS7安装mysql 8.0</title>
     <link href="http://www.yangxiaozong.com/centOS7%E5%AE%89%E8%A3%85mysql%208.0.html"/>
     <id>http://www.yangxiaozong.com/centOS7安装mysql 8.0.html</id>
@@ -165,6 +141,30 @@
       <category term="Centos" scheme="http://www.yangxiaozong.com/tags/Centos/"/>
     
       <category term="Mysql" scheme="http://www.yangxiaozong.com/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo的yilia主题实现雪花飘落效果</title>
+    <link href="http://www.yangxiaozong.com/hexo%E7%9A%84yilia%E4%B8%BB%E9%A2%98%E5%AE%9E%E7%8E%B0%E9%9B%AA%E8%8A%B1%E9%A3%98%E8%90%BD%E6%95%88%E6%9E%9C.html"/>
+    <id>http://www.yangxiaozong.com/hexo的yilia主题实现雪花飘落效果.html</id>
+    <published>2019-01-10T06:40:28.000Z</published>
+    <updated>2019-01-18T07:53:55.463Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="新建js"><a href="#新建js" class="headerlink" title="新建js"></a>新建js</h3><p>在\themes\yilia\source下新建snow.js；内容是</p><a id="more"></a><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*样式一*/</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line">$.fn.snow = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> $flake = $(<span class="string">'&lt;div id="snowbox" /&gt;'</span>).css(&#123;<span class="string">'position'</span>: <span class="string">'absolute'</span>,<span class="string">'z-index'</span>:<span class="string">'9999'</span>, <span class="string">'top'</span>: <span class="string">'-50px'</span>&#125;).html(<span class="string">'&amp;#10052;'</span>),</span><br><span class="line">documentHeight = $(<span class="built_in">document</span>).height(),</span><br><span class="line">documentWidth= $(<span class="built_in">document</span>).width(),</span><br><span class="line">defaults = &#123;</span><br><span class="line">minSize: <span class="number">10</span>,</span><br><span class="line">maxSize: <span class="number">20</span>,</span><br><span class="line">newOn: <span class="number">1000</span>,</span><br><span class="line">flakeColor: <span class="string">"#AFDAEF"</span> <span class="comment">/* 此处可以定义雪花颜色，若要白色可以改为#FFFFFF */</span></span><br><span class="line">&#125;,</span><br><span class="line">options= $.extend(&#123;&#125;, defaults, options);</span><br><span class="line"><span class="keyword">var</span> interval= setInterval( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> startPositionLeft = <span class="built_in">Math</span>.random() * documentWidth - <span class="number">100</span>,</span><br><span class="line">startOpacity = <span class="number">0.5</span> + <span class="built_in">Math</span>.random(),</span><br><span class="line">sizeFlake = options.minSize + <span class="built_in">Math</span>.random() * options.maxSize,</span><br><span class="line">endPositionTop = documentHeight - <span class="number">200</span>,</span><br><span class="line">endPositionLeft = startPositionLeft - <span class="number">500</span> + <span class="built_in">Math</span>.random() * <span class="number">500</span>,</span><br><span class="line">durationFall = documentHeight * <span class="number">10</span> + <span class="built_in">Math</span>.random() * <span class="number">5000</span>;</span><br><span class="line">$flake.clone().appendTo(<span class="string">'body'</span>).css(&#123;</span><br><span class="line">left: startPositionLeft,</span><br><span class="line">opacity: startOpacity,</span><br><span class="line"><span class="string">'font-size'</span>: sizeFlake,</span><br><span class="line">color: options.flakeColor</span><br><span class="line">&#125;).animate(&#123;</span><br><span class="line">top: endPositionTop,</span><br><span class="line">left: endPositionLeft,</span><br><span class="line">opacity: <span class="number">0.2</span></span><br><span class="line">&#125;,durationFall,<span class="string">'linear'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">$(<span class="keyword">this</span>).remove()</span><br><span class="line">&#125;);</span><br><span class="line">&#125;, options.newOn);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)(jQuery);</span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.fn.snow(&#123; </span><br><span class="line">    minSize: <span class="number">5</span>, <span class="comment">/* 定义雪花最小尺寸 */</span></span><br><span class="line">    maxSize: <span class="number">50</span>,<span class="comment">/* 定义雪花最大尺寸 */</span></span><br><span class="line">    newOn: <span class="number">300</span>  <span class="comment">/* 定义密集程度，数字越小越密集 */</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h3 id="引入js"><a href="#引入js" class="headerlink" title="引入js"></a>引入js</h3><p>在\themes\yilia\layout\layout.ejs中引入js</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入jquery 已经引入过了可去掉 --&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"//libs.baidu.com/jquery/1.8.3/jquery.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">&lt;!-- 雪花特效 --&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  <span class="keyword">var</span> windowWidth = $(<span class="built_in">window</span>).width();</span><br><span class="line">  <span class="keyword">if</span> (windowWidth &gt; <span class="number">480</span>) &#123;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">'&lt;script type="text/javascript" src="/snow.js"&gt;&lt;\/script&gt;'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure><p>最后重新部署你的hexo</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;新建js&quot;&gt;&lt;a href=&quot;#新建js&quot; class=&quot;headerlink&quot; title=&quot;新建js&quot;&gt;&lt;/a&gt;新建js&lt;/h3&gt;&lt;p&gt;在\themes\yilia\source下新建snow.js；内容是&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://www.yangxiaozong.com/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="http://www.yangxiaozong.com/tags/Hexo/"/>
+    
+      <category term="Yilia" scheme="http://www.yangxiaozong.com/tags/Yilia/"/>
     
   </entry>
   
@@ -375,53 +375,6 @@
   </entry>
   
   <entry>
-    <title>一条sql查询多张不同的表</title>
-    <link href="http://www.yangxiaozong.com/%E4%B8%80%E6%9D%A1sql%E6%9F%A5%E8%AF%A2%E5%A4%9A%E5%BC%A0%E4%B8%8D%E5%90%8C%E7%9A%84%E8%A1%A8.html"/>
-    <id>http://www.yangxiaozong.com/一条sql查询多张不同的表.html</id>
-    <published>2018-06-15T06:40:28.000Z</published>
-    <updated>2019-01-18T08:00:59.025Z</updated>
-    
-    <content type="html"><![CDATA[<p>场景说明：</p><p>有A、B、C、D、E共5张表，其中A表为主表，BCDE同为子表，A表有一个字段关联着BCDE表的主键id，BCDE表的字段除了主键id都不相同，此时我们需要查询A表数据同时关联子表查询出其子表的所有字段信息，因为不清楚关联子表具体是谁，所以您可能需要如下骚操作</p><a id="more"></a><h3 id="Mybatis查询语句"><a href="#Mybatis查询语句" class="headerlink" title="Mybatis查询语句"></a>Mybatis查询语句</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;select id=&quot;selectInfo&quot; parameterType=&quot;yxz.niit.com.Yxz&quot; statementType=&quot;STATEMENT&quot;  resultType=&quot;java.util.HashMap&quot;&gt;</span><br><span class="line"> SELECT  A.id,A.name,O.* FROM A A</span><br><span class="line"> LEFT JOIN $&#123;tableName&#125; O ON A.o_id=O.id</span><br><span class="line"> WHERE A.used_flag=1 AND A.id=$&#123;id&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure><p>1.yxz.niit.com.Yxz是查询参数实体路径</p><p>2.statementType=”STATEMENT”</p><p>要实现动态传入表名、列名，需要做如下修改<br>添加属性statementType=”STATEMENT”<br>同时sql里的属有变量取值都改成${xxxx}，而不是#{xxx}</p><p>3.resultType=”java.util.HashMap”</p><p>不知道具体返回是哪个实体，所以先返回一个Map，然后后台代码在转出Object对象</p><p>4.${tableName} 接受表名 B、C、D、E</p><h3 id="Map转Object"><a href="#Map转Object" class="headerlink" title="Map转Object"></a>Map转Object</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">JSONHelper.jsonToBean(JSONHelper.beanToJson(object),B.class)</span><br></pre></td></tr></table></figure><p>这样就可以转换出B对象</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;场景说明：&lt;/p&gt;
-&lt;p&gt;有A、B、C、D、E共5张表，其中A表为主表，BCDE同为子表，A表有一个字段关联着BCDE表的主键id，BCDE表的字段除了主键id都不相同，此时我们需要查询A表数据同时关联子表查询出其子表的所有字段信息，因为不清楚关联子表具体是谁，所以您可能需要如下骚操作&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Mybatis" scheme="http://www.yangxiaozong.com/categories/Mybatis/"/>
-    
-    
-      <category term="Mysql" scheme="http://www.yangxiaozong.com/tags/Mysql/"/>
-    
-      <category term="Mybatis" scheme="http://www.yangxiaozong.com/tags/Mybatis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mybatis插入数据后返回主键</title>
-    <link href="http://www.yangxiaozong.com/Mybatis%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE%E5%90%8E%E8%BF%94%E5%9B%9E%E4%B8%BB%E9%94%AE.html"/>
-    <id>http://www.yangxiaozong.com/Mybatis插入数据后返回主键.html</id>
-    <published>2018-06-15T06:40:28.000Z</published>
-    <updated>2019-01-18T08:00:22.987Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1-插入一条记录后返回主键id"><a href="#1-插入一条记录后返回主键id" class="headerlink" title="1.插入一条记录后返回主键id"></a>1.插入一条记录后返回主键id</h3><p>添加 useGeneratedKeys=”true” keyProperty=”id”，如下<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;insert id=&quot;insert&quot; parameterType=&quot;yxz.niit.com.Yxz&quot; useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot;&gt;</span><br><span class="line">插入语句略</span><br><span class="line">&lt;/insert&gt;</span><br></pre></td></tr></table></figure></p><a id="more"></a>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;1-插入一条记录后返回主键id&quot;&gt;&lt;a href=&quot;#1-插入一条记录后返回主键id&quot; class=&quot;headerlink&quot; title=&quot;1.插入一条记录后返回主键id&quot;&gt;&lt;/a&gt;1.插入一条记录后返回主键id&lt;/h3&gt;&lt;p&gt;添加 useGeneratedKeys=”true” keyProperty=”id”，如下&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;insert id=&amp;quot;insert&amp;quot; parameterType=&amp;quot;yxz.niit.com.Yxz&amp;quot; useGeneratedKeys=&amp;quot;true&amp;quot; keyProperty=&amp;quot;id&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;插入语句略&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/insert&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Mybatis" scheme="http://www.yangxiaozong.com/categories/Mybatis/"/>
-    
-    
-      <category term="Mybatis" scheme="http://www.yangxiaozong.com/tags/Mybatis/"/>
-    
-  </entry>
-  
-  <entry>
     <title>mybatis中resultMap使用之返回分组数据</title>
     <link href="http://www.yangxiaozong.com/mybatis%E4%B8%ADresultMap%E4%BD%BF%E7%94%A8%E4%B9%8B%E8%BF%94%E5%9B%9E%E5%88%86%E7%BB%84%E6%95%B0%E6%8D%AE.html"/>
     <id>http://www.yangxiaozong.com/mybatis中resultMap使用之返回分组数据.html</id>
@@ -463,6 +416,53 @@
     
       <category term="Mybatis" scheme="http://www.yangxiaozong.com/categories/Mybatis/"/>
     
+    
+      <category term="Mybatis" scheme="http://www.yangxiaozong.com/tags/Mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mybatis插入数据后返回主键</title>
+    <link href="http://www.yangxiaozong.com/Mybatis%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE%E5%90%8E%E8%BF%94%E5%9B%9E%E4%B8%BB%E9%94%AE.html"/>
+    <id>http://www.yangxiaozong.com/Mybatis插入数据后返回主键.html</id>
+    <published>2018-06-15T06:40:28.000Z</published>
+    <updated>2019-01-18T08:00:22.987Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-插入一条记录后返回主键id"><a href="#1-插入一条记录后返回主键id" class="headerlink" title="1.插入一条记录后返回主键id"></a>1.插入一条记录后返回主键id</h3><p>添加 useGeneratedKeys=”true” keyProperty=”id”，如下<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;insert id=&quot;insert&quot; parameterType=&quot;yxz.niit.com.Yxz&quot; useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot;&gt;</span><br><span class="line">插入语句略</span><br><span class="line">&lt;/insert&gt;</span><br></pre></td></tr></table></figure></p><a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-插入一条记录后返回主键id&quot;&gt;&lt;a href=&quot;#1-插入一条记录后返回主键id&quot; class=&quot;headerlink&quot; title=&quot;1.插入一条记录后返回主键id&quot;&gt;&lt;/a&gt;1.插入一条记录后返回主键id&lt;/h3&gt;&lt;p&gt;添加 useGeneratedKeys=”true” keyProperty=”id”，如下&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;insert id=&amp;quot;insert&amp;quot; parameterType=&amp;quot;yxz.niit.com.Yxz&amp;quot; useGeneratedKeys=&amp;quot;true&amp;quot; keyProperty=&amp;quot;id&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;插入语句略&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/insert&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Mybatis" scheme="http://www.yangxiaozong.com/categories/Mybatis/"/>
+    
+    
+      <category term="Mybatis" scheme="http://www.yangxiaozong.com/tags/Mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一条sql查询多张不同的表</title>
+    <link href="http://www.yangxiaozong.com/%E4%B8%80%E6%9D%A1sql%E6%9F%A5%E8%AF%A2%E5%A4%9A%E5%BC%A0%E4%B8%8D%E5%90%8C%E7%9A%84%E8%A1%A8.html"/>
+    <id>http://www.yangxiaozong.com/一条sql查询多张不同的表.html</id>
+    <published>2018-06-15T06:40:28.000Z</published>
+    <updated>2019-01-18T08:00:59.025Z</updated>
+    
+    <content type="html"><![CDATA[<p>场景说明：</p><p>有A、B、C、D、E共5张表，其中A表为主表，BCDE同为子表，A表有一个字段关联着BCDE表的主键id，BCDE表的字段除了主键id都不相同，此时我们需要查询A表数据同时关联子表查询出其子表的所有字段信息，因为不清楚关联子表具体是谁，所以您可能需要如下骚操作</p><a id="more"></a><h3 id="Mybatis查询语句"><a href="#Mybatis查询语句" class="headerlink" title="Mybatis查询语句"></a>Mybatis查询语句</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;select id=&quot;selectInfo&quot; parameterType=&quot;yxz.niit.com.Yxz&quot; statementType=&quot;STATEMENT&quot;  resultType=&quot;java.util.HashMap&quot;&gt;</span><br><span class="line"> SELECT  A.id,A.name,O.* FROM A A</span><br><span class="line"> LEFT JOIN $&#123;tableName&#125; O ON A.o_id=O.id</span><br><span class="line"> WHERE A.used_flag=1 AND A.id=$&#123;id&#125;</span><br><span class="line">&lt;/select&gt;</span><br></pre></td></tr></table></figure><p>1.yxz.niit.com.Yxz是查询参数实体路径</p><p>2.statementType=”STATEMENT”</p><p>要实现动态传入表名、列名，需要做如下修改<br>添加属性statementType=”STATEMENT”<br>同时sql里的属有变量取值都改成${xxxx}，而不是#{xxx}</p><p>3.resultType=”java.util.HashMap”</p><p>不知道具体返回是哪个实体，所以先返回一个Map，然后后台代码在转出Object对象</p><p>4.${tableName} 接受表名 B、C、D、E</p><h3 id="Map转Object"><a href="#Map转Object" class="headerlink" title="Map转Object"></a>Map转Object</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">JSONHelper.jsonToBean(JSONHelper.beanToJson(object),B.class)</span><br></pre></td></tr></table></figure><p>这样就可以转换出B对象</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;场景说明：&lt;/p&gt;
+&lt;p&gt;有A、B、C、D、E共5张表，其中A表为主表，BCDE同为子表，A表有一个字段关联着BCDE表的主键id，BCDE表的字段除了主键id都不相同，此时我们需要查询A表数据同时关联子表查询出其子表的所有字段信息，因为不清楚关联子表具体是谁，所以您可能需要如下骚操作&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Mybatis" scheme="http://www.yangxiaozong.com/categories/Mybatis/"/>
+    
+    
+      <category term="Mysql" scheme="http://www.yangxiaozong.com/tags/Mysql/"/>
     
       <category term="Mybatis" scheme="http://www.yangxiaozong.com/tags/Mybatis/"/>
     
