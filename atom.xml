@@ -119,6 +119,30 @@
   </entry>
   
   <entry>
+    <title>hexo的yilia主题实现雪花飘落效果</title>
+    <link href="http://www.yangxiaozong.com/hexo%E7%9A%84yilia%E4%B8%BB%E9%A2%98%E5%AE%9E%E7%8E%B0%E9%9B%AA%E8%8A%B1%E9%A3%98%E8%90%BD%E6%95%88%E6%9E%9C.html"/>
+    <id>http://www.yangxiaozong.com/hexo的yilia主题实现雪花飘落效果.html</id>
+    <published>2019-01-10T06:40:28.000Z</published>
+    <updated>2019-01-18T07:53:55.463Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="新建js"><a href="#新建js" class="headerlink" title="新建js"></a>新建js</h3><p>在\themes\yilia\source下新建snow.js；内容是</p><a id="more"></a><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*样式一*/</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line">$.fn.snow = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> $flake = $(<span class="string">'&lt;div id="snowbox" /&gt;'</span>).css(&#123;<span class="string">'position'</span>: <span class="string">'absolute'</span>,<span class="string">'z-index'</span>:<span class="string">'9999'</span>, <span class="string">'top'</span>: <span class="string">'-50px'</span>&#125;).html(<span class="string">'&amp;#10052;'</span>),</span><br><span class="line">documentHeight = $(<span class="built_in">document</span>).height(),</span><br><span class="line">documentWidth= $(<span class="built_in">document</span>).width(),</span><br><span class="line">defaults = &#123;</span><br><span class="line">minSize: <span class="number">10</span>,</span><br><span class="line">maxSize: <span class="number">20</span>,</span><br><span class="line">newOn: <span class="number">1000</span>,</span><br><span class="line">flakeColor: <span class="string">"#AFDAEF"</span> <span class="comment">/* 此处可以定义雪花颜色，若要白色可以改为#FFFFFF */</span></span><br><span class="line">&#125;,</span><br><span class="line">options= $.extend(&#123;&#125;, defaults, options);</span><br><span class="line"><span class="keyword">var</span> interval= setInterval( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> startPositionLeft = <span class="built_in">Math</span>.random() * documentWidth - <span class="number">100</span>,</span><br><span class="line">startOpacity = <span class="number">0.5</span> + <span class="built_in">Math</span>.random(),</span><br><span class="line">sizeFlake = options.minSize + <span class="built_in">Math</span>.random() * options.maxSize,</span><br><span class="line">endPositionTop = documentHeight - <span class="number">200</span>,</span><br><span class="line">endPositionLeft = startPositionLeft - <span class="number">500</span> + <span class="built_in">Math</span>.random() * <span class="number">500</span>,</span><br><span class="line">durationFall = documentHeight * <span class="number">10</span> + <span class="built_in">Math</span>.random() * <span class="number">5000</span>;</span><br><span class="line">$flake.clone().appendTo(<span class="string">'body'</span>).css(&#123;</span><br><span class="line">left: startPositionLeft,</span><br><span class="line">opacity: startOpacity,</span><br><span class="line"><span class="string">'font-size'</span>: sizeFlake,</span><br><span class="line">color: options.flakeColor</span><br><span class="line">&#125;).animate(&#123;</span><br><span class="line">top: endPositionTop,</span><br><span class="line">left: endPositionLeft,</span><br><span class="line">opacity: <span class="number">0.2</span></span><br><span class="line">&#125;,durationFall,<span class="string">'linear'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">$(<span class="keyword">this</span>).remove()</span><br><span class="line">&#125;);</span><br><span class="line">&#125;, options.newOn);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)(jQuery);</span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.fn.snow(&#123; </span><br><span class="line">    minSize: <span class="number">5</span>, <span class="comment">/* 定义雪花最小尺寸 */</span></span><br><span class="line">    maxSize: <span class="number">50</span>,<span class="comment">/* 定义雪花最大尺寸 */</span></span><br><span class="line">    newOn: <span class="number">300</span>  <span class="comment">/* 定义密集程度，数字越小越密集 */</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h3 id="引入js"><a href="#引入js" class="headerlink" title="引入js"></a>引入js</h3><p>在\themes\yilia\layout\layout.ejs中引入js</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入jquery 已经引入过了可去掉 --&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"//libs.baidu.com/jquery/1.8.3/jquery.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">&lt;!-- 雪花特效 --&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  <span class="keyword">var</span> windowWidth = $(<span class="built_in">window</span>).width();</span><br><span class="line">  <span class="keyword">if</span> (windowWidth &gt; <span class="number">480</span>) &#123;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">'&lt;script type="text/javascript" src="/snow.js"&gt;&lt;\/script&gt;'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure><p>最后重新部署你的hexo</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;新建js&quot;&gt;&lt;a href=&quot;#新建js&quot; class=&quot;headerlink&quot; title=&quot;新建js&quot;&gt;&lt;/a&gt;新建js&lt;/h3&gt;&lt;p&gt;在\themes\yilia\source下新建snow.js；内容是&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://www.yangxiaozong.com/categories/Hexo/"/>
+    
+    
+      <category term="Hexo" scheme="http://www.yangxiaozong.com/tags/Hexo/"/>
+    
+      <category term="Yilia" scheme="http://www.yangxiaozong.com/tags/Yilia/"/>
+    
+  </entry>
+  
+  <entry>
     <title>centOS7安装mysql 8.0</title>
     <link href="http://www.yangxiaozong.com/centOS7%E5%AE%89%E8%A3%85mysql%208.0.html"/>
     <id>http://www.yangxiaozong.com/centOS7安装mysql 8.0.html</id>
@@ -141,30 +165,6 @@
       <category term="Centos" scheme="http://www.yangxiaozong.com/tags/Centos/"/>
     
       <category term="Mysql" scheme="http://www.yangxiaozong.com/tags/Mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo的yilia主题实现雪花飘落效果</title>
-    <link href="http://www.yangxiaozong.com/hexo%E7%9A%84yilia%E4%B8%BB%E9%A2%98%E5%AE%9E%E7%8E%B0%E9%9B%AA%E8%8A%B1%E9%A3%98%E8%90%BD%E6%95%88%E6%9E%9C.html"/>
-    <id>http://www.yangxiaozong.com/hexo的yilia主题实现雪花飘落效果.html</id>
-    <published>2019-01-10T06:40:28.000Z</published>
-    <updated>2019-01-18T07:53:55.463Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="新建js"><a href="#新建js" class="headerlink" title="新建js"></a>新建js</h3><p>在\themes\yilia\source下新建snow.js；内容是</p><a id="more"></a><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/*样式一*/</span></span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>)</span>&#123;</span><br><span class="line">$.fn.snow = <span class="function"><span class="keyword">function</span>(<span class="params">options</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> $flake = $(<span class="string">'&lt;div id="snowbox" /&gt;'</span>).css(&#123;<span class="string">'position'</span>: <span class="string">'absolute'</span>,<span class="string">'z-index'</span>:<span class="string">'9999'</span>, <span class="string">'top'</span>: <span class="string">'-50px'</span>&#125;).html(<span class="string">'&amp;#10052;'</span>),</span><br><span class="line">documentHeight = $(<span class="built_in">document</span>).height(),</span><br><span class="line">documentWidth= $(<span class="built_in">document</span>).width(),</span><br><span class="line">defaults = &#123;</span><br><span class="line">minSize: <span class="number">10</span>,</span><br><span class="line">maxSize: <span class="number">20</span>,</span><br><span class="line">newOn: <span class="number">1000</span>,</span><br><span class="line">flakeColor: <span class="string">"#AFDAEF"</span> <span class="comment">/* 此处可以定义雪花颜色，若要白色可以改为#FFFFFF */</span></span><br><span class="line">&#125;,</span><br><span class="line">options= $.extend(&#123;&#125;, defaults, options);</span><br><span class="line"><span class="keyword">var</span> interval= setInterval( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> startPositionLeft = <span class="built_in">Math</span>.random() * documentWidth - <span class="number">100</span>,</span><br><span class="line">startOpacity = <span class="number">0.5</span> + <span class="built_in">Math</span>.random(),</span><br><span class="line">sizeFlake = options.minSize + <span class="built_in">Math</span>.random() * options.maxSize,</span><br><span class="line">endPositionTop = documentHeight - <span class="number">200</span>,</span><br><span class="line">endPositionLeft = startPositionLeft - <span class="number">500</span> + <span class="built_in">Math</span>.random() * <span class="number">500</span>,</span><br><span class="line">durationFall = documentHeight * <span class="number">10</span> + <span class="built_in">Math</span>.random() * <span class="number">5000</span>;</span><br><span class="line">$flake.clone().appendTo(<span class="string">'body'</span>).css(&#123;</span><br><span class="line">left: startPositionLeft,</span><br><span class="line">opacity: startOpacity,</span><br><span class="line"><span class="string">'font-size'</span>: sizeFlake,</span><br><span class="line">color: options.flakeColor</span><br><span class="line">&#125;).animate(&#123;</span><br><span class="line">top: endPositionTop,</span><br><span class="line">left: endPositionLeft,</span><br><span class="line">opacity: <span class="number">0.2</span></span><br><span class="line">&#125;,durationFall,<span class="string">'linear'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">$(<span class="keyword">this</span>).remove()</span><br><span class="line">&#125;);</span><br><span class="line">&#125;, options.newOn);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;)(jQuery);</span><br><span class="line">$(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $.fn.snow(&#123; </span><br><span class="line">    minSize: <span class="number">5</span>, <span class="comment">/* 定义雪花最小尺寸 */</span></span><br><span class="line">    maxSize: <span class="number">50</span>,<span class="comment">/* 定义雪花最大尺寸 */</span></span><br><span class="line">    newOn: <span class="number">300</span>  <span class="comment">/* 定义密集程度，数字越小越密集 */</span></span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><h3 id="引入js"><a href="#引入js" class="headerlink" title="引入js"></a>引入js</h3><p>在\themes\yilia\layout\layout.ejs中引入js</p><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;!-- 引入jquery 已经引入过了可去掉 --&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> src=<span class="string">"//libs.baidu.com/jquery/1.8.3/jquery.min.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">&lt;!-- 雪花特效 --&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">  <span class="keyword">var</span> windowWidth = $(<span class="built_in">window</span>).width();</span><br><span class="line">  <span class="keyword">if</span> (windowWidth &gt; <span class="number">480</span>) &#123;</span><br><span class="line">    <span class="built_in">document</span>.write(<span class="string">'&lt;script type="text/javascript" src="/snow.js"&gt;&lt;\/script&gt;'</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure><p>最后重新部署你的hexo</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;新建js&quot;&gt;&lt;a href=&quot;#新建js&quot; class=&quot;headerlink&quot; title=&quot;新建js&quot;&gt;&lt;/a&gt;新建js&lt;/h3&gt;&lt;p&gt;在\themes\yilia\source下新建snow.js；内容是&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Hexo" scheme="http://www.yangxiaozong.com/categories/Hexo/"/>
-    
-    
-      <category term="Hexo" scheme="http://www.yangxiaozong.com/tags/Hexo/"/>
-    
-      <category term="Yilia" scheme="http://www.yangxiaozong.com/tags/Yilia/"/>
     
   </entry>
   
@@ -375,20 +375,17 @@
   </entry>
   
   <entry>
-    <title>mybatis中resultMap使用之返回分组数据</title>
-    <link href="http://www.yangxiaozong.com/mybatis%E4%B8%ADresultMap%E4%BD%BF%E7%94%A8%E4%B9%8B%E8%BF%94%E5%9B%9E%E5%88%86%E7%BB%84%E6%95%B0%E6%8D%AE.html"/>
-    <id>http://www.yangxiaozong.com/mybatis中resultMap使用之返回分组数据.html</id>
+    <title>Mybatis插入数据后返回主键</title>
+    <link href="http://www.yangxiaozong.com/Mybatis%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE%E5%90%8E%E8%BF%94%E5%9B%9E%E4%B8%BB%E9%94%AE.html"/>
+    <id>http://www.yangxiaozong.com/Mybatis插入数据后返回主键.html</id>
     <published>2018-06-15T06:40:28.000Z</published>
-    <updated>2019-01-18T07:49:59.706Z</updated>
+    <updated>2019-01-18T08:00:22.987Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1.引言"></a>1.引言</h3><p>resultMap是mybatis最重要的强大元素。通过描述数据的关系结构，</p><p>将结果集进行映射到java类或javabean中，</p><p>达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回</p><h3 id="2-问题"><a href="#2-问题" class="headerlink" title="2.问题"></a>2.问题</h3><p>假设有如下sql查询语句<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, otherId <span class="keyword">from</span> mytalbe</span><br></pre></td></tr></table></figure></p><a id="more"></a><p>该sql查询语句查询结果如下</p><p>id   otherId</p><p>01   00001</p><p>01   00002</p><p>01   00003</p><p>02   00004</p><p>有java实体类如下:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Id</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String id;</span><br><span class="line">  <span class="keyword">private</span> List&lt;String&gt; otherId;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>怎样通过一次查询将结果以分组的形式放到List<id>中呢?</id></p><p>通过执行一次查询，返回如下形式的数据</p><p>List<id> aa = new ArrayList<id>();</id></id></p><p>aa = …//通过mybatis执行slq</p><p>aa:<br>[{01,[00001,00002,00003,00004]},</p><p>{02,[00004]}]</p><p>解决上述问题呢，就需要用到resultMap</p><h3 id="3-带有collection-属性的resultMap"><a href="#3-带有collection-属性的resultMap" class="headerlink" title="3.带有collection 属性的resultMap"></a>3.带有collection 属性的resultMap</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">DevCodeTag</span> <span class="attr">type</span>=<span class="string">iguard.health.entity.tag.DevCodeTag</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">tag</span> <span class="attr">ofType</span>=<span class="string">iguard.health.entity.tag.Tag</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">dev_code</span> <span class="attr">property</span>=<span class="string">devCode</span> <span class="attr">jdbcType</span>=<span class="string">VARCHAR</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">label_name</span> <span class="attr">property</span>=<span class="string">labelName</span> <span class="attr">jdbcType</span>=<span class="string">VARCHAR/</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">id</span> <span class="attr">property</span>=<span class="string">id</span> <span class="attr">jdbcType</span>=<span class="string">VARCHAR/</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure><p>问题解决，上述的关系映射足以满足要求。需要注意的是&lt; id &gt;</p><p>标签，这是分组的标识。一定要注意。</p><p>关于resultMap各标签的意义，请自行查资料吧。</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="1-插入一条记录后返回主键id"><a href="#1-插入一条记录后返回主键id" class="headerlink" title="1.插入一条记录后返回主键id"></a>1.插入一条记录后返回主键id</h3><p>添加 useGeneratedKeys=”true” keyProperty=”id”，如下<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;insert id=&quot;insert&quot; parameterType=&quot;yxz.niit.com.Yxz&quot; useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot;&gt;</span><br><span class="line">插入语句略</span><br><span class="line">&lt;/insert&gt;</span><br></pre></td></tr></table></figure></p><a id="more"></a>]]></content>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;1-引言&quot;&gt;&lt;a href=&quot;#1-引言&quot; class=&quot;headerlink&quot; title=&quot;1.引言&quot;&gt;&lt;/a&gt;1.引言&lt;/h3&gt;&lt;p&gt;resultMap是mybatis最重要的强大元素。通过描述数据的关系结构，&lt;/p&gt;
-&lt;p&gt;将结果集进行映射到java类或javabean中，&lt;/p&gt;
-&lt;p&gt;达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回&lt;/p&gt;
-&lt;h3 id=&quot;2-问题&quot;&gt;&lt;a href=&quot;#2-问题&quot; class=&quot;headerlink&quot; title=&quot;2.问题&quot;&gt;&lt;/a&gt;2.问题&lt;/h3&gt;&lt;p&gt;假设有如下sql查询语句&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;id&lt;/span&gt;, otherId &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; mytalbe&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+      &lt;h3 id=&quot;1-插入一条记录后返回主键id&quot;&gt;&lt;a href=&quot;#1-插入一条记录后返回主键id&quot; class=&quot;headerlink&quot; title=&quot;1.插入一条记录后返回主键id&quot;&gt;&lt;/a&gt;1.插入一条记录后返回主键id&lt;/h3&gt;&lt;p&gt;添加 useGeneratedKeys=”true” keyProperty=”id”，如下&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;insert id=&amp;quot;insert&amp;quot; parameterType=&amp;quot;yxz.niit.com.Yxz&amp;quot; useGeneratedKeys=&amp;quot;true&amp;quot; keyProperty=&amp;quot;id&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;插入语句略&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/insert&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
     
     </summary>
     
@@ -422,28 +419,6 @@
   </entry>
   
   <entry>
-    <title>Mybatis插入数据后返回主键</title>
-    <link href="http://www.yangxiaozong.com/Mybatis%E6%8F%92%E5%85%A5%E6%95%B0%E6%8D%AE%E5%90%8E%E8%BF%94%E5%9B%9E%E4%B8%BB%E9%94%AE.html"/>
-    <id>http://www.yangxiaozong.com/Mybatis插入数据后返回主键.html</id>
-    <published>2018-06-15T06:40:28.000Z</published>
-    <updated>2019-01-18T08:00:22.987Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1-插入一条记录后返回主键id"><a href="#1-插入一条记录后返回主键id" class="headerlink" title="1.插入一条记录后返回主键id"></a>1.插入一条记录后返回主键id</h3><p>添加 useGeneratedKeys=”true” keyProperty=”id”，如下<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;insert id=&quot;insert&quot; parameterType=&quot;yxz.niit.com.Yxz&quot; useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot;&gt;</span><br><span class="line">插入语句略</span><br><span class="line">&lt;/insert&gt;</span><br></pre></td></tr></table></figure></p><a id="more"></a>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;1-插入一条记录后返回主键id&quot;&gt;&lt;a href=&quot;#1-插入一条记录后返回主键id&quot; class=&quot;headerlink&quot; title=&quot;1.插入一条记录后返回主键id&quot;&gt;&lt;/a&gt;1.插入一条记录后返回主键id&lt;/h3&gt;&lt;p&gt;添加 useGeneratedKeys=”true” keyProperty=”id”，如下&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;insert id=&amp;quot;insert&amp;quot; parameterType=&amp;quot;yxz.niit.com.Yxz&amp;quot; useGeneratedKeys=&amp;quot;true&amp;quot; keyProperty=&amp;quot;id&amp;quot;&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;插入语句略&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;/insert&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Mybatis" scheme="http://www.yangxiaozong.com/categories/Mybatis/"/>
-    
-    
-      <category term="Mybatis" scheme="http://www.yangxiaozong.com/tags/Mybatis/"/>
-    
-  </entry>
-  
-  <entry>
     <title>一条sql查询多张不同的表</title>
     <link href="http://www.yangxiaozong.com/%E4%B8%80%E6%9D%A1sql%E6%9F%A5%E8%AF%A2%E5%A4%9A%E5%BC%A0%E4%B8%8D%E5%90%8C%E7%9A%84%E8%A1%A8.html"/>
     <id>http://www.yangxiaozong.com/一条sql查询多张不同的表.html</id>
@@ -463,6 +438,31 @@
     
     
       <category term="Mysql" scheme="http://www.yangxiaozong.com/tags/Mysql/"/>
+    
+      <category term="Mybatis" scheme="http://www.yangxiaozong.com/tags/Mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mybatis中resultMap使用之返回分组数据</title>
+    <link href="http://www.yangxiaozong.com/mybatis%E4%B8%ADresultMap%E4%BD%BF%E7%94%A8%E4%B9%8B%E8%BF%94%E5%9B%9E%E5%88%86%E7%BB%84%E6%95%B0%E6%8D%AE.html"/>
+    <id>http://www.yangxiaozong.com/mybatis中resultMap使用之返回分组数据.html</id>
+    <published>2018-06-15T06:40:28.000Z</published>
+    <updated>2019-01-18T07:49:59.706Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1.引言"></a>1.引言</h3><p>resultMap是mybatis最重要的强大元素。通过描述数据的关系结构，</p><p>将结果集进行映射到java类或javabean中，</p><p>达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回</p><h3 id="2-问题"><a href="#2-问题" class="headerlink" title="2.问题"></a>2.问题</h3><p>假设有如下sql查询语句<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, otherId <span class="keyword">from</span> mytalbe</span><br></pre></td></tr></table></figure></p><a id="more"></a><p>该sql查询语句查询结果如下</p><p>id   otherId</p><p>01   00001</p><p>01   00002</p><p>01   00003</p><p>02   00004</p><p>有java实体类如下:<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Id</span></span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String id;</span><br><span class="line">  <span class="keyword">private</span> List&lt;String&gt; otherId;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>怎样通过一次查询将结果以分组的形式放到List<id>中呢?</id></p><p>通过执行一次查询，返回如下形式的数据</p><p>List<id> aa = new ArrayList<id>();</id></id></p><p>aa = …//通过mybatis执行slq</p><p>aa:<br>[{01,[00001,00002,00003,00004]},</p><p>{02,[00004]}]</p><p>解决上述问题呢，就需要用到resultMap</p><h3 id="3-带有collection-属性的resultMap"><a href="#3-带有collection-属性的resultMap" class="headerlink" title="3.带有collection 属性的resultMap"></a>3.带有collection 属性的resultMap</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">DevCodeTag</span> <span class="attr">type</span>=<span class="string">iguard.health.entity.tag.DevCodeTag</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">collection</span> <span class="attr">property</span>=<span class="string">tag</span> <span class="attr">ofType</span>=<span class="string">iguard.health.entity.tag.Tag</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">dev_code</span> <span class="attr">property</span>=<span class="string">devCode</span> <span class="attr">jdbcType</span>=<span class="string">VARCHAR</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">label_name</span> <span class="attr">property</span>=<span class="string">labelName</span> <span class="attr">jdbcType</span>=<span class="string">VARCHAR/</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">id</span> <span class="attr">property</span>=<span class="string">id</span> <span class="attr">jdbcType</span>=<span class="string">VARCHAR/</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">collection</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br></pre></td></tr></table></figure><p>问题解决，上述的关系映射足以满足要求。需要注意的是&lt; id &gt;</p><p>标签，这是分组的标识。一定要注意。</p><p>关于resultMap各标签的意义，请自行查资料吧。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-引言&quot;&gt;&lt;a href=&quot;#1-引言&quot; class=&quot;headerlink&quot; title=&quot;1.引言&quot;&gt;&lt;/a&gt;1.引言&lt;/h3&gt;&lt;p&gt;resultMap是mybatis最重要的强大元素。通过描述数据的关系结构，&lt;/p&gt;
+&lt;p&gt;将结果集进行映射到java类或javabean中，&lt;/p&gt;
+&lt;p&gt;达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回&lt;/p&gt;
+&lt;h3 id=&quot;2-问题&quot;&gt;&lt;a href=&quot;#2-问题&quot; class=&quot;headerlink&quot; title=&quot;2.问题&quot;&gt;&lt;/a&gt;2.问题&lt;/h3&gt;&lt;p&gt;假设有如下sql查询语句&lt;br&gt;&lt;figure class=&quot;highlight sql&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;select&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;id&lt;/span&gt;, otherId &lt;span class=&quot;keyword&quot;&gt;from&lt;/span&gt; mytalbe&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Mybatis" scheme="http://www.yangxiaozong.com/categories/Mybatis/"/>
+    
     
       <category term="Mybatis" scheme="http://www.yangxiaozong.com/tags/Mybatis/"/>
     
