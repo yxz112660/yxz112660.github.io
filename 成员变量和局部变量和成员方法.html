@@ -139,15 +139,15 @@
 <meta property="og:site_name" content="YXZ的博客">
 <meta property="og:description" content="成员变量和局部变量简述在Java语言里，根据定义变量位置的不同，可以将变量分成两大类：成员变量和局部变量。二者的运行机制存在较大差异。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/1094220/201703/1094220-20170320200705674-355864459.png">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/1094220/201703/1094220-20170321092333174-1208013206.png">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/1094220/201703/1094220-20170321140903330-1359030655.png">
-<meta property="og:image" content="https://images2015.cnblogs.com/blog/1094220/201703/1094220-20170321145856190-1765324817.png">
-<meta property="og:updated_time" content="2019-02-20T08:45:28.078Z">
+<meta property="og:image" content="http://blog.yangxiaozong.com/images/15520294311281094220-20170320200705674-355864459.png">
+<meta property="og:image" content="http://blog.yangxiaozong.com/images/15520294598331094220-20170321092333174-1208013206.png">
+<meta property="og:image" content="http://blog.yangxiaozong.com/images/15520294763561094220-20170321140903330-1359030655.png">
+<meta property="og:image" content="http://blog.yangxiaozong.com/images/15520294901701094220-20170321145856190-1765324817.png">
+<meta property="og:updated_time" content="2019-03-08T07:18:29.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="成员变量和局部变量">
 <meta name="twitter:description" content="成员变量和局部变量简述在Java语言里，根据定义变量位置的不同，可以将变量分成两大类：成员变量和局部变量。二者的运行机制存在较大差异。">
-<meta name="twitter:image" content="https://images2015.cnblogs.com/blog/1094220/201703/1094220-20170320200705674-355864459.png">
+<meta name="twitter:image" content="http://blog.yangxiaozong.com/images/15520294311281094220-20170320200705674-355864459.png">
 
 
 
@@ -546,7 +546,7 @@
 
       
         <h3 id="成员变量和局部变量简述"><a href="#成员变量和局部变量简述" class="headerlink" title="成员变量和局部变量简述"></a>成员变量和局部变量简述</h3><p>在Java语言里，根据定义变量位置的不同，可以将变量分成两大类：成员变量和局部变量。二者的运行机制存在较大差异。</p>
-<p><img src="https://images2015.cnblogs.com/blog/1094220/201703/1094220-20170320200705674-355864459.png" alt="image"></p>
+<p><img src="http://blog.yangxiaozong.com/images/15520294311281094220-20170320200705674-355864459.png" alt=""></p>
 <a id="more"></a>
 <h4 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h4><p>类变量从该类的准备阶段起开始存在，直到系统完全销毁这个类，类变量的作用域与这个类的生存范围相同；</p>
 <p>而实例变量则从该类的实例被创建起开始存在，直到系统完全销毁这个实例，实例变量的作用域与对应实例的生存范围相同。</p>
@@ -564,13 +564,13 @@
 <h3 id="成员变量的初始化和内存中的运行机制"><a href="#成员变量的初始化和内存中的运行机制" class="headerlink" title="成员变量的初始化和内存中的运行机制"></a>成员变量的初始化和内存中的运行机制</h3><p>接下来以下面代码来举例说明成员变量的初始化和内存中的运行机制</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">     <span class="keyword">public</span> <span class="keyword">int</span> num;</span><br><span class="line">     <span class="keyword">public</span> String name;</span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">         Person p1 = <span class="keyword">new</span> Person();</span><br><span class="line">         Person p2 = <span class="keyword">new</span> Person();</span><br><span class="line">         p1.num = <span class="number">2</span>;</span><br><span class="line">         p2.num = <span class="number">3</span>;</span><br><span class="line">        p1.name = <span class="string">"张三"</span>;</span><br><span class="line">        p2.name = <span class="string">"李四"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当程序执行Person p1 = new Person();时，<br>如果这行代码是第一次使用Person类，则系统通常会在第一次使用Person类时加载这个类，并初始化这个类，在类的准备 阶段，系统将会为该类的类变量分配内存空间，并指定默认初始值。当person类初始化完成后，系统内存中的存储示意图如下图所示。</p>
-<p><img src="https://images2015.cnblogs.com/blog/1094220/201703/1094220-20170321092333174-1208013206.png" alt="image"></p>
+<p><img src="http://blog.yangxiaozong.com/images/15520294598331094220-20170321092333174-1208013206.png" alt=""></p>
 <p> 可以看出，当person类初始化完成后，系统将在堆内存中为Person分配一块内存空间，实际上是创建了一个类对象，在这块内存区里包含了保存num类变量的内存，并设置num的默认初始值为0。</p>
 <p>系统接着创建了一个Person对象，并把这个Person对象赋给p1变量，Person对象包含了名为name的实例变量，实例变量是在创建实例时分配内存空间并指定初始值的。当创建了第一个person对象后，系统内存中的存储示意图如下图所示。</p>
-<p><img src="https://images2015.cnblogs.com/blog/1094220/201703/1094220-20170321140903330-1359030655.png" alt="image"></p>
+<p><img src="http://blog.yangxiaozong.com/images/15520294763561094220-20170321140903330-1359030655.png" alt=""></p>
 <p>从上图可以看出num不属于对象，它属于类，所以创建第一个对象时并不需要为num分配内存空间，系统只是为name分配了内存空间，并指定初始值为null。</p>
 <p>创建第二个对象p2时，由于在创建第一个对象时已经对类进行了初始化，所以在创建p2时对类进行初始化，对象的创建过程与第一个对象的创建过程没有什么区别。</p>
-<p><img src="https://images2015.cnblogs.com/blog/1094220/201703/1094220-20170321145856190-1765324817.png" alt="image"></p>
+<p><img src="http://blog.yangxiaozong.com/images/15520294901701094220-20170321145856190-1765324817.png" alt=""></p>
 <p>第二个对象创建完成后，成员变量如上图所示在内存中存储。</p>
 <p>当程序需要访问类变量时，尽量使用类来作为主调，不要使用对象作为主调，这个可以避免产生歧义。</p>
 <h4 id="局部变量的初始化和内存中的运行机制"><a href="#局部变量的初始化和内存中的运行机制" class="headerlink" title="局部变量的初始化和内存中的运行机制"></a>局部变量的初始化和内存中的运行机制</h4><p>*局部变量必须经过显示初始化之后才能使用，系统不会为局部变量执行初始化。定义了局部变量以后，系统并没有给局部变量进行初始化，直到程序给这个局部变量赋给初值时，系统才会为这个局部变量分配内存空间，并将初始值保存到这块内存中。</p>
@@ -637,7 +637,7 @@
   <p><span>文章标题:</span><a href="/成员变量和局部变量和成员方法.html">成员变量和局部变量</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 YXZ 的个人博客">YXZ</a></p>
   <p><span>发布时间:</span>2019年02月20日 - 15:40</p>
-  <p><span>更新时间:</span>2019年02月20日 - 16:45</p>
+  <p><span>更新时间:</span>2019年03月08日 - 15:18</p>
   <p><span>原始链接:</span><a href="/成员变量和局部变量和成员方法.html" title="成员变量和局部变量">http://www.yangxiaozong.com/成员变量和局部变量和成员方法.html</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://www.yangxiaozong.com/成员变量和局部变量和成员方法.html"  aria-label="复制成功！"></i></span>
   </p>
@@ -667,8 +667,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Java语言是平台无关的.html" rel="next" title="Java语言是平台无关的">
-                <i class="fa fa-chevron-left"></i> Java语言是平台无关的
+              <a href="/26个Spring Boot小知识.html" rel="next" title="26个Spring Boot小知识">
+                <i class="fa fa-chevron-left"></i> 26个Spring Boot小知识
               </a>
             
           </div>
@@ -677,8 +677,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/为什么说Java中只有值传递.html" rel="prev" title="为什么说Java中只有值传递">
-                为什么说Java中只有值传递 <i class="fa fa-chevron-right"></i>
+              <a href="/什么是构造函数.html" rel="prev" title="什么是构造函数">
+                什么是构造函数 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
