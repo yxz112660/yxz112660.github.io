@@ -421,7 +421,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Mybatis条件判定.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/深入 Hystrix 执行时内部原理.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -441,7 +441,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/Mybatis条件判定.html" class="post-title-link" itemprop="url">Mybatis条件判定</a>
+                <a href="/深入 Hystrix 执行时内部原理.html" class="post-title-link" itemprop="url">深入 Hystrix 执行时内部原理</a>
               
             
           </h1>
@@ -466,7 +466,7 @@
                 
               
 
-              <time title="创建时间：2018-06-15 14:40:28" itemprop="dateCreated datePublished" datetime="2018-06-15T14:40:28+08:00">2018-06-15</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -484,7 +484,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mybatis/" itemprop="url" rel="index"><span itemprop="name">Mybatis</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -499,8 +499,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Mybatis条件判定.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Mybatis条件判定.html" itemprop="commentCount"></span>
+                <a href="/深入 Hystrix 执行时内部原理.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/深入 Hystrix 执行时内部原理.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -508,7 +508,7 @@
 
           
           
-            <span id="/Mybatis条件判定.html" class="leancloud_visitors" data-flag-title="Mybatis条件判定">
+            <span id="/深入 Hystrix 执行时内部原理.html" class="leancloud_visitors" data-flag-title="深入 Hystrix 执行时内部原理">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -540,11 +540,20 @@
 
       
         
-          <h3 id="null"><a href="#null" class="headerlink" title="!=null"></a>!=null</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;if test="orderUserName!=null"&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/if&gt;</span><br></pre></td></tr></table></figure>
+          <h2 id="深入-Hystrix-执行时内部原理"><a href="#深入-Hystrix-执行时内部原理" class="headerlink" title="深入 Hystrix 执行时内部原理"></a>深入 Hystrix 执行时内部原理</h2><p>前面我们了解了 Hystrix 最基本的支持高可用的技术：<strong>资源隔离</strong> + <strong>限流</strong>。</p>
+<ul>
+<li>创建 command；</li>
+<li>执行这个 command；</li>
+<li>配置这个 command 对应的 group 和线程池。</li>
+</ul>
+<p>这里，我们要讲一下，你开始执行这个 command，调用了这个 command 的 execute() 方法之后，Hystrix 底层的执行流程和步骤以及原理是什么。</p>
+<p>在讲解这个流程的过程中，我会带出来 Hystrix 其他的一些核心以及重要的功能。</p>
+<p>这里是整个 8 大步骤的流程图，我会对每个步骤进行细致的讲解。学习的过程中，对照着这个流程图，相信思路会比较清晰。</p>
+<p><img src="http://blog.yangxiaozong.com/images/hystrix-process.png" alt="hystrix-process"><br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Mybatis条件判定.html#more" rel="contents">
+              <a class="btn" href="/深入 Hystrix 执行时内部原理.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -616,7 +625,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/一条sql查询多张不同的表.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/如何实现 MySQL 的读写分离？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -636,7 +645,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/一条sql查询多张不同的表.html" class="post-title-link" itemprop="url">一条sql查询多张不同的表</a>
+                <a href="/如何实现 MySQL 的读写分离？.html" class="post-title-link" itemprop="url">如何实现 MySQL 的读写分离？</a>
               
             
           </h1>
@@ -661,7 +670,7 @@
                 
               
 
-              <time title="创建时间：2018-06-15 14:40:28" itemprop="dateCreated datePublished" datetime="2018-06-15T14:40:28+08:00">2018-06-15</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -679,7 +688,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mybatis/" itemprop="url" rel="index"><span itemprop="name">Mybatis</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -694,8 +703,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/一条sql查询多张不同的表.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/一条sql查询多张不同的表.html" itemprop="commentCount"></span>
+                <a href="/如何实现 MySQL 的读写分离？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/如何实现 MySQL 的读写分离？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -703,7 +712,7 @@
 
           
           
-            <span id="/一条sql查询多张不同的表.html" class="leancloud_visitors" data-flag-title="一条sql查询多张不同的表">
+            <span id="/如何实现 MySQL 的读写分离？.html" class="leancloud_visitors" data-flag-title="如何实现 MySQL 的读写分离？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -735,12 +744,15 @@
 
       
         
-          <p>场景说明：</p>
-<p>有A、B、C、D、E共5张表，其中A表为主表，BCDE同为子表，A表有一个字段关联着BCDE表的主键id，BCDE表的字段除了主键id都不相同，此时我们需要查询A表数据同时关联子表查询出其子表的所有字段信息，因为不清楚关联子表具体是谁，所以您可能需要如下骚操作</p>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>你们有没有做 MySQL 读写分离？如何实现 MySQL 的读写分离？MySQL 主从复制原理的是啥？如何解决 MySQL 主从同步的延时问题？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>高并发这个阶段，肯定是需要做读写分离的，啥意思？因为实际上大部分的互联网公司，一些网站，或者是 app，其实都是读多写少。所以针对这个情况，就是写一个主库，但是主库挂多个从库，然后从多个从库来读，那不就可以支撑更高的读并发压力了吗？</p>
+<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><h3 id="如何实现-MySQL-的读写分离？"><a href="#如何实现-MySQL-的读写分离？" class="headerlink" title="如何实现 MySQL 的读写分离？"></a>如何实现 MySQL 的读写分离？</h3><p>其实很简单，就是基于主从复制架构，简单来说，就搞一个主库，挂多个从库，然后我们就单单只是写主库，然后主库会自动把数据给同步到从库上去。</p>
+<h3 id="MySQL-主从复制原理的是啥？"><a href="#MySQL-主从复制原理的是啥？" class="headerlink" title="MySQL 主从复制原理的是啥？"></a>MySQL 主从复制原理的是啥？</h3><p>主库将变更写入 binlog 日志，然后从库连接到主库之后，从库有一个 IO 线程，将主库的 binlog 日志拷贝到自己本地，写入一个 relay 中继日志中。接着从库中有一个 SQL 线程会从中继日志读取 binlog，然后执行 binlog 日志中的内容，也就是在自己本地再次执行一遍 SQL，这样就可以保证自己跟主库的数据是一样的。</p>
+<p><img src="http://blog.yangxiaozong.com/images/mysql-master-slave.png" alt="mysql-master-slave"><br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/一条sql查询多张不同的表.html#more" rel="contents">
+              <a class="btn" href="/如何实现 MySQL 的读写分离？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -812,7 +824,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Mybatis插入数据后返回主键.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/消息队列面试场景.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -832,7 +844,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/Mybatis插入数据后返回主键.html" class="post-title-link" itemprop="url">Mybatis插入数据后返回主键</a>
+                <a href="/消息队列面试场景.html" class="post-title-link" itemprop="url">消息队列面试场景</a>
               
             
           </h1>
@@ -857,7 +869,7 @@
                 
               
 
-              <time title="创建时间：2018-06-15 14:40:28" itemprop="dateCreated datePublished" datetime="2018-06-15T14:40:28+08:00">2018-06-15</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -875,7 +887,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mybatis/" itemprop="url" rel="index"><span itemprop="name">Mybatis</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -890,8 +902,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Mybatis插入数据后返回主键.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Mybatis插入数据后返回主键.html" itemprop="commentCount"></span>
+                <a href="/消息队列面试场景.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/消息队列面试场景.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -899,7 +911,7 @@
 
           
           
-            <span id="/Mybatis插入数据后返回主键.html" class="leancloud_visitors" data-flag-title="Mybatis插入数据后返回主键">
+            <span id="/消息队列面试场景.html" class="leancloud_visitors" data-flag-title="消息队列面试场景">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -931,11 +943,17 @@
 
       
         
-          <h3 id="1-插入一条记录后返回主键id"><a href="#1-插入一条记录后返回主键id" class="headerlink" title="1.插入一条记录后返回主键id"></a>1.插入一条记录后返回主键id</h3><p>添加 useGeneratedKeys=”true” keyProperty=”id”，如下<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;insert id=&quot;insert&quot; parameterType=&quot;yxz.niit.com.Yxz&quot; useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot;&gt;</span><br><span class="line">插入语句略</span><br><span class="line">&lt;/insert&gt;</span><br></pre></td></tr></table></figure></p>
+          <h2 id="消息队列面试场景"><a href="#消息队列面试场景" class="headerlink" title="消息队列面试场景"></a>消息队列面试场景</h2><p><strong>面试官</strong>：你好。</p>
+<p><strong>候选人</strong>：你好。</p>
+<p>（面试官在你的简历上面看到了，呦，有个亮点，你在项目里用过 <code>MQ</code>，比如说你用过 <code>ActiveMQ</code>）</p>
+<p><strong>面试官</strong>：你在系统里用过消息队列吗？（面试官在随和的语气中展开了面试）</p>
+<p><strong>候选人</strong>：用过的（此时感觉没啥）</p>
+<p><strong>面试官</strong>：那你说一下你们在项目里是怎么用消息队列的？</p>
+<p><strong>候选人</strong>：巴拉巴拉，“我们啥啥系统发送个啥啥消息到队列，别的系统来消费啥啥的。比如我们有个订单系统，订单系统每次下一个新的订单的时候，就会发送一条消息到 <code>ActiveMQ</code> 里面去，后台有个库存系统负责获取消息然后更新库存。”<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Mybatis插入数据后返回主键.html#more" rel="contents">
+              <a class="btn" href="/消息队列面试场景.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1007,7 +1025,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/微信小程序-生成二维码.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/基于 timeout 机制为服务接口调用超时提供安全保护.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1027,7 +1045,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/微信小程序-生成二维码.html" class="post-title-link" itemprop="url">微信小程序-生成二维码</a>
+                <a href="/基于 timeout 机制为服务接口调用超时提供安全保护.html" class="post-title-link" itemprop="url">基于 timeout 机制为服务接口调用超时提供安全保护</a>
               
             
           </h1>
@@ -1052,7 +1070,7 @@
                 
               
 
-              <time title="创建时间：2018-06-06 08:08:08" itemprop="dateCreated datePublished" datetime="2018-06-06T08:08:08+08:00">2018-06-06</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -1070,7 +1088,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/小程序/" itemprop="url" rel="index"><span itemprop="name">小程序</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -1085,8 +1103,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/微信小程序-生成二维码.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/微信小程序-生成二维码.html" itemprop="commentCount"></span>
+                <a href="/基于 timeout 机制为服务接口调用超时提供安全保护.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/基于 timeout 机制为服务接口调用超时提供安全保护.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1094,7 +1112,7 @@
 
           
           
-            <span id="/微信小程序-生成二维码.html" class="leancloud_visitors" data-flag-title="微信小程序-生成二维码">
+            <span id="/基于 timeout 机制为服务接口调用超时提供安全保护.html" class="leancloud_visitors" data-flag-title="基于 timeout 机制为服务接口调用超时提供安全保护">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1126,11 +1144,16 @@
 
       
         
-          <h3 id="页面-wxml"><a href="#页面-wxml" class="headerlink" title="页面.wxml"></a>页面.wxml</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">"container"</span>&gt;</span><br><span class="line">  &lt;!-- 生成二维码 --&gt;</span><br><span class="line">  &lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">"input-row"</span>&gt;</span><br><span class="line">      &lt;label&gt;内容&lt;<span class="regexp">/label&gt;</span></span><br><span class="line"><span class="regexp">      &lt;input value='&#123;&#123;qrcStr&#125;&#125;' class="qrcInput" bindblur="onQrcStrBlur" type="text" maxlength="255" </span></span><br><span class="line"><span class="regexp">                placeholder="&#123;&#123;qrcPhld&#125;&#125;"/</span>&gt;</span><br><span class="line">  &lt;<span class="regexp">/view&gt;</span></span><br><span class="line"><span class="regexp">  &lt;button class="genQrcBtn" type="primary" bindtap="onGenQrc"&gt;生成二维码&lt;/</span>button&gt;</span><br><span class="line"></span><br><span class="line">  &lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">"img-box"</span>&gt;</span><br><span class="line">      &lt;canvas bindtap=<span class="string">"onPreviewQrc"</span> hidden=<span class="string">"&#123;&#123;canvasHidden&#125;&#125;"</span> </span><br><span class="line">                style=<span class="string">"width: 686rpx;height: 686rpx;background:#f1f1f1;"</span> canvas-id=<span class="string">"qrcCanvas"</span>/&gt;</span><br><span class="line">  &lt;<span class="regexp">/view&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>view&gt; </span><br><span class="line">&lt;view hidden=<span class="string">"&#123;&#123;maskHidden&#125;&#125;"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"mask"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br><span class="line">&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">"canvas-box"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+          <h2 id="基于-timeout-机制为服务接口调用超时提供安全保护"><a href="#基于-timeout-机制为服务接口调用超时提供安全保护" class="headerlink" title="基于 timeout 机制为服务接口调用超时提供安全保护"></a>基于 timeout 机制为服务接口调用超时提供安全保护</h2><p>一般来说，在调用依赖服务的接口的时候，比较常见的一个问题就是<strong>超时</strong>。超时是在一个复杂的分布式系统中，导致系统不稳定，或者系统抖动。出现大量超时，线程资源会被 hang 死，从而导致吞吐量大幅度下降，甚至服务崩溃。</p>
+<p>你去调用各种各样的依赖服务，特别是在大公司，你甚至都不认识开发一个服务的人，你都不知道那个人的技术水平怎么样，对那个人根本不了解。</p>
+<p>Peter Steiner 说过，”<a href="https://en.wikipedia.org/wiki/On_the_Internet,_nobody_knows_you%27re_a_dog" target="_blank" rel="noopener">On the Internet, nobody knows you’re a dog</a>“，也就是说在互联网的另外一头，你都不知道甚至坐着一条狗。</p>
+<p><img src="http://blog.yangxiaozong.com/images/220px-Internet_dog.jpg" alt="220px-Internet_dog.jpg"></p>
+<p>像特别复杂的分布式系统，特别是在大公司里，多个团队、大型协作，你可能都不知道服务是谁的，很可能说开发服务的那个哥儿们甚至是一个实习生。依赖服务的接口性能可能很不稳定，有时候 2ms，有时候 200ms，甚至 2s，都有可能。</p>
+<p>如果你不对各种依赖服务接口的调用做超时控制，来给你的服务提供安全保护措施，那么很可能你的服务就被各种垃圾的依赖服务的性能给拖死了。大量的接口调用很慢，大量的线程被卡死。如果你做了资源的隔离，那么也就是线程池的线程被卡死，但其实我们可以做超时控制，没必要让它们全卡死。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/微信小程序-生成二维码.html#more" rel="contents">
+              <a class="btn" href="/基于 timeout 机制为服务接口调用超时提供安全保护.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1202,7 +1225,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/自制google插件.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/如果让你写一个消息队列，该如何进行架构设计？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1222,7 +1245,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/自制google插件.html" class="post-title-link" itemprop="url">自制google插件</a>
+                <a href="/如果让你写一个消息队列，该如何进行架构设计？.html" class="post-title-link" itemprop="url">如果让你写一个消息队列，该如何进行架构设计？</a>
               
             
           </h1>
@@ -1247,7 +1270,7 @@
                 
               
 
-              <time title="创建时间：2018-05-12 14:40:28" itemprop="dateCreated datePublished" datetime="2018-05-12T14:40:28+08:00">2018-05-12</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -1265,7 +1288,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/插件/" itemprop="url" rel="index"><span itemprop="name">插件</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -1280,8 +1303,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/自制google插件.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/自制google插件.html" itemprop="commentCount"></span>
+                <a href="/如果让你写一个消息队列，该如何进行架构设计？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/如果让你写一个消息队列，该如何进行架构设计？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1289,7 +1312,7 @@
 
           
           
-            <span id="/自制google插件.html" class="leancloud_visitors" data-flag-title="自制google插件">
+            <span id="/如果让你写一个消息队列，该如何进行架构设计？.html" class="leancloud_visitors" data-flag-title="如果让你写一个消息队列，该如何进行架构设计？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1321,11 +1344,17 @@
 
       
         
-          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>一个 Chrome 扩展其实就是一个配置文件manifest.json 和一系列 html、css、js、图片文件的集合</p>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>如果让你写一个消息队列，该如何进行架构设计？说一下你的思路。</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>其实聊到这个问题，一般面试官要考察两块：</p>
+<ul>
+<li>你有没有对某一个消息队列做过较为深入的原理的了解，或者从整体了解把握住一个消息队列的架构原理。</li>
+<li>看看你的设计能力，给你一个常见的系统，就是消息队列系统，看看你能不能从全局把握一下整体架构设计，给出一些关键点出来。</li>
+</ul>
+<p>说实话，问类似问题的时候，大部分人基本都会蒙，因为平时从来没有思考过类似的问题，大多数人就是平时埋头用，从来不去思考背后的一些东西。类似的问题，比如，如果让你来设计一个 Spring 框架你会怎么做？如果让你来设计一个 Dubbo 框架你会怎么做？如果让你来设计一个 MyBatis 框架你会怎么做？</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/自制google插件.html#more" rel="contents">
+              <a class="btn" href="/如果让你写一个消息队列，该如何进行架构设计？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1397,7 +1426,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/js数组合并、抽取操作.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/lucene 和 es 的前世今生.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1417,7 +1446,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/js数组合并、抽取操作.html" class="post-title-link" itemprop="url">js数组合并、抽取操作</a>
+                <a href="/lucene 和 es 的前世今生.html" class="post-title-link" itemprop="url">lucene 和 es 的前世今生</a>
               
             
           </h1>
@@ -1442,7 +1471,7 @@
                 
               
 
-              <time title="创建时间：2018-04-12 14:40:28" itemprop="dateCreated datePublished" datetime="2018-04-12T14:40:28+08:00">2018-04-12</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -1460,7 +1489,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -1475,8 +1504,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/js数组合并、抽取操作.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/js数组合并、抽取操作.html" itemprop="commentCount"></span>
+                <a href="/lucene 和 es 的前世今生.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/lucene 和 es 的前世今生.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1484,7 +1513,7 @@
 
           
           
-            <span id="/js数组合并、抽取操作.html" class="leancloud_visitors" data-flag-title="js数组合并、抽取操作">
+            <span id="/lucene 和 es 的前世今生.html" class="leancloud_visitors" data-flag-title="lucene 和 es 的前世今生">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1516,12 +1545,16 @@
 
       
         
-          <h3 id="合并两个数组"><a href="#合并两个数组" class="headerlink" title="合并两个数组"></a>合并两个数组</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Array.prototype.push.apply(a, b); // 将b数组追加到a数组</span><br><span class="line"></span><br><span class="line">a = a.concat(b);  // 效果同上</span><br></pre></td></tr></table></figure>
-<h3 id="取数组某段数据"><a href="#取数组某段数据" class="headerlink" title="取数组某段数据"></a>取数组某段数据</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">b=(a.slice(0,10); // [0,9) 左闭右开 取出数组a的[0,9)个数据</span><br></pre></td></tr></table></figure>
+          <h2 id="lucene-和-es-的前世今生"><a href="#lucene-和-es-的前世今生" class="headerlink" title="lucene 和 es 的前世今生"></a>lucene 和 es 的前世今生</h2><p>lucene 是最先进、功能最强大的搜索库。如果直接基于 lucene 开发，非常复杂，即便写一些简单的功能，也要写大量的 Java 代码，需要深入理解原理。</p>
+<p>elasticsearch 基于 lucene，隐藏了 lucene 的复杂性，提供了简单易用的 restful api / Java api 接口（另外还有其他语言的 api 接口）。</p>
+<ul>
+<li>分布式的文档存储引擎</li>
+<li>分布式的搜索引擎和分析引擎</li>
+<li><p>分布式，支持 PB 级数据</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/js数组合并、抽取操作.html#more" rel="contents">
+              <a class="btn" href="/lucene 和 es 的前世今生.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1593,7 +1626,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/停止setTimeout、setInterval函数.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/如何保证消息的顺序性？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1613,7 +1646,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/停止setTimeout、setInterval函数.html" class="post-title-link" itemprop="url">停止setTimeout、setInterval函数</a>
+                <a href="/如何保证消息的顺序性？.html" class="post-title-link" itemprop="url">如何保证消息的顺序性？</a>
               
             
           </h1>
@@ -1638,7 +1671,7 @@
                 
               
 
-              <time title="创建时间：2018-04-12 14:40:28" itemprop="dateCreated datePublished" datetime="2018-04-12T14:40:28+08:00">2018-04-12</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -1656,7 +1689,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -1671,8 +1704,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/停止setTimeout、setInterval函数.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/停止setTimeout、setInterval函数.html" itemprop="commentCount"></span>
+                <a href="/如何保证消息的顺序性？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/如何保证消息的顺序性？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1680,7 +1713,7 @@
 
           
           
-            <span id="/停止setTimeout、setInterval函数.html" class="leancloud_visitors" data-flag-title="停止setTimeout、setInterval函数">
+            <span id="/如何保证消息的顺序性？.html" class="leancloud_visitors" data-flag-title="如何保证消息的顺序性？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1712,13 +1745,20 @@
 
       
         
-          <p>在定义setInterval()时设置一个参数接受setInterval()的返回值</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var rollingTimer=setInterval(() =&gt; &#123;</span><br><span class="line">      this.rolling();</span><br><span class="line">    &#125;,10000);</span><br></pre></td></tr></table></figure>
-<p>然后调用clearInterval()函数<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">clearInterval(rollingTimer)</span><br></pre></td></tr></table></figure></p>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>如何保证消息的顺序性？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>其实这个也是用 MQ 的时候必问的话题，第一看看你了不了解顺序这个事儿？第二看看你有没有办法保证消息是有顺序的？这是生产系统中常见的问题。</p>
+<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>我举个例子，我们以前做过一个 mysql <code>binlog</code> 同步的系统，压力还是非常大的，日同步数据要达到上亿，就是说数据从一个 mysql 库原封不动地同步到另一个 mysql 库里面去（mysql -&gt; mysql）。常见的一点在于说比如大数据 team，就需要同步一个 mysql 库过来，对公司的业务系统的数据做各种复杂的操作。</p>
+<p>你在 mysql 里增删改一条数据，对应出来了增删改 3 条 <code>binlog</code> 日志，接着这三条 <code>binlog</code> 发送到 MQ 里面，再消费出来依次执行，起码得保证人家是按照顺序来的吧？不然本来是：增加、修改、删除；你楞是换了顺序给执行成删除、修改、增加，不全错了么。</p>
+<p>本来这个数据同步过来，应该最后这个数据被删除了；结果你搞错了这个顺序，最后这个数据保留下来了，数据同步就出错了。</p>
+<p>先看看顺序会错乱的俩场景：</p>
+<ul>
+<li><strong>RabbitMQ</strong>：一个 queue，多个 consumer。比如，生产者向 RabbitMQ 里发送了三条数据，顺序依次是 data1/data2/data3，压入的是 RabbitMQ 的一个内存队列。有三个消费者分别从 MQ 中消费这三条数据中的一条，结果消费者2先执行完操作，把 data2 存入数据库，然后是 data1/data3。这不明显乱了。</li>
+</ul>
+<p><img src="http://blog.yangxiaozong.com/images/rabbitmq-order-01.png" alt="rabbitmq-order-01"><br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/停止setTimeout、setInterval函数.html#more" rel="contents">
+              <a class="btn" href="/如何保证消息的顺序性？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1790,7 +1830,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Centos7.3安装和配置Mysql5.7.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/现在有一个未分库分表的系统，未来要分库分表，如何设计才可以让系统从未分库分表.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1810,7 +1850,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/Centos7.3安装和配置Mysql5.7.html" class="post-title-link" itemprop="url">Centos7.3安装和配置Mysql5.7</a>
+                <a href="/现在有一个未分库分表的系统，未来要分库分表，如何设计才可以让系统从未分库分表.html" class="post-title-link" itemprop="url">现在有一个未分库分表的系统，未来要分库分表，如何设计才可以让系统从未分库分表</a>
               
             
           </h1>
@@ -1835,7 +1875,7 @@
                 
               
 
-              <time title="创建时间：2018-03-29 14:40:28" itemprop="dateCreated datePublished" datetime="2018-03-29T14:40:28+08:00">2018-03-29</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -1853,7 +1893,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -1868,8 +1908,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Centos7.3安装和配置Mysql5.7.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Centos7.3安装和配置Mysql5.7.html" itemprop="commentCount"></span>
+                <a href="/现在有一个未分库分表的系统，未来要分库分表，如何设计才可以让系统从未分库分表.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/现在有一个未分库分表的系统，未来要分库分表，如何设计才可以让系统从未分库分表.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1877,7 +1917,7 @@
 
           
           
-            <span id="/Centos7.3安装和配置Mysql5.7.html" class="leancloud_visitors" data-flag-title="Centos7.3安装和配置Mysql5.7">
+            <span id="/现在有一个未分库分表的系统，未来要分库分表，如何设计才可以让系统从未分库分表.html" class="leancloud_visitors" data-flag-title="现在有一个未分库分表的系统，未来要分库分表，如何设计才可以让系统从未分库分表">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1909,17 +1949,16 @@
 
       
         
-          <h3 id="第一步：下载和安装mysql源"><a href="#第一步：下载和安装mysql源" class="headerlink" title="第一步：下载和安装mysql源"></a>第一步：下载和安装mysql源</h3><p>使用命令下载</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm</span><br></pre></td></tr></table></figure>
-<p>如果提示wget: 未找到命令，就先下载wget</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
-<p>然后再执行上面个的命令</p>
-<p>安装mysql源</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">yum -y localinstall mysql57-community-release-el7-11.noarch.rpm</span><br></pre></td></tr></table></figure>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>现在有一个未分库分表的系统，未来要分库分表，如何设计才可以让系统从未分库分表<strong>动态切换</strong>到分库分表上？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>你看看，你现在已经明白为啥要分库分表了，你也知道常用的分库分表中间件了，你也设计好你们如何分库分表的方案了（水平拆分、垂直拆分、分表），那问题来了，你接下来该怎么把你那个单库单表的系统给迁移到分库分表上去？</p>
+<p>所以这都是一环扣一环的，就是看你有没有全流程经历过这个过程。</p>
+<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>这个其实从 low 到高大上有好几种方案，我们都玩儿过，我都给你说一下。</p>
+<h3 id="停机迁移方案"><a href="#停机迁移方案" class="headerlink" title="停机迁移方案"></a>停机迁移方案</h3><p>我先给你说一个最 low 的方案，就是很简单，大家伙儿凌晨 12 点开始运维，网站或者 app 挂个公告，说 0 点到早上 6 点进行运维，无法访问。</p>
+<p>接着到 0 点停机，系统停掉，没有流量写入了，此时老的单库单表数据库静止了。然后你之前得写好一个<strong>导数的一次性工具</strong>，此时直接跑起来，然后将单库单表的数据哗哗哗读出来，写到分库分表里面去。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Centos7.3安装和配置Mysql5.7.html#more" rel="contents">
+              <a class="btn" href="/现在有一个未分库分表的系统，未来要分库分表，如何设计才可以让系统从未分库分表.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1991,7 +2030,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Angular的DOM选择器对class的查删增.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/redis 的并发竞争问题是什么？如何解决这个问题？了解 redis 事务的 CAS 方案吗？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -2011,7 +2050,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/Angular的DOM选择器对class的查删增.html" class="post-title-link" itemprop="url">Angular的DOM选择器对class的查删增</a>
+                <a href="/redis 的并发竞争问题是什么？如何解决这个问题？了解 redis 事务的 CAS 方案吗？.html" class="post-title-link" itemprop="url">redis 的并发竞争问题是什么？如何解决这个问题？了解 redis 事务的 CAS 方案吗？</a>
               
             
           </h1>
@@ -2036,7 +2075,7 @@
                 
               
 
-              <time title="创建时间：2018-03-26 14:40:28" itemprop="dateCreated datePublished" datetime="2018-03-26T14:40:28+08:00">2018-03-26</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -2054,7 +2093,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Angular/" itemprop="url" rel="index"><span itemprop="name">Angular</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -2069,8 +2108,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Angular的DOM选择器对class的查删增.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Angular的DOM选择器对class的查删增.html" itemprop="commentCount"></span>
+                <a href="/redis 的并发竞争问题是什么？如何解决这个问题？了解 redis 事务的 CAS 方案吗？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/redis 的并发竞争问题是什么？如何解决这个问题？了解 redis 事务的 CAS 方案吗？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2078,7 +2117,7 @@
 
           
           
-            <span id="/Angular的DOM选择器对class的查删增.html" class="leancloud_visitors" data-flag-title="Angular的DOM选择器对class的查删增">
+            <span id="/redis 的并发竞争问题是什么？如何解决这个问题？了解 redis 事务的 CAS 方案吗？.html" class="leancloud_visitors" data-flag-title="redis 的并发竞争问题是什么？如何解决这个问题？了解 redis 事务的 CAS 方案吗？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -2110,11 +2149,15 @@
 
       
         
-          <h3 id="1-注入ElementRef"><a href="#1-注入ElementRef" class="headerlink" title="1.注入ElementRef"></a>1.注入ElementRef</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">constructor(private el:ElementRef)&#123;&#125;</span><br></pre></td></tr></table></figure>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>redis 的并发竞争问题是什么？如何解决这个问题？了解 redis 事务的 CAS 方案吗？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>这个也是线上非常常见的一个问题，就是<strong>多客户端同时并发写</strong>一个 key，可能本来应该先到的数据后到了，导致数据版本错了；或者是多客户端同时获取一个 key，修改值之后再写回去，只要顺序错了，数据就错了。</p>
+<p>而且 redis 自己就有天然解决这个问题的 CAS 类的乐观锁方案。</p>
+<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>某个时刻，多个系统实例都去更新某个 key。可以基于 zookeeper 实现分布式锁。每个系统通过 zookeeper 获取分布式锁，确保同一时间，只能有一个系统实例在操作某个 key，别人都不允许读和写。</p>
+<p><img src="http://blog.yangxiaozong.com/images/zookeeper-distributed-lock.png" alt="zookeeper-distributed-lock"><br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Angular的DOM选择器对class的查删增.html#more" rel="contents">
+              <a class="btn" href="/redis 的并发竞争问题是什么？如何解决这个问题？了解 redis 事务的 CAS 方案吗？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2186,7 +2229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/子组建某值改变后传入值到父组建.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/集群部署时的分布式 session 如何实现？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -2206,7 +2249,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/子组建某值改变后传入值到父组建.html" class="post-title-link" itemprop="url">子组建某值改变后传入值到父组建</a>
+                <a href="/集群部署时的分布式 session 如何实现？.html" class="post-title-link" itemprop="url">集群部署时的分布式 session 如何实现？</a>
               
             
           </h1>
@@ -2231,7 +2274,7 @@
                 
               
 
-              <time title="创建时间：2018-03-26 14:40:28" itemprop="dateCreated datePublished" datetime="2018-03-26T14:40:28+08:00">2018-03-26</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -2249,7 +2292,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Angular/" itemprop="url" rel="index"><span itemprop="name">Angular</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -2264,8 +2307,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/子组建某值改变后传入值到父组建.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/子组建某值改变后传入值到父组建.html" itemprop="commentCount"></span>
+                <a href="/集群部署时的分布式 session 如何实现？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/集群部署时的分布式 session 如何实现？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2273,7 +2316,7 @@
 
           
           
-            <span id="/子组建某值改变后传入值到父组建.html" class="leancloud_visitors" data-flag-title="子组建某值改变后传入值到父组建">
+            <span id="/集群部署时的分布式 session 如何实现？.html" class="leancloud_visitors" data-flag-title="集群部署时的分布式 session 如何实现？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -2305,11 +2348,18 @@
 
       
         
-          <h3 id="1-父组建页面准备接受-change事件监听"><a href="#1-父组建页面准备接受-change事件监听" class="headerlink" title="1.父组建页面准备接受(change事件监听)"></a>1.父组建页面准备接受(change事件监听)</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">app-measurementstatic</span> (<span class="attr">change</span>)=<span class="string">"searchChange($event)"</span>&gt;</span><span class="tag">&lt;/<span class="name">app-measurementstatic</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>集群部署时的分布式 session 如何实现？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>面试官问了你一堆 dubbo 是怎么玩儿的，你会玩儿 dubbo 就可以把单块系统弄成分布式系统，然后分布式之后接踵而来的就是一堆问题，最大的问题就是<strong>分布式事务</strong>、<strong>接口幂等性</strong>、<strong>分布式锁</strong>，还有最后一个就是<strong>分布式 session</strong>。</p>
+<p>当然了，分布式系统中的问题何止这么一点，非常之多，复杂度很高，但是这里就是说下常见的几个，也是面试的时候常问的几个。</p>
+<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>session 是啥？浏览器有个 cookie，在一段时间内这个 cookie 都存在，然后每次发请求过来都带上一个特殊的 <code>jsessionid cookie</code>，就根据这个东西，在服务端可以维护一个对应的 session 域，里面可以放点数据。</p>
+<p>一般只要你没关掉浏览器，cookie 还在，那么对应的那个 session 就在，但是如果 cookie 没了，session 也就没了。常见于什么购物车之类的东西，还有登录状态保存之类的。</p>
+<p>这个不多说了，懂 Java 的都该知道这个。</p>
+<p>单块系统的时候这么玩儿 session 没问题，但是你要是分布式系统呢，那么多的服务，session 状态在哪儿维护啊？</p>
+<p>其实方法很多，但是常见常用的是以下几种：<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/子组建某值改变后传入值到父组建.html#more" rel="contents">
+              <a class="btn" href="/集群部署时的分布式 session 如何实现？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2381,7 +2431,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2430,7 +2480,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-count">108</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2467,7 +2517,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2536,7 +2588,33 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

@@ -421,7 +421,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/再战websocket（下）Angular+Java后台.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/redis 的过期策略都有哪些？内存淘汰机制都有哪些？手写一下 LRU 代码实现？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -441,7 +441,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/再战websocket（下）Angular+Java后台.html" class="post-title-link" itemprop="url">再战websocket（下）Angular+Java后台</a>
+                <a href="/redis 的过期策略都有哪些？内存淘汰机制都有哪些？手写一下 LRU 代码实现？.html" class="post-title-link" itemprop="url">redis 的过期策略都有哪些？内存淘汰机制都有哪些？手写一下 LRU 代码实现？</a>
               
             
           </h1>
@@ -466,7 +466,7 @@
                 
               
 
-              <time title="创建时间：2018-03-12 14:40:28" itemprop="dateCreated datePublished" datetime="2018-03-12T14:40:28+08:00">2018-03-12</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -484,7 +484,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Angular/" itemprop="url" rel="index"><span itemprop="name">Angular</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -499,8 +499,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/再战websocket（下）Angular+Java后台.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/再战websocket（下）Angular+Java后台.html" itemprop="commentCount"></span>
+                <a href="/redis 的过期策略都有哪些？内存淘汰机制都有哪些？手写一下 LRU 代码实现？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/redis 的过期策略都有哪些？内存淘汰机制都有哪些？手写一下 LRU 代码实现？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -508,7 +508,7 @@
 
           
           
-            <span id="/再战websocket（下）Angular+Java后台.html" class="leancloud_visitors" data-flag-title="再战websocket（下）Angular+Java后台">
+            <span id="/redis 的过期策略都有哪些？内存淘汰机制都有哪些？手写一下 LRU 代码实现？.html" class="leancloud_visitors" data-flag-title="redis 的过期策略都有哪些？内存淘汰机制都有哪些？手写一下 LRU 代码实现？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -540,14 +540,23 @@
 
       
         
-          <p>与websocket比较有缘，经历过小程序+java和Angular+java之后整理出次最终教程</p>
-<h3 id="1-Angular"><a href="#1-Angular" class="headerlink" title="1.Angular"></a>1.Angular</h3><p>使用angular2-websocket插件，首先请下载插件<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install angular2-websocket --save</span><br></pre></td></tr></table></figure></p>
-<p>在你需要连接websocket的ts里面，在对应的地方加入下面代码</p>
-<p>导入插件<br><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;$WebSocket&#125; <span class="keyword">from</span> <span class="string">'angular2-websocket/angular2-websocket'</span></span><br></pre></td></tr></table></figure></p>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>redis 的过期策略都有哪些？内存淘汰机制都有哪些？手写一下 LRU 代码实现？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>如果你连这个问题都不知道，上来就懵了，回答不出来，那线上你写代码的时候，想当然的认为写进 redis 的数据就一定会存在，后面导致系统各种 bug，谁来负责？</p>
+<p>常见的有两个问题：</p>
+<ul>
+<li>往 redis 写入的数据怎么没了？</li>
+</ul>
+<p>可能有同学会遇到，在生产环境的 redis 经常会丢掉一些数据，写进去了，过一会儿可能就没了。我的天，同学，你问这个问题就说明 redis 你就没用对啊。redis 是缓存，你给当存储了是吧？</p>
+<p>啥叫缓存？用内存当缓存。内存是无限的吗，内存是很宝贵而且是有限的，磁盘是廉价而且是大量的。可能一台机器就几十个 G 的内存，但是可以有几个 T 的硬盘空间。redis 主要是基于内存来进行高性能、高并发的读写操作的。</p>
+<p>那既然内存是有限的，比如 redis 就只能用 10G，你要是往里面写了 20G 的数据，会咋办？当然会干掉 10G 的数据，然后就保留 10G 的数据了。那干掉哪些数据？保留哪些数据？当然是干掉不常用的数据，保留常用的数据了。</p>
+<ul>
+<li>数据明明过期了，怎么还占用着内存？</li>
+</ul>
+<p>这是由 redis 的过期策略来决定。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/再战websocket（下）Angular+Java后台.html#more" rel="contents">
+              <a class="btn" href="/redis 的过期策略都有哪些？内存淘汰机制都有哪些？手写一下 LRU 代码实现？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -619,7 +628,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/再战websocket（上）微信小程序+Java后台.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/redis 都有哪些数据类型？分别在哪些场景下使用比较合适？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -639,7 +648,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/再战websocket（上）微信小程序+Java后台.html" class="post-title-link" itemprop="url">再战websocket（上）微信小程序+Java后台</a>
+                <a href="/redis 都有哪些数据类型？分别在哪些场景下使用比较合适？.html" class="post-title-link" itemprop="url">redis 都有哪些数据类型？分别在哪些场景下使用比较合适？</a>
               
             
           </h1>
@@ -664,7 +673,7 @@
                 
               
 
-              <time title="创建时间：2018-03-04 14:40:28" itemprop="dateCreated datePublished" datetime="2018-03-04T14:40:28+08:00">2018-03-04</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -682,7 +691,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/小程序/" itemprop="url" rel="index"><span itemprop="name">小程序</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -697,8 +706,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/再战websocket（上）微信小程序+Java后台.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/再战websocket（上）微信小程序+Java后台.html" itemprop="commentCount"></span>
+                <a href="/redis 都有哪些数据类型？分别在哪些场景下使用比较合适？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/redis 都有哪些数据类型？分别在哪些场景下使用比较合适？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -706,7 +715,7 @@
 
           
           
-            <span id="/再战websocket（上）微信小程序+Java后台.html" class="leancloud_visitors" data-flag-title="再战websocket（上）微信小程序+Java后台">
+            <span id="/redis 都有哪些数据类型？分别在哪些场景下使用比较合适？.html" class="leancloud_visitors" data-flag-title="redis 都有哪些数据类型？分别在哪些场景下使用比较合适？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -738,12 +747,18 @@
 
       
         
-          <p>与websocket比较有缘，经历过小程序+java和Angular+java之后整理出次最终教程</p>
-<h3 id="微信小程序"><a href="#微信小程序" class="headerlink" title="微信小程序"></a>微信小程序</h3><p>使用wx自带的websocket即可，<br>在你需要连接websocket的js里面加入下面代码<br>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>redis 都有哪些数据类型？分别在哪些场景下使用比较合适？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>除非是面试官感觉看你简历，是工作 3 年以内的比较初级的同学，可能对技术没有很深入的研究，面试官才会问这类问题。否则，在宝贵的面试时间里，面试官实在不想多问。</p>
+<p>其实问这个问题，主要有两个原因：</p>
+<ul>
+<li>看看你到底有没有全面的了解 redis 有哪些功能，一般怎么来用，啥场景用什么，就怕你别就会最简单的 KV 操作；</li>
+<li>看看你在实际项目里都怎么玩儿过 redis。</li>
+</ul>
+<p>要是你回答的不好，没说出几种数据类型，也没说什么场景，你完了，面试官对你印象肯定不好，觉得你平时就是做个简单的 set 和 get。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/再战websocket（上）微信小程序+Java后台.html#more" rel="contents">
+              <a class="btn" href="/redis 都有哪些数据类型？分别在哪些场景下使用比较合适？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -815,7 +830,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/微信小程序 延时执行与循环执行.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/如何解决消息队列的延时以及过期失效问题？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -835,7 +850,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/微信小程序 延时执行与循环执行.html" class="post-title-link" itemprop="url">微信小程序延时执行与循环执行</a>
+                <a href="/如何解决消息队列的延时以及过期失效问题？.html" class="post-title-link" itemprop="url">如何解决消息队列的延时以及过期失效问题？</a>
               
             
           </h1>
@@ -860,7 +875,7 @@
                 
               
 
-              <time title="创建时间：2018-02-28 14:40:28" itemprop="dateCreated datePublished" datetime="2018-02-28T14:40:28+08:00">2018-02-28</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -878,7 +893,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/小程序/" itemprop="url" rel="index"><span itemprop="name">小程序</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -893,8 +908,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/微信小程序 延时执行与循环执行.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/微信小程序 延时执行与循环执行.html" itemprop="commentCount"></span>
+                <a href="/如何解决消息队列的延时以及过期失效问题？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/如何解决消息队列的延时以及过期失效问题？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -902,7 +917,7 @@
 
           
           
-            <span id="/微信小程序 延时执行与循环执行.html" class="leancloud_visitors" data-flag-title="微信小程序延时执行与循环执行">
+            <span id="/如何解决消息队列的延时以及过期失效问题？.html" class="leancloud_visitors" data-flag-title="如何解决消息队列的延时以及过期失效问题？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -934,12 +949,14 @@
 
       
         
-          <h3 id="延时执行"><a href="#延时执行" class="headerlink" title="延时执行"></a>延时执行</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">     <span class="comment">//要延时执行的代码  </span></span><br><span class="line">    &#125;, <span class="number">1000</span>) <span class="comment">//延迟时间 这里是1秒</span></span><br></pre></td></tr></table></figure>
-<h3 id="循环执行"><a href="#循环执行" class="headerlink" title="循环执行"></a>循环执行</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">setInterval(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">   <span class="comment">//循环执行代码  </span></span><br><span class="line">   &#125;, <span class="number">1000</span>) <span class="comment">//循环时间 这里是1秒</span></span><br></pre></td></tr></table></figure>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>如何解决消息队列的延时以及过期失效问题？消息队列满了以后该怎么处理？有几百万消息持续积压几小时，说说怎么解决？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>你看这问法，其实本质针对的场景，都是说，可能你的消费端出了问题，不消费了；或者消费的速度极其慢。接着就坑爹了，可能你的消息队列集群的磁盘都快写满了，都没人消费，这个时候怎么办？或者是这整个就积压了几个小时，你这个时候怎么办？或者是你积压的时间太长了，导致比如 RabbitMQ 设置了消息过期时间后就没了怎么办？</p>
+<p>所以就这事儿，其实线上挺常见的，一般不出，一出就是大 case。一般常见于，举个例子，消费端每次消费之后要写 mysql，结果 mysql 挂了，消费端 hang 那儿了，不动了；或者是消费端出了个什么岔子，导致消费速度极其慢。</p>
+<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>关于这个事儿，我们一个一个来梳理吧，先假设一个场景，我们现在消费端出故障了，然后大量消息在 mq 里积压，现在出事故了，慌了。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/微信小程序 延时执行与循环执行.html#more" rel="contents">
+              <a class="btn" href="/如何解决消息队列的延时以及过期失效问题？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1011,7 +1028,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/angular2 日期格式化.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/es 在数据量很大的情况下（数十亿级别）如何提高查询效率啊？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1031,7 +1048,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/angular2 日期格式化.html" class="post-title-link" itemprop="url">angular2 日期格式化</a>
+                <a href="/es 在数据量很大的情况下（数十亿级别）如何提高查询效率啊？.html" class="post-title-link" itemprop="url">es 在数据量很大的情况下（数十亿级别）如何提高查询效率啊？</a>
               
             
           </h1>
@@ -1056,7 +1073,7 @@
                 
               
 
-              <time title="创建时间：2018-02-08 14:40:28" itemprop="dateCreated datePublished" datetime="2018-02-08T14:40:28+08:00">2018-02-08</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -1074,7 +1091,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Angular/" itemprop="url" rel="index"><span itemprop="name">Angular</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -1089,8 +1106,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/angular2 日期格式化.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/angular2 日期格式化.html" itemprop="commentCount"></span>
+                <a href="/es 在数据量很大的情况下（数十亿级别）如何提高查询效率啊？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/es 在数据量很大的情况下（数十亿级别）如何提高查询效率啊？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1098,7 +1115,7 @@
 
           
           
-            <span id="/angular2 日期格式化.html" class="leancloud_visitors" data-flag-title="angular2 日期格式化">
+            <span id="/es 在数据量很大的情况下（数十亿级别）如何提高查询效率啊？.html" class="leancloud_visitors" data-flag-title="es 在数据量很大的情况下（数十亿级别）如何提高查询效率啊？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1130,11 +1147,14 @@
 
       
         
-          <h3 id="angular2-日期格式化"><a href="#angular2-日期格式化" class="headerlink" title="angular2 日期格式化"></a>angular2 日期格式化</h3><h4 id="ng2-在模板中格式化显示日期使用-DatePipe-管道"><a href="#ng2-在模板中格式化显示日期使用-DatePipe-管道" class="headerlink" title="ng2 在模板中格式化显示日期使用 DatePipe 管道"></a>ng2 在模板中格式化显示日期使用 DatePipe 管道</h4><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>时间:&#123;&#123;timestamp|date:'yyyy-MM-dd HH:mm:ss'&#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>es 在数据量很大的情况下（数十亿级别）如何提高查询效率啊？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>这个问题是肯定要问的，说白了，就是看你有没有实际干过 es，因为啥？其实 es 性能并没有你想象中那么好的。很多时候数据量大了，特别是有几亿条数据的时候，可能你会懵逼的发现，跑个搜索怎么一下 <code>5~10s</code>，坑爹了。第一次搜索的时候，是  <code>5~10s</code>，后面反而就快了，可能就几百毫秒。</p>
+<p>你就很懵，每个用户第一次访问都会比较慢，比较卡么？所以你要是没玩儿过 es，或者就是自己玩玩儿 demo，被问到这个问题容易懵逼，显示出你对 es 确实玩儿的不怎么样？</p>
+<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>说实话，es 性能优化是没有什么银弹的，啥意思呢？就是<strong>不要期待着随手调一个参数，就可以万能的应对所有的性能慢的场景</strong>。也许有的场景是你换个参数，或者调整一下语法，就可以搞定，但是绝对不是所有场景都可以这样。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/angular2 日期格式化.html#more" rel="contents">
+              <a class="btn" href="/es 在数据量很大的情况下（数十亿级别）如何提高查询效率啊？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1206,7 +1226,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/父组件调用子组建属性.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/redis 集群模式的工作原理能说一下么？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1226,7 +1246,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/父组件调用子组建属性.html" class="post-title-link" itemprop="url">Angular5 父组件调用子组建</a>
+                <a href="/redis 集群模式的工作原理能说一下么？.html" class="post-title-link" itemprop="url">redis 集群模式的工作原理能说一下么？</a>
               
             
           </h1>
@@ -1251,7 +1271,7 @@
                 
               
 
-              <time title="创建时间：2018-02-08 14:40:28" itemprop="dateCreated datePublished" datetime="2018-02-08T14:40:28+08:00">2018-02-08</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -1269,7 +1289,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Angular/" itemprop="url" rel="index"><span itemprop="name">Angular</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -1284,8 +1304,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/父组件调用子组建属性.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/父组件调用子组建属性.html" itemprop="commentCount"></span>
+                <a href="/redis 集群模式的工作原理能说一下么？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/redis 集群模式的工作原理能说一下么？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1293,7 +1313,7 @@
 
           
           
-            <span id="/父组件调用子组建属性.html" class="leancloud_visitors" data-flag-title="Angular5 父组件调用子组建">
+            <span id="/redis 集群模式的工作原理能说一下么？.html" class="leancloud_visitors" data-flag-title="redis 集群模式的工作原理能说一下么？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1325,12 +1345,16 @@
 
       
         
-          <h3 id="1-父组件注入子组建"><a href="#1-父组件注入子组建" class="headerlink" title="1.父组件注入子组建"></a>1.父组件注入子组建</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="meta">@ViewChild</span>(SonComponent)son:SonComponent;</span><br></pre></td></tr></table></figure>
-<h3 id="2-在父组调用子组建get方法"><a href="#2-在父组调用子组建get方法" class="headerlink" title="2.在父组调用子组建get方法"></a>2.在父组调用子组建get方法</h3><figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">this</span>.son.get(); <span class="comment">//调用get方法</span></span><br></pre></td></tr></table></figure>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>redis 集群模式的工作原理能说一下么？在集群模式下，redis 的 key 是如何寻址的？分布式寻址都有哪些算法？了解一致性 hash 算法吗？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>在前几年，redis 如果要搞几个节点，每个节点存储一部分的数据，得<strong>借助一些中间件</strong>来实现，比如说有 <code>codis</code>，或者 <code>twemproxy</code>，都有。有一些 redis 中间件，你读写 redis 中间件，redis 中间件负责将你的数据分布式存储在多台机器上的 redis 实例中。</p>
+<p>这两年，redis 不断在发展，redis 也不断的有新的版本，现在的 redis 集群模式，可以做到在多台机器上，部署多个 redis 实例，每个实例存储一部分的数据，同时每个 redis 实例可以挂 redis 从实例，自动确保说，如果 redis 主实例挂了，会自动切换到 redis 从实例顶上来。</p>
+<p>现在 redis 的新版本，大家都是用 redis cluster 的，也就是 redis 原生支持的 redis 集群模式，那么面试官肯定会就 redis cluster 对你来个几连炮。要是你没用过 redis cluster，正常，以前很多人用 codis 之类的客户端来支持集群，但是起码你得研究一下 redis cluster 吧。</p>
+<p>如果你的数据量很少，主要是承载高并发高性能的场景，比如你的缓存一般就几个 G，单机就足够了，可以使用 replication，一个 master 多个 slaves，要几个 slave 跟你要求的读吞吐量有关，然后自己搭建一个 sentinel 集群去保证 redis 主从架构的高可用性。</p>
+<p>redis cluster，主要是针对<strong>海量数据+高并发+高可用</strong>的场景。redis cluster 支撑 N 个 redis master node，每个 master node 都可以挂载多个 slave node。这样整个 redis 就可以横向扩容了。如果你要支撑更大数据量的缓存，那就横向扩容更多的 master 节点，每个 master 节点就能存放更多的数据了。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/父组件调用子组建属性.html#more" rel="contents">
+              <a class="btn" href="/redis 集群模式的工作原理能说一下么？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1402,7 +1426,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/angular使用webscket 实现数据定时刷新.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/zookeeper 都有哪些使用场景？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1422,7 +1446,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/angular使用webscket 实现数据定时刷新.html" class="post-title-link" itemprop="url">angular使用websocket 实现数据定时刷新(ng2-stomp)</a>
+                <a href="/zookeeper 都有哪些使用场景？.html" class="post-title-link" itemprop="url">zookeeper 都有哪些使用场景？</a>
               
             
           </h1>
@@ -1447,7 +1471,7 @@
                 
               
 
-              <time title="创建时间：2018-02-08 14:40:28" itemprop="dateCreated datePublished" datetime="2018-02-08T14:40:28+08:00">2018-02-08</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -1465,7 +1489,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Angular/" itemprop="url" rel="index"><span itemprop="name">Angular</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -1480,8 +1504,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/angular使用webscket 实现数据定时刷新.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/angular使用webscket 实现数据定时刷新.html" itemprop="commentCount"></span>
+                <a href="/zookeeper 都有哪些使用场景？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/zookeeper 都有哪些使用场景？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1489,7 +1513,7 @@
 
           
           
-            <span id="/angular使用webscket 实现数据定时刷新.html" class="leancloud_visitors" data-flag-title="angular使用websocket 实现数据定时刷新(ng2-stomp)">
+            <span id="/zookeeper 都有哪些使用场景？.html" class="leancloud_visitors" data-flag-title="zookeeper 都有哪些使用场景？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1521,12 +1545,20 @@
 
       
         
-          <p>STOMP通过WebSocket为angular2服务可与：angular4和ionic3兼容</p>
-<h3 id="1-下载插件"><a href="#1-下载插件" class="headerlink" title="1.下载插件"></a>1.下载插件</h3><p>分别执行以下指令<br><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install stompjs --save</span><br><span class="line">npm install sockjs-client --save</span><br><span class="line">npm install ng2-stomp-service --save</span><br></pre></td></tr></table></figure></p>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>zookeeper 都有哪些使用场景？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>现在聊的 topic 是分布式系统，面试官跟你聊完了 dubbo 相关的一些问题之后，已经确认你对分布式服务框架/RPC框架基本都有一些认知了。那么他可能开始要跟你聊分布式相关的其它问题了。</p>
+<p>分布式锁这个东西，很常用的，你做 Java 系统开发，分布式系统，可能会有一些场景会用到。最常用的分布式锁就是基于 zookeeper 来实现的。</p>
+<p>其实说实话，问这个问题，一般就是看看你是否了解 zookeeper，因为 zookeeper 是分布式系统中很常见的一个基础系统。而且问的话常问的就是说 zookeeper 的使用场景是什么？看你知道不知道一些基本的使用场景。但是其实 zookeeper 挖深了自然是可以问的很深很深的。</p>
+<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>大致来说，zookeeper 的使用场景如下，我就举几个简单的，大家能说几个就好了：</p>
+<ul>
+<li>分布式协调</li>
+<li>分布式锁</li>
+<li>元数据/配置信息管理</li>
+<li>HA高可用性
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/angular使用webscket 实现数据定时刷新.html#more" rel="contents">
+              <a class="btn" href="/zookeeper 都有哪些使用场景？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1598,7 +1630,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/java设置程序休眠10秒.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/为什么要分库分表？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1618,7 +1650,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/java设置程序休眠10秒.html" class="post-title-link" itemprop="url">java设置程序休眠10秒</a>
+                <a href="/为什么要分库分表？.html" class="post-title-link" itemprop="url">为什么要分库分表？</a>
               
             
           </h1>
@@ -1643,7 +1675,7 @@
                 
               
 
-              <time title="创建时间：2018-01-27 14:40:28" itemprop="dateCreated datePublished" datetime="2018-01-27T14:40:28+08:00">2018-01-27</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -1661,7 +1693,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -1676,8 +1708,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/java设置程序休眠10秒.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/java设置程序休眠10秒.html" itemprop="commentCount"></span>
+                <a href="/为什么要分库分表？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/为什么要分库分表？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1685,7 +1717,7 @@
 
           
           
-            <span id="/java设置程序休眠10秒.html" class="leancloud_visitors" data-flag-title="java设置程序休眠10秒">
+            <span id="/为什么要分库分表？.html" class="leancloud_visitors" data-flag-title="为什么要分库分表？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1717,11 +1749,20 @@
 
       
         
-          <h3 id="只需要在程序中加入"><a href="#只需要在程序中加入" class="headerlink" title="只需要在程序中加入"></a>只需要在程序中加入</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Thread.sleep(<span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>为什么要分库分表（设计高并发系统的时候，数据库层面该如何设计）？用过哪些分库分表中间件？不同的分库分表中间件都有什么优点和缺点？你们具体是如何对数据库如何进行垂直拆分或水平拆分的？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>其实这块肯定是扯到<strong>高并发</strong>了，因为分库分表一定是为了<strong>支撑高并发、数据量大</strong>两个问题的。而且现在说实话，尤其是互联网类的公司面试，基本上都会来这么一下，分库分表如此普遍的技术问题，不问实在是不行，而如果你不知道那也实在是说不过去！</p>
+<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><h3 id="为什么要分库分表？（设计高并发系统的时候，数据库层面该如何设计？）"><a href="#为什么要分库分表？（设计高并发系统的时候，数据库层面该如何设计？）" class="headerlink" title="为什么要分库分表？（设计高并发系统的时候，数据库层面该如何设计？）"></a>为什么要分库分表？（设计高并发系统的时候，数据库层面该如何设计？）</h3><p>说白了，分库分表是两回事儿，大家可别搞混了，可能是光分库不分表，也可能是光分表不分库，都有可能。</p>
+<p>我先给大家抛出来一个场景。</p>
+<p>假如我们现在是一个小创业公司（或者是一个 BAT 公司刚兴起的一个新部门），现在注册用户就 20 万，每天活跃用户就 1 万，每天单表数据量就 1000，然后高峰期每秒钟并发请求最多就 10。天，就这种系统，随便找一个有几年工作经验的，然后带几个刚培训出来的，随便干干都可以。</p>
+<p>结果没想到我们运气居然这么好，碰上个 CEO 带着我们走上了康庄大道，业务发展迅猛，过了几个月，注册用户数达到了 2000 万！每天活跃用户数 100 万！每天单表数据量 10 万条！高峰期每秒最大请求达到 1000！同时公司还顺带着融资了两轮，进账了几个亿人民币啊！公司估值达到了惊人的几亿美金！这是小独角兽的节奏！</p>
+<p>好吧，没事，现在大家感觉压力已经有点大了，为啥呢？因为每天多 10 万条数据，一个月就多 300 万条数据，现在咱们单表已经几百万数据了，马上就破千万了。但是勉强还能撑着。高峰期请求现在是 1000，咱们线上部署了几台机器，负载均衡搞了一下，数据库撑 1000QPS 也还凑合。但是大家现在开始感觉有点担心了，接下来咋整呢……</p>
+<p>再接下来几个月，我的天，CEO 太牛逼了，公司用户数已经达到 1 亿，公司继续融资几十亿人民币啊！公司估值达到了惊人的几十亿美金，成为了国内今年最牛逼的明星创业公司！天，我们太幸运了。</p>
+<p>但是我们同时也是不幸的，因为此时每天活跃用户数上千万，每天单表新增数据多达 50 万，目前一个表总数据量都已经达到了两三千万了！扛不住啊！数据库磁盘容量不断消耗掉！高峰期并发达到惊人的 <code>5000~8000</code>！别开玩笑了，哥。我跟你保证，你的系统支撑不到现在，已经挂掉了！</p>
+<p>好吧，所以你看到这里差不多就理解分库分表是怎么回事儿了，实际上这是跟着你的公司业务发展走的，你公司业务发展越好，用户就越多，数据量越大，请求量越大，那你单个数据库一定扛不住。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/java设置程序休眠10秒.html#more" rel="contents">
+              <a class="btn" href="/为什么要分库分表？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1793,7 +1834,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/数据库新增字段脚本.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/如何自己设计一个类似 Dubbo 的 RPC 框架？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1813,7 +1854,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/数据库新增字段脚本.html" class="post-title-link" itemprop="url">数据库新增字段脚本</a>
+                <a href="/如何自己设计一个类似 Dubbo 的 RPC 框架？.html" class="post-title-link" itemprop="url">如何自己设计一个类似 Dubbo 的 RPC 框架？</a>
               
             
           </h1>
@@ -1838,7 +1879,7 @@
                 
               
 
-              <time title="创建时间：2018-01-27 14:40:28" itemprop="dateCreated datePublished" datetime="2018-01-27T14:40:28+08:00">2018-01-27</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -1856,7 +1897,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mysql/" itemprop="url" rel="index"><span itemprop="name">Mysql</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -1871,8 +1912,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/数据库新增字段脚本.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/数据库新增字段脚本.html" itemprop="commentCount"></span>
+                <a href="/如何自己设计一个类似 Dubbo 的 RPC 框架？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/如何自己设计一个类似 Dubbo 的 RPC 框架？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1880,7 +1921,7 @@
 
           
           
-            <span id="/数据库新增字段脚本.html" class="leancloud_visitors" data-flag-title="数据库新增字段脚本">
+            <span id="/如何自己设计一个类似 Dubbo 的 RPC 框架？.html" class="leancloud_visitors" data-flag-title="如何自己设计一个类似 Dubbo 的 RPC 框架？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1912,11 +1953,18 @@
 
       
         
-          <h3 id="新增字段"><a href="#新增字段" class="headerlink" title="新增字段"></a>新增字段</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> db_customer </span><br><span class="line"><span class="keyword">ADD</span> alarm_flag <span class="built_in">SMALLINT</span>(<span class="number">11</span>) <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span> <span class="keyword">COMMENT</span> 微信小程序闹钟默认不提醒;</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> db_customer </span><br><span class="line"><span class="keyword">ADD</span> alarm_updata_time <span class="built_in">DATE</span> <span class="literal">NULL</span> <span class="keyword">COMMENT</span> 小程序闹钟更新时间;</span><br></pre></td></tr></table></figure>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>如何自己设计一个类似 Dubbo 的 RPC 框架？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>说实话，就这问题，其实就跟问你如何自己设计一个 MQ 一样的道理，就考两个：</p>
+<ul>
+<li>你有没有对某个 rpc 框架原理有非常深入的理解。</li>
+<li>你能不能从整体上来思考一下，如何设计一个 rpc 框架，考考你的系统设计能力。</li>
+</ul>
+<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>其实问到你这问题，你起码不能认怂，因为是知识的扫盲，那我不可能给你深入讲解什么 kafka 源码剖析，dubbo 源码剖析，何况我就算讲了，你要真的消化理解和吸收，起码个把月以后了。</p>
+<p>所以我给大家一个建议，遇到这类问题，起码从你了解的类似框架的原理入手，自己说说参照 dubbo 的原理，你来设计一下，举个例子，dubbo 不是有那么多分层么？而且每个分层是干啥的，你大概是不是知道？那就按照这个思路大致说一下吧，起码你不能懵逼，要比那些上来就懵，啥也说不出来的人要好一些。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/数据库新增字段脚本.html#more" rel="contents">
+              <a class="btn" href="/如何自己设计一个类似 Dubbo 的 RPC 框架？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1988,7 +2036,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/安装yilia主题.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/为什么使用消息队列？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -2008,7 +2056,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/安装yilia主题.html" class="post-title-link" itemprop="url">安装yilia主题</a>
+                <a href="/为什么使用消息队列？.html" class="post-title-link" itemprop="url">为什么使用消息队列？</a>
               
             
           </h1>
@@ -2033,7 +2081,7 @@
                 
               
 
-              <time title="创建时间：2018-01-26 17:45:28" itemprop="dateCreated datePublished" datetime="2018-01-26T17:45:28+08:00">2018-01-26</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -2051,7 +2099,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -2066,8 +2114,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/安装yilia主题.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/安装yilia主题.html" itemprop="commentCount"></span>
+                <a href="/为什么使用消息队列？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/为什么使用消息队列？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2075,7 +2123,7 @@
 
           
           
-            <span id="/安装yilia主题.html" class="leancloud_visitors" data-flag-title="安装yilia主题">
+            <span id="/为什么使用消息队列？.html" class="leancloud_visitors" data-flag-title="为什么使用消息队列？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -2107,13 +2155,22 @@
 
       
         
-          <h3 id="1-在hexo项目根目录下执行（下载yilia主题项目）"><a href="#1-在hexo项目根目录下执行（下载yilia主题项目）" class="headerlink" title="1.在hexo项目根目录下执行（下载yilia主题项目）"></a>1.在hexo项目根目录下执行（下载yilia主题项目）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure>
-<h3 id="2-修改根目录下的-config-yml文件（修改配置使用yilia主题）"><a href="#2-修改根目录下的-config-yml文件（修改配置使用yilia主题）" class="headerlink" title="2.修改根目录下的_config.yml文件（修改配置使用yilia主题）"></a>2.修改根目录下的_config.yml文件（修改配置使用yilia主题）</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">theme: yilia    //默认为landscape</span><br></pre></td></tr></table></figure>
-<h3 id="3-修改themes-yilia-config-yml文件（可跳过）"><a href="#3-修改themes-yilia-config-yml文件（可跳过）" class="headerlink" title="3.修改themes/yilia/_config.yml文件（可跳过）"></a>3.修改themes/yilia/_config.yml文件（可跳过）</h3>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><ul>
+<li>为什么使用消息队列？</li>
+<li>消息队列有什么优点和缺点？</li>
+<li>Kafka、ActiveMQ、RabbitMQ、RocketMQ 都有什么区别，以及适合哪些场景？</li>
+</ul>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>其实面试官主要是想看看：</p>
+<ul>
+<li><p><strong>第一</strong>，你知不知道你们系统里为什么要用消息队列这个东西？<br><br>不少候选人，说自己项目里用了 Redis、MQ，但是其实他并不知道自己为什么要用这个东西。其实说白了，就是为了用而用，或者是别人设计的架构，他从头到尾都没思考过。<br><br>没有对自己的架构问过为什么的人，一定是平时没有思考的人，面试官对这类候选人印象通常很不好。因为面试官担心你进了团队之后只会木头木脑的干呆活儿，不会自己思考。</p>
+</li>
+<li><p><strong>第二</strong>，你既然用了消息队列这个东西，你知不知道用了有什么好处&amp;坏处？<br><br>你要是没考虑过这个，那你盲目弄个 MQ 进系统里，后面出了问题你是不是就自己溜了给公司留坑？你要是没考虑过引入一个技术可能存在的弊端和风险，面试官把这类候选人招进来了，基本可能就是挖坑型选手。就怕你干 1 年挖一堆坑，自己跳槽了，给公司留下无穷后患。</p>
+</li>
+<li><p><strong>第三</strong>，既然你用了 MQ，可能是某一种 MQ，那么你当时做没做过调研？<br><br>你别傻乎乎的自己拍脑袋看个人喜好就瞎用了一个 MQ，比如 Kafka，甚至都从没调研过业界流行的 MQ 到底有哪几种。每一个 MQ 的优点和缺点是什么。每一个 MQ <strong>没有绝对的好坏</strong>，但是就是看用在哪个场景可以<strong>扬长避短，利用其优势，规避其劣势</strong>。<br><br>如果是一个不考虑技术选型的候选人招进了团队，leader 交给他一个任务，去设计个什么系统，他在里面用一些技术，可能都没考虑过选型，最后选的技术可能并不一定合适，一样是留坑。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/安装yilia主题.html#more" rel="contents">
+              <a class="btn" href="/为什么使用消息队列？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2185,7 +2242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Hexo+Github 搭建属于自己的博客.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -2205,7 +2262,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/Hexo+Github 搭建属于自己的博客.html" class="post-title-link" itemprop="url">Hexo+Github 搭建属于自己的博客</a>
+                <a href="/dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？.html" class="post-title-link" itemprop="url">dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？</a>
               
             
           </h1>
@@ -2230,7 +2287,7 @@
                 
               
 
-              <time title="创建时间：2018-01-26 14:40:28" itemprop="dateCreated datePublished" datetime="2018-01-26T14:40:28+08:00">2018-01-26</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -2248,7 +2305,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -2263,8 +2320,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Hexo+Github 搭建属于自己的博客.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Hexo+Github 搭建属于自己的博客.html" itemprop="commentCount"></span>
+                <a href="/dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2272,7 +2329,7 @@
 
           
           
-            <span id="/Hexo+Github 搭建属于自己的博客.html" class="leancloud_visitors" data-flag-title="Hexo+Github 搭建属于自己的博客">
+            <span id="/dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？.html" class="leancloud_visitors" data-flag-title="dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -2304,12 +2361,18 @@
 
       
         
-          <h3 id="配置Node-js环境"><a href="#配置Node-js环境" class="headerlink" title="配置Node.js环境"></a>配置Node.js环境</h3><h4 id="下载Node-js安装文件"><a href="#下载Node-js安装文件" class="headerlink" title="下载Node.js安装文件"></a>下载Node.js安装文件</h4><p><a href="https://link.jianshu.com?t=https://nodejs.org/dist/v4.2.3/node-v4.2.3-x86.msi" target="_blank" rel="noopener">Windows Installer 32-bit</a></p>
-<p><a href="https://link.jianshu.com?t=https://nodejs.org/dist/v4.2.3/node-v4.2.3-x64.msi" target="_blank" rel="noopener">Windows Installer 64-bit</a><br>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>dubbo 负载均衡策略和集群容错策略都有哪些？动态代理策略呢？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>继续深问吧，这些都是用 dubbo 必须知道的一些东西，你得知道基本原理，知道序列化是什么协议，还得知道具体用 dubbo 的时候，如何负载均衡，如何高可用，如何动态代理。</p>
+<p>说白了，就是看你对 dubbo 熟悉不熟悉：</p>
+<ul>
+<li>dubbo 工作原理：服务注册、注册中心、消费者、代理通信、负载均衡；</li>
+<li>网络通信、序列化：dubbo 协议、长连接、NIO、hessian 序列化协议；</li>
+<li>负载均衡策略、集群容错策略、动态代理策略：dubbo 跑起来的时候一些功能是如何运转的？怎么做负载均衡？怎么做集群容错？怎么生成动态代理？</li>
+<li>dubbo SPI 机制：你了解不了解 dubbo 的 SPI 机制？如何基于 SPI 机制对 dubbo 进行扩展？
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Hexo+Github 搭建属于自己的博客.html#more" rel="contents">
+              <a class="btn" href="/dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2381,7 +2444,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2430,7 +2493,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-count">108</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2467,7 +2530,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2536,7 +2601,33 @@
                     
                       
                     
-                    <span class="site-state-item-count">28</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
