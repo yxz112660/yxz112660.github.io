@@ -827,7 +827,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/基于 Hystrix 线程池技术实现资源隔离.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/基于 request cache 请求缓存技术优化批量商品数据查询接口.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -847,7 +847,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/基于 Hystrix 线程池技术实现资源隔离.html" class="post-title-link" itemprop="url">基于 Hystrix 线程池技术实现资源隔离</a>
+                <a href="/基于 request cache 请求缓存技术优化批量商品数据查询接口.html" class="post-title-link" itemprop="url">基于 request cache 请求缓存技术优化批量商品数据查询接口</a>
               
             
           </h1>
@@ -905,8 +905,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/基于 Hystrix 线程池技术实现资源隔离.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/基于 Hystrix 线程池技术实现资源隔离.html" itemprop="commentCount"></span>
+                <a href="/基于 request cache 请求缓存技术优化批量商品数据查询接口.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/基于 request cache 请求缓存技术优化批量商品数据查询接口.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -914,7 +914,7 @@
 
           
           
-            <span id="/基于 Hystrix 线程池技术实现资源隔离.html" class="leancloud_visitors" data-flag-title="基于 Hystrix 线程池技术实现资源隔离">
+            <span id="/基于 request cache 请求缓存技术优化批量商品数据查询接口.html" class="leancloud_visitors" data-flag-title="基于 request cache 请求缓存技术优化批量商品数据查询接口">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -946,14 +946,218 @@
 
       
         
-          <h2 id="基于-Hystrix-线程池技术实现资源隔离"><a href="#基于-Hystrix-线程池技术实现资源隔离" class="headerlink" title="基于 Hystrix 线程池技术实现资源隔离"></a>基于 Hystrix 线程池技术实现资源隔离</h2><p>上一讲提到，如果从 Nginx 开始，缓存都失效了，Nginx 会直接通过缓存服务调用商品服务获取最新商品数据（我们基于电商项目做个讨论），有可能出现调用延时而把缓存服务资源耗尽的情况。这里，我们就来说说，怎么通过 Hystrix 线程池技术实现资源隔离。</p>
-<p>资源隔离，就是说，你如果要把对某一个依赖服务的所有调用请求，全部隔离在同一份资源池内，不会去用其它资源了，这就叫资源隔离。哪怕对这个依赖服务，比如说商品服务，现在同时发起的调用量已经到了 1000，但是线程池内就 10 个线程，最多就只会用这 10 个线程去执行，不会说，对商品服务的请求，因为接口调用延时，将 tomcat 内部所有的线程资源全部耗尽。</p>
-<p>Hystrix 进行资源隔离，其实是提供了一个抽象，叫做 command。这也是 Hystrix 最最基本的资源隔离技术。</p>
-<h3 id="利用-HystrixCommand-获取单条数据"><a href="#利用-HystrixCommand-获取单条数据" class="headerlink" title="利用 HystrixCommand 获取单条数据"></a>利用 HystrixCommand 获取单条数据</h3><p>我们通过将调用商品服务的操作封装在 HystrixCommand 中，限定一个 key，比如下面的 <code>GetProductInfoCommandGroup</code>，在这里我们可以简单认为这是一个线程池，每次调用商品服务，就只会用该线程池中的资源，不会再去用其它线程资源了。<br>
+          <h2 id="基于-request-cache-请求缓存技术优化批量商品数据查询接口"><a href="#基于-request-cache-请求缓存技术优化批量商品数据查询接口" class="headerlink" title="基于 request cache 请求缓存技术优化批量商品数据查询接口"></a>基于 request cache 请求缓存技术优化批量商品数据查询接口</h2><p>Hystrix command 执行时 8 大步骤第三步，就是检查 Request cache 是否有缓存。</p>
+<p>首先，有一个概念，叫做 Request Context 请求上下文，一般来说，在一个 web 应用中，如果我们用到了 Hystrix，我们会在一个 filter 里面，对每一个请求都施加一个请求上下文。就是说，每一次请求，就是一次请求上下文。然后在这次请求上下文中，我们会去执行 N 多代码，调用 N 多依赖服务，有的依赖服务可能还会调用好几次。</p>
+<p>在一次请求上下文中，如果有多个 command，参数都是一样的，调用的接口也是一样的，而结果可以认为也是一样的。那么这个时候，我们可以让第一个 command 执行返回的结果缓存在内存中，然后这个请求上下文后续的其它对这个依赖的调用全部从内存中取出缓存结果就可以了。</p>
+<p>这样的话，好处在于不用在一次请求上下文中反复多次执行一样的 command，<strong>避免重复执行网络请求，提升整个请求的性能</strong>。</p>
+<p>举个栗子。比如说我们在一次请求上下文中，请求获取 productId 为 1 的数据，第一次缓存中没有，那么会从商品服务中获取数据，返回最新数据结果，同时将数据缓存在内存中。后续同一次请求上下文中，如果还有获取 productId 为 1 的数据的请求，直接从缓存中取就好了。</p>
+<p><img src="http://blog.yangxiaozong.com/images/hystrix-request-cache.png" alt="hystrix-request-cache"><br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/基于 Hystrix 线程池技术实现资源隔离.html#more" rel="contents">
+              <a class="btn" href="/基于 request cache 请求缓存技术优化批量商品数据查询接口.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+
+<div>
+  
+</div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+<div>
+      
+</div>
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+
+    </footer>
+  </div>
+  
+  
+  
+
+
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/分库分表之后，id 主键如何处理？.html"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YXZ"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/head.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YXZ的博客"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/分库分表之后，id 主键如何处理？.html" class="post-title-link" itemprop="url">分库分表之后，id 主键如何处理？</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/分库分表之后，id 主键如何处理？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/分库分表之后，id 主键如何处理？.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/分库分表之后，id 主键如何处理？.html" class="leancloud_visitors" data-flag-title="分库分表之后，id 主键如何处理？">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>分库分表之后，id 主键如何处理？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>其实这是分库分表之后你必然要面对的一个问题，就是 id 咋生成？因为要是分成多个表之后，每个表都是从 1 开始累加，那肯定不对啊，需要一个<strong>全局唯一</strong>的 id 来支持。所以这都是你实际生产环境中必须考虑的问题。</p>
+<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><h3 id="基于数据库的实现方案"><a href="#基于数据库的实现方案" class="headerlink" title="基于数据库的实现方案"></a>基于数据库的实现方案</h3><h4 id="数据库自增-id"><a href="#数据库自增-id" class="headerlink" title="数据库自增 id"></a>数据库自增 id</h4><p>这个就是说你的系统里每次得到一个 id，都是往一个库的一个表里插入一条没什么业务含义的数据，然后获取一个数据库自增的一个 id。拿到这个 id 之后再往对应的分库分表里去写入。</p>
+<p>这个方案的好处就是方便简单，谁都会用；<strong>缺点就是单库生成</strong>自增 id，要是高并发的话，就会有瓶颈的；如果你硬是要改进一下，那么就专门开一个服务出来，这个服务每次就拿到当前 id 最大值，然后自己递增几个 id，一次性返回一批 id，然后再把当前最大 id 值修改成递增几个 id 之后的一个值；但是<strong>无论如何都是基于单个数据库</strong>。</p>
+<p><strong>适合的场景</strong>：你分库分表就俩原因，要不就是单库并发太高，要不就是单库数据量太大；除非是你<strong>并发不高，但是数据量太大</strong>导致的分库分表扩容，你可以用这个方案，因为可能每秒最高并发最多就几百，那么就走单独的一个库和表生成自增主键即可。</p>
+<h4 id="设置数据库-sequence-或者表自增字段步长"><a href="#设置数据库-sequence-或者表自增字段步长" class="headerlink" title="设置数据库 sequence 或者表自增字段步长"></a>设置数据库 sequence 或者表自增字段步长</h4><p>可以通过设置数据库 sequence 或者表的自增字段步长来进行水平伸缩。</p>
+<p>比如说，现在有 8 个服务节点，每个服务节点使用一个 sequence 功能来产生 ID，每个 sequence 的起始 ID 不同，并且依次递增，步长都是 8。</p>
+<p><img src="http://blog.yangxiaozong.com/images/database-id-sequence-step.png" alt="database-id-sequence-step"><br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/分库分表之后，id 主键如何处理？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1229,208 +1433,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/分库分表之后，id 主键如何处理？.html"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YXZ"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/head.jpg"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YXZ的博客"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/分库分表之后，id 主键如何处理？.html" class="post-title-link" itemprop="url">分库分表之后，id 主键如何处理？</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/分库分表之后，id 主键如何处理？.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/分库分表之后，id 主键如何处理？.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/分库分表之后，id 主键如何处理？.html" class="leancloud_visitors" data-flag-title="分库分表之后，id 主键如何处理？">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>分库分表之后，id 主键如何处理？</p>
-<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>其实这是分库分表之后你必然要面对的一个问题，就是 id 咋生成？因为要是分成多个表之后，每个表都是从 1 开始累加，那肯定不对啊，需要一个<strong>全局唯一</strong>的 id 来支持。所以这都是你实际生产环境中必须考虑的问题。</p>
-<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><h3 id="基于数据库的实现方案"><a href="#基于数据库的实现方案" class="headerlink" title="基于数据库的实现方案"></a>基于数据库的实现方案</h3><h4 id="数据库自增-id"><a href="#数据库自增-id" class="headerlink" title="数据库自增 id"></a>数据库自增 id</h4><p>这个就是说你的系统里每次得到一个 id，都是往一个库的一个表里插入一条没什么业务含义的数据，然后获取一个数据库自增的一个 id。拿到这个 id 之后再往对应的分库分表里去写入。</p>
-<p>这个方案的好处就是方便简单，谁都会用；<strong>缺点就是单库生成</strong>自增 id，要是高并发的话，就会有瓶颈的；如果你硬是要改进一下，那么就专门开一个服务出来，这个服务每次就拿到当前 id 最大值，然后自己递增几个 id，一次性返回一批 id，然后再把当前最大 id 值修改成递增几个 id 之后的一个值；但是<strong>无论如何都是基于单个数据库</strong>。</p>
-<p><strong>适合的场景</strong>：你分库分表就俩原因，要不就是单库并发太高，要不就是单库数据量太大；除非是你<strong>并发不高，但是数据量太大</strong>导致的分库分表扩容，你可以用这个方案，因为可能每秒最高并发最多就几百，那么就走单独的一个库和表生成自增主键即可。</p>
-<h4 id="设置数据库-sequence-或者表自增字段步长"><a href="#设置数据库-sequence-或者表自增字段步长" class="headerlink" title="设置数据库 sequence 或者表自增字段步长"></a>设置数据库 sequence 或者表自增字段步长</h4><p>可以通过设置数据库 sequence 或者表的自增字段步长来进行水平伸缩。</p>
-<p>比如说，现在有 8 个服务节点，每个服务节点使用一个 sequence 功能来产生 ID，每个 sequence 的起始 ID 不同，并且依次递增，步长都是 8。</p>
-<p><img src="http://blog.yangxiaozong.com/images/database-id-sequence-step.png" alt="database-id-sequence-step"><br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/分库分表之后，id 主键如何处理？.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-
-<div>
-  
-</div>
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-<div>
-      
-</div>
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-
-    </footer>
-  </div>
-  
-  
-  
-
-
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/分布式系统面试连环炮.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1559,6 +1561,207 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/分布式系统面试连环炮.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+
+<div>
+  
+</div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+<div>
+      
+</div>
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+
+    </footer>
+  </div>
+  
+  
+  
+
+
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/如何保证消息队列的高可用？.html"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YXZ"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/head.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YXZ的博客"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/如何保证消息队列的高可用？.html" class="post-title-link" itemprop="url">如何保证消息队列的高可用？</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/如何保证消息队列的高可用？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/如何保证消息队列的高可用？.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/如何保证消息队列的高可用？.html" class="leancloud_visitors" data-flag-title="如何保证消息队列的高可用？">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>如何保证消息队列的高可用？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>如果有人问到你 MQ 的知识，<strong>高可用是必问的</strong>。<a href="/为什么使用消息队列？.md">上一讲</a>提到，MQ 会导致<strong>系统可用性降低</strong>。所以只要你用了 MQ，接下来问的一些要点肯定就是围绕着 MQ 的那些缺点怎么来解决了。</p>
+<p>要是你傻乎乎的就干用了一个 MQ，各种问题从来没考虑过，那你就杯具了，面试官对你的感觉就是，只会简单使用一些技术，没任何思考，马上对你的印象就不太好了。这样的同学招进来要是做个 20k 薪资以内的普通小弟还凑合，要是做薪资 20k+ 的高工，那就惨了，让你设计个系统，里面肯定一堆坑，出了事故公司受损失，团队一起背锅。</p>
+<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>这个问题这么问是很好的，因为不能问你 Kafka 的高可用性怎么保证？ActiveMQ 的高可用性怎么保证？一个面试官要是这么问就显得很没水平，人家可能用的就是 RabbitMQ，没用过 Kafka，你上来问人家 Kafka 干什么？这不是摆明了刁难人么。</p>
+<p>所以有水平的面试官，问的是 MQ 的高可用性怎么保证？这样就是你用过哪个 MQ，你就说说你对那个 MQ 的高可用性的理解。</p>
+<h3 id="RabbitMQ-的高可用性"><a href="#RabbitMQ-的高可用性" class="headerlink" title="RabbitMQ 的高可用性"></a>RabbitMQ 的高可用性</h3><p>RabbitMQ 是比较有代表性的，因为是<strong>基于主从</strong>（非分布式）做高可用性的，我们就以 RabbitMQ 为例子讲解第一种 MQ 的高可用性怎么实现。</p>
+<p>RabbitMQ 有三种模式：单机模式、普通集群模式、镜像集群模式。<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/如何保证消息队列的高可用？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1761,207 +1964,6 @@
           
             <div class="post-button text-center">
               <a class="btn" href="/使用 Redis 如何设计分布式锁？使用 Zookeeper 来设计分布式锁可以吗？以上两种分布式锁的实现方式哪种效率比较高？.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-
-<div>
-  
-</div>
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-<div>
-      
-</div>
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-
-    </footer>
-  </div>
-  
-  
-  
-
-
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/如何保证消息队列的高可用？.html"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YXZ"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/head.jpg"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YXZ的博客"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/如何保证消息队列的高可用？.html" class="post-title-link" itemprop="url">如何保证消息队列的高可用？</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/如何保证消息队列的高可用？.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/如何保证消息队列的高可用？.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/如何保证消息队列的高可用？.html" class="leancloud_visitors" data-flag-title="如何保证消息队列的高可用？">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>如何保证消息队列的高可用？</p>
-<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>如果有人问到你 MQ 的知识，<strong>高可用是必问的</strong>。<a href="/为什么使用消息队列？.md">上一讲</a>提到，MQ 会导致<strong>系统可用性降低</strong>。所以只要你用了 MQ，接下来问的一些要点肯定就是围绕着 MQ 的那些缺点怎么来解决了。</p>
-<p>要是你傻乎乎的就干用了一个 MQ，各种问题从来没考虑过，那你就杯具了，面试官对你的感觉就是，只会简单使用一些技术，没任何思考，马上对你的印象就不太好了。这样的同学招进来要是做个 20k 薪资以内的普通小弟还凑合，要是做薪资 20k+ 的高工，那就惨了，让你设计个系统，里面肯定一堆坑，出了事故公司受损失，团队一起背锅。</p>
-<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>这个问题这么问是很好的，因为不能问你 Kafka 的高可用性怎么保证？ActiveMQ 的高可用性怎么保证？一个面试官要是这么问就显得很没水平，人家可能用的就是 RabbitMQ，没用过 Kafka，你上来问人家 Kafka 干什么？这不是摆明了刁难人么。</p>
-<p>所以有水平的面试官，问的是 MQ 的高可用性怎么保证？这样就是你用过哪个 MQ，你就说说你对那个 MQ 的高可用性的理解。</p>
-<h3 id="RabbitMQ-的高可用性"><a href="#RabbitMQ-的高可用性" class="headerlink" title="RabbitMQ 的高可用性"></a>RabbitMQ 的高可用性</h3><p>RabbitMQ 是比较有代表性的，因为是<strong>基于主从</strong>（非分布式）做高可用性的，我们就以 RabbitMQ 为例子讲解第一种 MQ 的高可用性怎么实现。</p>
-<p>RabbitMQ 有三种模式：单机模式、普通集群模式、镜像集群模式。<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/如何保证消息队列的高可用？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2237,7 +2239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/如何保证消息不被重复消费？或者说，如何保证消息消费的幂等性？.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -2257,7 +2259,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/如何保证消息不被重复消费？或者说，如何保证消息消费的幂等性？.html" class="post-title-link" itemprop="url">如何保证消息不被重复消费？或者说，如何保证消息消费的幂等性？</a>
+                <a href="/如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？.html" class="post-title-link" itemprop="url">如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？</a>
               
             
           </h1>
@@ -2315,8 +2317,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/如何保证消息不被重复消费？或者说，如何保证消息消费的幂等性？.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/如何保证消息不被重复消费？或者说，如何保证消息消费的幂等性？.html" itemprop="commentCount"></span>
+                <a href="/如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2324,7 +2326,7 @@
 
           
           
-            <span id="/如何保证消息不被重复消费？或者说，如何保证消息消费的幂等性？.html" class="leancloud_visitors" data-flag-title="如何保证消息不被重复消费？或者说，如何保证消息消费的幂等性？">
+            <span id="/如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？.html" class="leancloud_visitors" data-flag-title="如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -2356,16 +2358,15 @@
 
       
         
-          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>如何保证消息不被重复消费？或者说，如何保证消息消费的幂等性？</p>
-<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>其实这是很常见的一个问题，这俩问题基本可以连起来问。既然是消费消息，那肯定要考虑会不会重复消费？能不能避免重复消费？或者重复消费了也别造成系统异常可以吗？这个是 MQ 领域的基本问题，其实本质上还是问你<strong>使用消息队列如何保证幂等性</strong>，这个是你架构里要考虑的一个问题。</p>
-<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>回答这个问题，首先你别听到重复消息这个事儿，就一无所知吧，你<strong>先大概说一说可能会有哪些重复消费的问题</strong>。</p>
-<p>首先，比如 RabbitMQ、RocketMQ、Kafka，都有可能会出现消息重复消费的问题，正常。因为这问题通常不是 MQ 自己保证的，是由我们开发来保证的。挑一个 Kafka 来举个例子，说说怎么重复消费吧。</p>
-<p>Kafka 实际上有个 offset 的概念，就是每个消息写进去，都有一个 offset，代表消息的序号，然后 consumer 消费了数据之后，<strong>每隔一段时间</strong>（定时定期），会把自己消费过的消息的 offset 提交一下，表示“我已经消费过了，下次我要是重启啥的，你就让我继续从上次消费到的 offset 来继续消费吧”。</p>
-<p>但是凡事总有意外，比如我们之前生产经常遇到的，就是你有时候重启系统，看你怎么重启了，如果碰到点着急的，直接 kill 进程了，再重启。这会导致 consumer 有些消息处理了，但是没来得及提交 offset，尴尬了。重启之后，少数消息会再次消费一次。<br>
+          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？</p>
+<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>这个是肯定的，用 MQ 有个基本原则，就是<strong>数据不能多一条，也不能少一条</strong>，不能多，就是前面说的<a href="/如何保证消息不被重复消费？或者说，如何保证消息消费的幂等性？.md">重复消费和幂等性问题</a>。不能少，就是说这数据别搞丢了。那这个问题你必须得考虑一下。</p>
+<p>如果说你这个是用 MQ 来传递非常核心的消息，比如说计费、扣费的一些消息，那必须确保这个 MQ 传递过程中<strong>绝对不会把计费消息给弄丢</strong>。</p>
+<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>数据的丢失问题，可能出现在生产者、MQ、消费者中，咱们从 RabbitMQ 和 Kafka 分别来分析一下吧。</p>
+<h3 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h3><p><img src="http://blog.yangxiaozong.com/images/rabbitmq-message-lose.png" alt="rabbitmq-message-lose"><br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/如何保证消息不被重复消费？或者说，如何保证消息消费的幂等性？.html#more" rel="contents">
+              <a class="btn" href="/如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2627,6 +2628,19 @@
               
             </nav>
           
+
+
+<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+<div class="widget-wrap">
+    <h3 class="widget-title" style="text-align: center;">标签云</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+        <canvas width="220" height="220" id="resCanvas" style="width=100%">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Async/">@Async</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/">AOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/">Angular</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/">Centos</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES/">ES</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hystrix/">Hystrix</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jakeson/">Jakeson</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Json/">Json</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/">Mybatis</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/">Springboot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springcloud/">Springcloud</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Websocket/">Websocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Yilia/">Yilia</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lucene/">lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replaceAll/">replaceAll</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia主题/">yilia主题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/懒加载/">懒加载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/扫福字/">扫福字</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/消息队列/">消息队列</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统架构/">系统架构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存技术/">缓存技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自动注入/">自动注入</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">36</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目发布/">项目发布</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高并发/">高并发</a><span class="tag-list-count">1</span></li></ul>
+        </canvas>
+    </div>
+</div>
+
 
           
             <div class="feed-link motion-element">
