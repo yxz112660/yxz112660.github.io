@@ -421,7 +421,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Java面试题-java基础篇.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/View绘制过程.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -441,7 +441,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/Java面试题-java基础篇.html" class="post-title-link" itemprop="url">Java面试题-java基础篇(一)</a>
+                <a href="/View绘制过程.html" class="post-title-link" itemprop="url">View绘制过程</a>
               
             
           </h1>
@@ -466,7 +466,7 @@
                 
               
 
-              <time title="创建时间：2019-08-09 19:40:28" itemprop="dateCreated datePublished" datetime="2019-08-09T19:40:28+08:00">2019-08-09</time>
+              <time title="创建时间：2019-09-14 09:40:28" itemprop="dateCreated datePublished" datetime="2019-09-14T09:40:28+08:00">2019-09-14</time>
             
 
             
@@ -484,7 +484,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java面试题/" itemprop="url" rel="index"><span itemprop="name">Java面试题</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -499,8 +499,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Java面试题-java基础篇.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Java面试题-java基础篇.html" itemprop="commentCount"></span>
+                <a href="/View绘制过程.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/View绘制过程.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -508,7 +508,7 @@
 
           
           
-            <span id="/Java面试题-java基础篇.html" class="leancloud_visitors" data-flag-title="Java面试题-java基础篇(一)">
+            <span id="/View绘制过程.html" class="leancloud_visitors" data-flag-title="View绘制过程">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -540,11 +540,13 @@
 
       
         
-          <h3 id="一、Java-面向对象"><a href="#一、Java-面向对象" class="headerlink" title="一、Java 面向对象"></a>一、Java 面向对象</h3><h4 id="1-面向对象都有哪些特性以及你对这些特性的理解"><a href="#1-面向对象都有哪些特性以及你对这些特性的理解" class="headerlink" title="1.面向对象都有哪些特性以及你对这些特性的理解"></a>1.面向对象都有哪些特性以及你对这些特性的理解</h4><p>1) 继承:继承是从已有类得到继承信息创建新类的过程。提供继承信息的类被称为父类(超类、基类);得到继 承信息的类被称为子类(派生类)。继承让变化中的软件系统有了一定的延续性，同时继承也是封装程序中可变因素的 重要手段。<br>2) 封装:通常认为封装是把数据和操作数据的方法绑定起来，对数据的访问只能通过已定义的接口。面向对象 的本质就是将现实世界描绘成一系列完全自治、封闭的对象。我们在类中编写的方法就是对实现细节的一种封装;我 们编写一个类就是对数据和数据操作的封装。可以说，封装就是隐藏一切可隐藏的东西，只向外界提供最简单的编程 接口。<br>3) 多态性:多态性是指允许不同子类型的对象对同一消息作出不同的响应。简单的说就是用同样的对象引用调 用同样的方法但是做了不同的事情。多态性分为编译时的多态性和运行时的多态性。如果将对象的方法视为对象向外 界提供的服务，那么运行时的多态性可以解释为:当 A 系统访问 B 系统提供的服务时，B 系统有多种提供服务的方式， 但一切对 A 系统来说都是透明的。方法重载(overload)实现的是编译时的多态性(也称为前绑定)，而方法重写 (override)实现的是运行时的多态性(也称为后绑定)。运行时的多态是面向对象最精髓的东西，要实现多态需要做 两件事:1. 方法重写(子类继承父类并重写父类中已有的或抽象的方法);2. 对象造型(用父类型引用引用子类型对象，这样同样的引用调用同样的方法就会根据子类对象的不同而表现出不同的行为)。<br>4) 抽象:抽象是将一类对象的共同特征总结出来构造类的过程，包括数据抽象和行为抽象两方面。抽象只关注对 象有哪些属性和行为，并不关注这些行为的细节是什么。<br>
+          <p>整个View树的绘图流程是在ViewRootImpl类的performTraversals()方法（这个方法巨长）开始的，该函数做的执行过程主要是根据之前设置的状态，判断是否重新计算视图大小(measure)、是否重新放置视图的位置(layout)、以及是否重绘 (draw)。</p>
+<p><img src="images/draw_1.jpg" alt=""></p>
+<h2 id="Measure"><a href="#Measure" class="headerlink" title="Measure"></a>Measure</h2>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Java面试题-java基础篇.html#more" rel="contents">
+              <a class="btn" href="/View绘制过程.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -616,7 +618,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/SpringCloud教程第6篇：config.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Activity、View及Window之间关系.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -636,7 +638,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/SpringCloud教程第6篇：config.html" class="post-title-link" itemprop="url">SpringCloud教程第6篇：config</a>
+                <a href="/Activity、View及Window之间关系.html" class="post-title-link" itemprop="url">Activity、View及Window之间关系</a>
               
             
           </h1>
@@ -661,7 +663,7 @@
                 
               
 
-              <time title="创建时间：2019-03-08 14:35:33" itemprop="dateCreated datePublished" datetime="2019-03-08T14:35:33+08:00">2019-03-08</time>
+              <time title="创建时间：2019-09-14 09:40:28" itemprop="dateCreated datePublished" datetime="2019-09-14T09:40:28+08:00">2019-09-14</time>
             
 
             
@@ -679,7 +681,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Springcloud/" itemprop="url" rel="index"><span itemprop="name">Springcloud</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -694,8 +696,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/SpringCloud教程第6篇：config.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/SpringCloud教程第6篇：config.html" itemprop="commentCount"></span>
+                <a href="/Activity、View及Window之间关系.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Activity、View及Window之间关系.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -703,7 +705,7 @@
 
           
           
-            <span id="/SpringCloud教程第6篇：config.html" class="leancloud_visitors" data-flag-title="SpringCloud教程第6篇：config">
+            <span id="/Activity、View及Window之间关系.html" class="leancloud_visitors" data-flag-title="Activity、View及Window之间关系">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -735,12 +737,13 @@
 
       
         
-          <p>在上一篇文章讲述zuul的时候，已经提到过，使用配置服务来保存各个服务的配置文件。它就是Spring Cloud Config。</p>
-<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>在分布式系统中，由于服务数量巨多，为了方便服务配置文件统一管理，实时更新，所以需要分布式配置中心组件。在Spring Cloud中，有分布式配置中心组件spring cloud config ，它支持配置服务放在配置服务的内存中（即本地），也支持放在远程Git仓库中。在spring cloud config 组件中，分两个角色，一是config server，二是config client。</p>
+          <h2 id="View"><a href="#View" class="headerlink" title="View"></a>View</h2><p>View（包括ViewGroup）使用的是组合模式，将View组成成树形结构，以表示“部分-整体”的层次结构，使得用户对单个对象和组合对象的使用具有一致性。View主要是用于绘制我们想要的结果，是一个最基本的UI组件。</p>
+<h2 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h2><p>简单地说，<code>Window</code>表示一个窗口，一般来说，<code>Window</code>大小取值为屏幕大小。但是这不是绝对的，如对话框、Toast等就不是整个屏幕大小。你可以指定<code>Window</code>的大小。<code>Window</code>包含一个<code>View tree</code>和窗口的<code>layout</code>参数。</p>
+<p>感觉Window的理解比较抽象，Window相当于一个容器，里面“盛放”着很多View，这些View是以树状结构组织起来的。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/SpringCloud教程第6篇：config.html#more" rel="contents">
+              <a class="btn" href="/Activity、View及Window之间关系.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -812,7 +815,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/SpringCloud教程第5篇：Zuul.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Android系统架构.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -832,7 +835,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/SpringCloud教程第5篇：Zuul.html" class="post-title-link" itemprop="url">SpringCloud教程第5篇：Zuul</a>
+                <a href="/Android系统架构.html" class="post-title-link" itemprop="url">Android系统架构</a>
               
             
           </h1>
@@ -857,7 +860,7 @@
                 
               
 
-              <time title="创建时间：2019-03-08 14:27:12" itemprop="dateCreated datePublished" datetime="2019-03-08T14:27:12+08:00">2019-03-08</time>
+              <time title="创建时间：2019-09-14 09:40:28" itemprop="dateCreated datePublished" datetime="2019-09-14T09:40:28+08:00">2019-09-14</time>
             
 
             
@@ -875,7 +878,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Springcloud/" itemprop="url" rel="index"><span itemprop="name">Springcloud</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -890,8 +893,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/SpringCloud教程第5篇：Zuul.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/SpringCloud教程第5篇：Zuul.html" itemprop="commentCount"></span>
+                <a href="/Android系统架构.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Android系统架构.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -899,7 +902,7 @@
 
           
           
-            <span id="/SpringCloud教程第5篇：Zuul.html" class="leancloud_visitors" data-flag-title="SpringCloud教程第5篇：Zuul">
+            <span id="/Android系统架构.html" class="leancloud_visitors" data-flag-title="Android系统架构">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -931,408 +934,19 @@
 
       
         
-          <p>在微服务架构中，需要几个基础的服务治理组件，包括服务注册与发现、服务消费、负载均衡、断路器、智能路由、配置管理等，由这几个基础组件相互协作，共同组建了一个简单的微服务系统。一个简答的微服务系统如下图：</p>
-<p><img src="http://blog.yangxiaozong.com/images/1552026553850TIM图片20190308142901.png" alt=""><br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/SpringCloud教程第5篇：Zuul.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-
-<div>
-  
-</div>
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-<div>
-      
-</div>
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-
-    </footer>
-  </div>
-  
-  
-  
-
-
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/SpringCloud教程第4篇：Hystrix.html"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YXZ"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/head.jpg"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YXZ的博客"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/SpringCloud教程第4篇：Hystrix.html" class="post-title-link" itemprop="url">SpringCloud教程第4篇：Hystrix</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-08 14:15:19" itemprop="dateCreated datePublished" datetime="2019-03-08T14:15:19+08:00">2019-03-08</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Springcloud/" itemprop="url" rel="index"><span itemprop="name">Springcloud</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/SpringCloud教程第4篇：Hystrix.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/SpringCloud教程第4篇：Hystrix.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/SpringCloud教程第4篇：Hystrix.html" class="leancloud_visitors" data-flag-title="SpringCloud教程第4篇：Hystrix">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>在微服务架构中，根据业务来拆分成一个个的服务，服务与服务之间可以相互调用（RPC），在Spring Cloud可以用RestTemplate + Ribbon和Feign来调用。为了保证其高可用，单个服务通常会集群部署。由于网络原因或者自身的原因，服务并不能保证100％可用，如果单个服务出现问题，调用这个服务就会出现线程阻塞，此时若有大量的请求涌入，Servlet的容器的线程资源会被消耗完毕，导致服务瘫痪。服务与服务之间的依赖性，故障会传播，会对整个微服务系统造成灾难性的严重后果，这就是服务故障的“雪崩”效应。</p>
-<p>为了解决这个问题，业界提出了断路器模型。<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/SpringCloud教程第4篇：Hystrix.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-
-<div>
-  
-</div>
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-<div>
-      
-</div>
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-
-    </footer>
-  </div>
-  
-  
-  
-
-
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/SpringCloud教程第3篇：feign.html"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YXZ"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/head.jpg"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YXZ的博客"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/SpringCloud教程第3篇：feign.html" class="post-title-link" itemprop="url">SpringCloud教程第3篇：feign</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-08 14:11:48" itemprop="dateCreated datePublished" datetime="2019-03-08T14:11:48+08:00">2019-03-08</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Springcloud/" itemprop="url" rel="index"><span itemprop="name">Springcloud</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/SpringCloud教程第3篇：feign.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/SpringCloud教程第3篇：feign.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/SpringCloud教程第3篇：feign.html" class="leancloud_visitors" data-flag-title="SpringCloud教程第3篇：feign">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>上一篇文章，讲述了如何通过RestTemplate+Ribbon去消费服务，这篇文章主要讲述如何通过Feign去消费服务。</p>
-<h3 id="Feign简介"><a href="#Feign简介" class="headerlink" title="Feign简介"></a>Feign简介</h3><p>Feign是一个声明式的伪Http客户端，它使得写Http客户端变得更简单。使用Feign，只需要创建一个接口并注解。它具有可插拔的注解特性，可使用Feign 注解和JAX-RS注解。Feign支持可插拔的编码器和解码器。Feign默认集成了Ribbon，并和Eureka结合，默认实现了负载均衡的效果。</p>
-<p>简而言之：</p>
+          <p><img src="images/arch.png" alt=""></p>
+<h2 id="应用程序-Applications"><a href="#应用程序-Applications" class="headerlink" title="应用程序(Applications)"></a>应用程序(Applications)</h2><p>Android会同一系列核心应用程序包一起发布，该应用程序包包括email客户端，SMS短消息程序，日历，地图，浏览器，联系人管理程序等。所有的应用程序都是使用JAVA语言编写的。通常开发人员就处在这一层。</p>
+<h2 id="应用程序框架-Application-Frameworks"><a href="#应用程序框架-Application-Frameworks" class="headerlink" title="应用程序框架(Application Frameworks)"></a>应用程序框架(Application Frameworks)</h2><p>提供应用程序开发的各种API进行快速开发，也即隐藏在每个应用后面的是一系列的服务和系统，大部分使用Java编写，所谓官方源码很多也就是看这里，其中包括：</p>
 <ul>
-<li>Feign 采用的是基于接口的注解</li>
-<li>Feign 整合了ribbon
+<li><strong>丰富而又可扩展的视图（Views）</strong>：可以用来构建应用程序， 它包括列表（lists），网格（grids），文本框（text boxes），按钮（buttons）， 甚至可嵌入的web浏览器。</li>
+<li><strong>内容提供器（Content Providers）</strong>：使得应用程序可以访问另一个应用程序的数据（如联系人数据库）， 或者共享它们自己的数据</li>
+<li><strong>资源管理器（Resource Manager）</strong>：提供 非代码资源的访问，如本地字符串，图形，和布局文件（ layout files ）。</li>
+<li><strong>通知管理器 （Notification Manager）</strong>：使得应用程序可以在状态栏中显示自定义的提示信息。</li>
+<li><strong>活动管理器（ Activity Manager）</strong>：用来管理应用程序生命周期并提供常用的导航回退功能。
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/SpringCloud教程第3篇：feign.html#more" rel="contents">
+              <a class="btn" href="/Android系统架构.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1404,7 +1018,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/SpringCloud教程第2篇：Ribbon.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Binder.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1424,7 +1038,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/SpringCloud教程第2篇：Ribbon.html" class="post-title-link" itemprop="url">SpringCloud教程第2篇：Ribbon</a>
+                <a href="/Binder.html" class="post-title-link" itemprop="url">Binder</a>
               
             
           </h1>
@@ -1449,7 +1063,7 @@
                 
               
 
-              <time title="创建时间：2019-03-08 13:49:48" itemprop="dateCreated datePublished" datetime="2019-03-08T13:49:48+08:00">2019-03-08</time>
+              <time title="创建时间：2019-09-14 09:40:28" itemprop="dateCreated datePublished" datetime="2019-09-14T09:40:28+08:00">2019-09-14</time>
             
 
             
@@ -1467,7 +1081,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Springcloud/" itemprop="url" rel="index"><span itemprop="name">Springcloud</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -1482,8 +1096,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/SpringCloud教程第2篇：Ribbon.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/SpringCloud教程第2篇：Ribbon.html" itemprop="commentCount"></span>
+                <a href="/Binder.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Binder.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1491,7 +1105,7 @@
 
           
           
-            <span id="/SpringCloud教程第2篇：Ribbon.html" class="leancloud_visitors" data-flag-title="SpringCloud教程第2篇：Ribbon">
+            <span id="/Binder.html" class="leancloud_visitors" data-flag-title="Binder">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1523,12 +1137,12 @@
 
       
         
-          <p>在上一篇文章，讲了服务的注册和发现。在微服务架构中，业务都会被拆分成一个独立的服务，服务与服务的通讯是基于http restful的。Spring cloud有两种服务调用方式，一种是ribbon+restTemplate，另一种是feign。在这一篇文章首先讲解下基于ribbon+rest。</p>
-<h3 id="ribbon简介"><a href="#ribbon简介" class="headerlink" title="ribbon简介"></a>ribbon简介</h3><p>Ribbon是一个客户端负载均衡器，可以让您对HTTP和TCP客户端的行为进行大量控制。<br>
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Binder使用<code>Client－Server</code>通信方式。Binder框架定义了四个角色：<code>Server</code>,<code>Client</code>,<code>ServiceManager</code>以及<code>Binder驱动</code>。其中<code>Server</code>,<code>Client</code>,<code>ServiceManager</code>运行于用户空间，驱动运行于内核空间。Binder驱动程序提供设备文件<code>/dev/binder</code>与用户空间交互，<code>Client</code>、<code>Server</code>和<code>Service Manager</code>通过<code>open</code>和<code>ioctl</code>文件操作函数与Binder驱动程序进行通信。</p>
+<p><img src="images/binder.gif" alt=""><br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/SpringCloud教程第2篇：Ribbon.html#more" rel="contents">
+              <a class="btn" href="/Binder.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1600,7 +1214,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/SpringCloud教程第1篇：Eureka.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Canvas.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1620,7 +1234,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/SpringCloud教程第1篇：Eureka.html" class="post-title-link" itemprop="url">SpringCloud教程第1篇：Eureka</a>
+                <a href="/Canvas.html" class="post-title-link" itemprop="url">Canvas</a>
               
             
           </h1>
@@ -1645,7 +1259,7 @@
                 
               
 
-              <time title="创建时间：2019-03-08 10:49:26" itemprop="dateCreated datePublished" datetime="2019-03-08T10:49:26+08:00">2019-03-08</time>
+              <time title="创建时间：2019-09-14 09:40:28" itemprop="dateCreated datePublished" datetime="2019-09-14T09:40:28+08:00">2019-09-14</time>
             
 
             
@@ -1663,7 +1277,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Springcloud/" itemprop="url" rel="index"><span itemprop="name">Springcloud</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -1678,8 +1292,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/SpringCloud教程第1篇：Eureka.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/SpringCloud教程第1篇：Eureka.html" itemprop="commentCount"></span>
+                <a href="/Canvas.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Canvas.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1687,7 +1301,7 @@
 
           
           
-            <span id="/SpringCloud教程第1篇：Eureka.html" class="leancloud_visitors" data-flag-title="SpringCloud教程第1篇：Eureka">
+            <span id="/Canvas.html" class="leancloud_visitors" data-flag-title="Canvas">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1719,11 +1333,215 @@
 
       
         
-          <h3 id="spring-cloud简介"><a href="#spring-cloud简介" class="headerlink" title="spring cloud简介"></a>spring cloud简介</h3><p>spring cloud 为开发人员提供了快速构建分布式系统的一些工具，包括配置管理、服务发现、断路器、路由、微代理、事件总线、全局锁、决策竞选、分布式会话等等。它运行环境简单，可以在开发人员的电脑上跑。另外说明spring cloud是基于springboot的，所以需要开发中对springboot有一定的了解，如果不了解的话可以看这篇文章：2小时学会springboot。另外对于“微服务架构” 不了解的话，可以通过搜索引擎搜索“微服务架构”了解下。<br>
+          
+            <ul>
+<li><p><strong>save</strong>：用来保存 Canvas 的状态。save 之后，可以调用 Canvas 的平移、放缩、旋转、错切、裁剪等操作。</p>
+</li>
+<li><p><strong>restore</strong>：用来恢复Canvas之前保存的状态。防止 save 后对 Canvas 执行的操作对后续的绘制有影响。</p>
+</li>
+</ul>
+<p>save 和 restore 要配对使用( restore 可以比 save 少，但不能多)，如果 restore 调用次数比 save 多，会引发 Error 。save 和 restore 之间，往往夹杂的是对 Canvas 的特殊操作。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+
+<div>
+  
+</div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+<div>
+      
+</div>
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+
+    </footer>
+  </div>
+  
+  
+  
+
+
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Event.html"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YXZ"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/head.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YXZ的博客"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/Event.html" class="post-title-link" itemprop="url">Event</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-14 09:40:28" itemprop="dateCreated datePublished" datetime="2019-09-14T09:40:28+08:00">2019-09-14</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Event.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Event.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/Event.html" class="leancloud_visitors" data-flag-title="Event">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>事件的分发机制由三个重要方法来共同完成：dispatchTouchEvent、onInterceptTouchEvent和onTouchEvent</p>
+<ul>
+<li><p>事件分发：public boolean dispatchTouchEvent(MotionEvent ev)：用来进行事件的分发。如果事件能够传递给当前View，那么此方法一定会被调用，返回结果受当前View的onTouchEvent和下级View的DispatchTouchEvent方法的影响，表示是否消耗当前事件。</p>
+</li>
+<li><p>事件拦截：public boolean onInterceptTouchEvent(MotionEvent event)：在上述方法内部调用，用来判断是否拦截某个事件，如果当前View拦截了某个事件，那么在同一个事件序列当中，此方法不会被再次调用，返回结果表示是否拦截当前事件。</p>
+</li>
+<li><p>事件响应：public boolean onTouchEvent(MotionEvent event)：在dispatchTouchEvent方法中调用，用来处理点击事件，返回结果表示是否消耗当前事件，如果不消耗，则在同一个事件序列中，当前View无法再次接收到事件。</p>
+</li>
+</ul>
+<p>三者的关系可以总结为如下伪代码：<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/SpringCloud教程第1篇：Eureka.html#more" rel="contents">
+              <a class="btn" href="/Event.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1795,7 +1613,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/es 写入数据的工作原理是什么啊？.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/EventBus.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1815,7 +1633,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/es 写入数据的工作原理是什么啊？.html" class="post-title-link" itemprop="url">es 写入数据的工作原理是什么啊？</a>
+                <a href="/EventBus.html" class="post-title-link" itemprop="url">EventBus</a>
               
             
           </h1>
@@ -1840,7 +1658,7 @@
                 
               
 
-              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
+              <time title="创建时间：2019-09-14 09:40:28" itemprop="dateCreated datePublished" datetime="2019-09-14T09:40:28+08:00">2019-09-14</time>
             
 
             
@@ -1858,7 +1676,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -1873,8 +1691,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/es 写入数据的工作原理是什么啊？.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/es 写入数据的工作原理是什么啊？.html" itemprop="commentCount"></span>
+                <a href="/EventBus.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/EventBus.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1882,7 +1700,7 @@
 
           
           
-            <span id="/es 写入数据的工作原理是什么啊？.html" class="leancloud_visitors" data-flag-title="es 写入数据的工作原理是什么啊？">
+            <span id="/EventBus.html" class="leancloud_visitors" data-flag-title="EventBus">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1914,18 +1732,13 @@
 
       
         
-          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>es 写入数据的工作原理是什么啊？es 查询数据的工作原理是什么啊？底层的 lucene 介绍一下呗？倒排索引了解吗？</p>
-<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>问这个，其实面试官就是要看看你了解不了解 es 的一些基本原理，因为用 es 无非就是写入数据，搜索数据。你要是不明白你发起一个写入和搜索请求的时候，es 在干什么，那你真的是……</p>
-<p>对 es 基本就是个黑盒，你还能干啥？你唯一能干的就是用 es 的 api 读写数据了。要是出点什么问题，你啥都不知道，那还能指望你什么呢？</p>
-<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><h3 id="es-写数据过程"><a href="#es-写数据过程" class="headerlink" title="es 写数据过程"></a>es 写数据过程</h3><ul>
-<li>客户端选择一个 node 发送请求过去，这个 node 就是 <code>coordinating node</code>（协调节点）。</li>
-<li><code>coordinating node</code> 对 document 进行<strong>路由</strong>，将请求转发给对应的 node（有 primary shard）。</li>
-<li>实际的 node 上的 <code>primary shard</code> 处理请求，然后将数据同步到 <code>replica node</code>。</li>
-<li><code>coordinating node</code> 如果发现 <code>primary node</code> 和所有 <code>replica node</code> 都搞定之后，就返回响应结果给客户端。
+          <h3 id="EventBus消息接收者注册流程"><a href="#EventBus消息接收者注册流程" class="headerlink" title="EventBus消息接收者注册流程"></a>EventBus消息接收者注册流程</h3><p><img src="images/EventBus.register.png" alt=""></p>
+<h3 id="EventBus-Post流程"><a href="#EventBus-Post流程" class="headerlink" title="EventBus Post流程"></a>EventBus Post流程</h3><p><img src="images/EventBus.Post.png" alt=""></p>
+<p><code>postToSubscription()</code>在这个方法中，实现了从发布者到调用者的调用过程。在这里有很重要的几个分支：<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/es 写入数据的工作原理是什么啊？.html#more" rel="contents">
+              <a class="btn" href="/EventBus.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1997,7 +1810,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/如何保证消息队列的高可用？.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Handler.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -2017,7 +1830,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/如何保证消息队列的高可用？.html" class="post-title-link" itemprop="url">如何保证消息队列的高可用？</a>
+                <a href="/Handler.html" class="post-title-link" itemprop="url">Handler</a>
               
             
           </h1>
@@ -2042,7 +1855,7 @@
                 
               
 
-              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
+              <time title="创建时间：2019-09-14 09:40:28" itemprop="dateCreated datePublished" datetime="2019-09-14T09:40:28+08:00">2019-09-14</time>
             
 
             
@@ -2060,7 +1873,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -2075,8 +1888,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/如何保证消息队列的高可用？.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/如何保证消息队列的高可用？.html" itemprop="commentCount"></span>
+                <a href="/Handler.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Handler.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2084,7 +1897,7 @@
 
           
           
-            <span id="/如何保证消息队列的高可用？.html" class="leancloud_visitors" data-flag-title="如何保证消息队列的高可用？">
+            <span id="/Handler.html" class="leancloud_visitors" data-flag-title="Handler">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -2116,17 +1929,15 @@
 
       
         
-          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>如何保证消息队列的高可用？</p>
-<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>如果有人问到你 MQ 的知识，<strong>高可用是必问的</strong>。<a href="/为什么使用消息队列？.md">上一讲</a>提到，MQ 会导致<strong>系统可用性降低</strong>。所以只要你用了 MQ，接下来问的一些要点肯定就是围绕着 MQ 的那些缺点怎么来解决了。</p>
-<p>要是你傻乎乎的就干用了一个 MQ，各种问题从来没考虑过，那你就杯具了，面试官对你的感觉就是，只会简单使用一些技术，没任何思考，马上对你的印象就不太好了。这样的同学招进来要是做个 20k 薪资以内的普通小弟还凑合，要是做薪资 20k+ 的高工，那就惨了，让你设计个系统，里面肯定一堆坑，出了事故公司受损失，团队一起背锅。</p>
-<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>这个问题这么问是很好的，因为不能问你 Kafka 的高可用性怎么保证？ActiveMQ 的高可用性怎么保证？一个面试官要是这么问就显得很没水平，人家可能用的就是 RabbitMQ，没用过 Kafka，你上来问人家 Kafka 干什么？这不是摆明了刁难人么。</p>
-<p>所以有水平的面试官，问的是 MQ 的高可用性怎么保证？这样就是你用过哪个 MQ，你就说说你对那个 MQ 的高可用性的理解。</p>
-<h3 id="RabbitMQ-的高可用性"><a href="#RabbitMQ-的高可用性" class="headerlink" title="RabbitMQ 的高可用性"></a>RabbitMQ 的高可用性</h3><p>RabbitMQ 是比较有代表性的，因为是<strong>基于主从</strong>（非分布式）做高可用性的，我们就以 RabbitMQ 为例子讲解第一种 MQ 的高可用性怎么实现。</p>
-<p>RabbitMQ 有三种模式：单机模式、普通集群模式、镜像集群模式。<br>
+          <h2 id="1-Looper-prepare"><a href="#1-Looper-prepare" class="headerlink" title="1.Looper.prepare"></a>1.Looper.prepare</h2><p>首先从<code>ThreadLocal</code>中获取一个<code>Looper</code>，如果没有则向<code>ThreadLocal</code>中添加一个<code>new Looper</code>，同时新建一个<code>MessageQueue</code>。</p>
+<blockquote>
+<p>主线程的Looper在ActivityThread创建。</p>
+</blockquote>
+<h3 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h3><p><code>ThreadLocal</code>是Java提供的用于保存同一进程中不同线程数据的一种机制。每个线程中都保有一个<code>ThreadLocalMap</code>的成员变量，<code>ThreadLocalMap</code>内部采用<code>WeakReference</code>数组保存，数组的key即为<code>ThreadLocal</code>内部的Hash值。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/如何保证消息队列的高可用？.html#more" rel="contents">
+              <a class="btn" href="/Handler.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2198,7 +2009,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Android面试题.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -2218,7 +2029,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？.html" class="post-title-link" itemprop="url">如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？</a>
+                <a href="/Android面试题.html" class="post-title-link" itemprop="url">Android面试题</a>
               
             
           </h1>
@@ -2243,7 +2054,7 @@
                 
               
 
-              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
+              <time title="创建时间：2019-09-14 09:40:28" itemprop="dateCreated datePublished" datetime="2019-09-14T09:40:28+08:00">2019-09-14</time>
             
 
             
@@ -2261,7 +2072,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
 
                 
                 
@@ -2276,8 +2087,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？.html" itemprop="commentCount"></span>
+                <a href="/Android面试题.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Android面试题.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2285,7 +2096,7 @@
 
           
           
-            <span id="/如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？.html" class="leancloud_visitors" data-flag-title="如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？">
+            <span id="/Android面试题.html" class="leancloud_visitors" data-flag-title="Android面试题">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -2317,15 +2128,223 @@
 
       
         
-          <h2 id="面试题"><a href="#面试题" class="headerlink" title="面试题"></a>面试题</h2><p>如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？</p>
-<h2 id="面试官心理分析"><a href="#面试官心理分析" class="headerlink" title="面试官心理分析"></a>面试官心理分析</h2><p>这个是肯定的，用 MQ 有个基本原则，就是<strong>数据不能多一条，也不能少一条</strong>，不能多，就是前面说的<a href="/如何保证消息不被重复消费？或者说，如何保证消息消费的幂等性？.md">重复消费和幂等性问题</a>。不能少，就是说这数据别搞丢了。那这个问题你必须得考虑一下。</p>
-<p>如果说你这个是用 MQ 来传递非常核心的消息，比如说计费、扣费的一些消息，那必须确保这个 MQ 传递过程中<strong>绝对不会把计费消息给弄丢</strong>。</p>
-<h2 id="面试题剖析"><a href="#面试题剖析" class="headerlink" title="面试题剖析"></a>面试题剖析</h2><p>数据的丢失问题，可能出现在生产者、MQ、消费者中，咱们从 RabbitMQ 和 Kafka 分别来分析一下吧。</p>
-<h3 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h3><p><img src="http://blog.yangxiaozong.com/images/rabbitmq-message-lose.png" alt="rabbitmq-message-lose"><br>
+          <h3 id="APK安装过程"><a href="#APK安装过程" class="headerlink" title="APK安装过程"></a>APK安装过程</h3><p>应用安装涉及到如下几个目录：</p>
+<ul>
+<li><strong>system/app</strong>：系统自带的应用程序，无法删除</li>
+<li><strong>data/app</strong>：用户程序安装的目录，有删除权限。安装时把apk文件复制到此目录</li>
+<li><strong>data/data</strong>：存放应用程序的数据</li>
+<li><strong>data/dalvik-cache</strong>：将apk中的dex文件安装到dalvik-cache目录下</li>
+</ul>
+<p>复制APK安装包到data/app目录下，解压并扫描安装包，把dex文件(Dalvik字节码)保存到dalvik-cache目录，并在data/data目录下创建对应的应用数据目录。</p>
+<hr>
+<h3 id="invalidate-和postInvalidate-的区别"><a href="#invalidate-和postInvalidate-的区别" class="headerlink" title="invalidate()和postInvalidate() 的区别"></a>invalidate()和postInvalidate() 的区别</h3><ul>
+<li><code>invalidate()</code>是用来刷新View的，必须是在UI线程中进行工作。比如在修改某个view的显示时，调用invalidate()才能看到重新绘制的界面。</li>
+<li><code>postInvalidate()</code>在工作者线程中被调用。</li>
+</ul>
+<hr>
+<h3 id="导入外部数据库"><a href="#导入外部数据库" class="headerlink" title="导入外部数据库"></a>导入外部数据库</h3><p>Android系统下数据库应该存放在 <code>/data/data/com.*.*(package name)/</code> 目录下，所以我们需要做的是把已有的数据库传入那个目录下。操作方法是用<code>FileInputStream</code>读取原数据库，再用<code>FileOutputStream</code>把读取到的东西写入到那个目录。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？.html#more" rel="contents">
+              <a class="btn" href="/Android面试题.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+
+<div>
+  
+</div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+<div>
+      
+</div>
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+
+    </footer>
+  </div>
+  
+  
+  
+
+
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/ListView原理及优化.html"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YXZ"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/head.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YXZ的博客"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/ListView原理及优化.html" class="post-title-link" itemprop="url">ListView原理及优化</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-14 09:40:28" itemprop="dateCreated datePublished" datetime="2019-09-14T09:40:28+08:00">2019-09-14</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Android/" itemprop="url" rel="index"><span itemprop="name">Android</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/ListView原理及优化.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/ListView原理及优化.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/ListView原理及优化.html" class="leancloud_visitors" data-flag-title="ListView原理及优化">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>##原理</p>
+<p>ListView的实现离不开Adapter。可以这么理解：ListView中给出了数据来的时候，View如何实现的具体方式，相当于MVC中的V；而Adapter提供了相当于MVC中的C，指挥了ListView的数据加载等行为。</p>
+<p>提一个问题：假设ListView中有10W个条项，那内存中会缓存10W个吗？答案当然是否定的。那么是如何实现的呢？下面这张图可以清晰地解释其中的原理:</p>
+<p><img src="images/android-listview.jpg" alt=""><br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/ListView原理及优化.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2397,7 +2416,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2446,7 +2465,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">109</span>
+                    <span class="site-state-item-count">127</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2487,7 +2506,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2584,7 +2605,37 @@
                     
                       
                     
-                    <span class="site-state-item-count">42</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2599,7 +2650,7 @@
     <h3 class="widget-title" style="text-align: center;">标签云</h3>
     <div id="myCanvasContainer" class="widget tagcloud">
         <canvas width="220" height="220" id="resCanvas" style="width=100%">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Async/">@Async</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/">AOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/">Angular</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/">Centos</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES/">ES</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hystrix/">Hystrix</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jakeson/">Jakeson</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java面试题/">Java面试题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Json/">Json</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/">Mybatis</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/">Springboot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springcloud/">Springcloud</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Websocket/">Websocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Yilia/">Yilia</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lucene/">lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replaceAll/">replaceAll</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia主题/">yilia主题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/懒加载/">懒加载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/扫福字/">扫福字</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/消息队列/">消息队列</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统架构/">系统架构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存技术/">缓存技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自动注入/">自动注入</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">36</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目发布/">项目发布</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高并发/">高并发</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Async/">@Async</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/">AOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/">Angular</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binder/">Binder</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/">Centos</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES/">ES</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event/">Event</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EventBus/">EventBus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Handler/">Handler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hystrix/">Hystrix</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/">Intent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jakeson/">Jakeson</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java面试题/">Java面试题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Json/">Json</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ListView/">ListView</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/">Mybatis</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Service/">Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/">Springboot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springcloud/">Springcloud</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View/">View</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Websocket/">Websocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Window/">Window</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Yilia/">Yilia</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lucene/">lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replaceAll/">replaceAll</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia主题/">yilia主题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/广播/">广播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/懒加载/">懒加载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/扫福字/">扫福字</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推送/">推送</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/消息队列/">消息队列</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统架构/">系统架构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存技术/">缓存技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自动注入/">自动注入</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/进程/">进程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">38</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目发布/">项目发布</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高并发/">高并发</a><span class="tag-list-count">1</span></li></ul>
         </canvas>
     </div>
 </div>

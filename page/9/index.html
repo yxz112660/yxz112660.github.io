@@ -421,7 +421,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/正则表达式排除某两字符之间的替换.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/深入 Hystrix 断路器执行原理.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -441,7 +441,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/正则表达式排除某两字符之间的替换.html" class="post-title-link" itemprop="url">正则表达式排除某两字符之间的替换</a>
+                <a href="/深入 Hystrix 断路器执行原理.html" class="post-title-link" itemprop="url">深入 Hystrix 断路器执行原理</a>
               
             
           </h1>
@@ -466,7 +466,7 @@
                 
               
 
-              <time title="创建时间：2019-01-04 08:08:08" itemprop="dateCreated datePublished" datetime="2019-01-04T08:08:08+08:00">2019-01-04</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
             
 
             
@@ -484,7 +484,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Javascript/" itemprop="url" rel="index"><span itemprop="name">Javascript</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
 
                 
                 
@@ -499,8 +499,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/正则表达式排除某两字符之间的替换.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/正则表达式排除某两字符之间的替换.html" itemprop="commentCount"></span>
+                <a href="/深入 Hystrix 断路器执行原理.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/深入 Hystrix 断路器执行原理.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -508,7 +508,7 @@
 
           
           
-            <span id="/正则表达式排除某两字符之间的替换.html" class="leancloud_visitors" data-flag-title="正则表达式排除某两字符之间的替换">
+            <span id="/深入 Hystrix 断路器执行原理.html" class="leancloud_visitors" data-flag-title="深入 Hystrix 断路器执行原理">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -540,11 +540,16 @@
 
       
         
-          <p>比如我想替换s=”a2bcd<ab2cd>“ 成为: a123bcd<ab2cd>,即只替换&lt;&gt;之外的内容,可使用:<br>s.replaceAll(“2(?=[^\&gt;]*(\&lt;|$))”,123”);</ab2cd></ab2cd></p>
+          <h2 id="深入-Hystrix-断路器执行原理"><a href="#深入-Hystrix-断路器执行原理" class="headerlink" title="深入 Hystrix 断路器执行原理"></a>深入 Hystrix 断路器执行原理</h2><h3 id="RequestVolumeThreshold"><a href="#RequestVolumeThreshold" class="headerlink" title="RequestVolumeThreshold"></a>RequestVolumeThreshold</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">HystrixCommandProperties.Setter()</span><br><span class="line">    .withCircuitBreakerRequestVolumeThreshold(<span class="keyword">int</span>)</span><br></pre></td></tr></table></figure>
+<p>表示在滑动窗口中，至少有多少个请求，才可能触发断路。</p>
+<p>Hystrix 经过断路器的流量超过了一定的阈值，才有可能触发断路。比如说，要求在 10s 内经过断路器的流量必须达到 20 个，而实际经过断路器的流量才 10 个，那么根本不会去判断要不要断路。</p>
+<h3 id="ErrorThresholdPercentage"><a href="#ErrorThresholdPercentage" class="headerlink" title="ErrorThresholdPercentage"></a>ErrorThresholdPercentage</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">HystrixCommandProperties.Setter()</span><br><span class="line">    .withCircuitBreakerErrorThresholdPercentage(<span class="keyword">int</span>)</span><br></pre></td></tr></table></figure>
+<p>表示异常比例达到多少，才会触发断路，默认值是 50(%)。</p>
+<p>如果断路器统计到的异常调用的占比超过了一定的阈值，比如说在 10s 内，经过断路器的流量达到了 30 个，同时其中异常访问的数量也达到了一定的比例，比如 60% 的请求都是异常（报错 / 超时 / reject），就会开启断路。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/正则表达式排除某两字符之间的替换.html#more" rel="contents">
+              <a class="btn" href="/深入 Hystrix 断路器执行原理.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -616,7 +621,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Hibernate +Spring Data JPA + Spring Boot+ Thymeleaf + Junit 懒加载问题.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/消息队列面试场景.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -636,7 +641,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/Hibernate +Spring Data JPA + Spring Boot+ Thymeleaf + Junit 懒加载问题.html" class="post-title-link" itemprop="url">Hibernate +Spring Data JPA + Spring Boot+ Thymeleaf + Junit 懒加载问题</a>
+                <a href="/消息队列面试场景.html" class="post-title-link" itemprop="url">消息队列面试场景</a>
               
             
           </h1>
@@ -661,7 +666,409 @@
                 
               
 
-              <time title="创建时间：2018-12-10 14:40:28" itemprop="dateCreated datePublished" datetime="2018-12-10T14:40:28+08:00">2018-12-10</time>
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/消息队列面试场景.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/消息队列面试场景.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/消息队列面试场景.html" class="leancloud_visitors" data-flag-title="消息队列面试场景">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="消息队列面试场景"><a href="#消息队列面试场景" class="headerlink" title="消息队列面试场景"></a>消息队列面试场景</h2><p><strong>面试官</strong>：你好。</p>
+<p><strong>候选人</strong>：你好。</p>
+<p>（面试官在你的简历上面看到了，呦，有个亮点，你在项目里用过 <code>MQ</code>，比如说你用过 <code>ActiveMQ</code>）</p>
+<p><strong>面试官</strong>：你在系统里用过消息队列吗？（面试官在随和的语气中展开了面试）</p>
+<p><strong>候选人</strong>：用过的（此时感觉没啥）</p>
+<p><strong>面试官</strong>：那你说一下你们在项目里是怎么用消息队列的？</p>
+<p><strong>候选人</strong>：巴拉巴拉，“我们啥啥系统发送个啥啥消息到队列，别的系统来消费啥啥的。比如我们有个订单系统，订单系统每次下一个新的订单的时候，就会发送一条消息到 <code>ActiveMQ</code> 里面去，后台有个库存系统负责获取消息然后更新库存。”<br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/消息队列面试场景.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+
+<div>
+  
+</div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+<div>
+      
+</div>
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+
+    </footer>
+  </div>
+  
+  
+  
+
+
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/深入 Hystrix 线程池隔离与接口限流.html"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YXZ"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/head.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YXZ的博客"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/深入 Hystrix 线程池隔离与接口限流.html" class="post-title-link" itemprop="url">深入 Hystrix 线程池隔离与接口限流</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-04 09:40:28" itemprop="dateCreated datePublished" datetime="2019-03-04T09:40:28+08:00">2019-03-04</time>
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/面试题/" itemprop="url" rel="index"><span itemprop="name">面试题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/深入 Hystrix 线程池隔离与接口限流.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/深入 Hystrix 线程池隔离与接口限流.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/深入 Hystrix 线程池隔离与接口限流.html" class="leancloud_visitors" data-flag-title="深入 Hystrix 线程池隔离与接口限流">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="深入-Hystrix-线程池隔离与接口限流"><a href="#深入-Hystrix-线程池隔离与接口限流" class="headerlink" title="深入 Hystrix 线程池隔离与接口限流"></a>深入 Hystrix 线程池隔离与接口限流</h2><p>前面讲了 Hystrix 的 request cache 请求缓存、fallback 优雅降级、circuit breaker 断路器快速熔断，这一讲，我们来详细说说 Hystrix 的线程池隔离与接口限流。</p>
+<p><img src="http://blog.yangxiaozong.com/images/hystrix-process.png" alt="hystrix-process"></p>
+<p>Hystrix 通过判断线程池或者信号量是否已满，超出容量的请求，直接 Reject 走降级，从而达到限流的作用。</p>
+<p>限流是限制对后端的服务的访问量，比如说你对 MySQL、Redis、Zookeeper 以及其它各种后端中间件的资源的访问的限制，其实是为了避免过大的流量直接打死后端的服务。</p>
+<h3 id="线程池隔离技术的设计"><a href="#线程池隔离技术的设计" class="headerlink" title="线程池隔离技术的设计"></a>线程池隔离技术的设计</h3><p>Hystrix 采用了 Bulkhead Partition 舱壁隔离技术，来将外部依赖进行资源隔离，进而避免任何外部依赖的故障导致本服务崩溃。</p>
+<p><strong>舱壁隔离</strong>，是说将船体内部空间区隔划分成若干个隔舱，一旦某几个隔舱发生破损进水，水流不会在其间相互流动，如此一来船舶在受损时，依然能具有足够的浮力和稳定性，进而减低立即沉船的危险。</p>
+<p><img src="http://blog.yangxiaozong.com/images/bulkhead-partition.jpg" alt="bulkhead-partition"><br>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/深入 Hystrix 线程池隔离与接口限流.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+
+<div>
+  
+</div>
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+<div>
+      
+</div>
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+
+
+    </footer>
+  </div>
+  
+  
+  
+
+
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/为什么说Java中只有值传递.html"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YXZ"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/head.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YXZ的博客"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/为什么说Java中只有值传递.html" class="post-title-link" itemprop="url">为什么说Java中只有值传递</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-02-20 15:40:28" itemprop="dateCreated datePublished" datetime="2019-02-20T15:40:28+08:00">2019-02-20</time>
             
 
             
@@ -694,8 +1101,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Hibernate +Spring Data JPA + Spring Boot+ Thymeleaf + Junit 懒加载问题.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Hibernate +Spring Data JPA + Spring Boot+ Thymeleaf + Junit 懒加载问题.html" itemprop="commentCount"></span>
+                <a href="/为什么说Java中只有值传递.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/为什么说Java中只有值传递.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -703,7 +1110,7 @@
 
           
           
-            <span id="/Hibernate +Spring Data JPA + Spring Boot+ Thymeleaf + Junit 懒加载问题.html" class="leancloud_visitors" data-flag-title="Hibernate +Spring Data JPA + Spring Boot+ Thymeleaf + Junit 懒加载问题">
+            <span id="/为什么说Java中只有值传递.html" class="leancloud_visitors" data-flag-title="为什么说Java中只有值传递">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -735,12 +1142,11 @@
 
       
         
-          <p>在做junit这种非web容器使用的时候，出现如下错误<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">org.hibernate.LazyInitializationException: failed to lazily initialize a collection of role: ......., no session or session was closed</span><br></pre></td></tr></table></figure></p>
-<p>解决办法：<br>
+          <p>对于初学者来说，要想把这个问题回答正确，是比较难的。在第二天整理答案的时候，我发现我竟然无法通过简单的语言把这个事情描述的很容易理解，遗憾的是，我也没有在网上找到哪篇文章可以把这个事情讲解的通俗易懂。所以，就有了我写这篇文章的初衷。这篇文章中，我从什么是方法的实际参数和形式参数开始，给你讲解为什么说Java中只有值传递。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Hibernate +Spring Data JPA + Spring Boot+ Thymeleaf + Junit 懒加载问题.html#more" rel="contents">
+              <a class="btn" href="/为什么说Java中只有值传递.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -812,7 +1218,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/spring boot+maven+linux项目发布.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/26个Spring Boot小知识.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -832,7 +1238,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/spring boot+maven+linux项目发布.html" class="post-title-link" itemprop="url">spring boot+maven+linux项目发布</a>
+                <a href="/26个Spring Boot小知识.html" class="post-title-link" itemprop="url">26个Spring Boot小知识</a>
               
             
           </h1>
@@ -857,7 +1263,7 @@
                 
               
 
-              <time title="创建时间：2018-12-07 14:40:28" itemprop="dateCreated datePublished" datetime="2018-12-07T14:40:28+08:00">2018-12-07</time>
+              <time title="创建时间：2019-02-20 15:40:28" itemprop="dateCreated datePublished" datetime="2019-02-20T15:40:28+08:00">2019-02-20</time>
             
 
             
@@ -890,8 +1296,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/spring boot+maven+linux项目发布.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/spring boot+maven+linux项目发布.html" itemprop="commentCount"></span>
+                <a href="/26个Spring Boot小知识.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/26个Spring Boot小知识.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -899,7 +1305,7 @@
 
           
           
-            <span id="/spring boot+maven+linux项目发布.html" class="leancloud_visitors" data-flag-title="spring boot+maven+linux项目发布">
+            <span id="/26个Spring Boot小知识.html" class="leancloud_visitors" data-flag-title="26个Spring Boot小知识">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -931,17 +1337,11 @@
 
       
         
-          <h3 id="项目打包"><a href="#项目打包" class="headerlink" title="项目打包"></a>项目打包</h3><p>不运行test文件打包</p>
-<p>mvn install -Dmaven.test.skip=true</p>
-<p>此命令需要配置mvn环境变量</p>
-<p>变量名：MAVEN_HOME</p>
-<p>变量值：E:\apache-maven-3.2.3</p>
-<p>变量名：Path</p>
-<p>变量值：;%MVN_HOME%\bin</p>
+          <h3 id="1、什么是-Spring-Boot？"><a href="#1、什么是-Spring-Boot？" class="headerlink" title="1、什么是 Spring Boot？"></a>1、什么是 Spring Boot？</h3><p>Spring Boot是spring开源组织下的子项目，它是spring的升级版，简化了使用难度，简化了繁琐的配置，提供了多多种启动器，让我们更容易上手使用<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/spring boot+maven+linux项目发布.html#more" rel="contents">
+              <a class="btn" href="/26个Spring Boot小知识.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1013,7 +1413,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Spring Boot异步调用@Async.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Java工程师成长之路.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1033,7 +1433,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/Spring Boot异步调用@Async.html" class="post-title-link" itemprop="url">Spring Boot异步调用@Async</a>
+                <a href="/Java工程师成长之路.html" class="post-title-link" itemprop="url">Java工程师成长之路</a>
               
             
           </h1>
@@ -1058,204 +1458,7 @@
                 
               
 
-              <time title="创建时间：2018-09-06 14:40:28" itemprop="dateCreated datePublished" datetime="2018-09-06T14:40:28+08:00">2018-09-06</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Springboot/" itemprop="url" rel="index"><span itemprop="name">Springboot</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/Spring Boot异步调用@Async.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Spring Boot异步调用@Async.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/Spring Boot异步调用@Async.html" class="leancloud_visitors" data-flag-title="Spring Boot异步调用@Async">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="使用背景"><a href="#使用背景" class="headerlink" title="使用背景"></a>使用背景</h3><p>在日常开发的项目中，当访问其他人的接口较慢或者做耗时任务时，</p>
-<p>不想程序一直卡在耗时任务上，想程序能够并行执行，</p>
-<p>我们可以使用多线程来并行的处理任务，也可以使用spring提供的异步处理方式@Async。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/Spring Boot异步调用@Async.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-
-<div>
-  
-</div>
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-<div>
-      
-</div>
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-
-    </footer>
-  </div>
-  
-  
-  
-
-
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Spring @Autowired注解在utils静态工具类非controller普通类中使.html"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YXZ"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/head.jpg"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YXZ的博客"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/Spring @Autowired注解在utils静态工具类非controller普通类中使.html" class="post-title-link" itemprop="url">Spring @Autowired注解在utils静态工具类非controller普通类中使</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-09-06 14:40:28" itemprop="dateCreated datePublished" datetime="2018-09-06T14:40:28+08:00">2018-09-06</time>
+              <time title="创建时间：2019-02-20 15:40:28" itemprop="dateCreated datePublished" datetime="2019-02-20T15:40:28+08:00">2019-02-20</time>
             
 
             
@@ -1288,8 +1491,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Spring @Autowired注解在utils静态工具类非controller普通类中使.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Spring @Autowired注解在utils静态工具类非controller普通类中使.html" itemprop="commentCount"></span>
+                <a href="/Java工程师成长之路.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Java工程师成长之路.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1297,7 +1500,7 @@
 
           
           
-            <span id="/Spring @Autowired注解在utils静态工具类非controller普通类中使.html" class="leancloud_visitors" data-flag-title="Spring @Autowired注解在utils静态工具类非controller普通类中使">
+            <span id="/Java工程师成长之路.html" class="leancloud_visitors" data-flag-title="Java工程师成长之路">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1329,12 +1532,17 @@
 
       
         
-          <p>说明:我们经常要使用@Autowired注解注入Service或者Mapper接口，在service层中注入其它的service接口或者mapper接口都是可以的，但是如果我们要在我们自己封装的Utils工具类中或者非controller普通类中使用@Autowired注解注入Service或者Mapper接口，直接注入是不可能的，因为Utils使用了静态的方法，我们是无法直接使用非静态接口的，当我们遇到这样的问题，我们就要想办法解决了。</p>
-<p>我们有两种方法解决这个问题，第一种是注解方式，第二种是xml配置方式，下面是我们在utils中使用@Autowired注解的方法：</p>
+          <p>内容改编自：<a href="https://mp.weixin.qq.com/s/hlAn6NPR1w-MAwqghX1FPg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/hlAn6NPR1w-MAwqghX1FPg</a></p>
+<h3 id="基础篇"><a href="#基础篇" class="headerlink" title="基础篇"></a>基础篇</h3><h4 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h4><p><a href="http://www.yangxiaozong.com/什么是面向对象.html">面向对象、面向过程、面向对象的三大基本特征和五大基本原则</a></p>
+<p><a href="http://www.yangxiaozong.com/Java语言是平台无关的.html">Java如何实现的平台无关</a></p>
+<p><a href="http://www.yangxiaozong.com/为什么说Java中只有值传递.html">为什么说 Java 中只有值传递</a></p>
+<p><a href="http://www.yangxiaozong.com/继承、多态及方法重写、重载.html">继承、多态及方法重写、重载</a></p>
+<p><a href="http://www.yangxiaozong.com/什么是构造函数.html">什么是构造函数</a></p>
+<p><a href="http://www.yangxiaozong.com/成员变量和局部变量和成员方法.html">成员变量和局部变量和成员方法</a></p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Spring @Autowired注解在utils静态工具类非controller普通类中使.html#more" rel="contents">
+              <a class="btn" href="/Java工程师成长之路.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1406,7 +1614,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/微信小程序-下拉刷新与加载更多.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Java语言是平台无关的.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1426,7 +1634,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/微信小程序-下拉刷新与加载更多.html" class="post-title-link" itemprop="url">微信小程序-下拉刷新与加载更多</a>
+                <a href="/Java语言是平台无关的.html" class="post-title-link" itemprop="url">Java语言是平台无关的</a>
               
             
           </h1>
@@ -1451,203 +1659,7 @@
                 
               
 
-              <time title="创建时间：2018-08-28 14:40:28" itemprop="dateCreated datePublished" datetime="2018-08-28T14:40:28+08:00">2018-08-28</time>
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/小程序/" itemprop="url" rel="index"><span itemprop="name">小程序</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/微信小程序-下拉刷新与加载更多.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/微信小程序-下拉刷新与加载更多.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-            <span id="/微信小程序-下拉刷新与加载更多.html" class="leancloud_visitors" data-flag-title="微信小程序-下拉刷新与加载更多">
-              <span class="post-meta-divider">|</span>
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              
-                <span class="post-meta-item-text">阅读次数：</span>
-              
-                <span class="leancloud-visitors-count"></span>
-            </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="下拉刷新"><a href="#下拉刷新" class="headerlink" title="下拉刷新"></a>下拉刷新</h3><h4 id="调用系统的API，系统有提供下拉刷新的API接口"><a href="#调用系统的API，系统有提供下拉刷新的API接口" class="headerlink" title="调用系统的API，系统有提供下拉刷新的API接口"></a>调用系统的API，系统有提供下拉刷新的API接口</h4><h5 id="home-json-参数配置"><a href="#home-json-参数配置" class="headerlink" title="home.json 参数配置"></a>home.json 参数配置</h5><figure class="highlight"><table><tr><td class="code"><pre><span class="line">"enablePullDownRefresh": true</span><br></pre></td></tr></table></figure>
-<p>我们哪个页面需要下拉刷新，就在哪个页面对应的xxx.json文件配置上面属性,这个属性从字面意思也可以知道，是否允许下拉刷新，当然，如何你不想一个个配置允许下拉刷新，你可以直接在全局变量app.json的window里面配置上面这个属性，这样整个项目都允许下拉刷新了,这个一定要加的，因为系统默认是不具备下拉刷新功能的 </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/微信小程序-下拉刷新与加载更多.html#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-
-<div>
-  
-</div>
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-<div>
-      
-</div>
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-
-
-    </footer>
-  </div>
-  
-  
-  
-
-
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Jackson注意事项.html"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="YXZ"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/head.jpg"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="YXZ的博客"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/Jackson注意事项.html" class="post-title-link" itemprop="url">Jackson注意事项</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-07-18 14:40:28" itemprop="dateCreated datePublished" datetime="2018-07-18T14:40:28+08:00">2018-07-18</time>
+              <time title="创建时间：2019-02-20 15:40:28" itemprop="dateCreated datePublished" datetime="2019-02-20T15:40:28+08:00">2019-02-20</time>
             
 
             
@@ -1680,8 +1692,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Jackson注意事项.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Jackson注意事项.html" itemprop="commentCount"></span>
+                <a href="/Java语言是平台无关的.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Java语言是平台无关的.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1689,7 +1701,7 @@
 
           
           
-            <span id="/Jackson注意事项.html" class="leancloud_visitors" data-flag-title="Jackson注意事项">
+            <span id="/Java语言是平台无关的.html" class="leancloud_visitors" data-flag-title="Java语言是平台无关的">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1721,12 +1733,11 @@
 
       
         
-          <h3 id="重命名属性"><a href="#重命名属性" class="headerlink" title="重命名属性"></a>重命名属性</h3><p>json数据:<br><figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123; <span class="attr">"firstName"</span> : <span class="string">"Bob"</span> &#125;</span><br></pre></td></tr></table></figure></p>
-<p>实体使用想使用_first_name<br><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Name</span> </span>&#123;  </span><br><span class="line">  <span class="meta">@JsonProperty</span>(<span class="string">"firstName"</span>)  </span><br><span class="line">  <span class="keyword">public</span> String _first_name;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+          <h3 id="平台与机器指令"><a href="#平台与机器指令" class="headerlink" title="平台与机器指令"></a>平台与机器指令</h3><p> 无论哪种编程语言编写的应用程序都需要经过操作系统和处理器来完成程序的运行，因此这里的平台是又OS和CPU所构成的，所谓的平台无关就是指软件的运行不会因操作系统、处理器的变化而无法运行或出现运行错误。 </p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Jackson注意事项.html#more" rel="contents">
+              <a class="btn" href="/Java语言是平台无关的.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1798,7 +1809,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/一条sql查询多张不同的表.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/什么是构造函数.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -1818,7 +1829,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/一条sql查询多张不同的表.html" class="post-title-link" itemprop="url">一条sql查询多张不同的表</a>
+                <a href="/什么是构造函数.html" class="post-title-link" itemprop="url">什么是构造函数</a>
               
             
           </h1>
@@ -1843,7 +1854,7 @@
                 
               
 
-              <time title="创建时间：2018-06-15 14:40:28" itemprop="dateCreated datePublished" datetime="2018-06-15T14:40:28+08:00">2018-06-15</time>
+              <time title="创建时间：2019-02-20 15:40:28" itemprop="dateCreated datePublished" datetime="2019-02-20T15:40:28+08:00">2019-02-20</time>
             
 
             
@@ -1861,7 +1872,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mybatis/" itemprop="url" rel="index"><span itemprop="name">Mybatis</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
 
                 
                 
@@ -1876,8 +1887,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/一条sql查询多张不同的表.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/一条sql查询多张不同的表.html" itemprop="commentCount"></span>
+                <a href="/什么是构造函数.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/什么是构造函数.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1885,7 +1896,7 @@
 
           
           
-            <span id="/一条sql查询多张不同的表.html" class="leancloud_visitors" data-flag-title="一条sql查询多张不同的表">
+            <span id="/什么是构造函数.html" class="leancloud_visitors" data-flag-title="什么是构造函数">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -1917,12 +1928,12 @@
 
       
         
-          <p>场景说明：</p>
-<p>有A、B、C、D、E共5张表，其中A表为主表，BCDE同为子表，A表有一个字段关联着BCDE表的主键id，BCDE表的字段除了主键id都不相同，此时我们需要查询A表数据同时关联子表查询出其子表的所有字段信息，因为不清楚关联子表具体是谁，所以您可能需要如下骚操作</p>
+          <h3 id="什么是构造函数"><a href="#什么是构造函数" class="headerlink" title="什么是构造函数"></a>什么是构造函数</h3><p>java构造函数，也叫构造方法，是java中一种特殊的函数。函数名与相同，无返回值。</p>
+<p>作用：一般用来初始化成员属性和成员方法的，即new对象产生后，就调用了对象了属性和方法。<br>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/一条sql查询多张不同的表.html#more" rel="contents">
+              <a class="btn" href="/什么是构造函数.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1994,7 +2005,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/Mybatis插入数据后返回主键.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/成员变量和局部变量和成员方法.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -2014,7 +2025,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/Mybatis插入数据后返回主键.html" class="post-title-link" itemprop="url">Mybatis插入数据后返回主键</a>
+                <a href="/成员变量和局部变量和成员方法.html" class="post-title-link" itemprop="url">成员变量和局部变量</a>
               
             
           </h1>
@@ -2039,7 +2050,7 @@
                 
               
 
-              <time title="创建时间：2018-06-15 14:40:28" itemprop="dateCreated datePublished" datetime="2018-06-15T14:40:28+08:00">2018-06-15</time>
+              <time title="创建时间：2019-02-20 15:40:28" itemprop="dateCreated datePublished" datetime="2019-02-20T15:40:28+08:00">2019-02-20</time>
             
 
             
@@ -2057,7 +2068,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mybatis/" itemprop="url" rel="index"><span itemprop="name">Mybatis</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
 
                 
                 
@@ -2072,8 +2083,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Mybatis插入数据后返回主键.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/Mybatis插入数据后返回主键.html" itemprop="commentCount"></span>
+                <a href="/成员变量和局部变量和成员方法.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/成员变量和局部变量和成员方法.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2081,7 +2092,7 @@
 
           
           
-            <span id="/Mybatis插入数据后返回主键.html" class="leancloud_visitors" data-flag-title="Mybatis插入数据后返回主键">
+            <span id="/成员变量和局部变量和成员方法.html" class="leancloud_visitors" data-flag-title="成员变量和局部变量">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -2113,11 +2124,12 @@
 
       
         
-          <h3 id="1-插入一条记录后返回主键id"><a href="#1-插入一条记录后返回主键id" class="headerlink" title="1.插入一条记录后返回主键id"></a>1.插入一条记录后返回主键id</h3><p>添加 useGeneratedKeys=”true” keyProperty=”id”，如下<br><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;insert id=&quot;insert&quot; parameterType=&quot;yxz.niit.com.Yxz&quot; useGeneratedKeys=&quot;true&quot; keyProperty=&quot;id&quot;&gt;</span><br><span class="line">插入语句略</span><br><span class="line">&lt;/insert&gt;</span><br></pre></td></tr></table></figure></p>
+          <h3 id="成员变量和局部变量简述"><a href="#成员变量和局部变量简述" class="headerlink" title="成员变量和局部变量简述"></a>成员变量和局部变量简述</h3><p>在Java语言里，根据定义变量位置的不同，可以将变量分成两大类：成员变量和局部变量。二者的运行机制存在较大差异。</p>
+<p><img src="http://blog.yangxiaozong.com/images/15520294311281094220-20170320200705674-355864459.png" alt=""></p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/Mybatis插入数据后返回主键.html#more" rel="contents">
+              <a class="btn" href="/成员变量和局部变量和成员方法.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2189,7 +2201,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/mybatis中resultMap使用之返回分组数据.html"/>
+    <link itemprop="mainEntityOfPage" href="http://www.yangxiaozong.com/什么是面向对象.html"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YXZ"/>
@@ -2209,7 +2221,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/mybatis中resultMap使用之返回分组数据.html" class="post-title-link" itemprop="url">mybatis中resultMap使用之返回分组数据</a>
+                <a href="/什么是面向对象.html" class="post-title-link" itemprop="url">什么是面向对象</a>
               
             
           </h1>
@@ -2234,7 +2246,7 @@
                 
               
 
-              <time title="创建时间：2018-06-15 14:40:28" itemprop="dateCreated datePublished" datetime="2018-06-15T14:40:28+08:00">2018-06-15</time>
+              <time title="创建时间：2019-02-20 15:40:28" itemprop="dateCreated datePublished" datetime="2019-02-20T15:40:28+08:00">2019-02-20</time>
             
 
             
@@ -2252,7 +2264,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Mybatis/" itemprop="url" rel="index"><span itemprop="name">Mybatis</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a></span>
 
                 
                 
@@ -2267,8 +2279,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/mybatis中resultMap使用之返回分组数据.html#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/mybatis中resultMap使用之返回分组数据.html" itemprop="commentCount"></span>
+                <a href="/什么是面向对象.html#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/什么是面向对象.html" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2276,7 +2288,7 @@
 
           
           
-            <span id="/mybatis中resultMap使用之返回分组数据.html" class="leancloud_visitors" data-flag-title="mybatis中resultMap使用之返回分组数据">
+            <span id="/什么是面向对象.html" class="leancloud_visitors" data-flag-title="什么是面向对象">
               <span class="post-meta-divider">|</span>
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
@@ -2308,14 +2320,12 @@
 
       
         
-          <h3 id="1-引言"><a href="#1-引言" class="headerlink" title="1.引言"></a>1.引言</h3><p>resultMap是mybatis最重要的强大元素。通过描述数据的关系结构，</p>
-<p>将结果集进行映射到java类或javabean中，</p>
-<p>达到结果集复杂处理的目的。本文解决的主要问题的分组数据的返回</p>
-<h3 id="2-问题"><a href="#2-问题" class="headerlink" title="2.问题"></a>2.问题</h3><p>假设有如下sql查询语句<br><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, otherId <span class="keyword">from</span> mytalbe</span><br></pre></td></tr></table></figure></p>
+          <h3 id="面向过程"><a href="#面向过程" class="headerlink" title="面向过程"></a>面向过程</h3><p>面向过程就是分析出解决问题所需要的步骤，然后用函数把这些步骤一步一步实现，使用的时候一个一个依次调用就可以了。</p>
+<p>例如五子棋，面向过程的设计思路就是首先分析问题的步骤：1、开始游戏，2、黑子先走，3、绘制画面，4、判断输赢，5、轮到白子，6、绘制画面，7、判断输赢，8、返回步骤2，9、输出最后结果。把上面每个步骤用不同的方法来实现。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/mybatis中resultMap使用之返回分组数据.html#more" rel="contents">
+              <a class="btn" href="/什么是面向对象.html#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2387,7 +2397,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2436,7 +2446,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">109</span>
+                    <span class="site-state-item-count">127</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2477,7 +2487,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">14</span>
+                      
+                    
+                    <span class="site-state-item-count">15</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2574,7 +2586,37 @@
                     
                       
                     
-                    <span class="site-state-item-count">42</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">57</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2589,7 +2631,7 @@
     <h3 class="widget-title" style="text-align: center;">标签云</h3>
     <div id="myCanvasContainer" class="widget tagcloud">
         <canvas width="220" height="220" id="resCanvas" style="width=100%">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Async/">@Async</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/">AOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/">Angular</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/">Centos</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES/">ES</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hystrix/">Hystrix</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jakeson/">Jakeson</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java面试题/">Java面试题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Json/">Json</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/">Mybatis</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/">Springboot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springcloud/">Springcloud</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Websocket/">Websocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Yilia/">Yilia</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lucene/">lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replaceAll/">replaceAll</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia主题/">yilia主题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/懒加载/">懒加载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/扫福字/">扫福字</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/消息队列/">消息队列</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统架构/">系统架构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存技术/">缓存技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自动注入/">自动注入</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">36</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目发布/">项目发布</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高并发/">高并发</a><span class="tag-list-count">1</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Async/">@Async</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AOP/">AOP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Activity/">Activity</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android/">Android</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/">Angular</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binder/">Binder</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Canvas/">Canvas</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Centos/">Centos</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES/">ES</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Event/">Event</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/EventBus/">EventBus</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Handler/">Handler</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hystrix/">Hystrix</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Intent/">Intent</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jakeson/">Jakeson</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java面试题/">Java面试题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Json/">Json</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/">Linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ListView/">ListView</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Maven/">Maven</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mybatis/">Mybatis</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/">Mysql</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Service/">Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/">Spring</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springboot/">Springboot</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Springcloud/">Springcloud</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/View/">View</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Websocket/">Websocket</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Window/">Window</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Yilia/">Yilia</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dubbo/">dubbo</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/lucene/">lucene</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/">redis</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/replaceAll/">replaceAll</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yilia主题/">yilia主题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/分布式/">分布式</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/小程序/">小程序</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/广播/">广播</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微服务/">微服务</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/性能优化/">性能优化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/懒加载/">懒加载</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/扫福字/">扫福字</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/推送/">推送</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/插件/">插件</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/消息队列/">消息队列</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/系统架构/">系统架构</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/缓存技术/">缓存技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自动注入/">自动注入</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/进程/">进程</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/面试题/">面试题</a><span class="tag-list-count">38</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/项目发布/">项目发布</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/高并发/">高并发</a><span class="tag-list-count">1</span></li></ul>
         </canvas>
     </div>
 </div>
