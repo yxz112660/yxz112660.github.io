@@ -1,5 +1,5 @@
 # site 前缀
-prefixName: 多元宇宙
+prefixName: 源空间
 # site 名
 siteName: yangxiaozong
 # TODO 站点的favicon
@@ -16,7 +16,7 @@ pjax: 1
 # 1开启
 mathjax: 0
 # TODO 公告
-notice: 宇宙升级中............ing
+notice: 源空间升级中............ing
 # TODO 这个是什么
 lazyloadImg: https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg
 
