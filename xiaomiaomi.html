@@ -85,10 +85,10 @@ h1{
         document.getElementById('word').innerHTML = getTime()+msg;
         seq++;
         if (seq >= str.length&&seq !=-1) {
-            seq=-1;
+            seq=-1
             window.open("wish.html")
+            return;
         };
-        return;
     }
 
 
