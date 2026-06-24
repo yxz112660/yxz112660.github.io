@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, maximum-scale=1.5">
+  <title>萌芽计划创作者数据看板 | Excel 数据分析报表</title>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: #f5f7fb;
+      font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1400px;
+      width: 100%;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    h1 span {
+      background: #e0e7ff;
+      color: #4338ca;
+      font-size: 1rem;
+      padding: 0.2rem 0.8rem;
+      border-radius: 20px;
+    }
+    .upload-card {
+      background: white;
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .upload-area {
+      flex: 2;
+      min-width: 280px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    input[type="file"] {
+      border: 1px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 0.8rem 1rem;
+      background: #f8fafc;
+      font-size: 0.95rem;
+      color: #334155;
+      cursor: pointer;
+      width: 100%;
+      max-width: 320px;
+    }
+    .file-name {
+      font-weight: 500;
+      color: #0f172a;
+      background: #f1f5f9;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 4px 10px rgba(37,99,235,0.3);
+      letter-spacing: 0.3px;
+    }
+    button:hover {
+      background: #1d4ed8;
+      box-shadow: 0 6px 14px rgba(37,99,235,0.4);
+      transform: translateY(-1px);
+    }
+    button.secondary {
+      background: white;
+      color: #1e293b;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    button.secondary:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .stat-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.3rem 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      border: 1px solid #f1f5f9;
+    }
+    .stat-label {
+      font-size: 0.85rem;
+      color: #64748b;
+      font-weight: 500;
+    }
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.2;
+    }
+    .calendar-section {
+      background: white;
+      border-radius: 24px;
+      padding: 1.8rem;
+      margin-top: 2rem;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+    }
+    .month-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .month-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+      text-align: center;
+    }
+    .day-name {
+      font-weight: 600;
+      color: #64748b;
+      font-size: 0.8rem;
+      padding-bottom: 0.5rem;
+    }
+    .day-cell {
+      aspect-ratio: 1 / 1;
+      background: #f8fafc;
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      color: #334155;
+      cursor: pointer;
+      transition: 0.2s;
+      border: 1px solid transparent;
+      position: relative;
+      font-size: 0.9rem;
+    }
+    .day-cell.has-data {
+      background: #eef2ff;
+      border-color: #c7d2fe;
+      font-weight: 600;
+      color: #3730a3;
+    }
+    .day-cell:hover {
+      background: #ddd6fe;
+      transform: scale(0.96);
+    }
+    .day-revenue {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #2563eb;
+      margin-top: 2px;
+    }
+    .day-low-count {
+      font-size: 0.6rem;
+      font-weight: 600;
+      color: #dc2626;
+      margin-top: 1px;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(4px);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: white;
+      border-radius: 24px;
+      padding: 1.8rem;
+      max-width: 750px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #64748b;
+      line-height: 1;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    th {
+      text-align: left;
+      background: #f8fafc;
+      padding: 0.7rem;
+      font-weight: 600;
+    }
+    td {
+      padding: 0.6rem 0.7rem;
+      border-bottom: 1px solid #e9eef2;
+    }
+    .low-tag {
+      color: #b91c1c;
+      background: #fee2e2;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-left: 0.4rem;
+    }
+    .warn-tag {
+      color: #b91c1c;
+      background: #fff3cd;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-left: 0.4rem;
+    }
+    .empty-message {
+      text-align: center;
+      padding: 2rem;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>
+    📊 萌芽计划创作者数据看板
+    <span>无尽冬日-YYDS、香香女孩(无尽冬日)制作（如果觉得好用、可以帮我俩视频点点赞）</span>
+  </h1>
+
+  <div class="upload-card">
+    <div class="upload-area">
+      <input type="file" id="excelUpload" accept=".xlsx, .xls, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+      <span id="currentFileName" class="file-name">未选择文件</span>
+    </div>
+    <button id="analyzeBtn">📋 开始分析</button>
+    <button id="clearCacheBtn" class="secondary">🗑️ 清除缓存</button>
+  </div>
+
+  <div class="stats-grid" id="statsContainer"></div>
+
+  <div class="calendar-section" id="calendarSection">
+    <div class="month-header">
+      <span class="month-title" id="monthDisplay">📅 收益日历</span>
+      <div style="display: flex; gap:0.5rem;">
+        <button id="prevMonthBtn" class="secondary" style="padding:0.4rem 1rem;">◀</button>
+        <button id="nextMonthBtn" class="secondary" style="padding:0.4rem 1rem;">▶</button>
+      </div>
+    </div>
+    <div class="calendar-grid" id="calendarDaysContainer"></div>
+  </div>
+</div>
+
+<div class="modal" id="dayModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modalDateTitle">详细数据</h3>
+      <button class="close-btn" id="closeModalBtn">&times;</button>
+    </div>
+    <div id="modalTableContainer" style="overflow-x: auto;">
+      <table id="detailTable">
+        <thead>
+           <tr><th>作品名称</th><th>播放量</th><th>点赞量</th><th>有效播放量</th><th>收益</th><th>寒冬之星</th><th>标记</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    let currentData = [];
+    let currentFileName = '';
+    let calendarYear = new Date().getFullYear();
+    let calendarMonth = new Date().getMonth() + 1;
+
+    const fileInput = document.getElementById('excelUpload');
+    const fileNameSpan = document.getElementById('currentFileName');
+    const analyzeBtn = document.getElementById('analyzeBtn');
+    const clearCacheBtn = document.getElementById('clearCacheBtn');
+    const statsContainer = document.getElementById('statsContainer');
+    const monthDisplay = document.getElementById('monthDisplay');
+    const calendarDaysContainer = document.getElementById('calendarDaysContainer');
+    const prevMonthBtn = document.getElementById('prevMonthBtn');
+    const nextMonthBtn = document.getElementById('nextMonthBtn');
+    const dayModal = document.getElementById('dayModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modalDateTitle = document.getElementById('modalDateTitle');
+    const detailTableBody = document.querySelector('#detailTable tbody');
+
+    function parseExcelData(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          try {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const firstSheet = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheet];
+            const jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, defval: '' });
+            if (jsonData.length < 2) {
+              reject(new Error('Excel至少需要包含表头与数据行'));
+              return;
+            }
+            const headers = jsonData[0].map(h => String(h).trim());
+            const rows = jsonData.slice(1).filter(row => row.some(cell => cell !== ''));
+            
+            const colMap = {
+              name: headers.findIndex(h => h.includes('作品名称')),
+              publishTime: headers.findIndex(h => h.includes('发布时间')),
+              genre: headers.findIndex(h => h.includes('体载') || h.includes('体裁')),
+              status: headers.findIndex(h => h.includes('审核状态')),
+              plays: headers.findIndex(h => h.includes('播放量') && !h.includes('平均')),
+              completionRate: headers.findIndex(h => h.includes('完播率') && !h.includes('5s')),
+              completion5s: headers.findIndex(h => h.includes('5s完播率')),
+              coverClick: headers.findIndex(h => h.includes('封面点击率')),
+              jump2s: headers.findIndex(h => h.includes('2s跳出率')),
+              avgPlayTime: headers.findIndex(h => h.includes('平均播放时间')),
+              likes: headers.findIndex(h => h.includes('点赞量')),
+              shares: headers.findIndex(h => h.includes('分享量')),
+              comments: headers.findIndex(h => h.includes('评论量')),
+              favorites: headers.findIndex(h => h.includes('收藏量')),
+              homepageVisits: headers.findIndex(h => h.includes('主页访问量')),
+              fansIncrease: headers.findIndex(h => h.includes('粉丝增量'))
+            };
+
+            const parsed = rows.map(row => {
+              const getVal = (idx) => row[idx] !== undefined ? row[idx] : '';
+              return {
+                name: String(getVal(colMap.name) || ''),
+                publishTime: String(getVal(colMap.publishTime) || ''),
+                genre: String(getVal(colMap.genre) || ''),
+                status: String(getVal(colMap.status) || ''),
+                plays: parseFloat(getVal(colMap.plays)) || 0,
+                completionRate: getVal(colMap.completionRate),
+                completion5s: getVal(colMap.completion5s),
+                coverClick: getVal(colMap.coverClick),
+                jump2s: getVal(colMap.jump2s),
+                avgPlayTime: getVal(colMap.avgPlayTime),
+                likes: parseFloat(getVal(colMap.likes)) || 0,
+                shares: parseFloat(getVal(colMap.shares)) || 0,
+                comments: parseFloat(getVal(colMap.comments)) || 0,
+                favorites: parseFloat(getVal(colMap.favorites)) || 0,
+                homepageVisits: parseFloat(getVal(colMap.homepageVisits)) || 0,
+                fansIncrease: parseFloat(getVal(colMap.fansIncrease)) || 0,
+              };
+            });
+            resolve(parsed);
+          } catch (err) {
+            reject(err);
+          }
+        };
+        reader.onerror = () => reject(new Error('文件读取失败'));
+        reader.readAsArrayBuffer(file);
+      });
+    }
+
+    function processPublicData(rawData) {
+      return rawData
+        .filter(item => item.status === '公开')
+        .map(item => {
+          const plays = item.plays || 0;
+          const likes = item.likes || 0;
+          let effectivePlays = 0;
+          if (plays < 1000) {
+            effectivePlays = 0;
+          } else if (plays > likes * 100) {
+            effectivePlays = likes * 100;
+          } else {
+            effectivePlays = plays;
+          }
+          const likePlayRatio = plays > 0 ? (likes / plays) : 0;
+          let revenue = 0;
+          if (effectivePlays === 0) {
+            revenue = 8;
+          } else {
+            revenue = (effectivePlays / 1000) * 8;
+          }
+          revenue = Math.round(revenue * 100) / 100;
+          const winterStar = Math.round(revenue * 13 * 100) / 100;
+          const isLowPlay = plays < 1000;
+          
+          return {
+            ...item,
+            effectivePlays,
+            likePlayRatio,
+            revenue,
+            winterStar,
+            isLowPlay,
+          };
+        });
+    }
+
+    function loadFromCache(fileName) {
+      if (!fileName) return null;
+      try {
+        const cached = localStorage.getItem(`excel_data_${fileName}`);
+        if (cached) return JSON.parse(cached);
+      } catch (e) {}
+      return null;
+    }
+
+    function saveToCache(fileName, data) {
+      if (!fileName) return;
+      try {
+        localStorage.setItem(`excel_data_${fileName}`, JSON.stringify(data));
+      } catch (e) {}
+    }
+
+    function clearCacheForFile(fileName) {
+      if (fileName) {
+        localStorage.removeItem(`excel_data_${fileName}`);
+      }
+    }
+
+    function renderStats(data) {
+      const totalVideos = data.length;
+      const totalPlays = data.reduce((sum, d) => sum + (d.plays || 0), 0);
+      const lowPlayCount = data.filter(d => d.isLowPlay).length;
+      const nonLowPlayCount = totalVideos - lowPlayCount;
+      const totalRevenue = data.reduce((sum, d) => sum + d.revenue, 0);
+      const totalWinterStar = data.reduce((sum, d) => sum + d.winterStar, 0);
+      const totalLikes = data.reduce((sum, d) => sum + (d.likes || 0), 0);
+      const totalEffectivePlays = data.reduce((sum, d) => sum + (d.effectivePlays || 0), 0);
+
+      const stats = [
+        { label: '📈 总播放量', value: totalPlays.toLocaleString() },
+        { label: '🎬 视频总数', value: totalVideos },
+        { label: '🆘 低保视频', value: lowPlayCount },
+        { label: '💰 总收益', value: totalRevenue.toFixed(2) },
+        { label: '❄️ 总寒冬之星', value: totalWinterStar.toFixed(2) },
+        { label: '👍 总点赞量', value: totalLikes.toLocaleString() },
+        { label: '✅ 总有效播放量', value: totalEffectivePlays.toLocaleString() },
+        { label: '🚀 非低保视频', value: nonLowPlayCount },
+      ];
+
+      statsContainer.innerHTML = stats.map(s => `
+        <div class="stat-card">
+          <span class="stat-label">${s.label}</span>
+          <span class="stat-value">${s.value}</span>
+        </div>
+      `).join('');
+    }
+
+    function parsePublishDate(dateStr) {
+      if (!dateStr) return null;
+      let d = new Date(dateStr);
+      if (!isNaN(d.getTime())) return d;
+      const cleaned = dateStr.replace(/[\/\.]/g, '-');
+      d = new Date(cleaned);
+      return isNaN(d.getTime()) ? null : d;
+    }
+
+    function buildDateMap(data) {
+      const map = new Map();
+      data.forEach(item => {
+        const date = parsePublishDate(item.publishTime);
+        if (date) {
+          const dateKey = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+          if (!map.has(dateKey)) map.set(dateKey, []);
+          map.get(dateKey).push(item);
+        }
+      });
+      return map;
+    }
+
+    function renderCalendar(data, year, month) {
+      monthDisplay.textContent = `📅 ${year}年${month}月 收益日历`;
+      const dateMap = buildDateMap(data);
+      
+      const firstDay = new Date(year, month-1, 1).getDay();
+      const daysInMonth = new Date(year, month, 0).getDate();
+      
+      let html = '';
+      const dayNames = ['日', '一', '二', '三', '四', '五', '六'];
+      dayNames.forEach(d => html += `<div class="day-name">${d}</div>`);
+      
+      for (let i = 0; i < firstDay; i++) {
+        html += `<div class="day-cell" style="visibility:hidden;"></div>`;
+      }
+      
+      for (let day = 1; day <= daysInMonth; day++) {
+        const dateStr = `${year}-${String(month).padStart(2,'0')}-${String(day).padStart(2,'0')}`;
+        const dayData = dateMap.get(dateStr) || [];
+        const totalDayRevenue = dayData.reduce((s, item) => s + item.revenue, 0);
+        const lowPlayCount = dayData.filter(item => item.isLowPlay).length;
+        const hasData = dayData.length > 0;
+        
+        html += `<div class="day-cell ${hasData ? 'has-data' : ''}" data-date="${dateStr}">
+                  <span>${day}</span>
+                  ${hasData ? `<span class="day-revenue">¥${totalDayRevenue.toFixed(1)}</span>` : ''}
+                  ${hasData && lowPlayCount > 0 ? `<span class="day-low-count">🆘${lowPlayCount}</span>` : ''}
+                </div>`;
+      }
+      
+      calendarDaysContainer.innerHTML = html;
+      
+      document.querySelectorAll('.day-cell[data-date]').forEach(cell => {
+        cell.addEventListener('click', (e) => {
+          const dateKey = cell.dataset.date;
+          openDayDetailModal(dateKey, dateMap);
+        });
+      });
+    }
+
+    function openDayDetailModal(dateKey, dateMap) {
+      const dayData = dateMap.get(dateKey) || [];
+      modalDateTitle.textContent = `📋 ${dateKey} 数据详情 (${dayData.length}条)`;
+      detailTableBody.innerHTML = '';
+      
+      if (dayData.length === 0) {
+        detailTableBody.innerHTML = '<tr><td colspan="7" class="empty-message">暂无数据</td></tr>';
+      } else {
+        dayData.forEach(item => {
+          // 标记逻辑：优先显示低保，非低保才判断点赞数不足
+          let markHtml = '';
+          if (item.isLowPlay) {
+            markHtml = '<span class="low-tag">低保</span>';
+          } else {
+            // 只有非低保视频才判断点赞数不足
+            const likeInsufficient = (item.likes * 100) < item.plays;
+            if (likeInsufficient) {
+              markHtml = '<span class="warn-tag">点赞数不足</span>';
+            }
+          }
+          
+          detailTableBody.innerHTML += `
+            <tr>
+              <td>${escapeHtml(item.name) || '—'}</td>
+              <td>${item.plays.toLocaleString()}</td>
+              <td>${item.likes.toLocaleString()}</td>
+              <td>${item.effectivePlays.toLocaleString()}</td>
+              <td>¥${item.revenue.toFixed(2)}</td>
+              <td>❄️${item.winterStar.toFixed(2)}</td>
+              <td>${markHtml}</td>
+            </tr>
+          `;
+        });
+      }
+      dayModal.classList.add('active');
+    }
+
+    function escapeHtml(text) {
+      return String(text).replace(/[&<>"]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        if (m === '"') return '&quot;';
+        return m;
+      });
+    }
+
+    function closeModal() {
+      dayModal.classList.remove('active');
+    }
+
+    function processAndRender(data, fileName) {
+      const publicData = processPublicData(data);
+      currentData = publicData;
+      currentFileName = fileName;
+      
+      renderStats(publicData);
+      renderCalendar(publicData, calendarYear, calendarMonth);
+      
+      if (fileName) {
+        saveToCache(fileName, publicData);
+        fileNameSpan.textContent = fileName;
+      }
+    }
+
+    analyzeBtn.addEventListener('click', async () => {
+      const file = fileInput.files[0];
+      if (!file) {
+        alert('请先选择Excel文件');
+        return;
+      }
+      try {
+        const rawData = await parseExcelData(file);
+        if (rawData.length === 0) {
+          alert('未解析到数据行');
+          return;
+        }
+        processAndRender(rawData, file.name);
+      } catch (err) {
+        alert('解析失败：' + err.message);
+      }
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        fileNameSpan.textContent = file.name;
+        const cached = loadFromCache(file.name);
+        if (cached && cached.length > 0) {
+          if (confirm(`检测到文件“${file.name}”已有缓存数据，是否使用缓存？`)) {
+            currentData = cached;
+            currentFileName = file.name;
+            renderStats(currentData);
+            renderCalendar(currentData, calendarYear, calendarMonth);
+            fileNameSpan.textContent = file.name + ' (缓存)';
+          }
+        }
+      } else {
+        fileNameSpan.textContent = '未选择文件';
+      }
+    });
+
+    clearCacheBtn.addEventListener('click', () => {
+      const file = fileInput.files[0];
+      const name = file ? file.name : currentFileName;
+      if (name) {
+        clearCacheForFile(name);
+        alert(`已清除文件 "${name}" 的缓存数据`);
+        if (currentFileName === name) {
+          currentData = [];
+          renderStats([]);
+          renderCalendar([], calendarYear, calendarMonth);
+        }
+      } else {
+        alert('没有可清除的缓存文件');
+      }
+    });
+
+    prevMonthBtn.addEventListener('click', () => {
+      if (calendarMonth === 1) {
+        calendarMonth = 12;
+        calendarYear -= 1;
+      } else {
+        calendarMonth -= 1;
+      }
+      renderCalendar(currentData, calendarYear, calendarMonth);
+    });
+    nextMonthBtn.addEventListener('click', () => {
+      if (calendarMonth === 12) {
+        calendarMonth = 1;
+        calendarYear += 1;
+      } else {
+        calendarMonth += 1;
+      }
+      renderCalendar(currentData, calendarYear, calendarMonth);
+    });
+
+    closeModalBtn.addEventListener('click', closeModal);
+    dayModal.addEventListener('click', (e) => {
+      if (e.target === dayModal) closeModal();
+    });
+
+    renderStats([]);
+    renderCalendar([], calendarYear, calendarMonth);
+    fileNameSpan.textContent = '未选择文件';
+  })();
+</script>
+</body>
+</html>
