@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>致那束光 · 无尽冬日</title>
+    <style>
+        /* 重置 & 基础 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0b1119; /* 极夜底色 */
+            background-image: radial-gradient(circle at 50% 30%, #1a2a3a 0%, #0b1119 80%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Georgia', 'Times New Roman', 'Songti SC', serif;
+            padding: 20px;
+            /* 模拟窗外飘雪 */
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 微雪粒子（纯CSS营造氛围，无碍阅读） */
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 1.2rem;
+            animation: fall linear infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0.2;
+            }
+        }
+
+        /* 主信纸 - 像冰面上的火光 */
+        .letter {
+            position: relative;
+            z-index: 10;
+            max-width: 680px;
+            width: 100%;
+            background: rgba(22, 34, 48, 0.75);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 215, 140, 0.15);
+            border-radius: 32px;
+            padding: 48px 40px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 180, 80, 0.05) inset;
+            transition: box-shadow 0.4s ease;
+        }
+
+        /* 微妙光晕 - 象征她 */
+        .letter::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 120%;
+            height: 60%;
+            background: radial-gradient(ellipse at center, rgba(255, 180, 80, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+
+        /* 标题区 - 克制而深情 */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header h1 {
+            color: #f0d5b0;
+            font-size: 1.8rem;
+            font-weight: 400;
+            letter-spacing: 6px;
+            font-family: 'Georgia', serif;
+            text-shadow: 0 0 30px rgba(255, 180, 80, 0.15);
+            margin-bottom: 10px;
+        }
+
+        .header .sub {
+            color: #7a8ba3;
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            font-style: italic;
+            border-top: 1px solid rgba(255, 215, 140, 0.1);
+            padding-top: 16px;
+            display: inline-block;
+        }
+
+        /* 正文 - 保留所有的呼吸 */
+        .content {
+            color: #d4dce8;
+            font-size: 1.1rem;
+            line-height: 2.1;
+            letter-spacing: 0.02em;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content p {
+            margin-bottom: 1.6rem;
+            text-indent: 2em;
+            word-break: break-word;
+        }
+
+        /* 特别区分三个段落的心境 */
+        .content .darkness {
+            color: #b0c0d0;
+            border-left: 2px solid rgba(255, 100, 100, 0.2);
+            padding-left: 20px;
+        }
+
+        .content .light {
+            color: #f0e0c8;
+            border-left: 2px solid rgba(255, 200, 100, 0.4);
+            padding-left: 20px;
+        }
+
+        .content .mirror {
+            color: #e8dccc;
+            border-left: 2px solid rgba(200, 200, 230, 0.3);
+            padding-left: 20px;
+        }
+
+        /* 尾声 - 感谢她 */
+        .footer-thanks {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 215, 140, 0.1);
+            text-align: right;
+            position: relative;
+        }
+
+        .footer-thanks p {
+            color: #c0a888;
+            font-size: 1.2rem;
+            font-style: italic;
+            letter-spacing: 2px;
+            text-indent: 0;
+        }
+
+        .footer-thanks .highlight-name {
+            color: #f5d6a8;
+            font-size: 1.6rem;
+            font-weight: bold;
+            display: inline-block;
+            text-shadow: 0 0 20px rgba(255, 180, 80, 0.2);
+            margin: 8px 0 4px 0;
+            letter-spacing: 6px;
+        }
+
+        .footer-thanks .date {
+            color: #5a6f86;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            margin-top: 12px;
+            font-style: normal;
+        }
+
+        /* 左下角“无尽冬日”极简落款 */
+        .game-tag {
+            position: absolute;
+            bottom: 20px;
+            left: 30px;
+            color: rgba(255, 255, 255, 0.08);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            font-family: sans-serif;
+            text-transform: uppercase;
+            z-index: 1;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 480px) {
+            .letter {
+                padding: 28px 18px;
+                border-radius: 24px;
+            }
+
+            .header h1 {
+                font-size: 1.4rem;
+                letter-spacing: 4px;
+            }
+
+            .content {
+                font-size: 1rem;
+                line-height: 2;
+            }
+
+            .content p {
+                text-indent: 1.5em;
+            }
+
+            .footer-thanks .highlight-name {
+                font-size: 1.4rem;
+            }
+        }
+
+        /* 让滚动更平滑 */
+        ::-webkit-scrollbar {
+            width: 4px;
+            background: #1a2430;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a5a6a;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 纯装饰雪花（不会遮挡文字） -->
+    <div id="snow-container"></div>
+
+    <main class="letter">
+        <!-- 标题 -->
+        <div class="header">
+            <h1>致 · 一束光</h1>
+            <span class="sub">—— 写在无尽冬日之后</span>
+        </div>
+
+        <!-- 正文 -->
+        <div class="content">
+            <p class="darkness">
+                那段日子，我把自己扔进了深渊。<br>
+                白天和黑夜的界限彻底模糊，我像一台过载的机器，用熬夜惩罚自己，又在黎明前崩溃。情绪像失控的钟摆——上一秒亢奋得像是能征服世界，下一秒却瘫坐在地上，连呼吸都觉得沉重；更多时候，是铺天盖地的茫然，像被丢进一片没有边际的雾里。<br>
+                我悄悄盼过世界崩塌，也暗自祈祷过，闭上眼睛之后，就再也不必睁开。<br>
+                有朋友伸手拽我，我也曾拼命揪着自己的头发往上挣扎，可每一次，都像陷进流沙，越用力，沉得越快。
+            </p>
+
+            <p class="light">
+                后来，在一个叫“无尽冬日”的虚拟世界里，我遇见了她。<br>
+                没有刻意的救赎，没有长篇大论的道理。只是几个月里，那些日常的陪伴、不经意的对话，像细碎的光一点一点渗进来。我开始期待每天上线，开始在意窗外的天气，开始觉得——活着，好像也没那么糟糕。<br>
+                她像一束光，把我从黑暗里慢慢拉了出来，让我重新闻到了生活的气味。
+            </p>
+
+            <p class="mirror">
+                而现在，她更像一面镜子。<br>
+                照见的不是她的光芒，而是我自己的影子——那个曾经有力气奔跑、有勇气做梦的自己。我不再因为仰望她而追逐，而是因为她让我看清：我真正想要的，不是成为谁，而是重新做回那个“能决定自己往哪走”的人。<br>
+                我想努力了。不是出于比较，也不是出于感激，而是出于一种久违的、对自己的占有欲。<br>
+                我想亲手拿回属于我的权利——那个叫做“未来”的东西，得由我自己来写。
+            </p>
+        </div>
+
+        <!-- 感谢她 -->
+        <div class="footer-thanks">
+            <p>谢谢你，曾为我燃起那簇火。</p>
+            <div class="highlight-name">—— 献给 香香女孩</div>
+            <div class="date">无尽冬日-YYDS</div>
+        </div>
+
+        <!-- 极低调的游戏标记 -->
+        <div class="game-tag">❄️ Endless Winter</div>
+    </main>
+
+    <script>
+        // 生成飘雪（点缀即可）
+        (function createSnow() {
+            const container = document.getElementById('snow-container');
+            const flakes = ['❄', '✦', '·'];
+            for (let i = 0; i < 25; i++) {
+                const span = document.createElement('span');
+                span.className = 'snowflake';
+                span.textContent = flakes[Math.floor(Math.random() * flakes.length)];
+                span.style.left = Math.random() * 100 + '%';
+                span.style.fontSize = (Math.random() * 1.2 + 0.6) + 'rem';
+                span.style.opacity = Math.random() * 0.2 + 0.05;
+                span.style.animationDuration = (Math.random() * 20 + 15) + 's';
+                span.style.animationDelay = (Math.random() * 20) + 's';
+                container.appendChild(span);
+            }
+        })();
+    </script>
+</body>
+</html>
