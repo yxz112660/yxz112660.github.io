@@ -56,7 +56,37 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        /* 自助抽签区 - 顶部突出 */
+        /* 加载状态 */
+        .loading-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .loading-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #f5c542;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .loading-text {
+            color: #c6e6ff;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        /* 自助抽签区 */
         .self-draw-area {
             background: rgba(255, 215, 100, 0.06);
             border-radius: 28px;
@@ -113,6 +143,12 @@
         .self-draw-area .draw-btn:active {
             transform: translateY(3px);
             box-shadow: 0 1px 0 #8f5f1f;
+        }
+        .self-draw-area .draw-btn:disabled {
+            opacity: 0.5;
+            transform: translateY(3px);
+            box-shadow: 0 1px 0 #8f5f1f;
+            pointer-events: none;
         }
 
         .draw-result-msg {
@@ -329,6 +365,12 @@
         }
         .btn-secondary i { color: #b5d9f5; font-size: 0.85rem; }
         .btn-secondary:active { transform: translateY(2px); box-shadow: 0 1px 0 #1c3f52; }
+        .btn-secondary:disabled {
+            opacity: 0.4;
+            transform: translateY(2px);
+            box-shadow: 0 1px 0 #1c3f52;
+            pointer-events: none;
+        }
 
         .footer-meta {
             margin-top: 14px;
@@ -448,9 +490,15 @@
 </head>
 <body>
 <div class="card">
+    <!-- 加载遮罩 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">加载数据中...</div>
+    </div>
+
     <div class="header">
         <h1><i class="fas fa-snowflake"></i> 无尽冬日4321区 <i class="fas fa-microphone-alt"></i></h1>
-        <span class="sub"><i class="fas fa-music" style="margin-right: 6px;"></i> 自助抽签 · 随机抢号</span>
+        <span class="sub"><i class="fas fa-music" style="margin-right: 6px;"></i> 自助抽签 · 全局共享</span>
     </div>
 
     <!-- 自助抽签 -->
@@ -480,6 +528,7 @@
     <div class="section-title" style="margin-top: 4px;"><i class="fas fa-list-ol"></i> 出场顺序</div>
     <div class="action-group">
         <button id="resetDrawBtn" class="btn-secondary"><i class="fas fa-trash-alt"></i> 清空顺序</button>
+        <button id="refreshBtn" class="btn-secondary"><i class="fas fa-sync-alt"></i> 刷新</button>
     </div>
     <div class="result-box">
         <div id="resultContainer" class="result-list"></div>
@@ -489,9 +538,10 @@
 
 <script>
     (function() {
-        // ---------- 存储键 ----------
-        const STORAGE_KEY_PLAYERS = 'winter4321_players_v10';
-        const STORAGE_KEY_ORDER = 'winter4321_order_v10';
+        // ---------- JSONBin 配置 ----------
+        const BIN_ID = '6a6d7b90f5f4af5e29dcb5ce';
+        const ACCESS_KEY = '$2a$10$aZTeilEDYvASg000LciGM.vSOiukx9fMK8HRYrp5.hsZpgszBGi3e';
+        const API_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
         
         const FIXED_NAME = 'TNT-YYDS';
@@ -504,6 +554,8 @@
         let shuffledOrder = [];
         let usedNumbers = new Set();
         let editingName = null;
+        let isSaving = false;
+        let isLoading = true;
 
         // DOM 引用
         const playerInput = document.getElementById('playerInput');
@@ -513,8 +565,10 @@
         const resultContainer = document.getElementById('resultContainer');
         const resetDrawBtn = document.getElementById('resetDrawBtn');
         const resetAllBtn = document.getElementById('resetAllBtn');
+        const refreshBtn = document.getElementById('refreshBtn');
         const playerCountSpan = document.getElementById('playerCount');
         const remainCountSpan = document.getElementById('remainCount');
+        const loadingOverlay = document.getElementById('loadingOverlay');
 
         // ---------- 辅助函数 ----------
         function shuffleArray(arr) {
@@ -562,6 +616,90 @@
             if (available.length === 0) return -1;
             const randomIdx = Math.floor(Math.random() * available.length);
             return available[randomIdx];
+        }
+
+        // ---------- JSONBin API 操作 ----------
+        async function loadDataFromCloud() {
+            try {
+                const response = await fetch(API_URL, {
+                    headers: {
+                        'X-Master-Key': ACCESS_KEY
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                const record = data.record;
+                if (record) {
+                    players = record.players || [];
+                    shuffledOrder = record.order || [];
+                    // 确保数组长度为21
+                    while (shuffledOrder.length < TOTAL_SLOTS) {
+                        shuffledOrder.push('');
+                    }
+                    if (shuffledOrder.length > TOTAL_SLOTS) {
+                        shuffledOrder = shuffledOrder.slice(0, TOTAL_SLOTS);
+                    }
+                    // 清理无效数据
+                    if (shuffledOrder.length > 0) {
+                        const valid = shuffledOrder.every(name => name === '' || players.includes(name));
+                        if (!valid) shuffledOrder = new Array(TOTAL_SLOTS).fill('');
+                    }
+                    updateUsedNumbers();
+                    return true;
+                }
+                return false;
+            } catch (e) {
+                console.error('加载数据失败:', e);
+                return false;
+            }
+        }
+
+        async function saveDataToCloud() {
+            if (isSaving) return;
+            isSaving = true;
+            try {
+                const data = {
+                    players: players,
+                    order: shuffledOrder
+                };
+                const response = await fetch(API_URL, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': ACCESS_KEY
+                    },
+                    body: JSON.stringify(data)
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return true;
+            } catch (e) {
+                console.error('保存数据失败:', e);
+                setDrawResult('❌ 保存数据失败，请检查网络', '#ff6b6b');
+                return false;
+            } finally {
+                isSaving = false;
+            }
+        }
+
+        // ---------- 初始化加载 ----------
+        async function initData() {
+            isLoading = true;
+            loadingOverlay.style.display = 'flex';
+            const success = await loadDataFromCloud();
+            if (!success || players.length === 0) {
+                // 如果没有数据，初始化空数据
+                players = [];
+                shuffledOrder = new Array(TOTAL_SLOTS).fill('');
+                await saveDataToCloud();
+            }
+            isLoading = false;
+            loadingOverlay.style.display = 'none';
+            renderAll();
+            setDrawResult('📋 数据已同步，输入姓名抽签', '#9acfec');
         }
 
         // ---------- 密码弹窗 ----------
@@ -617,41 +755,6 @@
 
                 setTimeout(() => pwdInput.focus(), 100);
             });
-        }
-
-        // ---------- 存储 ----------
-        function saveToStorage() {
-            try {
-                localStorage.setItem(STORAGE_KEY_PLAYERS, JSON.stringify(players));
-                localStorage.setItem(STORAGE_KEY_ORDER, JSON.stringify(shuffledOrder));
-            } catch (e) { /* ignore */ }
-        }
-
-        function loadFromStorage() {
-            try {
-                const p = localStorage.getItem(STORAGE_KEY_PLAYERS);
-                const o = localStorage.getItem(STORAGE_KEY_ORDER);
-                if (p) players = JSON.parse(p) || [];
-                else players = [];
-                if (o) shuffledOrder = JSON.parse(o) || [];
-                else shuffledOrder = [];
-
-                if (shuffledOrder.length > 0) {
-                    const valid = shuffledOrder.every(name => name === '' || players.includes(name));
-                    if (!valid) shuffledOrder = [];
-                }
-                while (shuffledOrder.length < TOTAL_SLOTS) {
-                    shuffledOrder.push('');
-                }
-                if (shuffledOrder.length > TOTAL_SLOTS) {
-                    shuffledOrder = shuffledOrder.slice(0, TOTAL_SLOTS);
-                }
-                updateUsedNumbers();
-            } catch (e) {
-                players = [];
-                shuffledOrder = new Array(TOTAL_SLOTS).fill('');
-                updateUsedNumbers();
-            }
         }
 
         // ---------- 渲染 ----------
@@ -780,7 +883,7 @@
                     shuffledOrder[orderIdx] = newName;
                 }
                 editingName = null;
-                saveToStorage();
+                await saveDataToCloud();
                 renderAll();
                 setDrawResult(`✅ 已修改 "${oldName}" → "${newName}"`, '#5fdf7a');
             }
@@ -798,14 +901,14 @@
                     shuffledOrder[orderIdx] = '';
                 }
                 updateUsedNumbers();
-                saveToStorage();
+                await saveDataToCloud();
                 renderAll();
                 setDrawResult(`🗑️ 已删除选手 "${name}"`, '#ffb0b0');
             }
         };
 
         // ---------- 核心操作 ----------
-        function selfDraw() {
+        async function selfDraw() {
             const name = playerInput.value.trim();
             if (name === '') {
                 setDrawResult('❌ 请输入你的姓名', '#ffb0b0');
@@ -843,7 +946,7 @@
                 shuffledOrder[FIXED_POSITION - 1] = FIXED_NAME;
                 players.push(FIXED_NAME);
                 updateUsedNumbers();
-                saveToStorage();
+                await saveDataToCloud();
                 renderAll();
                 setDrawResult(`🎉 ${escapeHtml(name)}，你抽到了 <span class="highlight">#${FIXED_POSITION}</span> 号！`, '#f5d742');
                 playerInput.value = '';
@@ -873,7 +976,7 @@
             }
             shuffledOrder[insertIndex] = name;
 
-            // 确保内定位置
+            
             if (shuffledOrder[FIXED_POSITION - 1] !== FIXED_NAME) {
                 const fixedIdx = shuffledOrder.indexOf(FIXED_NAME);
                 if (fixedIdx !== -1) {
@@ -889,7 +992,7 @@
             }
 
             updateUsedNumbers();
-            saveToStorage();
+            await saveDataToCloud();
             renderAll();
 
             const orderIdx = shuffledOrder.indexOf(name);
@@ -916,20 +1019,41 @@
                 players.splice(fixedIdx, 1);
             }
             updateUsedNumbers();
-            saveToStorage();
+            await saveDataToCloud();
             renderAll();
             setDrawResult('🔄 顺序已清空', '#9acfec');
         }
 
-        function resetAll() {
+        async function resetAll() {
             if (players.length === 0 && shuffledOrder.every(n => n === '')) return;
             if (!confirm('确定重置所有数据吗？将清空所有选手和顺序。')) return;
             players = [];
             shuffledOrder = new Array(TOTAL_SLOTS).fill('');
             updateUsedNumbers();
-            saveToStorage();
+            await saveDataToCloud();
             renderAll();
             setDrawResult('🔄 已重置，可以重新开始', '#9acfec');
+        }
+
+        async function refreshData() {
+            setDrawResult('🔄 正在刷新数据...', '#9acfec');
+            drawBtn.disabled = true;
+            resetDrawBtn.disabled = true;
+            resetAllBtn.disabled = true;
+            refreshBtn.disabled = true;
+            
+            const success = await loadDataFromCloud();
+            if (success) {
+                renderAll();
+                setDrawResult('✅ 数据已刷新', '#5fdf7a');
+            } else {
+                setDrawResult('❌ 刷新失败，请检查网络', '#ff6b6b');
+            }
+            
+            drawBtn.disabled = false;
+            resetDrawBtn.disabled = false;
+            resetAllBtn.disabled = false;
+            refreshBtn.disabled = false;
         }
 
         // ---------- 事件绑定 ----------
@@ -943,15 +1067,14 @@
             });
             resetDrawBtn.addEventListener('click', resetDraw);
             resetAllBtn.addEventListener('click', resetAll);
+            refreshBtn.addEventListener('click', refreshData);
         }
 
         // ---------- 初始化 ----------
         function init() {
             shuffledOrder = new Array(TOTAL_SLOTS).fill('');
-            loadFromStorage();
-            renderAll();
             initEventListeners();
-            setDrawResult('📋 输入姓名，点击抽签随机抢号', '#9acfec');
+            initData();
         }
 
         init();
