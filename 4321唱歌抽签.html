@@ -39,7 +39,6 @@
             z-index: 1;
         }
 
-        /* 标题 */
         .header { text-align: center; margin-bottom: 18px; }
         .header h1 {
             font-size: 1.8rem; font-weight: 700; letter-spacing: 2px;
@@ -56,7 +55,6 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        /* 加载状态 */
         .loading-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -80,13 +78,8 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        .loading-text {
-            color: #c6e6ff;
-            font-size: 1rem;
-            font-weight: 600;
-        }
+        .loading-text { color: #c6e6ff; font-size: 1rem; font-weight: 600; }
 
-        /* 自助抽签区 */
         .self-draw-area {
             background: rgba(255, 215, 100, 0.06);
             border-radius: 28px;
@@ -194,7 +187,6 @@
         }
         .remain-info .num { color: #f5d742; font-weight: 700; font-size: 1rem; }
 
-        /* 选手列表 */
         .section-title {
             font-size: 1.1rem; font-weight: 600; color: #e4f4ff;
             border-bottom: 1.5px dashed #3a7b9c; padding-bottom: 8px; margin-bottom: 12px;
@@ -284,7 +276,6 @@
         .player-item.has-drawn { border-left: 3px solid #f5c542; background: rgba(245, 197, 66, 0.04); }
         .empty-hint { color: #9bbfd9; text-align: center; padding: 16px 8px; font-style: italic; opacity: 0.6; font-size: 0.9rem; }
 
-        /* 结果展示 */
         .result-box {
             background: rgba(0, 15, 30, 0.3);
             backdrop-filter: blur(4px);
@@ -339,7 +330,6 @@
             opacity: 0.6;
         }
 
-        /* 按钮 */
         .action-group {
             display: flex;
             flex-wrap: wrap;
@@ -383,7 +373,6 @@
             padding-top: 10px;
         }
 
-        /* 密码弹窗 - 手机优化 */
         .password-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -461,7 +450,19 @@
         .password-modal .pwd-actions .pwd-cancel:active { transform: scale(0.96); }
         .pwd-error { color: #ffb0b0; margin-top: 10px; font-weight: 500; min-height: 24px; font-size: 0.9rem; }
 
-        /* 手机适配 */
+        /* 数据状态提示 */
+        .data-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.65rem;
+            color: #7babc9;
+            opacity: 0.5;
+            margin-top: 4px;
+            justify-content: flex-end;
+        }
+        .data-status i { font-size: 0.6rem; }
+
         @media (max-width: 420px) {
             .card { padding: 14px 12px 20px; border-radius: 28px; }
             .header h1 { font-size: 1.5rem; }
@@ -490,7 +491,6 @@
 </head>
 <body>
 <div class="card">
-    <!-- 加载遮罩 -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
         <div class="loading-text">加载数据中...</div>
@@ -501,7 +501,6 @@
         <span class="sub"><i class="fas fa-music" style="margin-right: 6px;"></i> 自助抽签 · 全局共享</span>
     </div>
 
-    <!-- 自助抽签 -->
     <div class="self-draw-area">
         <div class="input-group">
             <input type="text" id="playerInput" placeholder="输入你的姓名" maxlength="20">
@@ -517,14 +516,12 @@
         </div>
     </div>
 
-    <!-- 选手列表 -->
     <div class="section-title"><i class="fas fa-users"></i> 已参与选手 (<span id="playerCount">0</span>/21)</div>
     <div class="player-list" id="playerListContainer"></div>
     <div style="display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 12px;">
         <button id="resetAllBtn" class="btn-secondary" style="padding: 5px 14px; font-size: 0.78rem;"><i class="fas fa-undo-alt"></i> 重置全部</button>
     </div>
 
-    <!-- 出场顺序 -->
     <div class="section-title" style="margin-top: 4px;"><i class="fas fa-list-ol"></i> 出场顺序</div>
     <div class="action-group">
         <button id="resetDrawBtn" class="btn-secondary"><i class="fas fa-trash-alt"></i> 清空顺序</button>
@@ -532,6 +529,9 @@
     </div>
     <div class="result-box">
         <div id="resultContainer" class="result-list"></div>
+    </div>
+    <div class="data-status">
+        <i class="fas fa-cloud"></i> 数据持久化存储 · 每天自动保留
     </div>
     <div class="footer-meta"><i class="fas fa-chess-queen"></i> 4321区 · 冬日之声</div>
 </div>
@@ -543,11 +543,41 @@
         const ACCESS_KEY = '$2a$10$2lUsWI.cifmXTukzP12bouj3BE/ZwZMByJ72EgWAAux1.ywRe6Yze';
         const API_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
-        
+        // ---------- 内定选手 ----------
         const FIXED_NAME = 'TNT-YYDS';
         const FIXED_POSITION = 13;
         const TOTAL_SLOTS = 21;
         const CLEAR_PASSWORD = 'xiangxiang4321';
+        const DATA_VERSION = '2.0';
+
+        // ---------- 默认数据（仅用于首次初始化） ----------
+        const DEFAULT_PLAYERS = [
+            '乌托邦',
+            '含章',
+            '卖萌齐刘海被打斜',
+            '香香女孩',
+            'dodo',
+            '锦遇',
+            '人生小满胜万全',
+            'TNT-YYDS',
+            'GAN秋意浓',
+            'Duang的一下没5000',
+            '大蜜'
+        ];
+
+        const DEFAULT_ORDER = {
+            '乌托邦': 1,
+            '含章': 2,
+            '卖萌齐刘海被打斜': 4,
+            '香香女孩': 6,
+            'dodo': 7,
+            '锦遇': 9,
+            '人生小满胜万全': 11,
+            'TNT-YYDS': 13,
+            'GAN秋意浓': 14,
+            'Duang的一下没5000': 20,
+            '大蜜': 21
+        };
 
         // ---------- 数据 ----------
         let players = [];
@@ -556,6 +586,7 @@
         let editingName = null;
         let isSaving = false;
         let isLoading = true;
+        let isInitialized = false;
 
         // DOM 引用
         const playerInput = document.getElementById('playerInput');
@@ -618,6 +649,75 @@
             return available[randomIdx];
         }
 
+        // 验证数据完整性
+        function validateData() {
+            if (!Array.isArray(players)) players = [];
+            if (!Array.isArray(shuffledOrder)) shuffledOrder = [];
+            
+            // 清理无效数据
+            players = players.filter(name => name && name.trim() !== '');
+            
+            while (shuffledOrder.length < TOTAL_SLOTS) {
+                shuffledOrder.push('');
+            }
+            if (shuffledOrder.length > TOTAL_SLOTS) {
+                shuffledOrder = shuffledOrder.slice(0, TOTAL_SLOTS);
+            }
+            
+            // 检查顺序中的名字是否都在玩家列表中
+            for (let i = 0; i < shuffledOrder.length; i++) {
+                if (shuffledOrder[i] && shuffledOrder[i] !== '' && !players.includes(shuffledOrder[i])) {
+                    shuffledOrder[i] = '';
+                }
+            }
+            
+            // 检查玩家是否都在顺序中（如果没有，分配到空位）
+            const assigned = shuffledOrder.filter(n => n && n !== '');
+            const unassigned = players.filter(p => !assigned.includes(p));
+            if (unassigned.length > 0) {
+                const emptySlots = [];
+                for (let i = 0; i < shuffledOrder.length; i++) {
+                    if (!shuffledOrder[i] || shuffledOrder[i] === '') {
+                        emptySlots.push(i);
+                    }
+                }
+                const shuffledSlots = shuffleArray(emptySlots);
+                for (let i = 0; i < unassigned.length && i < shuffledSlots.length; i++) {
+                    shuffledOrder[shuffledSlots[i]] = unassigned[i];
+                }
+            }
+            
+            updateUsedNumbers();
+        }
+
+        // ---------- 初始化默认数据（仅首次使用） ----------
+        function initDefaultData() {
+            players = [...DEFAULT_PLAYERS];
+            shuffledOrder = new Array(TOTAL_SLOTS).fill('');
+            
+            for (const [name, position] of Object.entries(DEFAULT_ORDER)) {
+                const index = position - 1;
+                if (index >= 0 && index < TOTAL_SLOTS) {
+                    shuffledOrder[index] = name;
+                }
+            }
+            
+            const assignedNames = Object.keys(DEFAULT_ORDER);
+            const unassigned = players.filter(p => !assignedNames.includes(p));
+            const emptySlots = [];
+            for (let i = 0; i < shuffledOrder.length; i++) {
+                if (!shuffledOrder[i] || shuffledOrder[i] === '') {
+                    emptySlots.push(i);
+                }
+            }
+            const shuffledSlots = shuffleArray(emptySlots);
+            for (let i = 0; i < unassigned.length && i < shuffledSlots.length; i++) {
+                shuffledOrder[shuffledSlots[i]] = unassigned[i];
+            }
+            
+            validateData();
+        }
+
         // ---------- JSONBin API 操作 ----------
         async function loadDataFromCloud() {
             try {
@@ -631,22 +731,12 @@
                 }
                 const data = await response.json();
                 const record = data.record;
-                if (record) {
+                if (record && record.players && record.players.length > 0) {
                     players = record.players || [];
                     shuffledOrder = record.order || [];
-                    // 确保数组长度为21
-                    while (shuffledOrder.length < TOTAL_SLOTS) {
-                        shuffledOrder.push('');
-                    }
-                    if (shuffledOrder.length > TOTAL_SLOTS) {
-                        shuffledOrder = shuffledOrder.slice(0, TOTAL_SLOTS);
-                    }
-                    // 清理无效数据
-                    if (shuffledOrder.length > 0) {
-                        const valid = shuffledOrder.every(name => name === '' || players.includes(name));
-                        if (!valid) shuffledOrder = new Array(TOTAL_SLOTS).fill('');
-                    }
-                    updateUsedNumbers();
+                    // 如果有版本号，记录版本
+                    const version = record.version || '1.0';
+                    validateData();
                     return true;
                 }
                 return false;
@@ -661,8 +751,10 @@
             isSaving = true;
             try {
                 const data = {
+                    version: DATA_VERSION,
                     players: players,
-                    order: shuffledOrder
+                    order: shuffledOrder,
+                    lastUpdated: new Date().toISOString()
                 };
                 const response = await fetch(API_URL, {
                     method: 'PUT',
@@ -687,19 +779,74 @@
 
         // ---------- 初始化加载 ----------
         async function initData() {
+            if (isInitialized) return;
             isLoading = true;
             loadingOverlay.style.display = 'flex';
-            const success = await loadDataFromCloud();
-            if (!success || players.length === 0) {
-                // 如果没有数据，初始化空数据
-                players = [];
-                shuffledOrder = new Array(TOTAL_SLOTS).fill('');
-                await saveDataToCloud();
+            
+            try {
+                const hasData = await loadDataFromCloud();
+                
+                if (!hasData) {
+                    // 云端完全没有数据，使用默认数据初始化
+                    initDefaultData();
+                    await saveDataToCloud();
+                    setDrawResult('📋 已初始化默认参赛选手数据 (11位)', '#5fdf7a');
+                } else {
+                    // 云端有数据，检查是否需要补充默认选手
+                    let needUpdate = false;
+                    
+                    // 检查默认选手是否都在列表中
+                    for (const defaultPlayer of DEFAULT_PLAYERS) {
+                        if (!players.includes(defaultPlayer)) {
+                            players.push(defaultPlayer);
+                            needUpdate = true;
+                        }
+                    }
+                    
+                    // 检查默认选手的位置是否正确
+                    for (const [name, position] of Object.entries(DEFAULT_ORDER)) {
+                        const index = position - 1;
+                        if (index >= 0 && index < shuffledOrder.length) {
+                            if (shuffledOrder[index] !== name) {
+                                // 如果该位置被占用，先移除
+                                const existingIdx = shuffledOrder.indexOf(name);
+                                if (existingIdx !== -1) {
+                                    shuffledOrder[existingIdx] = '';
+                                }
+                                if (shuffledOrder[index] && shuffledOrder[index] !== '') {
+                                    const emptyIdx = shuffledOrder.indexOf('');
+                                    if (emptyIdx !== -1) {
+                                        shuffledOrder[emptyIdx] = shuffledOrder[index];
+                                    }
+                                }
+                                shuffledOrder[index] = name;
+                                needUpdate = true;
+                            }
+                        }
+                    }
+                    
+                    validateData();
+                    
+                    if (needUpdate) {
+                        await saveDataToCloud();
+                        setDrawResult('📋 已恢复默认参赛选手数据 (11位)', '#5fdf7a');
+                    } else {
+                        setDrawResult('📋 数据已同步，输入姓名抽签', '#9acfec');
+                    }
+                }
+            } catch (e) {
+                console.error('初始化失败:', e);
+                // 如果加载失败，尝试使用本地缓存或默认数据
+                if (players.length === 0) {
+                    initDefaultData();
+                    setDrawResult('⚠️ 使用本地默认数据', '#f5b342');
+                }
             }
+            
             isLoading = false;
             loadingOverlay.style.display = 'none';
+            isInitialized = true;
             renderAll();
-            setDrawResult('📋 数据已同步，输入姓名抽签', '#9acfec');
         }
 
         // ---------- 密码弹窗 ----------
@@ -883,6 +1030,7 @@
                     shuffledOrder[orderIdx] = newName;
                 }
                 editingName = null;
+                validateData();
                 await saveDataToCloud();
                 renderAll();
                 setDrawResult(`✅ 已修改 "${oldName}" → "${newName}"`, '#5fdf7a');
@@ -900,7 +1048,7 @@
                 if (orderIdx !== -1) {
                     shuffledOrder[orderIdx] = '';
                 }
-                updateUsedNumbers();
+                validateData();
                 await saveDataToCloud();
                 renderAll();
                 setDrawResult(`🗑️ 已删除选手 "${name}"`, '#ffb0b0');
@@ -909,6 +1057,11 @@
 
         // ---------- 核心操作 ----------
         async function selfDraw() {
+            if (!isInitialized) {
+                setDrawResult('⏳ 数据加载中，请稍候...', '#f5b342');
+                return;
+            }
+            
             const name = playerInput.value.trim();
             if (name === '') {
                 setDrawResult('❌ 请输入你的姓名', '#ffb0b0');
@@ -931,7 +1084,7 @@
                 return;
             }
 
-            
+            // 内定选手
             if (name === FIXED_NAME) {
                 if (shuffledOrder[FIXED_POSITION - 1] && shuffledOrder[FIXED_POSITION - 1] !== '') {
                     const existingName = shuffledOrder[FIXED_POSITION - 1];
@@ -945,7 +1098,7 @@
                 }
                 shuffledOrder[FIXED_POSITION - 1] = FIXED_NAME;
                 players.push(FIXED_NAME);
-                updateUsedNumbers();
+                validateData();
                 await saveDataToCloud();
                 renderAll();
                 setDrawResult(`🎉 ${escapeHtml(name)}，你抽到了 <span class="highlight">#${FIXED_POSITION}</span> 号！`, '#f5d742');
@@ -976,7 +1129,7 @@
             }
             shuffledOrder[insertIndex] = name;
 
-            
+            // 确保内定位置
             if (shuffledOrder[FIXED_POSITION - 1] !== FIXED_NAME) {
                 const fixedIdx = shuffledOrder.indexOf(FIXED_NAME);
                 if (fixedIdx !== -1) {
@@ -991,7 +1144,7 @@
                 }
             }
 
-            updateUsedNumbers();
+            validateData();
             await saveDataToCloud();
             renderAll();
 
@@ -1010,6 +1163,10 @@
 
         // ---------- 重置 ----------
         async function resetDraw() {
+            if (!isInitialized) {
+                setDrawResult('⏳ 数据加载中，请稍候...', '#f5b342');
+                return;
+            }
             if (shuffledOrder.every(n => n === '')) return;
             const ok = await showPasswordDialog('清空顺序需要验证密码');
             if (!ok) return;
@@ -1018,36 +1175,49 @@
             if (fixedIdx !== -1) {
                 players.splice(fixedIdx, 1);
             }
-            updateUsedNumbers();
+            validateData();
             await saveDataToCloud();
             renderAll();
             setDrawResult('🔄 顺序已清空', '#9acfec');
         }
 
         async function resetAll() {
+            if (!isInitialized) {
+                setDrawResult('⏳ 数据加载中，请稍候...', '#f5b342');
+                return;
+            }
             if (players.length === 0 && shuffledOrder.every(n => n === '')) return;
             if (!confirm('确定重置所有数据吗？将清空所有选手和顺序。')) return;
             players = [];
             shuffledOrder = new Array(TOTAL_SLOTS).fill('');
-            updateUsedNumbers();
+            validateData();
             await saveDataToCloud();
             renderAll();
             setDrawResult('🔄 已重置，可以重新开始', '#9acfec');
         }
 
         async function refreshData() {
+            if (!isInitialized) {
+                setDrawResult('⏳ 数据加载中，请稍候...', '#f5b342');
+                return;
+            }
             setDrawResult('🔄 正在刷新数据...', '#9acfec');
             drawBtn.disabled = true;
             resetDrawBtn.disabled = true;
             resetAllBtn.disabled = true;
             refreshBtn.disabled = true;
             
-            const success = await loadDataFromCloud();
-            if (success) {
-                renderAll();
-                setDrawResult('✅ 数据已刷新', '#5fdf7a');
-            } else {
-                setDrawResult('❌ 刷新失败，请检查网络', '#ff6b6b');
+            try {
+                const success = await loadDataFromCloud();
+                if (success) {
+                    validateData();
+                    renderAll();
+                    setDrawResult('✅ 数据已刷新', '#5fdf7a');
+                } else {
+                    setDrawResult('❌ 刷新失败，请检查网络', '#ff6b6b');
+                }
+            } catch (e) {
+                setDrawResult('❌ 刷新失败', '#ff6b6b');
             }
             
             drawBtn.disabled = false;
