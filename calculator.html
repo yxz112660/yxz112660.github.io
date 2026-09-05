@@ -33,6 +33,7 @@
       align-items: center;
       gap: 0.5rem;
       margin-bottom: 1.5rem;
+      flex-wrap: wrap;
     }
     h1 span {
       background: #e0e7ff;
@@ -110,6 +111,39 @@
       background: #f1f5f9;
       border-color: #cbd5e1;
     }
+    .tag-input-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      flex: 1;
+      min-width: 200px;
+    }
+    .tag-input-group label {
+      font-weight: 500;
+      color: #334155;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+    .tag-input-group input {
+      flex: 1;
+      min-width: 150px;
+      padding: 0.6rem 1rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: 0.2s;
+      background: #f8fafc;
+    }
+    .tag-input-group input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+      background: white;
+    }
+    .tag-input-group input::placeholder {
+      color: #94a3b8;
+    }
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -149,6 +183,8 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
     .month-title {
       font-size: 1.3rem;
@@ -188,9 +224,17 @@
       font-weight: 600;
       color: #3730a3;
     }
+    .day-cell.has-data.has-tag-miss {
+      background: #fef2f2;
+      border-color: #fca5a5;
+      color: #991b1b;
+    }
     .day-cell:hover {
       background: #ddd6fe;
       transform: scale(0.96);
+    }
+    .day-cell.has-data.has-tag-miss:hover {
+      background: #fecaca;
     }
     .day-revenue {
       font-size: 0.65rem;
@@ -198,11 +242,25 @@
       color: #2563eb;
       margin-top: 2px;
     }
+    .day-cell.has-data.has-tag-miss .day-revenue {
+      color: #dc2626;
+    }
     .day-low-count {
       font-size: 0.6rem;
       font-weight: 600;
       color: #dc2626;
       margin-top: 1px;
+    }
+    .day-alarm {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      font-size: 0.85rem;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
     }
     .modal {
       display: none;
@@ -221,7 +279,7 @@
       background: white;
       border-radius: 24px;
       padding: 1.8rem;
-      max-width: 750px;
+      max-width: 850px;
       width: 90%;
       max-height: 80vh;
       overflow-y: auto;
@@ -232,6 +290,19 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .modal-header .tag-summary {
+      font-size: 0.85rem;
+      color: #64748b;
+      background: #f1f5f9;
+      padding: 0.3rem 0.8rem;
+      border-radius: 16px;
+    }
+    .modal-header .tag-summary.has-miss {
+      background: #fee2e2;
+      color: #991b1b;
     }
     .close-btn {
       background: none;
@@ -251,6 +322,9 @@
       background: #f8fafc;
       padding: 0.7rem;
       font-weight: 600;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
     td {
       padding: 0.6rem 0.7rem;
@@ -274,10 +348,67 @@
       font-weight: 600;
       margin-left: 0.4rem;
     }
+    .tag-pass {
+      color: #15803d;
+      background: #dcfce7;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .tag-fail {
+      color: #b91c1c;
+      background: #fee2e2;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    .tag-missing {
+      font-size: 0.7rem;
+      color: #dc2626;
+      background: #fee2e2;
+      padding: 0.15rem 0.4rem;
+      border-radius: 8px;
+      margin: 0 0.1rem;
+      display: inline-block;
+    }
     .empty-message {
       text-align: center;
       padding: 2rem;
       color: #94a3b8;
+    }
+    .tag-hint {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-top: 0.2rem;
+    }
+    @media (max-width: 600px) {
+      .modal-content {
+        padding: 1rem;
+        max-width: 95%;
+      }
+      table {
+        font-size: 0.75rem;
+      }
+      th, td {
+        padding: 0.4rem 0.3rem;
+      }
+      .upload-card {
+        padding: 1rem;
+      }
+      .tag-input-group {
+        min-width: 100%;
+      }
+      .day-cell {
+        font-size: 0.75rem;
+        border-radius: 10px;
+      }
+      .day-alarm {
+        font-size: 0.7rem;
+        top: -2px;
+        right: -2px;
+      }
     }
   </style>
 </head>
@@ -285,13 +416,18 @@
 <div class="container">
   <h1>
     📊 萌芽计划创作者数据看板
-    <span>无尽冬日-YYDS、香香女孩(无尽冬日)制作（如果觉得好用、可以帮我俩视频点点赞）</span>
+    <span>无尽冬日-YYDS、香香女孩(无尽冬日)制作</span>
   </h1>
 
   <div class="upload-card">
     <div class="upload-area">
       <input type="file" id="excelUpload" accept=".xlsx, .xls, .csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
       <span id="currentFileName" class="file-name">未选择文件</span>
+    </div>
+    <div class="tag-input-group">
+      <label>🏷️ 标签：</label>
+      <input type="text" id="tagInput" placeholder="输入标签，如 #无尽冬日 #萌芽计划" value="#无尽冬日 #无尽冬日萌芽计划第六期">
+      <span class="tag-hint">多个标签用空格或逗号分隔</span>
     </div>
     <button id="analyzeBtn">📋 开始分析</button>
     <button id="clearCacheBtn" class="secondary">🗑️ 清除缓存</button>
@@ -302,7 +438,10 @@
   <div class="calendar-section" id="calendarSection">
     <div class="month-header">
       <span class="month-title" id="monthDisplay">📅 收益日历</span>
-      <div style="display: flex; gap:0.5rem;">
+      <div style="display: flex; gap:0.5rem; align-items: center;">
+        <span style="font-size:0.8rem; color:#64748b; display:flex; align-items:center; gap:0.3rem;">
+          <span style="display:inline-block; width:12px; height:12px; border-radius:4px; background:#fef2f2; border:1px solid #fca5a5;"></span> 标签缺失
+        </span>
         <button id="prevMonthBtn" class="secondary" style="padding:0.4rem 1rem;">◀</button>
         <button id="nextMonthBtn" class="secondary" style="padding:0.4rem 1rem;">▶</button>
       </div>
@@ -315,12 +454,13 @@
   <div class="modal-content">
     <div class="modal-header">
       <h3 id="modalDateTitle">详细数据</h3>
+      <span class="tag-summary" id="modalTagSummary">🏷️ 标签匹配：--</span>
       <button class="close-btn" id="closeModalBtn">&times;</button>
     </div>
     <div id="modalTableContainer" style="overflow-x: auto;">
       <table id="detailTable">
         <thead>
-           <tr><th>作品名称</th><th>播放量</th><th>点赞量</th><th>有效播放量</th><th>收益</th><th>寒冬之星</th><th>标记</th></tr>
+           <tr><th>作品名称</th><th>播放量</th><th>点赞量</th><th>有效播放量</th><th>收益</th><th>寒冬之星</th><th>标签匹配</th><th>标记</th></tr>
         </thead>
         <tbody></tbody>
       </table>
@@ -334,11 +474,13 @@
     let currentFileName = '';
     let calendarYear = new Date().getFullYear();
     let calendarMonth = new Date().getMonth() + 1;
+    let currentTags = [];
 
     const fileInput = document.getElementById('excelUpload');
     const fileNameSpan = document.getElementById('currentFileName');
     const analyzeBtn = document.getElementById('analyzeBtn');
     const clearCacheBtn = document.getElementById('clearCacheBtn');
+    const tagInput = document.getElementById('tagInput');
     const statsContainer = document.getElementById('statsContainer');
     const monthDisplay = document.getElementById('monthDisplay');
     const calendarDaysContainer = document.getElementById('calendarDaysContainer');
@@ -347,7 +489,24 @@
     const dayModal = document.getElementById('dayModal');
     const closeModalBtn = document.getElementById('closeModalBtn');
     const modalDateTitle = document.getElementById('modalDateTitle');
+    const modalTagSummary = document.getElementById('modalTagSummary');
     const detailTableBody = document.querySelector('#detailTable tbody');
+
+    function parseTags(input) {
+      if (!input) return [];
+      const raw = input.split(/[\s,，、]+/).filter(t => t.trim());
+      return [...new Set(raw.map(t => t.trim()))].filter(t => t);
+    }
+
+    function checkTagsInName(name, tags) {
+      if (!tags || tags.length === 0) return { matched: true, missing: [] };
+      if (!name) return { matched: false, missing: tags };
+      const missing = tags.filter(tag => !name.includes(tag));
+      return {
+        matched: missing.length === 0,
+        missing: missing
+      };
+    }
 
     function parseExcelData(file) {
       return new Promise((resolve, reject) => {
@@ -416,7 +575,7 @@
       });
     }
 
-    function processPublicData(rawData) {
+    function processPublicData(rawData, tags) {
       return rawData
         .filter(item => item.status === '公开')
         .map(item => {
@@ -441,6 +600,8 @@
           const winterStar = Math.round(revenue * 13 * 100) / 100;
           const isLowPlay = plays < 1000;
           
+          const tagResult = checkTagsInName(item.name, tags);
+          
           return {
             ...item,
             effectivePlays,
@@ -448,6 +609,8 @@
             revenue,
             winterStar,
             isLowPlay,
+            tagMatched: tagResult.matched,
+            tagMissing: tagResult.missing,
           };
         });
     }
@@ -483,6 +646,8 @@
       const totalWinterStar = data.reduce((sum, d) => sum + d.winterStar, 0);
       const totalLikes = data.reduce((sum, d) => sum + (d.likes || 0), 0);
       const totalEffectivePlays = data.reduce((sum, d) => sum + (d.effectivePlays || 0), 0);
+      const tagMatchedCount = data.filter(d => d.tagMatched).length;
+      const tagMissingCount = totalVideos - tagMatchedCount;
 
       const stats = [
         { label: '📈 总播放量', value: totalPlays.toLocaleString() },
@@ -493,6 +658,8 @@
         { label: '👍 总点赞量', value: totalLikes.toLocaleString() },
         { label: '✅ 总有效播放量', value: totalEffectivePlays.toLocaleString() },
         { label: '🚀 非低保视频', value: nonLowPlayCount },
+        { label: '🏷️ 标签匹配', value: `${tagMatchedCount}/${totalVideos}` },
+        { label: '⚠️ 标签缺失', value: tagMissingCount },
       ];
 
       statsContainer.innerHTML = stats.map(s => `
@@ -547,10 +714,21 @@
         const lowPlayCount = dayData.filter(item => item.isLowPlay).length;
         const hasData = dayData.length > 0;
         
-        html += `<div class="day-cell ${hasData ? 'has-data' : ''}" data-date="${dateStr}">
+        // 检查该天是否有标签不匹配的视频
+        const hasTagMiss = dayData.some(item => !item.tagMatched);
+        const hasTagMatch = dayData.some(item => item.tagMatched);
+        // 如果有数据且所有数据都匹配，则无闹钟；如果有任何一条不匹配，则显示闹钟
+        const showAlarm = hasData && hasTagMiss;
+        
+        let classNames = 'day-cell';
+        if (hasData) classNames += ' has-data';
+        if (showAlarm) classNames += ' has-tag-miss';
+        
+        html += `<div class="${classNames}" data-date="${dateStr}">
                   <span>${day}</span>
                   ${hasData ? `<span class="day-revenue">¥${totalDayRevenue.toFixed(1)}</span>` : ''}
                   ${hasData && lowPlayCount > 0 ? `<span class="day-low-count">🆘${lowPlayCount}</span>` : ''}
+                  ${showAlarm ? '<span class="day-alarm">🔔</span>' : ''}
                 </div>`;
       }
       
@@ -566,23 +744,41 @@
 
     function openDayDetailModal(dateKey, dateMap) {
       const dayData = dateMap.get(dateKey) || [];
+      const tags = currentTags;
+      
       modalDateTitle.textContent = `📋 ${dateKey} 数据详情 (${dayData.length}条)`;
+      
+      const matchedCount = dayData.filter(d => d.tagMatched).length;
+      const totalCount = dayData.length;
+      const hasMiss = matchedCount < totalCount;
+      modalTagSummary.textContent = `🏷️ 标签匹配：${matchedCount}/${totalCount}`;
+      modalTagSummary.className = 'tag-summary' + (hasMiss ? ' has-miss' : '');
+      
       detailTableBody.innerHTML = '';
       
       if (dayData.length === 0) {
-        detailTableBody.innerHTML = '<tr><td colspan="7" class="empty-message">暂无数据</td></tr>';
+        detailTableBody.innerHTML = '<tr><td colspan="8" class="empty-message">暂无数据</td></tr>';
       } else {
         dayData.forEach(item => {
-          // 标记逻辑：优先显示低保，非低保才判断点赞数不足
           let markHtml = '';
           if (item.isLowPlay) {
             markHtml = '<span class="low-tag">低保</span>';
           } else {
-            // 只有非低保视频才判断点赞数不足
             const likeInsufficient = (item.likes * 100) < item.plays;
             if (likeInsufficient) {
               markHtml = '<span class="warn-tag">点赞数不足</span>';
             }
+          }
+          
+          let tagHtml = '';
+          if (tags.length === 0) {
+            tagHtml = '<span style="color:#94a3b8;font-size:0.7rem;">未设置</span>';
+          } else if (item.tagMatched) {
+            tagHtml = '<span class="tag-pass">✅ 全部匹配</span>';
+          } else {
+            const missingTags = item.tagMissing || [];
+            const missingHtml = missingTags.map(t => `<span class="tag-missing">${escapeHtml(t)}</span>`).join(' ');
+            tagHtml = `<span class="tag-fail">❌ 缺失：${missingHtml}</span>`;
           }
           
           detailTableBody.innerHTML += `
@@ -593,6 +789,7 @@
               <td>${item.effectivePlays.toLocaleString()}</td>
               <td>¥${item.revenue.toFixed(2)}</td>
               <td>❄️${item.winterStar.toFixed(2)}</td>
+              <td>${tagHtml}</td>
               <td>${markHtml}</td>
             </tr>
           `;
@@ -615,10 +812,11 @@
       dayModal.classList.remove('active');
     }
 
-    function processAndRender(data, fileName) {
-      const publicData = processPublicData(data);
+    function processAndRender(data, fileName, tags) {
+      const publicData = processPublicData(data, tags);
       currentData = publicData;
       currentFileName = fileName;
+      currentTags = tags;
       
       renderStats(publicData);
       renderCalendar(publicData, calendarYear, calendarMonth);
@@ -635,13 +833,14 @@
         alert('请先选择Excel文件');
         return;
       }
+      const tags = parseTags(tagInput.value);
       try {
         const rawData = await parseExcelData(file);
         if (rawData.length === 0) {
           alert('未解析到数据行');
           return;
         }
-        processAndRender(rawData, file.name);
+        processAndRender(rawData, file.name, tags);
       } catch (err) {
         alert('解析失败：' + err.message);
       }
@@ -656,6 +855,7 @@
           if (confirm(`检测到文件“${file.name}”已有缓存数据，是否使用缓存？`)) {
             currentData = cached;
             currentFileName = file.name;
+            currentTags = parseTags(tagInput.value);
             renderStats(currentData);
             renderCalendar(currentData, calendarYear, calendarMonth);
             fileNameSpan.textContent = file.name + ' (缓存)';
@@ -706,6 +906,7 @@
       if (e.target === dayModal) closeModal();
     });
 
+    tagInput.value = '#无尽冬日 #无尽冬日萌芽计划第六期';
     renderStats([]);
     renderCalendar([], calendarYear, calendarMonth);
     fileNameSpan.textContent = '未选择文件';
