@@ -427,7 +427,7 @@
     <div class="tag-input-group">
       <label>🏷️ 标签：</label>
       <input type="text" id="tagInput" placeholder="输入标签，如 #无尽冬日 #萌芽计划" value="#无尽冬日 #无尽冬日萌芽计划第六期">
-      <span class="tag-hint">多个标签用空格或逗号分隔</span>
+      <span class="tag-hint">多个标签用空格或逗号分隔，以#开头</span>
     </div>
     <button id="analyzeBtn">📋 开始分析</button>
     <button id="clearCacheBtn" class="secondary">🗑️ 清除缓存</button>
@@ -494,14 +494,29 @@
 
     function parseTags(input) {
       if (!input) return [];
-      const raw = input.split(/[\s,，、]+/).filter(t => t.trim());
-      return [...new Set(raw.map(t => t.trim()))].filter(t => t);
+      // 提取所有以#开头的标签，标签结束于空格或下一个#
+      const tagRegex = /#[\u4e00-\u9fa5a-zA-Z0-9_]+/g;
+      const matches = input.match(tagRegex) || [];
+      return [...new Set(matches.map(t => t.trim()))].filter(t => t);
     }
 
-    function checkTagsInName(name, tags) {
+    /**
+     * 严格检测标签是否在作品名称中
+     * 标签必须作为独立的标签出现，即标签后面是空格或者是下一个标签的#
+     */
+    function checkTagsInNameStrict(name, tags) {
       if (!tags || tags.length === 0) return { matched: true, missing: [] };
       if (!name) return { matched: false, missing: tags };
-      const missing = tags.filter(tag => !name.includes(tag));
+      
+      const missing = tags.filter(tag => {
+        // 使用正则检测标签是否作为独立标签出现
+        // 标签后面必须是空格、下一个标签的#、或者字符串结尾
+        const escapedTag = tag.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        // 标签后面是空格、#、中文标点、英文标点、或者结尾
+        const regex = new RegExp(escapedTag + '(?=[\\s#，,、。.]|$)');
+        return !regex.test(name);
+      });
+      
       return {
         matched: missing.length === 0,
         missing: missing
@@ -600,7 +615,8 @@
           const winterStar = Math.round(revenue * 13 * 100) / 100;
           const isLowPlay = plays < 1000;
           
-          const tagResult = checkTagsInName(item.name, tags);
+          // 使用严格标签检测
+          const tagResult = checkTagsInNameStrict(item.name, tags);
           
           return {
             ...item,
@@ -716,8 +732,6 @@
         
         // 检查该天是否有标签不匹配的视频
         const hasTagMiss = dayData.some(item => !item.tagMatched);
-        const hasTagMatch = dayData.some(item => item.tagMatched);
-        // 如果有数据且所有数据都匹配，则无闹钟；如果有任何一条不匹配，则显示闹钟
         const showAlarm = hasData && hasTagMiss;
         
         let classNames = 'day-cell';
@@ -906,6 +920,7 @@
       if (e.target === dayModal) closeModal();
     });
 
+    // 设置默认标签
     tagInput.value = '#无尽冬日 #无尽冬日萌芽计划第六期';
     renderStats([]);
     renderCalendar([], calendarYear, calendarMonth);
